@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				
+<joined-subclass name="UsuarioWebEN" extends="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" table="UsuarioWeb"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<bag name="Acciones" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idUsuario"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionEN"/>
+					    </bag>
+					
+			
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="UsuarioWebENReadAllHQL">from UsuarioWebEN</query>
+		  <query name="UsuarioWebENobtenerRankingHQL"><![CDATA[FROM UsuarioWebEN as usu order by usu.Puntuacion]]></query>
+		  <query name="UsuarioWebENobtenerPuntuacionesHQL"><![CDATA[FROM UsuarioWebEN as usu order by usu.Puntuacion desc]]></query>
+		</hibernate-mapping>
+	

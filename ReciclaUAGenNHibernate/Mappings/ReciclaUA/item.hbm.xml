@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="ItemEN" table="Item"> 
+				  	
+						<id name="Id" column="idItem" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
+					<property name="EsValido" > 
+						<column name="esValido"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" >	
+								<column name="FK_id_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Niveles" class="ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN" >	
+								<column name="FK_idNivel_idNivel"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Material" class="ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN" >	
+								<column name="FK_id_idMateriales"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="AccionReciclar" >
+							<key>
+							
+								
+								<column name="FK_idItem_idItem"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ItemENReadAllHQL">from ItemEN</query>
+		  <query name="ItemENbuscarItemsPorValidarHQL"><![CDATA[FROM ItemEN as item WHERE item.EsValido=2]]></query>
+		  <query name="ItemENbuscarItemsValidadosHQL"><![CDATA[FROM ItemEN as item WHERE item.EsValido=1]]></query>
+		  <query name="ItemENbuscarItemsPorUsuarioHQL"><![CDATA[FROM ItemEN as item where item.Usuario is not empty and item.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

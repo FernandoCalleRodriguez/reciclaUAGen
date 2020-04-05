@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				
+<joined-subclass name="AccionReciclarEN" extends="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionEN" table="AccionReciclar"> 
+	<key>
+    	
+				<column name="idAccion"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="Cantidad" type="integer"> 
+						<column name="cantidad"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="Contenedor" class="ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN" >	
+								<column name="FK_idContenedor_idContenedor"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Item" class="ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN" >	
+								<column name="FK_idItem_idItem"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="AccionReciclarENReadAllHQL">from AccionReciclarEN</query>
+		  <query name="AccionReciclarENbuscarPorAutorHQL"><![CDATA[FROM AccionReciclarEN as acc WHERE acc.Usuario.Id = :p_user_id]]></query>
+		  <query name="AccionReciclarENbuscarPorFechaHQL"><![CDATA[FROM AccionReciclarEN as acc WHERE acc.Fecha = :p_date]]></query>
+		  <query name="AccionReciclarENbuscarPorMaterialHQL"><![CDATA[FROM AccionReciclarEN as material inner join material.Item as it WHERE  it.Material.Nombre = :p_material]]></query>
+		  <query name="AccionReciclarENbuscarAccionesReciclajePorUsuarioHQL"><![CDATA[FROM AccionReciclarEN as accion where accion.Usuario is not empty and accion.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

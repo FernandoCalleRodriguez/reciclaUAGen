@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="PlantaEN" table="Planta"> 
+				  	
+						<id name="Id" column="idPlanta" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Planta" > 
+						<column name="planta"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Estancias" >
+							<key>
+							
+								
+								<column name="FK_idPlanta_idPlanta"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Edificio" class="ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN" >	
+								<column name="FK_idEdificio_idEdificio"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PlantaENReadAllHQL">from PlantaEN</query>
+		</hibernate-mapping>
+	

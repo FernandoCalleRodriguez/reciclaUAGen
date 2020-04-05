@@ -1,0 +1,127 @@
+[
+    {
+        "usuarios": [
+            {
+                "administrador": [
+                    {
+                        "nombre": "",
+                        "apellidos": "",
+                        "email": "",
+                        "password": "",
+                        "fecha": "",
+                        "estado": false,
+                        "emailVerificado": false
+                    }
+                ],
+                "web": [
+                    {
+                        "nombre": "",
+                        "apellidos": "",
+                        "email": "",
+                        "password": "",
+                        "fecha": "",
+                        "estado": false,
+                        "emailVerificado": false,
+                        "puntuacion" : 0
+                    }
+                ]
+            }
+        ],
+        "foro": [
+            {
+                "dudas": [
+                    {
+                        "titulo": "",
+                        "cuerpo": "",
+                        "fecha": "",
+                        "util": "",
+                        "temas": ""
+                    }
+                ],
+                "respuestas": [
+                    {
+                        "cuerpo": "",
+                        "fecha": "",
+                        "esCorrecta": false,
+                        "util": 0
+                    }
+                ]
+            }
+        ],
+        "juego": [
+            {
+                "materiales":[
+                    {
+                        "nombre": "",
+                        "contenedor": 0
+
+                    }
+                ],
+                "items":[
+                    {
+                        "nombre": "",
+                        "descripcion": "",
+                        "imagen": "",
+                        "esValido": false
+
+                    }
+                ],
+                "niveles":[
+                    {
+                        "numero": 0,
+                        "puntuacion": 0
+
+                    }
+                ]
+            }
+        ],
+        "acciones":[
+            {
+                "web":[
+                    {
+                        "fecha": ""
+
+                    }
+                ],
+                "tipo":[
+                    {
+                        "puntuacion": 0,
+                        "nombre": ""
+                    }
+                ],
+                "reciclar":[
+                    {
+                        "cantidad": 0
+
+                    }
+                ]
+            }
+        ],
+        "reciclaje":[
+            {
+                "punto":[
+                    {
+                        "latitud": "",
+                        "longitud": "",
+                        "esValido": false
+
+                    }
+                ],
+                "contenedor":[
+                    {
+                        "tipo": 0
+
+                    }
+                ]
+            }
+        ],
+        "notas":[
+            {
+                "titulo": "",
+                "cuerpo": "",
+                "fecha": ""
+
+            }
+        ]
+    }
+]

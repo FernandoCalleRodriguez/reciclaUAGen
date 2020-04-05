@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="PuntoReciclajeEN" table="PuntoReciclaje"> 
+				  	
+						<id name="Id" column="idPuntoReciclaje" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Latitud" type="double"> 
+						<column name="latitud"  not-null="true"/>
+					</property>
+					<property name="Longitud" type="double"> 
+						<column name="longitud"  not-null="true"/>
+					</property>
+					<property name="EsValido" > 
+						<column name="esValido"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" >	
+								<column name="FK_id_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Contenedores" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idPuntoReciclaje_idPuntoReciclaje"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Estancia" class="ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN" >	
+								<column name="FK_id_idEstancia"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PuntoReciclajeENReadAllHQL">from PuntoReciclajeEN</query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorValidarHQL"><![CDATA[FROM PuntoReciclajeEN as punto where EsValido = 2]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosValidadosHQL"><![CDATA[FROM PuntoReciclajeEN as punto where EsValido = 1]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorEdificioHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Edificio is not empty and punto.Estancia.Edificio.Id = :id_edificio]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorEstanciaHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Id = :id_estancia]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorPlantaHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Edificio is not empty and punto.Estancia.Planta is not empty and punto.Estancia.Edificio.Id = :id_edificio and punto.Estancia.Planta.Planta = :num_planta]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorUsuarioHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Usuario is not empty and punto.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

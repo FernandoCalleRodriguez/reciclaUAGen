@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				
+<joined-subclass name="AccionWebEN" extends="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionEN" table="AccionWeb"> 
+	<key>
+    	
+				<column name="idAccion"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+		  			
+						<many-to-one name="Tipo" class="ReciclaUAGenNHibernate.EN.ReciclaUA.TipoAccionEN" >	
+								<column name="FK_id_idTipoAcciones"/> 
+						</many-to-one>
+											 					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="AccionWebENReadAllHQL">from AccionWebEN</query>
+		  <query name="AccionWebENbuscarPorAutorHQL"><![CDATA[FROM AccionWebEN as acc WHERE acc.Usuario.Id = :p_user_id]]></query>
+		  <query name="AccionWebENbuscarPorFechaHQL"><![CDATA[FROM AccionWebEN as acc WHERE acc.Fecha = :p_date]]></query>
+		  <query name="AccionWebENbuscarPorTipoHQL"><![CDATA[FROM AccionWebEN as accion WHERE accion.Tipo.Nombre = :p_type]]></query>
+		  <query name="AccionWebENbuscarAccionesWebPorUsuarioHQL"><![CDATA[FROM AccionWebEN as accion where accion.Usuario is not empty and accion.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

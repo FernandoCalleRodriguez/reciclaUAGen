@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="ContenedorEN" table="Contenedor"> 
+				  	
+						<id name="Id" column="idContenedor" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Tipo" > 
+						<column name="tipo"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Punto" class="ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN" >	
+								<column name="FK_idPuntoReciclaje_idPuntoReciclaje"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Acciones" >
+							<key>
+							
+								
+								<column name="FK_idContenedor_idContenedor"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ContenedorENReadAllHQL">from ContenedorEN</query>
+		  <query name="ContenedorENbuscarContenedoresPorTipoHQL"><![CDATA[FROM ContenedorEN]]></query>
+		</hibernate-mapping>
+	

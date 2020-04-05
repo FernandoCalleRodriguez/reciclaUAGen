@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="NivelEN" table="Nivel"> 
+				  	
+						<id name="Id" column="idNivel" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Numero" type="integer"> 
+						<column name="numero"  not-null="true"/>
+					</property>
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Item" >
+							<key>
+							
+								
+								<column name="FK_idNivel_idNivel"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="NivelENReadAllHQL">from NivelEN</query>
+		</hibernate-mapping>
+	

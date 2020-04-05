@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="DudaEN" table="Duda"> 
+				  	
+						<id name="Id" column="idDuda" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Titulo" type="string"> 
+						<column name="titulo"  not-null="true"/>
+					</property>
+					<property name="Cuerpo" type="string"> 
+						<column name="cuerpo"  not-null="true"/>
+					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Util" type="integer"> 
+						<column name="util"  not-null="true"/>
+					</property>
+					<property name="Temas" type="string"> 
+						<column name="temas"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" >	
+								<column name="FK_id_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Respuestas" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idDuda_idDuda"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN"/>
+					    </bag>
+					
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DudaENReadAllHQL">from DudaEN</query>
+		  <query name="DudaENbuscarDudaPorTituloHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Titulo LIKE :p_titulo]]></query>
+		  <query name="DudaENbuscarDudaPorTemasHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Temas = :p_tema]]></query>
+		  <query name="DudaENbuscarDudasPorUsuarioHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Usuario is not empty and duda.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

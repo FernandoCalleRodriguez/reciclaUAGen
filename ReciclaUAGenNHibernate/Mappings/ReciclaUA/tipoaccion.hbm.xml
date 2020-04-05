@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="TipoAccionEN" table="TipoAccion"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Acciones" >
+							<key>
+							
+								
+								<column name="FK_id_idTipoAcciones"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionWebEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="TipoAccionENReadAllHQL">from TipoAccionEN</query>
+		</hibernate-mapping>
+	

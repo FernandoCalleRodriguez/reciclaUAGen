@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				
+<joined-subclass name="UsuarioAdministradorEN" extends="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" table="UsuarioAdministrador"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+		  			
+						<bag name="Notas" >
+							<key>
+							
+								
+								<column name="FK_id_idUsuarioAdministrador"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN"/>
+					    </bag>
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="UsuarioAdministradorENReadAllHQL">from UsuarioAdministradorEN</query>
+		</hibernate-mapping>
+	

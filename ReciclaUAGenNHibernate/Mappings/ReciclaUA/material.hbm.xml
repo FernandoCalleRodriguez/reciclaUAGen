@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="MaterialEN" table="Material"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Contenedor" > 
+						<column name="contenedor"  not-null="true"/>
+					</property>
+					<property name="EsValido" > 
+						<column name="esValido"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Items" >
+							<key>
+							
+								
+								<column name="FK_id_idMateriales"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN"/>
+					    </bag>
+					
+			
+			
+		  			
+						<many-to-one name="Usuario" class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" >	
+								<column name="FK_id_idUsuario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="MaterialENReadAllHQL">from MaterialEN</query>
+		  <query name="MaterialENbuscarPorTipoContenedorHQL"><![CDATA[FROM MaterialEN as material WHERE material.Contenedor =:p_tipoContenedor]]></query>
+		  <query name="MaterialENbuscarMaterialesPorValidarHQL"><![CDATA[FROM MaterialEN  as material WHERE material.EsValido=2]]></query>
+		  <query name="MaterialENbuscarMaterialesValidadosHQL"><![CDATA[FROM MaterialEN as material WHERE material.EsValido=1]]></query>
+		  <query name="MaterialENbuscarMaterialesPorUsuarioHQL"><![CDATA[FROM MaterialEN as material where material.Usuario is not empty and material.Usuario.Id = :id_usuario]]></query>
+		</hibernate-mapping>
+	

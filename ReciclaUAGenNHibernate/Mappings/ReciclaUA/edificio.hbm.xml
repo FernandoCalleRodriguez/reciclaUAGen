@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="EdificioEN" table="Edificio"> 
+						<id name="Id" column="idEdificio"/> 
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Estancias" >
+							<key>
+							
+								
+								<column name="FK_idEdificio_idEdificio"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Plantas" >
+							<key>
+							
+								
+								<column name="FK_idEdificio_idEdificio"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EdificioENReadAllHQL">from EdificioEN</query>
+		</hibernate-mapping>
+	
