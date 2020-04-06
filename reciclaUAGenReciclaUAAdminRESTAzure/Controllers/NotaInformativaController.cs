@@ -239,14 +239,13 @@ public HttpResponseMessage Crear ( [FromBody] NotaInformativaDTO dto)
 
                 // Create
                 returnOID = notaInformativaCEN.Crear (
-
                         //Atributo OID: p_usuarioAdministrador
                         // attr.estaRelacionado: true
                         dto.UsuarioAdministrador_oid                 // association role
 
-                        , dto.Titulo                                                                                                                                                     //Atributo Primitivo: p_titulo
-                        , dto.Cuerpo                                                                                                                                                     //Atributo Primitivo: p_cuerpo
-                        );
+                        ,                                           //Atributo Primitivo: p_titulo
+                        dto.Titulo,                                                                                                                                         //Atributo Primitivo: p_cuerpo
+                        dto.Cuerpo);
                 SessionCommit ();
 
                 // Convert return
@@ -289,8 +288,9 @@ public HttpResponseMessage Crear ( [FromBody] NotaInformativaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/NotaInformativa/{idNotaInformativa}/")]
 
+
+[Route ("~/api/NotaInformativa/Modificar")]
 
 public HttpResponseMessage Modificar (int idNotaInformativa, [FromBody] NotaInformativaDTO dto)
 {
@@ -357,7 +357,8 @@ public HttpResponseMessage Modificar (int idNotaInformativa, [FromBody] NotaInfo
 
 [HttpDelete]
 
-[Route ("~/api/NotaInformativa/{idNotaInformativa}/")]
+
+[Route ("~/api/NotaInformativa/Borrar")]
 
 public HttpResponseMessage Borrar (int p_notainformativa_oid)
 {

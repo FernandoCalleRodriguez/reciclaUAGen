@@ -174,9 +174,8 @@ public HttpResponseMessage Crear ( [FromBody] PlantaDTO dto)
 
                 // Create
                 returnOID = plantaCEN.Crear (
-                        dto.Planta                                                                               //Atributo Primitivo: p_planta
-                        ,
-                        //Atributo OID: p_edificio
+                        //Atributo Primitivo: p_planta
+                        dto.Planta,                                                                                                                                       //Atributo OID: p_edificio
                         // attr.estaRelacionado: true
                         dto.Edificio_oid                 // association role
 
@@ -225,8 +224,9 @@ public HttpResponseMessage Crear ( [FromBody] PlantaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/EstanciaPunto/{idEstancia}/PlantaEstancia/{idPlanta}/")]
 
+
+[Route ("~/api/Planta/Modificar")]
 
 public HttpResponseMessage Modificar (int idPlanta, [FromBody] PlantaDTO dto)
 {
@@ -289,7 +289,8 @@ public HttpResponseMessage Modificar (int idPlanta, [FromBody] PlantaDTO dto)
 
 [HttpDelete]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/EstanciaPunto/{idEstancia}/PlantaEstancia/{idPlanta}/")]
+
+[Route ("~/api/Planta/Borrar")]
 
 public HttpResponseMessage Borrar (int p_planta_oid)
 {

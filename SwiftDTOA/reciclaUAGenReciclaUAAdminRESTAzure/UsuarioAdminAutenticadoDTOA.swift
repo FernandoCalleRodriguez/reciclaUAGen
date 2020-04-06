@@ -18,6 +18,7 @@ class UsuarioAdminAutenticadoDTOA : DTOA
 	var email: String?;
 	var fecha: NSDate?;
 	var emailVerificado: Bool?;
+	var borrado: Bool?;
 	
 	
 	
@@ -45,6 +46,7 @@ class UsuarioAdminAutenticadoDTOA : DTOA
 	
 		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		self.emailVerificado = json["EmailVerificado"].object as? Bool;
+		self.borrado = json["Borrado"].object as? Bool;
 		
 		
 	}
@@ -79,6 +81,11 @@ class UsuarioAdminAutenticadoDTOA : DTOA
 
 	
 		dictionary["EmailVerificado"] = self.emailVerificado;
+	
+	
+
+	
+		dictionary["Borrado"] = self.borrado;
 	
 	
 		

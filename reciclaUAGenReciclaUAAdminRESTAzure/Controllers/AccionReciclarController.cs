@@ -429,24 +429,21 @@ public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
 
                 // Create
                 returnOID = accionReciclarCEN.Crear (
-
                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        , dto.Fecha                                                                                                                                                      //Atributo Primitivo: p_fecha
-                        ,
-                        //Atributo OID: p_contenedor
+                        ,                                           //Atributo Primitivo: p_fecha
+                        dto.Fecha,                                                                                                                                        //Atributo OID: p_contenedor
                         // attr.estaRelacionado: true
                         dto.Contenedor_oid                 // association role
 
-                        ,
-                        //Atributo OID: p_item
+                        ,                                         //Atributo OID: p_item
                         // attr.estaRelacionado: true
                         dto.Item_oid                 // association role
 
-                        , dto.Cantidad                                                                                                                                                   //Atributo Primitivo: p_cantidad
-                        );
+                        ,                                           //Atributo Primitivo: p_cantidad
+                        dto.Cantidad);
                 SessionCommit ();
 
                 // Convert return
@@ -491,8 +488,9 @@ public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/")]
 
+
+[Route ("~/api/AccionReciclar/Modificar")]
 
 public HttpResponseMessage Modificar (int idAccionReciclar, [FromBody] AccionReciclarDTO dto)
 {
@@ -557,7 +555,8 @@ public HttpResponseMessage Modificar (int idAccionReciclar, [FromBody] AccionRec
 
 [HttpDelete]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/")]
+
+[Route ("~/api/AccionReciclar/Borrar")]
 
 public HttpResponseMessage Borrar (int p_accionreciclar_oid)
 {

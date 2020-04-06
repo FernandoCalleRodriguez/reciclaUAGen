@@ -43,6 +43,10 @@ public class UsuarioAdminAutenticadoDTOA extends DTOA
 	public Boolean getEmailVerificado () { return emailVerificado; }
 	public void setEmailVerificado (Boolean emailVerificado) { this.emailVerificado = emailVerificado; }
 	
+	private Boolean borrado;
+	public Boolean getBorrado () { return borrado; }
+	public void setBorrado (Boolean borrado) { this.borrado = borrado; }
+	
 	
 	
 	
@@ -103,6 +107,13 @@ public class UsuarioAdminAutenticadoDTOA extends DTOA
 				this.emailVerificado = (Boolean) json.opt("EmailVerificado");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Borrado")))
+			{
+			 
+				this.borrado = (Boolean) json.opt("Borrado");
+			 
+			}
 			
 			
 		}
@@ -142,6 +153,10 @@ public class UsuarioAdminAutenticadoDTOA extends DTOA
 		  if (this.emailVerificado != null)
 			json.put("EmailVerificado", this.emailVerificado);
 		
+		
+		  if (this.borrado != null)
+			json.put("Borrado", this.borrado);
+		
 			
 			
 		}
@@ -172,6 +187,8 @@ public class UsuarioAdminAutenticadoDTOA extends DTOA
 	dto.setFecha (this.getFecha());
 
 	dto.setEmailVerificado (this.getEmailVerificado());
+
+	dto.setBorrado (this.getBorrado());
 
 		
 		

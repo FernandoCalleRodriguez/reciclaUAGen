@@ -237,9 +237,9 @@ public HttpResponseMessage Crear ( [FromBody] NivelDTO dto)
 
                 // Create
                 returnOID = nivelCEN.Crear (
-                        dto.Numero                                                                               //Atributo Primitivo: p_numero
-                        , dto.Puntuacion                                                                                                                                                 //Atributo Primitivo: p_puntuacion
-                        );
+                        //Atributo Primitivo: p_numero
+                        dto.Numero,                                                                                                                                         //Atributo Primitivo: p_puntuacion
+                        dto.Puntuacion);
                 SessionCommit ();
 
                 // Convert return
@@ -284,8 +284,9 @@ public HttpResponseMessage Crear ( [FromBody] NivelDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/NivelItem/{idNivel}/")]
 
+
+[Route ("~/api/Nivel/Modificar")]
 
 public HttpResponseMessage Modificar (int idNivel, [FromBody] NivelDTO dto)
 {
@@ -350,7 +351,8 @@ public HttpResponseMessage Modificar (int idNivel, [FromBody] NivelDTO dto)
 
 [HttpDelete]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/NivelItem/{idNivel}/")]
+
+[Route ("~/api/Nivel/Borrar")]
 
 public HttpResponseMessage Borrar (int p_nivel_oid)
 {

@@ -50,5 +50,12 @@ public bool EmailVerificado
         get { return emailVerificado; }
         set { emailVerificado = value; }
 }
+
+private bool borrado;
+public bool Borrado
+{
+        get { return borrado; }
+        set { borrado = value; }
+}
 }
 }

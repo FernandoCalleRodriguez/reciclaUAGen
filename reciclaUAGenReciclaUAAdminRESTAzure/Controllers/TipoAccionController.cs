@@ -174,9 +174,9 @@ public HttpResponseMessage Crear ( [FromBody] TipoAccionDTO dto)
 
                 // Create
                 returnOID = tipoAccionCEN.Crear (
-                        dto.Puntuacion                                                                           //Atributo Primitivo: p_puntuacion
-                        , dto.Nombre                                                                                                                                                     //Atributo Primitivo: p_nombre
-                        );
+                        //Atributo Primitivo: p_puntuacion
+                        dto.Puntuacion,                                                                                                                                     //Atributo Primitivo: p_nombre
+                        dto.Nombre);
                 SessionCommit ();
 
                 // Convert return
@@ -221,8 +221,9 @@ public HttpResponseMessage Crear ( [FromBody] TipoAccionDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionWeb/{idAccionWeb}/Tipo/{idTipoAccion}/")]
 
+
+[Route ("~/api/TipoAccion/Modificar")]
 
 public HttpResponseMessage Modificar (int idTipoAccion, [FromBody] TipoAccionDTO dto)
 {
@@ -287,7 +288,8 @@ public HttpResponseMessage Modificar (int idTipoAccion, [FromBody] TipoAccionDTO
 
 [HttpDelete]
 
-[Route ("~/api/AccionWeb/{idAccionWeb}/Tipo/{idTipoAccion}/")]
+
+[Route ("~/api/TipoAccion/Borrar")]
 
 public HttpResponseMessage Borrar (int p_tipoaccion_oid)
 {

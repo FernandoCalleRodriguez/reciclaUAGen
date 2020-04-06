@@ -367,11 +367,10 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
 
                 // Create
                 returnOID = dudaCEN.Crear (
-                        dto.Titulo                                                                               //Atributo Primitivo: p_titulo
-                        , dto.Cuerpo                                                                                                                                                     //Atributo Primitivo: p_cuerpo
-                        , dto.Temas                                                                                                                                                      //Atributo Primitivo: p_temas
-                        ,
-                        //Atributo OID: p_usuario
+                        //Atributo Primitivo: p_titulo
+                        dto.Titulo,                                                                                                                                         //Atributo Primitivo: p_cuerpo
+                        dto.Cuerpo,                                                                                                                                         //Atributo Primitivo: p_temas
+                        dto.Temas,                                                                                                                                        //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
@@ -418,8 +417,9 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/Duda/{idDuda}/")]
 
+
+[Route ("~/api/Duda/Modificar")]
 
 public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
 {
@@ -490,7 +490,8 @@ public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
 
 [HttpDelete]
 
-[Route ("~/api/Duda/{idDuda}/")]
+
+[Route ("~/api/Duda/Borrar")]
 
 public HttpResponseMessage Borrar (int p_duda_oid)
 {

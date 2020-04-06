@@ -124,46 +124,6 @@ public void ModifyDefault (EstanciaEN estancia)
 }
 
 
-public string Crear (EstanciaEN estancia)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                if (estancia.Edificio != null) {
-                        // Argumento OID y no colección.
-                        estancia.Edificio = (ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN), estancia.Edificio.Id);
-
-                        estancia.Edificio.Estancias
-                        .Add (estancia);
-                }
-                if (estancia.Planta != null) {
-                        // Argumento OID y no colección.
-                        estancia.Planta = (ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN), estancia.Planta.Id);
-
-                        estancia.Planta.Estancias
-                        .Add (estancia);
-                }
-
-                session.Save (estancia);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in EstanciaCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return estancia.Id;
-}
-
 public void Modificar (EstanciaEN estancia)
 {
         try
@@ -282,6 +242,46 @@ public System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int 
         }
 
         return result;
+}
+
+public string Crear (EstanciaEN estancia)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                if (estancia.Edificio != null) {
+                        // Argumento OID y no colección.
+                        estancia.Edificio = (ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN), estancia.Edificio.Id);
+
+                        estancia.Edificio.Estancias
+                        .Add (estancia);
+                }
+                if (estancia.Planta != null) {
+                        // Argumento OID y no colección.
+                        estancia.Planta = (ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN), estancia.Planta.Id);
+
+                        estancia.Planta.Estancias
+                        .Add (estancia);
+                }
+
+                session.Save (estancia);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in EstanciaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return estancia.Id;
 }
 }
 }

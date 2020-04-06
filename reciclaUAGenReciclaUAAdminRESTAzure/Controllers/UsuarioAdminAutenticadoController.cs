@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
@@ -109,6 +114,11 @@ public HttpResponseMessage BuscarPorId (int idUsuarioAdminAutenticado)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
@@ -170,6 +180,11 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioAdministradorDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
@@ -177,11 +192,11 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioAdministradorDTO dto)
 
                 // Create
                 returnOID = usuarioAdministradorCEN.Crear (
-                        dto.Nombre                                                                               //Atributo Primitivo: p_nombre
-                        , dto.Apellidos                                                                                                                                                  //Atributo Primitivo: p_apellidos
-                        , dto.Email                                                                                                                                                      //Atributo Primitivo: p_email
-                        , dto.Pass                                                                                                                                                       //Atributo Primitivo: p_pass
-                        );
+                        //Atributo Primitivo: p_nombre
+                        dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_apellidos
+                        dto.Apellidos,                                                                                                                                      //Atributo Primitivo: p_email
+                        dto.Email,                                                                                                                                          //Atributo Primitivo: p_pass
+                        dto.Pass);
                 SessionCommit ();
 
                 // Convert return
@@ -224,9 +239,9 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioAdministradorDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/Duda/{idDuda}/UsuarioDuda/{idUsuarioAdminAutenticado}/")]
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/UsuarioRespuesta/{idUsuarioAdminAutenticado}/")]
 
+
+[Route ("~/api/UsuarioAdminAutenticado/Modificar")]
 
 public HttpResponseMessage Modificar (int idUsuarioAdminAutenticado, [FromBody] UsuarioAdministradorDTO dto)
 {
@@ -242,6 +257,11 @@ public HttpResponseMessage Modificar (int idUsuarioAdminAutenticado, [FromBody] 
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
@@ -302,8 +322,8 @@ public HttpResponseMessage Modificar (int idUsuarioAdminAutenticado, [FromBody] 
 
 [HttpDelete]
 
-[Route ("~/api/Duda/{idDuda}/UsuarioDuda/{idUsuarioAdminAutenticado}/")]
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/UsuarioRespuesta/{idUsuarioAdminAutenticado}/")]
+
+[Route ("~/api/UsuarioAdminAutenticado/Borrar")]
 
 public HttpResponseMessage Borrar (int p_usuarioadministrador_oid)
 {
@@ -321,6 +341,11 @@ public HttpResponseMessage Borrar (int p_usuarioadministrador_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);

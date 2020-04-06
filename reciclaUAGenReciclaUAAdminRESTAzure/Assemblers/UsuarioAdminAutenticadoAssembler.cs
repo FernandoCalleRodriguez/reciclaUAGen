@@ -53,6 +53,9 @@ public static UsuarioAdminAutenticadoDTOA Convert (UsuarioEN en, NHibernate.ISes
                 dto.EmailVerificado = en.EmailVerificado;
 
 
+                dto.Borrado = en.Borrado;
+
+
                 //
                 // TravesalLink
 

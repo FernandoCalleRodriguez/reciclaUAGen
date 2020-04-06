@@ -366,17 +366,15 @@ public HttpResponseMessage Crear ( [FromBody] ItemDTO dto)
 
                 // Create
                 returnOID = itemCEN.Crear (
-                        dto.Nombre                                                                               //Atributo Primitivo: p_nombre
-                        , dto.Descripcion                                                                                                                                                //Atributo Primitivo: p_descripcion
-                        , dto.Imagen                                                                                                                                                     //Atributo Primitivo: p_imagen
-                        , dto.EsValido                                                                                                                                                   //Atributo Primitivo: p_esValido
-                        ,
-                        //Atributo OID: p_usuario
+                        //Atributo Primitivo: p_nombre
+                        dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_descripcion
+                        dto.Descripcion,                                                                                                                                    //Atributo Primitivo: p_imagen
+                        dto.Imagen,                                                                                                                                         //Atributo Primitivo: p_esValido
+                        dto.EsValido,                                                                                                                                     //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        ,
-                        //Atributo OID: p_material
+                        ,                                         //Atributo OID: p_material
                         // attr.estaRelacionado: true
                         dto.Material_oid                 // association role
 
@@ -425,8 +423,9 @@ public HttpResponseMessage Crear ( [FromBody] ItemDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/")]
 
+
+[Route ("~/api/Item/Modificar")]
 
 public HttpResponseMessage Modificar (int idItem, [FromBody] ItemDTO dto)
 {
@@ -495,7 +494,8 @@ public HttpResponseMessage Modificar (int idItem, [FromBody] ItemDTO dto)
 
 [HttpDelete]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/")]
+
+[Route ("~/api/Item/Borrar")]
 
 public HttpResponseMessage Borrar (int p_item_oid)
 {

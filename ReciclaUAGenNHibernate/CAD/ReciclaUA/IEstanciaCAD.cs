@@ -15,8 +15,6 @@ System.Collections.Generic.IList<EstanciaEN> ReadAllDefault (int first, int size
 
 
 
-string Crear (EstanciaEN estancia);
-
 void Modificar (EstanciaEN estancia);
 
 
@@ -29,5 +27,8 @@ EstanciaEN BuscarPorId (string id
 
 
 System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int size);
+
+
+string Crear (EstanciaEN estancia);
 }
 }

@@ -17,23 +17,23 @@ using ReciclaUAGenNHibernate.CAD.ReciclaUA;
 
 namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
-    public partial class UsuarioCEN
-    {
-        public string Login(string p_pass, string p_email)
-        {
-            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Usuario_login) ENABLED START*/
-            string result = null;
-            UsuarioEN en = _IUsuarioCAD.BuscarPorCorreo(p_email);
-            if(en != null) {
+public partial class UsuarioCEN
+{
+public string Login (string p_pass, string p_email)
+{
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Usuario_login) ENABLED START*/
+        string result = null;
+        UsuarioEN en = _IUsuarioCAD.BuscarPorCorreo (p_email);
 
-                if (en.Pass.Equals(Utils.Util.GetEncondeMD5(p_pass)))
-                    result = this.GetToken(en.Id);
-            }
-
-
-
-            return result;
-            /*PROTECTED REGION END*/
+        if (en != null) {
+                if (en.Pass.Equals (Utils.Util.GetEncondeMD5 (p_pass)))
+                        result = this.GetToken (en.Id);
         }
-    }
+
+
+
+        return result;
+        /*PROTECTED REGION END*/
+}
+}
 }

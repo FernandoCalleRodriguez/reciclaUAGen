@@ -429,14 +429,12 @@ public HttpResponseMessage Crear ( [FromBody] AccionWebDTO dto)
 
                 // Create
                 returnOID = accionWebCEN.Crear (
-
                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        , dto.Fecha                                                                                                                                                      //Atributo Primitivo: p_fecha
-                        ,
-                        //Atributo OID: p_tipo
+                        ,                                           //Atributo Primitivo: p_fecha
+                        dto.Fecha,                                                                                                                                        //Atributo OID: p_tipo
                         // attr.estaRelacionado: true
                         dto.Tipo_oid                 // association role
 
@@ -485,8 +483,9 @@ public HttpResponseMessage Crear ( [FromBody] AccionWebDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionWeb/{idAccionWeb}/")]
 
+
+[Route ("~/api/AccionWeb/Modificar")]
 
 public HttpResponseMessage Modificar (int idAccionWeb, [FromBody] AccionWebDTO dto)
 {
@@ -549,7 +548,8 @@ public HttpResponseMessage Modificar (int idAccionWeb, [FromBody] AccionWebDTO d
 
 [HttpDelete]
 
-[Route ("~/api/AccionWeb/{idAccionWeb}/")]
+
+[Route ("~/api/AccionWeb/Borrar")]
 
 public HttpResponseMessage Borrar (int p_accionweb_oid)
 {

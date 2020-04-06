@@ -144,89 +144,6 @@ public HttpResponseMessage BuscarPorId (string idEstancia)
 
 
 
-[HttpPost]
-
-
-[Route ("~/api/Estancia/Crear")]
-
-
-
-
-public HttpResponseMessage Crear ( [FromBody] EstanciaDTO dto)
-{
-        // CAD, CEN, returnValue, returnOID
-        EstanciaRESTCAD estanciaRESTCAD = null;
-        EstanciaCEN estanciaCEN = null;
-        EstanciaDTOA returnValue = null;
-        string returnOID = null;
-
-        // HTTP response
-        HttpResponseMessage response = null;
-        string uri = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                estanciaRESTCAD = new EstanciaRESTCAD (session);
-                estanciaCEN = new EstanciaCEN (estanciaRESTCAD);
-
-                // Create
-                returnOID = estanciaCEN.Crear (
-                        dto.Null                                                                                 //Atributo Primitivo: p_id
-                        , dto.Actividad                                                                                                                                                  //Atributo Primitivo: p_actividad
-                        , dto.Latitud                                                                                                                                                    //Atributo Primitivo: p_latitud
-                        , dto.Longitud                                                                                                                                                   //Atributo Primitivo: p_longitud
-                        , dto.Nombre                                                                                                                                                     //Atributo Primitivo: p_nombre
-                        ,
-                        //Atributo OID: p_edificio
-                        // attr.estaRelacionado: true
-                        dto.Edificio_oid                 // association role
-
-                        ,
-                        //Atributo OID: p_planta
-                        // attr.estaRelacionado: true
-                        dto.Planta_oid                 // association role
-
-                        );
-                SessionCommit ();
-
-                // Convert return
-                returnValue = EstanciaAssembler.Convert (estanciaRESTCAD.ReadOIDDefault (returnOID), session);
-        }
-
-        catch (Exception e)
-        {
-                SessionRollBack ();
-
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 201 - Created
-        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
-
-        // Location Header
-        /*
-         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
-         *
-         * // TODO: y rolPaths
-         * routeValues.Add("id", returnOID);
-         *
-         * uri = Url.Link("GetOIDEstancia", routeValues);
-         * response.Headers.Location = new Uri(uri);
-         */
-
-        return response;
-}
-
 
 
 
@@ -234,8 +151,9 @@ public HttpResponseMessage Crear ( [FromBody] EstanciaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/EstanciaPunto/{idEstancia}/")]
 
+
+[Route ("~/api/Estancia/Modificar")]
 
 public HttpResponseMessage Modificar (string idEstancia, [FromBody] EstanciaDTO dto)
 {
@@ -304,7 +222,8 @@ public HttpResponseMessage Modificar (string idEstancia, [FromBody] EstanciaDTO 
 
 [HttpDelete]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/EstanciaPunto/{idEstancia}/")]
+
+[Route ("~/api/Estancia/Borrar")]
 
 public HttpResponseMessage Borrar (string p_estancia_oid)
 {

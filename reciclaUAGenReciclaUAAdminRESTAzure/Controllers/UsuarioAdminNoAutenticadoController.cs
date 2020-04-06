@@ -63,8 +63,8 @@ public HttpResponseMessage Login ( [FromBody] UsuarioDTO dto)
 
                 // Operation
                 token = usuarioCEN.Login (
-                        dto.Id
-                        , dto.Pass
+                        dto.Pass
+                        , dto.Email
                         );
 
                 SessionCommit ();
