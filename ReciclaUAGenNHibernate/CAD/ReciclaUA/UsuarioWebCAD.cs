@@ -154,21 +154,6 @@ public void Modificar (UsuarioWebEN usuarioWeb)
 
                 usuarioWebEN.Email = usuarioWeb.Email;
 
-
-                usuarioWebEN.Pass = usuarioWeb.Pass;
-
-
-                usuarioWebEN.Fecha = usuarioWeb.Fecha;
-
-
-                usuarioWebEN.EmailVerificado = usuarioWeb.EmailVerificado;
-
-
-                usuarioWebEN.Borrado = usuarioWeb.Borrado;
-
-
-                usuarioWebEN.Puntuacion = usuarioWeb.Puntuacion;
-
                 session.Update (usuarioWebEN);
                 SessionCommit ();
         }

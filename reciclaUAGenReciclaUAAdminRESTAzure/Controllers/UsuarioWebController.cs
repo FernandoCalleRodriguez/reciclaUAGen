@@ -373,11 +373,13 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioWebDTO dto)
 
 
 
+
 [HttpPut]
 
 
 
 [Route ("~/api/UsuarioWeb/Modificar")]
+
 
 public HttpResponseMessage Modificar (int idUsuarioWeb, [FromBody] UsuarioWebDTO dto)
 {
@@ -410,16 +412,6 @@ public HttpResponseMessage Modificar (int idUsuarioWeb, [FromBody] UsuarioWebDTO
                         dto.Apellidos
                         ,
                         dto.Email
-                        ,
-                        dto.Pass
-                        ,
-                        dto.Fecha
-                        ,
-                        dto.EmailVerificado
-                        ,
-                        dto.Borrado
-                        ,
-                        dto.Puntuacion
                         );
 
                 // Return modified object
@@ -448,11 +440,9 @@ public HttpResponseMessage Modificar (int idUsuarioWeb, [FromBody] UsuarioWebDTO
         // Return 200 - OK
         else{
                 response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-
                 return response;
         }
 }
-
 
 
 

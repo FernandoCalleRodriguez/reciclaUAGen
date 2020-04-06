@@ -119,6 +119,7 @@
 	<Compile Include="CP\ReciclaUA\UsuarioWebCP.cs" />
 			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Crear.cs" />
 			
+			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Modificar.cs" />
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Borrar.cs" />
 			
