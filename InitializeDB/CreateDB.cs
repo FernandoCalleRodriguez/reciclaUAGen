@@ -107,9 +107,9 @@ public static void InitializeData ()
                 temas [1] = "vidrio";
 
                 DudaCEN duda = new DudaCEN ();
-                int id_duda = duda.Crear ("Duda1", "Esto es una duda", "tema", id_usu1);
-                id_duda = duda.Crear ("Duda2", "Esto es una duda 2", "tema", id_usu1);
-                id_duda = duda.Crear ("Duda3", "Esto es una duda 3", "tema", id_usu1);
+                int id_duda = duda.Crear ("Duda1", "Esto es una duda", id_usu1, TemaEnum.anecdota);
+                id_duda = duda.Crear ("Duda2", "Esto es una duda 2", id_usu1, TemaEnum.anecdota);
+                id_duda = duda.Crear ("Duda3", "Esto es una duda 3", id_usu1, TemaEnum.consejo);
 
                 duda.IndicarDudaUtil (id_duda);
                 DudaEN dudaResultado = duda.BuscarPorId (id_duda);

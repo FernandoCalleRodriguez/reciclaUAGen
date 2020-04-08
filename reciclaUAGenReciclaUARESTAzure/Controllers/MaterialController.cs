@@ -302,11 +302,10 @@ public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
 
                 // Create
                 returnOID = materialCEN.Crear (
-                        dto.Nombre                                                                               //Atributo Primitivo: p_nombre
-                        , dto.Contenedor                                                                                                                                                 //Atributo Primitivo: p_contenedor
-                        , dto.EsValido                                                                                                                                                   //Atributo Primitivo: p_esValido
-                        ,
-                        //Atributo OID: p_usuario
+                        //Atributo Primitivo: p_nombre
+                        dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_contenedor
+                        dto.Contenedor,                                                                                                                                     //Atributo Primitivo: p_esValido
+                        dto.EsValido,                                                                                                                                     //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
@@ -355,8 +354,9 @@ public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/MaterialItem/{idMaterial}/")]
 
+
+[Route ("~/api/Material/Modificar")]
 
 public HttpResponseMessage Modificar (int idMaterial, [FromBody] MaterialDTO dto)
 {
@@ -423,7 +423,8 @@ public HttpResponseMessage Modificar (int idMaterial, [FromBody] MaterialDTO dto
 
 [HttpDelete]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/MaterialItem/{idMaterial}/")]
+
+[Route ("~/api/Material/Borrar")]
 
 public HttpResponseMessage Borrar (int p_material_oid)
 {

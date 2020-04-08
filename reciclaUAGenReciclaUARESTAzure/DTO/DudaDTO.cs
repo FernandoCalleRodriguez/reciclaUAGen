@@ -37,9 +37,9 @@ private int util;
 public int Util {
         get { return util; } set { util = value;  }
 }
-private string temas;
-public string Temas {
-        get { return temas; } set { temas = value;  }
+private ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum tema;
+public ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum Tema {
+        get { return tema; } set { tema = value;  }
 }
 }
 }

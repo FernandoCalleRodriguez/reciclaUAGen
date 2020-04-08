@@ -39,7 +39,7 @@ public IDudaCAD get_IDudaCAD ()
         return this._IDudaCAD;
 }
 
-public void Modificar (int p_Duda_OID, string p_titulo, string p_cuerpo, Nullable<DateTime> p_fecha, int p_util, string p_temas)
+public void Modificar (int p_Duda_OID, string p_titulo, string p_cuerpo, Nullable<DateTime> p_fecha, int p_util, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum p_tema)
 {
         DudaEN dudaEN = null;
 
@@ -50,7 +50,7 @@ public void Modificar (int p_Duda_OID, string p_titulo, string p_cuerpo, Nullabl
         dudaEN.Cuerpo = p_cuerpo;
         dudaEN.Fecha = p_fecha;
         dudaEN.Util = p_util;
-        dudaEN.Temas = p_temas;
+        dudaEN.Tema = p_tema;
         //Call to DudaCAD
 
         _IDudaCAD.Modificar (dudaEN);
@@ -82,9 +82,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Duda
 {
         return _IDudaCAD.BuscarDudaPorTitulo (p_titulo);
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTemas (string p_tema)
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTema (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum ? p_tema)
 {
-        return _IDudaCAD.BuscarDudaPorTemas (p_tema);
+        return _IDudaCAD.BuscarDudaPorTema (p_tema);
 }
 public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudasPorUsuario (int id_usuario)
 {

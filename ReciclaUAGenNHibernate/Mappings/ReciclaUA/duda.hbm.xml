@@ -24,8 +24,8 @@
 					<property name="Util" type="integer"> 
 						<column name="util"  not-null="true"/>
 					</property>
-					<property name="Temas" type="string"> 
-						<column name="temas"  not-null="true"/>
+					<property name="Tema" > 
+						<column name="tema"  not-null="true"/>
 					</property>
 			
 			
@@ -63,8 +63,8 @@
 		 </class>	
 		  
 		  <query name="DudaENReadAllHQL">from DudaEN</query>
-		  <query name="DudaENbuscarDudaPorTituloHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Titulo LIKE :p_titulo]]></query>
-		  <query name="DudaENbuscarDudaPorTemasHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Temas = :p_tema]]></query>
+		  <query name="DudaENbuscarDudaPorTituloHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Titulo LIKE '%'+:p_titulo+'%']]></query>
+		  <query name="DudaENbuscarDudaPorTemaHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Tema = :p_tema]]></query>
 		  <query name="DudaENbuscarDudasPorUsuarioHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Usuario is not empty and duda.Usuario.Id = :id_usuario]]></query>
 		</hibernate-mapping>
 	

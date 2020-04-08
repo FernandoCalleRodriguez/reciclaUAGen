@@ -212,7 +212,7 @@ public HttpResponseMessage BuscarDudaPorTitulo (string p_titulo)
 
 [Route ("~/api/Duda/BuscarDudaPorTemas")]
 
-public HttpResponseMessage BuscarDudaPorTemas (string p_tema)
+public HttpResponseMessage BuscarDudaPorTemas (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum ? p_tema)
 {
         // CAD, CEN, EN, returnValue
 
@@ -237,7 +237,7 @@ public HttpResponseMessage BuscarDudaPorTemas (string p_tema)
 
 
 
-                en = dudaCEN.BuscarDudaPorTemas (p_tema).ToList ();
+                en = dudaCEN.BuscarDudaPorTema (p_tema).ToList ();
 
 
 
@@ -369,12 +369,12 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
                 returnOID = dudaCEN.Crear (
                         //Atributo Primitivo: p_titulo
                         dto.Titulo,                                                                                                                                         //Atributo Primitivo: p_cuerpo
-                        dto.Cuerpo,                                                                                                                                         //Atributo Primitivo: p_temas
-                        dto.Temas,                                                                                                                                        //Atributo OID: p_usuario
+                        dto.Cuerpo,                                                                                                                                       //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        );
+                        ,                                           //Atributo Primitivo: p_tema
+                        dto.Tema);
                 SessionCommit ();
 
                 // Convert return
@@ -450,7 +450,7 @@ public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
                         ,
                         dto.Util
                         ,
-                        dto.Temas
+                        dto.Tema
                         );
 
                 // Return modified object

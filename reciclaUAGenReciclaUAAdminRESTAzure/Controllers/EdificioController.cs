@@ -144,6 +144,76 @@ public HttpResponseMessage BuscarPorId (int idEdificio)
 
 
 
+[HttpPost]
+
+
+[Route ("~/api/Edificio/Crear")]
+
+
+
+
+public HttpResponseMessage Crear ( [FromBody] EdificioDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        EdificioRESTCAD edificioRESTCAD = null;
+        EdificioCEN edificioCEN = null;
+        EdificioDTOA returnValue = null;
+        int returnOID = -1;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                edificioRESTCAD = new EdificioRESTCAD (session);
+                edificioCEN = new EdificioCEN (edificioRESTCAD);
+
+                // Create
+                returnOID = edificioCEN.Crear (
+                        //Atributo Primitivo: p_nombre
+                        dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_id
+                        dto.Id);
+                SessionCommit ();
+
+                // Convert return
+                returnValue = EdificioAssembler.Convert (edificioRESTCAD.ReadOIDDefault (returnOID), session);
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+
+        // Location Header
+        /*
+         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
+         *
+         * // TODO: y rolPaths
+         * routeValues.Add("id", returnOID);
+         *
+         * uri = Url.Link("GetOIDEdificio", routeValues);
+         * response.Headers.Location = new Uri(uri);
+         */
+
+        return response;
+}
+
 
 
 

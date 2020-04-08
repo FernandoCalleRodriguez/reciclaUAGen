@@ -125,18 +125,6 @@ public void Modificar (UsuarioAdministradorEN usuarioAdministrador)
 
                 usuarioAdministradorEN.Email = usuarioAdministrador.Email;
 
-
-                usuarioAdministradorEN.Pass = usuarioAdministrador.Pass;
-
-
-                usuarioAdministradorEN.Fecha = usuarioAdministrador.Fecha;
-
-
-                usuarioAdministradorEN.EmailVerificado = usuarioAdministrador.EmailVerificado;
-
-
-                usuarioAdministradorEN.Borrado = usuarioAdministrador.Borrado;
-
                 session.Update (usuarioAdministradorEN);
                 SessionCommit ();
         }

@@ -127,17 +127,24 @@
 			
 			
 			
+			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_CambiarPassword.cs" />
+			
+			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_VerificarEmail.cs" />
+			
 	<Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\UsuarioAdministradorCAD.cs" />
 	<Compile Include="CP\ReciclaUA\UsuarioAdministradorCP.cs" />
+			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Modificar.cs" />
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Borrar.cs" />
 			
 			
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Crear.cs" />
+			
+			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_CambiarPassword.cs" />
 			
 	<Compile Include="EN\ReciclaUA\DudaEN.cs" />
 	<Compile Include="CEN\ReciclaUA\DudaCEN.cs" />
@@ -302,6 +309,8 @@
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioCEN_Login.cs" />
 			
+			<Compile Include="CEN\ReciclaUA\UsuarioCEN_RecuperarPassword.cs" />
+			
 	<Compile Include="EN\ReciclaUA\AccionReciclarEN.cs" />
 	<Compile Include="CEN\ReciclaUA\AccionReciclarCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />
@@ -363,6 +372,7 @@
 	<Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
 	<Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />
 	<Compile Include="Enumerated\ReciclaUA\EstadoEnum.cs" />
+	<Compile Include="Enumerated\ReciclaUA\TemaEnum.cs" />
 	
 	
 

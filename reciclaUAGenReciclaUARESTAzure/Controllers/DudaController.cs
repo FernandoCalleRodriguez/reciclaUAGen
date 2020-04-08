@@ -206,70 +206,6 @@ public HttpResponseMessage BuscarDudaPorTitulo (string p_titulo)
 }
 
 
-// No pasa el slEnables: buscarDudaPorTemas
-
-[HttpGet]
-
-[Route ("~/api/Duda/BuscarDudaPorTemas")]
-
-public HttpResponseMessage BuscarDudaPorTemas (string p_tema)
-{
-        // CAD, CEN, EN, returnValue
-
-        DudaRESTCAD dudaRESTCAD = null;
-        DudaCEN dudaCEN = null;
-
-
-        System.Collections.Generic.List<DudaEN> en;
-
-        System.Collections.Generic.List<DudaDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
-
-
-
-                dudaRESTCAD = new DudaRESTCAD (session);
-                dudaCEN = new DudaCEN (dudaRESTCAD);
-
-                // CEN return
-
-
-
-                en = dudaCEN.BuscarDudaPorTemas (p_tema).ToList ();
-
-
-
-
-                // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<DudaDTOA>();
-                        foreach (DudaEN entry in en)
-                                returnValue.Add (DudaAssembler.Convert (entry, session));
-                }
-        }
-
-        catch (Exception e)
-        {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
-
-
 // No pasa el slEnables: buscarDudasPorUsuario
 
 [HttpGet]
@@ -302,6 +238,70 @@ public HttpResponseMessage BuscarDudasPorUsuario (int id_usuario)
 
 
                 en = dudaCEN.BuscarDudasPorUsuario (id_usuario).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<DudaDTOA>();
+                        foreach (DudaEN entry in en)
+                                returnValue.Add (DudaAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+// No pasa el slEnables: buscarDudaPorTema
+
+[HttpGet]
+
+[Route ("~/api/Duda/BuscarDudaPorTema")]
+
+public HttpResponseMessage BuscarDudaPorTema (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum ? p_tema)
+{
+        // CAD, CEN, EN, returnValue
+
+        DudaRESTCAD dudaRESTCAD = null;
+        DudaCEN dudaCEN = null;
+
+
+        System.Collections.Generic.List<DudaEN> en;
+
+        System.Collections.Generic.List<DudaDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                dudaRESTCAD = new DudaRESTCAD (session);
+                dudaCEN = new DudaCEN (dudaRESTCAD);
+
+                // CEN return
+
+
+
+                en = dudaCEN.BuscarDudaPorTema (p_tema).ToList ();
 
 
 
@@ -367,15 +367,14 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
 
                 // Create
                 returnOID = dudaCEN.Crear (
-                        dto.Titulo                                                                               //Atributo Primitivo: p_titulo
-                        , dto.Cuerpo                                                                                                                                                     //Atributo Primitivo: p_cuerpo
-                        , dto.Temas                                                                                                                                                      //Atributo Primitivo: p_temas
-                        ,
-                        //Atributo OID: p_usuario
+                        //Atributo Primitivo: p_titulo
+                        dto.Titulo,                                                                                                                                         //Atributo Primitivo: p_cuerpo
+                        dto.Cuerpo,                                                                                                                                       //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        );
+                        ,                                           //Atributo Primitivo: p_tema
+                        dto.Tema);
                 SessionCommit ();
 
                 // Convert return
@@ -418,8 +417,9 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/Duda/{idDuda}/")]
 
+
+[Route ("~/api/Duda/Modificar")]
 
 public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
 {
@@ -450,7 +450,7 @@ public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
                         ,
                         dto.Util
                         ,
-                        dto.Temas
+                        dto.Tema
                         );
 
                 // Return modified object
@@ -490,7 +490,8 @@ public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
 
 [HttpDelete]
 
-[Route ("~/api/Duda/{idDuda}/")]
+
+[Route ("~/api/Duda/Borrar")]
 
 public HttpResponseMessage Borrar (int p_duda_oid)
 {

@@ -34,7 +34,7 @@ System.Collections.Generic.IList<DudaEN> BuscarTodos (int first, int size);
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTitulo (string p_titulo);
 
 
-System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTemas (string p_tema);
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTema (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum ? p_tema);
 
 
 

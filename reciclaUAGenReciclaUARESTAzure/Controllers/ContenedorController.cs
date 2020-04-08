@@ -239,9 +239,8 @@ public HttpResponseMessage Crear ( [FromBody] ContenedorDTO dto)
 
                 // Create
                 returnOID = contenedorCEN.Crear (
-                        dto.Tipo                                                                                 //Atributo Primitivo: p_tipo
-                        ,
-                        //Atributo OID: p_punto
+                        //Atributo Primitivo: p_tipo
+                        dto.Tipo,                                                                                                                                         //Atributo OID: p_punto
                         // attr.estaRelacionado: true
                         dto.Punto_oid                 // association role
 
@@ -290,9 +289,9 @@ public HttpResponseMessage Crear ( [FromBody] ContenedorDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/Contenedores/{idContenedor}/")]
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ContenedorAccion/{idContenedor}/")]
 
+
+[Route ("~/api/Contenedor/Modificar")]
 
 public HttpResponseMessage Modificar (int idContenedor, [FromBody] ContenedorDTO dto)
 {
@@ -355,8 +354,8 @@ public HttpResponseMessage Modificar (int idContenedor, [FromBody] ContenedorDTO
 
 [HttpDelete]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/Contenedores/{idContenedor}/")]
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/ContenedorAccion/{idContenedor}/")]
+
+[Route ("~/api/Contenedor/Borrar")]
 
 public HttpResponseMessage Borrar (int p_contenedor_oid)
 {

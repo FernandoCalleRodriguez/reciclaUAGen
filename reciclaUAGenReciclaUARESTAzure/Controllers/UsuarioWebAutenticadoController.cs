@@ -225,10 +225,12 @@ public HttpResponseMessage ObtenerPuntuaciones (           )
 
 
 
+
 [HttpPut]
 
-[Route ("~/api/Duda/{idDuda}/UsuarioDuda/{idUsuarioWebAutenticado}/")]
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/UsuarioRespuesta/{idUsuarioWebAutenticado}/")]
+
+
+[Route ("~/api/UsuarioWebAutenticado/Modificar")]
 
 
 public HttpResponseMessage Modificar (int idUsuarioWebAutenticado, [FromBody] UsuarioWebDTO dto)
@@ -257,16 +259,6 @@ public HttpResponseMessage Modificar (int idUsuarioWebAutenticado, [FromBody] Us
                         dto.Apellidos
                         ,
                         dto.Email
-                        ,
-                        dto.Pass
-                        ,
-                        dto.Fecha
-                        ,
-                        dto.EmailVerificado
-                        ,
-                        dto.Borrado
-                        ,
-                        dto.Puntuacion
                         );
 
                 // Return modified object
@@ -295,7 +287,6 @@ public HttpResponseMessage Modificar (int idUsuarioWebAutenticado, [FromBody] Us
         // Return 200 - OK
         else{
                 response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-
                 return response;
         }
 }
@@ -304,11 +295,10 @@ public HttpResponseMessage Modificar (int idUsuarioWebAutenticado, [FromBody] Us
 
 
 
-
 [HttpDelete]
 
-[Route ("~/api/Duda/{idDuda}/UsuarioDuda/{idUsuarioWebAutenticado}/")]
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/UsuarioRespuesta/{idUsuarioWebAutenticado}/")]
+
+[Route ("~/api/UsuarioWebAutenticado/Borrar")]
 
 public HttpResponseMessage Borrar (int p_usuarioweb_oid)
 {

@@ -32,4 +32,11 @@ enum Estado: Int
 	case Descartado = 3
 }
 
+enum Tema: Int
+{
+	case Consejo = 1
+	case Anecdota = 2
+	case Cuestion = 3
+}
+
 	

@@ -39,25 +39,6 @@ public IUsuarioAdministradorCAD get_IUsuarioAdministradorCAD ()
         return this._IUsuarioAdministradorCAD;
 }
 
-public void Modificar (int p_UsuarioAdministrador_OID, string p_nombre, string p_apellidos, string p_email, String p_pass, Nullable<DateTime> p_fecha, bool p_emailVerificado, bool p_borrado)
-{
-        UsuarioAdministradorEN usuarioAdministradorEN = null;
-
-        //Initialized UsuarioAdministradorEN
-        usuarioAdministradorEN = new UsuarioAdministradorEN ();
-        usuarioAdministradorEN.Id = p_UsuarioAdministrador_OID;
-        usuarioAdministradorEN.Nombre = p_nombre;
-        usuarioAdministradorEN.Apellidos = p_apellidos;
-        usuarioAdministradorEN.Email = p_email;
-        usuarioAdministradorEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-        usuarioAdministradorEN.Fecha = p_fecha;
-        usuarioAdministradorEN.EmailVerificado = p_emailVerificado;
-        usuarioAdministradorEN.Borrado = p_borrado;
-        //Call to UsuarioAdministradorCAD
-
-        _IUsuarioAdministradorCAD.Modificar (usuarioAdministradorEN);
-}
-
 public UsuarioAdministradorEN BuscarPorId (int id
                                            )
 {

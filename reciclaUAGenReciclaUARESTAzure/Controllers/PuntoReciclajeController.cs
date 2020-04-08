@@ -431,15 +431,13 @@ public HttpResponseMessage Crear ( [FromBody] PuntoReciclajeDTO dto)
 
                 // Create
                 returnOID = puntoReciclajeCEN.Crear (
-                        dto.Latitud                                                                              //Atributo Primitivo: p_latitud
-                        , dto.Longitud                                                                                                                                                   //Atributo Primitivo: p_longitud
-                        ,
-                        //Atributo OID: p_usuario
+                        //Atributo Primitivo: p_latitud
+                        dto.Latitud,                                                                                                                                        //Atributo Primitivo: p_longitud
+                        dto.Longitud,                                                                                                                                     //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
-                        ,
-                        //Atributo OID: p_estancia
+                        ,                                         //Atributo OID: p_estancia
                         // attr.estaRelacionado: true
                         dto.Estancia_oid                 // association role
 
@@ -486,8 +484,9 @@ public HttpResponseMessage Crear ( [FromBody] PuntoReciclajeDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/")]
 
+
+[Route ("~/api/PuntoReciclaje/Modificar")]
 
 public HttpResponseMessage Modificar (int idPuntoReciclaje, [FromBody] PuntoReciclajeDTO dto)
 {
@@ -554,7 +553,8 @@ public HttpResponseMessage Modificar (int idPuntoReciclaje, [FromBody] PuntoReci
 
 [HttpDelete]
 
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}/")]
+
+[Route ("~/api/PuntoReciclaje/Borrar")]
 
 public HttpResponseMessage Borrar (int p_puntoreciclaje_oid)
 {

@@ -44,11 +44,11 @@ public int Util
         set { util = value; }
 }
 
-private string temas;
-public string Temas
+private ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum tema;
+public ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum Tema
 {
-        get { return temas; }
-        set { temas = value; }
+        get { return tema; }
+        set { tema = value; }
 }
 
 

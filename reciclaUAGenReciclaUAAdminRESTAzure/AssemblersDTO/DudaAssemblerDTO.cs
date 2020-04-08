@@ -46,7 +46,7 @@ public static DudaEN Convert (DudaDTO dto)
                         }
                         newinstance.Fecha = dto.Fecha;
                         newinstance.Util = dto.Util;
-                        newinstance.Temas = dto.Temas;
+                        newinstance.Tema = dto.Tema;
                 }
         }
         catch (Exception ex)

@@ -55,9 +55,9 @@ private int util;
 
 
 /**
- *	Atributo temas
+ *	Atributo tema
  */
-private string temas;
+private ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum tema;
 
 
 
@@ -106,8 +106,8 @@ public virtual int Util {
 
 
 
-public virtual string Temas {
-        get { return temas; } set { temas = value;  }
+public virtual ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum Tema {
+        get { return tema; } set { tema = value;  }
 }
 
 
@@ -121,20 +121,20 @@ public DudaEN()
 
 
 
-public DudaEN(int id, string titulo, string cuerpo, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, Nullable<DateTime> fecha, int util, string temas
+public DudaEN(int id, string titulo, string cuerpo, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, Nullable<DateTime> fecha, int util, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum tema
               )
 {
-        this.init (Id, titulo, cuerpo, usuario, respuestas, fecha, util, temas);
+        this.init (Id, titulo, cuerpo, usuario, respuestas, fecha, util, tema);
 }
 
 
 public DudaEN(DudaEN duda)
 {
-        this.init (Id, duda.Titulo, duda.Cuerpo, duda.Usuario, duda.Respuestas, duda.Fecha, duda.Util, duda.Temas);
+        this.init (Id, duda.Titulo, duda.Cuerpo, duda.Usuario, duda.Respuestas, duda.Fecha, duda.Util, duda.Tema);
 }
 
 private void init (int id
-                   , string titulo, string cuerpo, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, Nullable<DateTime> fecha, int util, string temas)
+                   , string titulo, string cuerpo, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, Nullable<DateTime> fecha, int util, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum tema)
 {
         this.Id = id;
 
@@ -151,7 +151,7 @@ private void init (int id
 
         this.Util = util;
 
-        this.Temas = temas;
+        this.Tema = tema;
 }
 
 public override bool Equals (object obj)

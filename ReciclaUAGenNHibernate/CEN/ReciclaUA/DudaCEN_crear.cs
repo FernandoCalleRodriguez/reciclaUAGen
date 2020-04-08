@@ -19,7 +19,7 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class DudaCEN
 {
-public int Crear (string p_titulo, string p_cuerpo, string p_temas, int p_usuario)
+public int Crear (string p_titulo, string p_cuerpo, int p_usuario, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum p_tema)
 {
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Duda_crear_customized) ENABLED START*/
 
@@ -33,7 +33,7 @@ public int Crear (string p_titulo, string p_cuerpo, string p_temas, int p_usuari
 
         dudaEN.Cuerpo = p_cuerpo;
 
-        dudaEN.Temas = p_temas;
+        dudaEN.Tema = p_tema;
 
         dudaEN.Fecha = DateTime.Today;
 

@@ -369,14 +369,12 @@ public HttpResponseMessage Crear ( [FromBody] RespuestaDTO dto)
 
                 // Create
                 returnOID = respuestaCEN.Crear (
-                        dto.Cuerpo                                                                               //Atributo Primitivo: p_cuerpo
-                        ,
-                        //Atributo OID: p_duda
+                        //Atributo Primitivo: p_cuerpo
+                        dto.Cuerpo,                                                                                                                                       //Atributo OID: p_duda
                         // attr.estaRelacionado: true
                         dto.Duda_oid                 // association role
 
-                        ,
-                        //Atributo OID: p_usuario
+                        ,                                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
@@ -423,8 +421,9 @@ public HttpResponseMessage Crear ( [FromBody] RespuestaDTO dto)
 
 [HttpPut]
 
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/")]
 
+
+[Route ("~/api/Respuesta/Modificar")]
 
 public HttpResponseMessage Modificar (int idRespuesta, [FromBody] RespuestaDTO dto)
 {
@@ -493,7 +492,8 @@ public HttpResponseMessage Modificar (int idRespuesta, [FromBody] RespuestaDTO d
 
 [HttpDelete]
 
-[Route ("~/api/Duda/{idDuda}/RespuestasDuda/{idRespuesta}/")]
+
+[Route ("~/api/Respuesta/Borrar")]
 
 public HttpResponseMessage Borrar (int p_respuesta_oid)
 {

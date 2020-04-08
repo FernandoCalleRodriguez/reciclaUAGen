@@ -31,7 +31,7 @@
 				var util: Int?;
 				    	 
 		 
-				var temas: String?;
+				var tema: Tema?;
 				    	 
 	   	   
 			// MARK: - Constructor
@@ -88,7 +88,7 @@
 				
 
 				
-					dictionary["temas"] = self.temas;
+					dictionary["tema"] = self.tema?.rawValue;
 				
 						
 				return dictionary;

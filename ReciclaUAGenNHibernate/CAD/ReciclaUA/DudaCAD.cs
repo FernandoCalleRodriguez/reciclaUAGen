@@ -105,7 +105,7 @@ public void ModifyDefault (DudaEN duda)
                 dudaEN.Util = duda.Util;
 
 
-                dudaEN.Temas = duda.Temas;
+                dudaEN.Tema = duda.Tema;
 
                 session.Update (dudaEN);
                 SessionCommit ();
@@ -178,7 +178,7 @@ public void Modificar (DudaEN duda)
                 dudaEN.Util = duda.Util;
 
 
-                dudaEN.Temas = duda.Temas;
+                dudaEN.Tema = duda.Tema;
 
                 session.Update (dudaEN);
                 SessionCommit ();
@@ -288,7 +288,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Duda
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM DudaEN self where FROM DudaEN as duda WHERE duda.Titulo LIKE :p_titulo";
+                //String sql = @"FROM DudaEN self where FROM DudaEN as duda WHERE duda.Titulo LIKE '%'+:p_titulo+'%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("DudaENbuscarDudaPorTituloHQL");
                 query.SetParameter ("p_titulo", p_titulo);
@@ -312,15 +312,15 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Duda
 
         return result;
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTemas (string p_tema)
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudaPorTema (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TemaEnum ? p_tema)
 {
         System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM DudaEN self where FROM DudaEN as duda WHERE duda.Temas = :p_tema";
+                //String sql = @"FROM DudaEN self where FROM DudaEN as duda WHERE duda.Tema = :p_tema";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("DudaENbuscarDudaPorTemasHQL");
+                IQuery query = (IQuery)session.GetNamedQuery ("DudaENbuscarDudaPorTemaHQL");
                 query.SetParameter ("p_tema", p_tema);
 
                 result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN>();

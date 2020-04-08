@@ -17,7 +17,7 @@ class DudaDTOA : DTOA
 	var cuerpo: String?;
 	var fecha: NSDate?;
 	var util: Int?;
-	var temas: String?;
+	var tema: Tema?;
 	
 	/* Rol: Duda o--> UsuarioWebAutenticado */
 	var usuarioDuda: UsuarioWebAutenticadoDTOA?;
@@ -53,7 +53,10 @@ class DudaDTOA : DTOA
 	
 		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		self.util = json["Util"].object as? Int;
-		self.temas = json["Temas"].object as? String;
+		if let enumValue = json["Tema"].object as? Int
+		{
+			self.tema = Tema(rawValue: enumValue);
+		}
 		
 		if (json["UsuarioDuda"] != JSON.null)
 		{
@@ -100,7 +103,7 @@ class DudaDTOA : DTOA
 	
 
 	
-		dictionary["Temas"] = self.temas;
+		dictionary["Tema"] = self.tema?.rawValue;
 	
 	
 		

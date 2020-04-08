@@ -48,7 +48,7 @@ public static DudaDTOA Convert (DudaEN en, NHibernate.ISession session = null)
                 dto.Util = en.Util;
 
 
-                dto.Temas = en.Temas;
+                dto.Tema = en.Tema;
 
 
                 //

@@ -218,7 +218,8 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
 
 [HttpDelete]
 
-[Route ("~/api/AccionReciclar/{idAccionReciclar}/")]
+
+[Route ("~/api/AccionReciclar/Borrar")]
 
 public HttpResponseMessage Borrar (int p_accionreciclar_oid)
 {

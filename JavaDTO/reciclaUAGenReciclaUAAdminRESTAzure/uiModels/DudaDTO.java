@@ -45,9 +45,9 @@
 				public Integer getUtil () { return util; } 
 				public void setUtil  (Integer value) { util = value;  } 
 				    	 
-				private String temas;
-				public String getTemas () { return temas; } 
-				public void setTemas  (String value) { temas = value;  } 
+				private Tema tema;
+				public Tema getTema () { return tema; } 
+				public void setTema  (Tema value) { tema = value;  } 
 				    	 
 	   
 			    public JSONObject toJSON ()
@@ -87,7 +87,7 @@
 						  json.put("Util", this.util.intValue());
 				
 				
-						  json.put("Temas", this.temas);
+						  json.put("Tema", this.tema.getRawValue());
 				
 						
 					}

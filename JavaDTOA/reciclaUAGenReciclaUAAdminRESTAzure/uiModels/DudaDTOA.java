@@ -39,9 +39,9 @@ public class DudaDTOA extends DTOA
 	public Integer getUtil () { return util; }
 	public void setUtil (Integer util) { this.util = util; }
 	
-	private String temas;
-	public String getTemas () { return temas; }
-	public void setTemas (String temas) { this.temas = temas; }
+	private Tema tema;
+	public Tema getTema () { return tema; }
+	public void setTema (Tema tema) { this.tema = tema; }
 	
 	
 	/* Rol: Duda o--> UsuarioAdminAutenticado */
@@ -112,10 +112,10 @@ public class DudaDTOA extends DTOA
 			 
 			}
 
-			if (!JSONObject.NULL.equals(json.opt("Temas")))
+			if (!JSONObject.NULL.equals(json.opt("Tema")))
 			{
-			 
-				this.temas = (String) json.opt("Temas");
+				int enumRawValue = (int) json.opt("Tema");
+				this.tema = Tema.fromRawValue(enumRawValue);
 			 
 			}
 			
@@ -179,8 +179,8 @@ public class DudaDTOA extends DTOA
 			json.put("Util", this.util.intValue());
 		
 		
-		  if (this.temas != null)
-			json.put("Temas", this.temas);
+		  if (this.tema != null)
+			json.put("Tema", this.tema.getRawValue());
 		
 			
 
@@ -227,7 +227,7 @@ public class DudaDTOA extends DTOA
 
 	dto.setUtil (this.getUtil());
 
-	dto.setTemas (this.getTemas());
+	dto.setTema (this.getTema());
 
 		
 		
