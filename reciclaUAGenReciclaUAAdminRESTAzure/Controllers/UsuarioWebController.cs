@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
@@ -107,6 +112,11 @@ public HttpResponseMessage BuscarPorId (int idUsuarioWeb)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
@@ -163,6 +173,11 @@ public HttpResponseMessage ObtenerRanking (        )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -227,6 +242,11 @@ public HttpResponseMessage ObtenerPuntuaciones (           )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -296,6 +316,11 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioWebDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
@@ -370,6 +395,11 @@ public HttpResponseMessage Modificar (int idUsuarioWeb, [FromBody] UsuarioWebDTO
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
@@ -439,6 +469,11 @@ public HttpResponseMessage Borrar (int p_usuarioweb_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
@@ -473,6 +508,56 @@ public HttpResponseMessage Borrar (int p_usuarioweb_oid)
 }
 
 
+
+
+
+[HttpPost]
+
+[Route ("~/api/UsuarioWeb/VerificarEmail")]
+
+
+public HttpResponseMessage VerificarEmail (int p_usuarioweb_oid)
+{
+        // CAD, CEN, returnValue
+        UsuarioWebRESTCAD usuarioWebRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
+
+
+                usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebRESTCAD);
+
+
+                // Operation
+                usuarioWebCEN.VerificarEmail (p_usuarioweb_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

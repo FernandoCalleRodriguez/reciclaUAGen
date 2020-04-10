@@ -19,13 +19,20 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class UsuarioWebCEN
 {
-public void VerificarEmail (int p_oid)
+public void VerificarEmail (int p_UsuarioWeb_OID)
 {
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_verificarEmail) ENABLED START*/
 
-        // Write here your custom code...
+        UsuarioWebEN usuarioWebEN = null;
 
-        throw new NotImplementedException ("Method VerificarEmail() not yet implemented.");
+        //Initialized UsuarioWebEN
+        usuarioWebEN = new UsuarioWebEN ();
+        usuarioWebEN.Id = p_UsuarioWeb_OID;
+        usuarioWebEN.EmailVerificado = true;
+
+        //Call to UsuarioWebCAD
+
+        _IUsuarioWebCAD.Modificar (usuarioWebEN);
 
         /*PROTECTED REGION END*/
 }

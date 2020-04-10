@@ -281,6 +281,11 @@
 		<Compile Include="Assemblers\UsuarioAdminAutenticadoAssembler.cs" />
 		<Compile Include="Controllers\UsuarioAdminAutenticadoController.cs" />
 		
+		<Compile Include="CAD\UsuarioAdminRecuperarPassRESTCAD.cs" />
+		<Compile Include="DTOA\UsuarioAdminRecuperarPassDTOA.cs" />
+		<Compile Include="Assemblers\UsuarioAdminRecuperarPassAssembler.cs" />
+		<Compile Include="Controllers\UsuarioAdminRecuperarPassController.cs" />
+		
 	
 	
 	

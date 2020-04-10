@@ -262,7 +262,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioWebEN self where FROM UsuarioWebEN as usu order by usu.Puntuacion";
+                //String sql = @"FROM UsuarioWebEN self where FROM UsuarioWebEN as usu WHERE usu.Borrado = false order by usu.Puntuacion desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioWebENobtenerRankingHQL");
 

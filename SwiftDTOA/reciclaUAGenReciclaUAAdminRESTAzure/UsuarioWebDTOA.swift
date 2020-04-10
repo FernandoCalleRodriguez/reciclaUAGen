@@ -19,6 +19,7 @@ class UsuarioWebDTOA : DTOA
 	var fecha: NSDate?;
 	var puntuacion: Int?;
 	var emailVerificado: Bool?;
+	var borrado: Bool?;
 	
 	
 	
@@ -47,6 +48,7 @@ class UsuarioWebDTOA : DTOA
 		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		self.puntuacion = json["Puntuacion"].object as? Int;
 		self.emailVerificado = json["EmailVerificado"].object as? Bool;
+		self.borrado = json["Borrado"].object as? Bool;
 		
 		
 	}
@@ -90,6 +92,11 @@ class UsuarioWebDTOA : DTOA
 
 	
 		dictionary["EmailVerificado"] = self.emailVerificado;
+	
+	
+
+	
+		dictionary["Borrado"] = self.borrado;
 	
 	
 		

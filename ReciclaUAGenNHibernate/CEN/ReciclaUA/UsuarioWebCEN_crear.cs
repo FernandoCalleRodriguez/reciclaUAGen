@@ -13,6 +13,8 @@ using ReciclaUAGenNHibernate.CAD.ReciclaUA;
 
 /*PROTECTED REGION ID(usingReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_crear) ENABLED START*/
 //  references to other libraries
+using System.Net.Mail;
+using System.Net;
 /*PROTECTED REGION END*/
 
 namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
@@ -24,6 +26,7 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, String p_
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_crear_customized) ENABLED START*/
 
         UsuarioWebEN usuarioWebEN = null;
+
 
         int oid;
 
@@ -48,7 +51,43 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, String p_
         //Call to UsuarioWebCAD
 
         oid = _IUsuarioWebCAD.Crear (usuarioWebEN);
+
+        var fromAddress = new MailAddress ("reciclauatfm@gmail.com", "From ReciclaUA");
+        var toAddress = new MailAddress (usuarioWebEN.Email, "To " + usuarioWebEN.Nombre);
+        string fromPassword = "Reciclaua_1";
+        string subject = "Verificaci�n de email";
+        string body = "Para verifcar tu email accede al siguiente link: http://localhost:4200/verificacion/" + oid;
+
+        var smtp = new SmtpClient
+        {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
+        };
+        using (var message = new MailMessage (fromAddress, toAddress){
+                       Subject = subject,
+                       Body = body
+               })
+        {
+                try
+                {
+                        smtp.Send (message);
+                }
+                catch (Exception e)
+                {
+                        throw new Exception (" El correo electronico no ha podido serenviado " + e);
+                }
+                finally
+                {
+                        smtp.Dispose ();
+                }
+        }
+
         return oid;
+
         /*PROTECTED REGION END*/
 }
 }

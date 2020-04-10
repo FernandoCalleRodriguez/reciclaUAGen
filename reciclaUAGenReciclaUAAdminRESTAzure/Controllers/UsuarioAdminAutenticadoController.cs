@@ -308,6 +308,72 @@ public HttpResponseMessage Modificar (int idUsuarioAdminAutenticado, [FromBody] 
         }
 }
 
+[HttpPut]
+
+
+
+[Route ("~/api/UsuarioAdminAutenticado/CambiarPassword")]
+
+
+public HttpResponseMessage CambiarPassword (int idUsuarioAdminAutenticado, [FromBody] UsuarioAdministradorDTO dto)
+{
+        // CAD, CEN, returnValue
+        UsuarioAdminAutenticadoRESTCAD usuarioAdminAutenticadoRESTCAD = null;
+        UsuarioAdministradorCEN usuarioAdministradorCEN = null;
+        UsuarioAdminAutenticadoDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
+
+
+                usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
+                usuarioAdministradorCEN = new UsuarioAdministradorCEN (usuarioAdminAutenticadoRESTCAD);
+
+                // Modify
+                usuarioAdministradorCEN.CambiarPassword (idUsuarioAdminAutenticado,
+                        dto.Pass
+                        );
+
+                // Return modified object
+                returnValue = UsuarioAdminAutenticadoAssembler.Convert (usuarioAdminAutenticadoRESTCAD.ReadOIDDefault (idUsuarioAdminAutenticado), session);
+
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+                return response;
+        }
+}
+
 
 
 

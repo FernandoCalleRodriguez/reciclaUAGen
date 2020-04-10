@@ -57,6 +57,9 @@ public static UsuarioWebDTOA Convert (UsuarioEN en, NHibernate.ISession session 
                 dto.EmailVerificado = en.EmailVerificado;
 
 
+                dto.Borrado = en.Borrado;
+
+
                 //
                 // TravesalLink
 

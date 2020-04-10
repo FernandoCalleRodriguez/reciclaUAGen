@@ -30,5 +30,7 @@ System.Collections.Generic.IList<UsuarioAdministradorEN> BuscarTodos (int first,
 
 
 int Crear (UsuarioAdministradorEN usuarioAdministrador);
+
+void CambiarPassword (UsuarioAdministradorEN usuarioAdministrador);
 }
 }
