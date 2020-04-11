@@ -41,5 +41,6 @@
 		  <query name="UsuarioWebENReadAllHQL">from UsuarioWebEN</query>
 		  <query name="UsuarioWebENobtenerRankingHQL"><![CDATA[FROM UsuarioWebEN as usu WHERE usu.Borrado = false order by usu.Puntuacion desc]]></query>
 		  <query name="UsuarioWebENobtenerPuntuacionesHQL"><![CDATA[FROM UsuarioWebEN as usu order by usu.Puntuacion desc]]></query>
+		  <query name="UsuarioWebENbuscarPorCorreoHQL"><![CDATA[FROM UsuarioWebEN as usu WHERE usu.Email =:p_correo]]></query>
 		</hibernate-mapping>
 	

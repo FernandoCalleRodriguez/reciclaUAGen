@@ -566,6 +566,72 @@ public HttpResponseMessage VerificarEmail (int p_usuarioweb_oid)
 
 /*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_UsuarioWebControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
+
+
+[HttpPost]
+
+
+
+[Route ("~/api/UsuarioWeb/BuscarPor")]
+
+
+public HttpResponseMessage BuscarPor ( [FromBody] UsuarioWebDTO dto)
+{
+        // CAD, CEN, EN, returnValue
+        UsuarioWebRESTCAD usuarioWebRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+
+        List<UsuarioWebEN> usuarioWebEN = null;
+        List<UsuarioWebDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebRESTCAD);
+
+                // Data
+                // TODO: paginación
+
+                usuarioWebEN = usuarioWebCEN.BuscarTodos (0, -1).ToList ();
+                if (dto.Nombre != null && dto.Nombre != "") {
+                        usuarioWebEN = usuarioWebEN.Where (x => x.Nombre.ToLower () == dto.Nombre.ToLower ()).ToList<UsuarioWebEN>();;
+                }
+                if (dto.Apellidos != null && dto.Apellidos != "") {
+                        usuarioWebEN = usuarioWebEN.Where (x => x.Apellidos.ToLower () == dto.Apellidos.ToLower ()).ToList<UsuarioWebEN>();;
+                }
+                if (dto.Email != null && dto.Email != "") {
+                        usuarioWebEN = usuarioWebEN.Where (x => x.Email.ToLower () == dto.Email.ToLower ()).ToList<UsuarioWebEN>();;
+                }
+                // Convert return
+                if (usuarioWebEN != null) {
+                        returnValue = new List<UsuarioWebDTOA>();
+                        foreach (UsuarioWebEN entry in usuarioWebEN)
+                                returnValue.Add (UsuarioWebAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
 /*PROTECTED REGION END*/
 }
 }
