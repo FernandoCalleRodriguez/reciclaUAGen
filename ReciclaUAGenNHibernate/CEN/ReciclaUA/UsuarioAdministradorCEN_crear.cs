@@ -43,10 +43,19 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, String p_
 
         usuarioAdministradorEN.Fecha = DateTime.Now;
 
-        //Call to UsuarioAdministradorCAD
+            //Call to UsuarioAdministradorCAD
+            IList<UsuarioAdministradorEN> usu = _IUsuarioAdministradorCAD.BuscarPorCorreo(p_email);
+            //Call to UsuarioWebCAD
+            if (usu.Count == 0)
+            {
+                oid = _IUsuarioAdministradorCAD.Crear(usuarioAdministradorEN);
 
-        oid = _IUsuarioAdministradorCAD.Crear (usuarioAdministradorEN);
-        return oid;
+            }
+            else
+            {
+                oid = -1;
+            }
+            return oid;
         /*PROTECTED REGION END*/
 }
 }

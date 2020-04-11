@@ -55,5 +55,9 @@ public System.Collections.Generic.IList<UsuarioAdministradorEN> BuscarTodos (int
         list = _IUsuarioAdministradorCAD.BuscarTodos (first, size);
         return list;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarPorCorreo (string p_correo)
+{
+        return _IUsuarioAdministradorCAD.BuscarPorCorreo (p_correo);
+}
 }
 }

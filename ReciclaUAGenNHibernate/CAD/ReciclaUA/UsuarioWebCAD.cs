@@ -320,7 +320,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioWebEN self where FROM UsuarioWebEN as usu WHERE usu.Email =:p_correo";
+                //String sql = @"FROM UsuarioWebEN self where FROM UsuarioWebEN as usu WHERE usu.Email =:p_email";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioWebENbuscarPorCorreoHQL");
                 query.SetParameter ("p_email", p_email);

@@ -279,5 +279,35 @@ public void CambiarPassword (UsuarioAdministradorEN usuarioAdministrador)
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarPorCorreo (string p_correo)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioAdministradorEN self where FROM UsuarioAdministradorEN  as usu WHERE usu.Email =:p_correo";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioAdministradorENbuscarPorCorreoHQL");
+                query.SetParameter ("p_correo", p_correo);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioAdministradorCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

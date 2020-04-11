@@ -147,6 +147,7 @@
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_CambiarPassword.cs" />
 			
+			
 	<Compile Include="EN\ReciclaUA\DudaEN.cs" />
 	<Compile Include="CEN\ReciclaUA\DudaCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IDudaCAD.cs" />

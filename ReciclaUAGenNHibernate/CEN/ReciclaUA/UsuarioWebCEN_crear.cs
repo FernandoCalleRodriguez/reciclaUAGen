@@ -26,6 +26,7 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, String p_
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_crear_customized) ENABLED START*/
 
         UsuarioWebEN usuarioWebEN = null;
+        UsuarioWebCEN usuarioWebCEN = new UsuarioWebCEN ();
 
 
         int oid;
@@ -47,44 +48,50 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, String p_
         usuarioWebEN.Fecha = DateTime.Now;
 
         usuarioWebEN.Puntuacion = 0;
-
+        IList<UsuarioWebEN> usu = _IUsuarioWebCAD.BuscarPorCorreo (p_email);
         //Call to UsuarioWebCAD
+        if (usu.Count == 0) {
+                oid = _IUsuarioWebCAD.Crear (usuarioWebEN);
 
-        oid = _IUsuarioWebCAD.Crear (usuarioWebEN);
+                var fromAddress = new MailAddress ("reciclauatfm@gmail.com", "From ReciclaUA");
+                var toAddress = new MailAddress (usuarioWebEN.Email, "To " + usuarioWebEN.Nombre);
+                string fromPassword = "Reciclaua_1";
+                string subject = "Verificaci�n de email";
+                string body = "Para verifcar tu email accede al siguiente link: http://localhost:4200/verificacion/" + oid;
 
-        var fromAddress = new MailAddress ("reciclauatfm@gmail.com", "From ReciclaUA");
-        var toAddress = new MailAddress (usuarioWebEN.Email, "To " + usuarioWebEN.Nombre);
-        string fromPassword = "Reciclaua_1";
-        string subject = "Verificaci�n de email";
-        string body = "Para verifcar tu email accede al siguiente link: http://localhost:4200/verificacion/" + oid;
-
-        var smtp = new SmtpClient
-        {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
-        };
-        using (var message = new MailMessage (fromAddress, toAddress){
-                       Subject = subject,
-                       Body = body
-               })
-        {
-                try
+                var smtp = new SmtpClient
                 {
-                        smtp.Send (message);
-                }
-                catch (Exception e)
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage (fromAddress, toAddress){
+                               Subject = subject,
+                               Body = body
+                       })
                 {
-                        throw new Exception (" El correo electronico no ha podido serenviado " + e);
-                }
-                finally
-                {
-                        smtp.Dispose ();
+                        try
+                        {
+                                smtp.Send (message);
+                        }
+                        catch (Exception e)
+                        {
+                                throw new Exception (" El correo electronico no ha podido serenviado " + e);
+                        }
+                        finally
+                        {
+                                smtp.Dispose ();
+                        }
                 }
         }
+        else{
+                oid = -1;
+        }
+
+
 
         return oid;
 
