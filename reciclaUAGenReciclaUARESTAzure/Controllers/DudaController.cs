@@ -87,6 +87,70 @@ public HttpResponseMessage BuscarTodos ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Duda/DudaRespuesta")]
+
+public HttpResponseMessage DudaRespuesta (int idRespuesta)
+{
+        // CAD, EN
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaEN respuestaEN = null;
+
+        // returnValue
+        DudaEN en = null;
+        DudaDTOA returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+
+                // Exists Respuesta
+                respuestaEN = respuestaRESTCAD.ReadOIDDefault (idRespuesta);
+                if (respuestaEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Respuesta#" + idRespuesta + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = respuestaRESTCAD.DudaRespuesta (idRespuesta);
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = DudaAssembler.Convert (en, session);
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 

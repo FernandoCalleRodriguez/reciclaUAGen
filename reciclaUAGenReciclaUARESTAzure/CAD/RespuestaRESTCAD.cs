@@ -63,5 +63,41 @@ public UsuarioWebEN UsuarioRespuesta (int id)
 
         return result;
 }
+
+public DudaEN DudaRespuesta (int id)
+{
+        DudaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Duda FROM RespuestaEN self " +
+                             "where self.Id = :p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.UniqueResult<DudaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in RespuestaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
