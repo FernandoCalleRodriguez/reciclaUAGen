@@ -336,6 +336,8 @@ public HttpResponseMessage BuscarItemsValidados (          )
 
 
 
+
+
 [HttpPost]
 
 
@@ -369,8 +371,7 @@ public HttpResponseMessage Crear ( [FromBody] ItemDTO dto)
                         //Atributo Primitivo: p_nombre
                         dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_descripcion
                         dto.Descripcion,                                                                                                                                    //Atributo Primitivo: p_imagen
-                        dto.Imagen,                                                                                                                                         //Atributo Primitivo: p_esValido
-                        dto.EsValido,                                                                                                                                     //Atributo OID: p_usuario
+                        dto.Imagen,                                                                                                                                       //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
@@ -415,8 +416,6 @@ public HttpResponseMessage Crear ( [FromBody] ItemDTO dto)
 
         return response;
 }
-
-
 
 
 

@@ -39,43 +39,6 @@ public IItemCAD get_IItemCAD ()
         return this._IItemCAD;
 }
 
-public int Crear (string p_nombre, string p_descripcion, string p_imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido, int p_usuario, int p_material)
-{
-        ItemEN itemEN = null;
-        int oid;
-
-        //Initialized ItemEN
-        itemEN = new ItemEN ();
-        itemEN.Nombre = p_nombre;
-
-        itemEN.Descripcion = p_descripcion;
-
-        itemEN.Imagen = p_imagen;
-
-        itemEN.EsValido = p_esValido;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                itemEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();
-                itemEN.Usuario.Id = p_usuario;
-        }
-
-
-        if (p_material != -1) {
-                // El argumento p_material -> Property material es oid = false
-                // Lista de oids id
-                itemEN.Material = new ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN ();
-                itemEN.Material.Id = p_material;
-        }
-
-        //Call to ItemCAD
-
-        oid = _IItemCAD.Crear (itemEN);
-        return oid;
-}
-
 public void Modificar (int p_Item_OID, string p_nombre, string p_descripcion, string p_imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido)
 {
         ItemEN itemEN = null;

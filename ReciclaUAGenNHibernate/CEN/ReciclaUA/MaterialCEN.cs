@@ -43,33 +43,6 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Mate
 {
         return _IMaterialCAD.BuscarPorTipoContenedor (p_tipoContenedor);
 }
-public int Crear (string p_nombre, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_contenedor, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido, int p_usuario)
-{
-        MaterialEN materialEN = null;
-        int oid;
-
-        //Initialized MaterialEN
-        materialEN = new MaterialEN ();
-        materialEN.Nombre = p_nombre;
-
-        materialEN.Contenedor = p_contenedor;
-
-        materialEN.EsValido = p_esValido;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                materialEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();
-                materialEN.Usuario.Id = p_usuario;
-        }
-
-        //Call to MaterialCAD
-
-        oid = _IMaterialCAD.Crear (materialEN);
-        return oid;
-}
-
 public void Modificar (int p_Material_OID, string p_nombre, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_contenedor, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido)
 {
         MaterialEN materialEN = null;

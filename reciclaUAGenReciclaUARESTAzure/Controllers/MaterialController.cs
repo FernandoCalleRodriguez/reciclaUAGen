@@ -272,6 +272,8 @@ public HttpResponseMessage BuscarMaterialesPorUsuario (int id_usuario)
 
 
 
+
+
 [HttpPost]
 
 
@@ -304,8 +306,7 @@ public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
                 returnOID = materialCEN.Crear (
                         //Atributo Primitivo: p_nombre
                         dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_contenedor
-                        dto.Contenedor,                                                                                                                                     //Atributo Primitivo: p_esValido
-                        dto.EsValido,                                                                                                                                     //Atributo OID: p_usuario
+                        dto.Contenedor,                                                                                                                                   //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
@@ -346,8 +347,6 @@ public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
 
         return response;
 }
-
-
 
 
 

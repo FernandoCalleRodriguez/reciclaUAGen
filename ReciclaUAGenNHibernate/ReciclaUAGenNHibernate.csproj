@@ -239,6 +239,7 @@
 	<Compile Include="CAD\ReciclaUA\IItemCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\ItemCAD.cs" />
 	<Compile Include="CP\ReciclaUA\ItemCP.cs" />
+			<Compile Include="CEN\ReciclaUA\ItemCEN_Crear.cs" />
 			
 			
 			
@@ -289,6 +290,7 @@
 	<Compile Include="CAD\ReciclaUA\MaterialCAD.cs" />
 	<Compile Include="CP\ReciclaUA\MaterialCP.cs" />
 			
+			<Compile Include="CEN\ReciclaUA\MaterialCEN_Crear.cs" />
 			
 			
 			
