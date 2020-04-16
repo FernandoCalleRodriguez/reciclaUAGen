@@ -154,6 +154,75 @@ public HttpResponseMessage BuscarPorId (int idUsuarioAdminAutenticado)
 
 
 
+// No pasa el slEnables: BuscarNoBorrados
+
+[HttpGet]
+
+[Route ("~/api/UsuarioAdminAutenticado/BuscarNoBorrados")]
+
+public HttpResponseMessage BuscarNoBorrados (      )
+{
+        // CAD, CEN, EN, returnValue
+
+        UsuarioAdminAutenticadoRESTCAD usuarioAdminAutenticadoRESTCAD = null;
+        UsuarioAdministradorCEN usuarioAdministradorCEN = null;
+
+
+        System.Collections.Generic.List<UsuarioAdministradorEN> en;
+
+        System.Collections.Generic.List<UsuarioAdminAutenticadoDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
+
+
+
+                usuarioAdminAutenticadoRESTCAD = new UsuarioAdminAutenticadoRESTCAD (session);
+                usuarioAdministradorCEN = new UsuarioAdministradorCEN (usuarioAdminAutenticadoRESTCAD);
+
+                // CEN return
+
+
+
+                en = usuarioAdministradorCEN.BuscarNoBorrados (  ).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<UsuarioAdminAutenticadoDTOA>();
+                        foreach (UsuarioAdministradorEN entry in en)
+                                returnValue.Add (UsuarioAdminAutenticadoAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
 
 
 

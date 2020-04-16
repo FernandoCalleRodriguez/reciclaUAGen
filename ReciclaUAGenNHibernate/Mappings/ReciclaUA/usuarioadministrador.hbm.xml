@@ -35,5 +35,6 @@
 		  
 		  <query name="UsuarioAdministradorENReadAllHQL">from UsuarioAdministradorEN</query>
 		  <query name="UsuarioAdministradorENbuscarPorCorreoHQL"><![CDATA[FROM UsuarioAdministradorEN  as usu WHERE usu.Email =:p_correo]]></query>
+		  <query name="UsuarioAdministradorENBuscarNoBorradosHQL"><![CDATA[FROM UsuarioAdministradorEN as usu WHERE usu.Borrado = false]]></query>
 		</hibernate-mapping>
 	

@@ -59,5 +59,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
 {
         return _IUsuarioAdministradorCAD.BuscarPorCorreo (p_correo);
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarNoBorrados ()
+{
+        return _IUsuarioAdministradorCAD.BuscarNoBorrados ();
+}
 }
 }

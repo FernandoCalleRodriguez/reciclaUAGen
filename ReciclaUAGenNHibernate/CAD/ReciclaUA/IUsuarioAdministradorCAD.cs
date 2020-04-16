@@ -35,5 +35,8 @@ void CambiarPassword (UsuarioAdministradorEN usuarioAdministrador);
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarPorCorreo (string p_correo);
+
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarNoBorrados ();
 }
 }
