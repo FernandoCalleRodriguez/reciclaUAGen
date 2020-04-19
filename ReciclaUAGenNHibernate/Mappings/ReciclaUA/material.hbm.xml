@@ -57,5 +57,6 @@
 		  <query name="MaterialENbuscarMaterialesPorValidarHQL"><![CDATA[FROM MaterialEN  as material WHERE material.EsValido=2]]></query>
 		  <query name="MaterialENbuscarMaterialesValidadosHQL"><![CDATA[FROM MaterialEN as material WHERE material.EsValido=1]]></query>
 		  <query name="MaterialENbuscarMaterialesPorUsuarioHQL"><![CDATA[FROM MaterialEN as material where material.Usuario is not empty and material.Usuario.Id = :id_usuario]]></query>
+		  <query name="MaterialENbuscarMaterialesPorValidarCountHQL"><![CDATA[select cast(count(material) as int) FROM MaterialEN as material where material.EsValido = 2]]></query>
 		</hibernate-mapping>
 	

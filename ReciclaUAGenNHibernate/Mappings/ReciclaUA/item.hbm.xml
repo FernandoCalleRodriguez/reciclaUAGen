@@ -75,5 +75,6 @@
 		  <query name="ItemENbuscarItemsPorValidarHQL"><![CDATA[FROM ItemEN as item WHERE item.EsValido=2]]></query>
 		  <query name="ItemENbuscarItemsValidadosHQL"><![CDATA[FROM ItemEN as item WHERE item.EsValido=1]]></query>
 		  <query name="ItemENbuscarItemsPorUsuarioHQL"><![CDATA[FROM ItemEN as item where item.Usuario is not empty and item.Usuario.Id = :id_usuario]]></query>
+		  <query name="ItemENbuscarItemsPorValidarCountHQL"><![CDATA[select cast(count(item) as int) FROM ItemEN as item WHERE item.EsValido=2]]></query>
 		</hibernate-mapping>
 	

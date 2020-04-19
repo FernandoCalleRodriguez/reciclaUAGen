@@ -89,5 +89,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Item
 {
         return _IItemCAD.BuscarItemsPorUsuario (id_usuario);
 }
+public int BuscarItemsPorValidarCount ()
+{
+        return _IItemCAD.BuscarItemsPorValidarCount ();
+}
 }
 }

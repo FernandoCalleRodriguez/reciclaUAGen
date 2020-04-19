@@ -43,5 +43,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN>
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarMaterialesPorUsuario (int id_usuario);
+
+
+int BuscarMaterialesPorValidarCount ();
 }
 }

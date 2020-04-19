@@ -225,6 +225,7 @@
 			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanos.cs" />
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
@@ -250,6 +251,7 @@
 			<Compile Include="CEN\ReciclaUA\ItemCEN_ValidarItem.cs" />
 			
 			<Compile Include="CEN\ReciclaUA\ItemCEN_DescartarItem.cs" />
+			
 			
 			
 			
@@ -301,6 +303,7 @@
 			<Compile Include="CEN\ReciclaUA\MaterialCEN_ValidarMaterial.cs" />
 			
 			<Compile Include="CEN\ReciclaUA\MaterialCEN_DescartarMaterial.cs" />
+			
 			
 			
 			

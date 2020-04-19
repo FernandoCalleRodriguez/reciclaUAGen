@@ -40,5 +40,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> Bus
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> BuscarItemsPorUsuario (int id_usuario);
+
+
+int BuscarItemsPorValidarCount ();
 }
 }

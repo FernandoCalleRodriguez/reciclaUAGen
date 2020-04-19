@@ -88,6 +88,72 @@ public HttpResponseMessage BuscarTodos ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Item/ItemsNivel")]
+
+public HttpResponseMessage ItemsNivel (int idNivel)
+{
+        // CAD, EN
+        NivelRESTCAD nivelRESTCAD = null;
+        NivelEN nivelEN = null;
+
+        // returnValue
+        List<ItemEN> en = null;
+        List<ItemDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                nivelRESTCAD = new NivelRESTCAD (session);
+
+                // Exists Nivel
+                nivelEN = nivelRESTCAD.ReadOIDDefault (idNivel);
+                if (nivelEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Nivel#" + idNivel + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = nivelRESTCAD.ItemsNivel (idNivel).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<ItemDTOA>();
+                        foreach (ItemEN entry in en)
+                                returnValue.Add (ItemAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 
