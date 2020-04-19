@@ -35,9 +35,9 @@ public int Usuario_oid {
 
 
 
-private int niveles_oid;
-public int Niveles_oid {
-        get { return niveles_oid; } set { niveles_oid = value;  }
+private int nivel_oid;
+public int Nivel_oid {
+        get { return nivel_oid; } set { nivel_oid = value;  }
 }
 
 

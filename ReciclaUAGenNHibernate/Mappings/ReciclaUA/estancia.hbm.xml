@@ -12,10 +12,10 @@
 					<property name="Actividad" type="string"> 
 						<column name="actividad"  not-null="true"/>
 					</property>
-					<property name="Latitud" type="string"> 
+					<property name="Latitud" type="double"> 
 						<column name="latitud"  not-null="true"/>
 					</property>
-					<property name="Longitud" type="string"> 
+					<property name="Longitud" type="double"> 
 						<column name="longitud"  not-null="true"/>
 					</property>
 					<property name="Nombre" type="string"> 

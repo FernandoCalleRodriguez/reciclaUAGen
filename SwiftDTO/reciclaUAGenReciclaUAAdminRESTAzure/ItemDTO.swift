@@ -28,7 +28,7 @@
 				var usuario_oid: Int?;
 				    	 
 		 
-				var niveles_oid: Int?;
+				var nivel_oid: Int?;
 				    	 
 		 
 				var material_oid: Int?;
@@ -77,7 +77,7 @@
 					dictionary["usuario_oid"] = self.usuario_oid;
 			
 
-					dictionary["niveles_oid"] = self.niveles_oid;
+					dictionary["nivel_oid"] = self.nivel_oid;
 			
 
 					dictionary["material_oid"] = self.material_oid;

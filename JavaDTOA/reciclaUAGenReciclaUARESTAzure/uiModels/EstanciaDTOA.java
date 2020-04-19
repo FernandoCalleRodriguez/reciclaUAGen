@@ -27,13 +27,13 @@ public class EstanciaDTOA extends DTOA
 	public String getActividad () { return actividad; }
 	public void setActividad (String actividad) { this.actividad = actividad; }
 	
-	private String latitud;
-	public String getLatitud () { return latitud; }
-	public void setLatitud (String latitud) { this.latitud = latitud; }
+	private Double latitud;
+	public Double getLatitud () { return latitud; }
+	public void setLatitud (Double latitud) { this.latitud = latitud; }
 	
-	private String longitud;
-	public String getLongitud () { return longitud; }
-	public void setLongitud (String longitud) { this.longitud = longitud; }
+	private Double longitud;
+	public Double getLongitud () { return longitud; }
+	public void setLongitud (Double longitud) { this.longitud = longitud; }
 	
 	private String nombre;
 	public String getNombre () { return nombre; }
@@ -84,14 +84,16 @@ public class EstanciaDTOA extends DTOA
 			if (!JSONObject.NULL.equals(json.opt("Latitud")))
 			{
 			 
-				this.latitud = (String) json.opt("Latitud");
+			 	String stringDouble = String.valueOf(json.opt("Latitud"));
+ 				this.latitud = Double.parseDouble(stringDouble);
 			 
 			}
 
 			if (!JSONObject.NULL.equals(json.opt("Longitud")))
 			{
 			 
-				this.longitud = (String) json.opt("Longitud");
+			 	String stringDouble = String.valueOf(json.opt("Longitud"));
+ 				this.longitud = Double.parseDouble(stringDouble);
 			 
 			}
 

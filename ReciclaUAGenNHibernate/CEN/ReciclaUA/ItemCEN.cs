@@ -93,5 +93,9 @@ public int BuscarItemsPorValidarCount ()
 {
         return _IItemCAD.BuscarItemsPorValidarCount ();
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> BuscarItemsPorNivel (int id_nivel)
+{
+        return _IItemCAD.BuscarItemsPorNivel (id_nivel);
+}
 }
 }

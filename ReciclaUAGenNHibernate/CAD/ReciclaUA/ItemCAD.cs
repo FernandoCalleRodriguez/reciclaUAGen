@@ -404,5 +404,35 @@ public int BuscarItemsPorValidarCount ()
 
         return result;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> BuscarItemsPorNivel (int id_nivel)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ItemEN self where FROM ItemEN as item where item.Nivel is not empty and item.Nivel = :id_nivel";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ItemENbuscarItemsPorNivelHQL");
+                query.SetParameter ("id_nivel", id_nivel);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in ItemCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

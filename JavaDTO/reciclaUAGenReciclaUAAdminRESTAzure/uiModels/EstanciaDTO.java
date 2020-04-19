@@ -25,13 +25,13 @@
 				public String getActividad () { return actividad; } 
 				public void setActividad  (String value) { actividad = value;  } 
 				    	 
-				private String latitud;
-				public String getLatitud () { return latitud; } 
-				public void setLatitud  (String value) { latitud = value;  } 
+				private Double latitud;
+				public Double getLatitud () { return latitud; } 
+				public void setLatitud  (Double value) { latitud = value;  } 
 				    	 
-				private String longitud;
-				public String getLongitud () { return longitud; } 
-				public void setLongitud  (String value) { longitud = value;  } 
+				private Double longitud;
+				public Double getLongitud () { return longitud; } 
+				public void setLongitud  (Double value) { longitud = value;  } 
 				    	 
 				private String nombre;
 				public String getNombre () { return nombre; } 

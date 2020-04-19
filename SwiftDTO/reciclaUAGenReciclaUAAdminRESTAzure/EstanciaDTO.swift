@@ -16,10 +16,10 @@
 				var actividad: String?;
 				    	 
 		 
-				var latitud: String?;
+				var latitud: Double?;
 				    	 
 		 
-				var longitud: String?;
+				var longitud: Double?;
 				    	 
 		 
 				var nombre: String?;

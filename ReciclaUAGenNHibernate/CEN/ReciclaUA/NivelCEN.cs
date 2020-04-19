@@ -92,5 +92,17 @@ public System.Collections.Generic.IList<NivelEN> BuscarTodos (int first, int siz
         list = _INivelCAD.BuscarTodos (first, size);
         return list;
 }
+public void AsignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs)
+{
+        //Call to NivelCAD
+
+        _INivelCAD.AsignarItems (p_Nivel_OID, p_item_OIDs);
+}
+public void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs)
+{
+        //Call to NivelCAD
+
+        _INivelCAD.DesasignarItems (p_Nivel_OID, p_item_OIDs);
+}
 }
 }

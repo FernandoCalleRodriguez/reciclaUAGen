@@ -39,7 +39,7 @@ public IEstanciaCAD get_IEstanciaCAD ()
         return this._IEstanciaCAD;
 }
 
-public void Modificar (string p_Estancia_OID, string p_actividad, string p_latitud, string p_longitud, string p_nombre)
+public void Modificar (string p_Estancia_OID, string p_actividad, double p_latitud, double p_longitud, string p_nombre)
 {
         EstanciaEN estanciaEN = null;
 
@@ -77,7 +77,7 @@ public System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int 
         list = _IEstanciaCAD.BuscarTodos (first, size);
         return list;
 }
-public string Crear (string p_id, string p_actividad, string p_latitud, string p_longitud, string p_nombre, int p_edificio, int p_planta)
+public string Crear (string p_id, string p_actividad, double p_latitud, double p_longitud, string p_nombre, int p_edificio, int p_planta)
 {
         EstanciaEN estanciaEN = null;
         string oid;

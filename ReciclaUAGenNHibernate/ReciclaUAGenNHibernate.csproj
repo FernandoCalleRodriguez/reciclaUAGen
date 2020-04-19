@@ -256,11 +256,14 @@
 			
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\NivelEN.cs" />
 	<Compile Include="CEN\ReciclaUA\NivelCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\INivelCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\NivelCAD.cs" />
 	<Compile Include="CP\ReciclaUA\NivelCP.cs" />
+			
+			
 			
 			
 			

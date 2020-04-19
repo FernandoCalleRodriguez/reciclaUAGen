@@ -255,5 +255,83 @@ public System.Collections.Generic.IList<NivelEN> BuscarTodos (int first, int siz
 
         return result;
 }
+
+public void AsignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs)
+{
+        ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivelEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                nivelEN = (NivelEN)session.Load (typeof(NivelEN), p_Nivel_OID);
+                ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN itemENAux = null;
+                if (nivelEN.Item == null) {
+                        nivelEN.Item = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN>();
+                }
+
+                foreach (int item in p_item_OIDs) {
+                        itemENAux = new ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN ();
+                        itemENAux = (ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN), item);
+                        itemENAux.Nivel = nivelEN;
+
+                        nivelEN.Item.Add (itemENAux);
+                }
+
+
+                session.Update (nivelEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in NivelCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivelEN = null;
+                nivelEN = (NivelEN)session.Load (typeof(NivelEN), p_Nivel_OID);
+
+                ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN itemENAux = null;
+                if (nivelEN.Item != null) {
+                        foreach (int item in p_item_OIDs) {
+                                itemENAux = (ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN), item);
+                                if (nivelEN.Item.Contains (itemENAux) == true) {
+                                        nivelEN.Item.Remove (itemENAux);
+                                        itemENAux.Nivel = null;
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_item_OIDs you are trying to unrelationer, doesn't exist in NivelEN");
+                        }
+                }
+
+                session.Update (nivelEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in NivelCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

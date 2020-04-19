@@ -88,72 +88,6 @@ public HttpResponseMessage BuscarTodos ()
 
 
 
-[HttpGet]
-
-
-
-
-
-[Route ("~/api/Item/ItemsNivel")]
-
-public HttpResponseMessage ItemsNivel (int idNivel)
-{
-        // CAD, EN
-        NivelRESTCAD nivelRESTCAD = null;
-        NivelEN nivelEN = null;
-
-        // returnValue
-        List<ItemEN> en = null;
-        List<ItemDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
-
-
-                nivelRESTCAD = new NivelRESTCAD (session);
-
-                // Exists Nivel
-                nivelEN = nivelRESTCAD.ReadOIDDefault (idNivel);
-                if (nivelEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Nivel#" + idNivel + " not found"));
-
-                // Rol
-                // TODO: paginación
-
-
-                en = nivelRESTCAD.ItemsNivel (idNivel).ToList ();
-
-
-
-                // Convert return
-                if (en != null) {
-                        returnValue = new List<ItemDTOA>();
-                        foreach (ItemEN entry in en)
-                                returnValue.Add (ItemAssembler.Convert (entry, session));
-                }
-        }
-
-        catch (Exception e)
-        {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
-
-
-
 
 
 
@@ -241,6 +175,70 @@ public HttpResponseMessage BuscarItemsPorUsuario (int id_usuario)
 
 
                 en = itemCEN.BuscarItemsPorUsuario (id_usuario).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<ItemDTOA>();
+                        foreach (ItemEN entry in en)
+                                returnValue.Add (ItemAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+// No pasa el slEnables: buscarItemsPorNivel
+
+[HttpGet]
+
+[Route ("~/api/Item/BuscarItemsPorNivel")]
+
+public HttpResponseMessage BuscarItemsPorNivel (int id_nivel)
+{
+        // CAD, CEN, EN, returnValue
+
+        ItemRESTCAD itemRESTCAD = null;
+        ItemCEN itemCEN = null;
+
+
+        System.Collections.Generic.List<ItemEN> en;
+
+        System.Collections.Generic.List<ItemDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                itemRESTCAD = new ItemRESTCAD (session);
+                itemCEN = new ItemCEN (itemRESTCAD);
+
+                // CEN return
+
+
+
+                en = itemCEN.BuscarItemsPorNivel (id_nivel).ToList ();
 
 
 

@@ -43,5 +43,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> Bus
 
 
 int BuscarItemsPorValidarCount ();
+
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> BuscarItemsPorNivel (int id_nivel);
 }
 }
