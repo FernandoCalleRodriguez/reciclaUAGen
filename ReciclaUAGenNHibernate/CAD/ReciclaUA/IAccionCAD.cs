@@ -16,5 +16,11 @@ System.Collections.Generic.IList<AccionEN> ReadAllDefault (int first, int size);
 
 
 int Crear (AccionEN accion);
+
+AccionEN BuscarPorId (int id
+                      );
+
+
+System.Collections.Generic.IList<AccionEN> BuscarTodos (int first, int size);
 }
 }
