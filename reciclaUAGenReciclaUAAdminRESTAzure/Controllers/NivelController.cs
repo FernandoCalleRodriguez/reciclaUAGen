@@ -394,6 +394,92 @@ public HttpResponseMessage Borrar (int p_nivel_oid)
 
 
 
+[HttpPut]
+
+[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/NivelItem/AsignarItems")]
+
+public HttpResponseMessage AsignarItems (int p_nivel_oid, System.Collections.Generic.IList<int> p_item_oids)
+{
+        // CAD, CEN, returnValue
+        NivelRESTCAD nivelRESTCAD = null;
+        NivelCEN nivelCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                nivelRESTCAD = new NivelRESTCAD (session);
+                nivelCEN = new NivelCEN (nivelRESTCAD);
+
+                // Relationer
+                nivelCEN.AsignarItems (p_nivel_oid, p_item_oids);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/AccionReciclar/{idAccionReciclar}/ItemAccion/{idItem}/NivelItem/DesasignarItems")]
+
+public HttpResponseMessage DesasignarItems (int p_nivel_oid, System.Collections.Generic.IList<int> p_item_oids)
+{
+        // CAD, CEN, returnValue
+        NivelRESTCAD nivelRESTCAD = null;
+        NivelCEN nivelCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                nivelRESTCAD = new NivelRESTCAD (session);
+                nivelCEN = new NivelCEN (nivelRESTCAD);
+
+                // UnRelationer
+                nivelCEN.DesasignarItems (p_nivel_oid, p_item_oids);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 

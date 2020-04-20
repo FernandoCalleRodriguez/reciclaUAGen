@@ -60,11 +60,12 @@
 		 </class>	
 		  
 		  <query name="PuntoReciclajeENReadAllHQL">from PuntoReciclajeEN</query>
-		  <query name="PuntoReciclajeENbuscarPuntosPorValidarHQL"><![CDATA[FROM PuntoReciclajeEN as punto where EsValido = 2]]></query>
-		  <query name="PuntoReciclajeENbuscarPuntosValidadosHQL"><![CDATA[FROM PuntoReciclajeEN as punto where EsValido = 1]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorValidarHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.EsValido = 2]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosValidadosHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.EsValido = 1]]></query>
 		  <query name="PuntoReciclajeENbuscarPuntosPorEdificioHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Edificio is not empty and punto.Estancia.Edificio.Id = :id_edificio]]></query>
 		  <query name="PuntoReciclajeENbuscarPuntosPorEstanciaHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Id = :id_estancia]]></query>
 		  <query name="PuntoReciclajeENbuscarPuntosPorPlantaHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Estancia is not empty and punto.Estancia.Edificio is not empty and punto.Estancia.Planta is not empty and punto.Estancia.Edificio.Id = :id_edificio and punto.Estancia.Planta.Planta = :num_planta]]></query>
 		  <query name="PuntoReciclajeENbuscarPuntosPorUsuarioHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Usuario is not empty and punto.Usuario.Id = :id_usuario]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntosPorValidarCountHQL"><![CDATA[select cast(count(punto) as int) FROM PuntoReciclajeEN as punto where punto.EsValido = 2]]></query>
 		</hibernate-mapping>
 	

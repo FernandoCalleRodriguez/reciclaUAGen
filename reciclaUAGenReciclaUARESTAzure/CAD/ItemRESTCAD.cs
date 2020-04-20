@@ -73,7 +73,7 @@ public NivelEN NivelItem (int id)
                 SessionInitializeTransaction ();
 
 
-                String sql = @"select self.Niveles FROM ItemEN self " +
+                String sql = @"select self.Nivel FROM ItemEN self " +
                              "where self.Id = :p_Id";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
 

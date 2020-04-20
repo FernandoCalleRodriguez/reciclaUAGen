@@ -92,5 +92,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Mate
 {
         return _IMaterialCAD.BuscarMaterialesPorUsuario (id_usuario);
 }
+public int BuscarMaterialesPorValidarCount ()
+{
+        return _IMaterialCAD.BuscarMaterialesPorValidarCount ();
+}
 }
 }

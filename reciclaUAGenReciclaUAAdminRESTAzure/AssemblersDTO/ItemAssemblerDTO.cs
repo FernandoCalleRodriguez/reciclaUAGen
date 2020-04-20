@@ -37,10 +37,10 @@ public static ItemEN Convert (ItemDTO dto)
 
                                 newinstance.Usuario = usuarioCAD.ReadOIDDefault (dto.Usuario_oid);
                         }
-                        if (dto.Niveles_oid != -1) {
+                        if (dto.Nivel_oid != -1) {
                                 ReciclaUAGenNHibernate.CAD.ReciclaUA.INivelCAD nivelCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.NivelCAD ();
 
-                                newinstance.Niveles = nivelCAD.ReadOIDDefault (dto.Niveles_oid);
+                                newinstance.Nivel = nivelCAD.ReadOIDDefault (dto.Nivel_oid);
                         }
                         if (dto.Material_oid != -1) {
                                 ReciclaUAGenNHibernate.CAD.ReciclaUA.IMaterialCAD materialCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.MaterialCAD ();

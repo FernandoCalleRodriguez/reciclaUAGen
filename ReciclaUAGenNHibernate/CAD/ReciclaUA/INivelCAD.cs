@@ -29,5 +29,10 @@ NivelEN BuscarPorId (int id
 
 
 System.Collections.Generic.IList<NivelEN> BuscarTodos (int first, int size);
+
+
+void AsignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs);
+
+void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs);
 }
 }

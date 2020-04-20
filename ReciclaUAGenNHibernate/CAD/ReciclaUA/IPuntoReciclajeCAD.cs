@@ -50,5 +50,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoRecicl
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> BuscarPuntosPorUsuario (int id_usuario);
+
+
+int BuscarPuntosPorValidarCount ();
 }
 }

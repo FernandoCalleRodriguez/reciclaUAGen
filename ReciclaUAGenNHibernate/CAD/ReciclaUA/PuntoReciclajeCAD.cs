@@ -284,7 +284,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PuntoReciclajeEN self where FROM PuntoReciclajeEN as punto where EsValido = 2";
+                //String sql = @"FROM PuntoReciclajeEN self where FROM PuntoReciclajeEN as punto where punto.EsValido = 2";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENbuscarPuntosPorValidarHQL");
 
@@ -313,7 +313,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PuntoReciclajeEN self where FROM PuntoReciclajeEN as punto where EsValido = 1";
+                //String sql = @"FROM PuntoReciclajeEN self where FROM PuntoReciclajeEN as punto where punto.EsValido = 1";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENbuscarPuntosValidadosHQL");
 
@@ -439,6 +439,37 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
                 query.SetParameter ("id_usuario", id_usuario);
 
                 result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in PuntoReciclajeCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public int BuscarPuntosPorValidarCount ()
+{
+        int result;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PuntoReciclajeEN self where select cast(count(punto) as int) FROM PuntoReciclajeEN as punto where punto.EsValido = 2";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENbuscarPuntosPorValidarCountHQL");
+
+
+                result = query.UniqueResult<int>();
                 SessionCommit ();
         }
 

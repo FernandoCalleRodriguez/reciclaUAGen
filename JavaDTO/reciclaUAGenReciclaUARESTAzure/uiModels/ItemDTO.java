@@ -41,9 +41,9 @@
 				public Integer  getUsuario_oid () { return usuario_oid; } 
 				public void setUsuario_oid (Integer value) { usuario_oid = value;  } 
 				    	 
-				private Integer niveles_oid;
-				public Integer  getNiveles_oid () { return niveles_oid; } 
-				public void setNiveles_oid (Integer value) { niveles_oid = value;  } 
+				private Integer nivel_oid;
+				public Integer  getNivel_oid () { return nivel_oid; } 
+				public void setNivel_oid (Integer value) { nivel_oid = value;  } 
 				    	 
 				private Integer material_oid;
 				public Integer  getMaterial_oid () { return material_oid; } 
@@ -81,9 +81,9 @@
 							json.put("Usuario_oid", this.usuario_oid.intValue());
 						}
 
-						if (this.niveles_oid != null)
+						if (this.nivel_oid != null)
 						{
-							json.put("Niveles_oid", this.niveles_oid.intValue());
+							json.put("Nivel_oid", this.nivel_oid.intValue());
 						}
 
 						if (this.material_oid != null)

@@ -210,6 +210,7 @@ public static void InitializeData ()
 
 
                 // PUNTOS RECICLAJE
+
                 EdificioCEN edificioCEN = new EdificioCEN ();
                 int id_edificio = edificioCEN.Crear ("Edificio 1", 500);
 
@@ -217,7 +218,7 @@ public static void InitializeData ()
                 int id_planta = plantaCEN.Crear (PlantaEnum.PB, id_edificio);
 
                 EstanciaCEN estanciaCEN = new EstanciaCEN ();
-                string id_estancia = estanciaCEN.Crear ("0500PB001", "Aula", "111", "222", "Aula PB 001", id_edificio, id_planta);
+                string id_estancia = estanciaCEN.Crear ("0500PB001", "Aula", 123.09999d, 2.3123313d, "Aula PB 001", id_edificio, id_planta);
 
                 PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN ();
                 int id_punto1 = puntoCEN.Crear (123, 123, id_usu1, id_estancia);

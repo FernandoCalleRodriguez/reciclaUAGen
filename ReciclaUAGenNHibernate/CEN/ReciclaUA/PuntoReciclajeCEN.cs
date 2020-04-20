@@ -100,5 +100,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
 {
         return _IPuntoReciclajeCAD.BuscarPuntosPorUsuario (id_usuario);
 }
+public int BuscarPuntosPorValidarCount ()
+{
+        return _IPuntoReciclajeCAD.BuscarPuntosPorValidarCount ();
+}
 }
 }
