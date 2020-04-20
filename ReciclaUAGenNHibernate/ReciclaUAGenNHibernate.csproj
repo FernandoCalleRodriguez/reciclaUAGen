@@ -202,8 +202,6 @@
 	<Compile Include="CAD\ReciclaUA\AccionCAD.cs" />
 	<Compile Include="CP\ReciclaUA\AccionCP.cs" />
 			
-			
-			
 	<Compile Include="EN\ReciclaUA\PuntoReciclajeEN.cs" />
 	<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IPuntoReciclajeCAD.cs" />

@@ -61,22 +61,5 @@ public int Crear (int p_usuario, Nullable<DateTime> p_fecha)
         oid = _IAccionCAD.Crear (accionEN);
         return oid;
 }
-
-public AccionEN BuscarPorId (int id
-                             )
-{
-        AccionEN accionEN = null;
-
-        accionEN = _IAccionCAD.BuscarPorId (id);
-        return accionEN;
-}
-
-public System.Collections.Generic.IList<AccionEN> BuscarTodos (int first, int size)
-{
-        System.Collections.Generic.IList<AccionEN> list = null;
-
-        list = _IAccionCAD.BuscarTodos (first, size);
-        return list;
-}
 }
 }
