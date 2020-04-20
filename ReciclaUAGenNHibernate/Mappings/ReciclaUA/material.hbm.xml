@@ -53,7 +53,7 @@
 		 </class>	
 		  
 		  <query name="MaterialENReadAllHQL">from MaterialEN</query>
-		  <query name="MaterialENbuscarPorTipoContenedorHQL"><![CDATA[FROM MaterialEN as material WHERE material.Contenedor =:p_tipoContenedor]]></query>
+		  <query name="MaterialENbuscarPorTipoContenedorHQL"><![CDATA[FROM MaterialEN as material WHERE material.Contenedor = :tipo_contenedor]]></query>
 		  <query name="MaterialENbuscarMaterialesPorValidarHQL"><![CDATA[FROM MaterialEN  as material WHERE material.EsValido=2]]></query>
 		  <query name="MaterialENbuscarMaterialesValidadosHQL"><![CDATA[FROM MaterialEN as material WHERE material.EsValido=1]]></query>
 		  <query name="MaterialENbuscarMaterialesPorUsuarioHQL"><![CDATA[FROM MaterialEN as material where material.Usuario is not empty and material.Usuario.Id = :id_usuario]]></query>

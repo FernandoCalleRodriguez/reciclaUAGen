@@ -120,16 +120,16 @@ public void ModifyDefault (MaterialEN material)
 }
 
 
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (int ? p_tipoContenedor)
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
 {
         System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM MaterialEN self where FROM MaterialEN as material WHERE material.Contenedor =:p_tipoContenedor";
+                //String sql = @"FROM MaterialEN self where FROM MaterialEN as material WHERE material.Contenedor = :tipo_contenedor";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("MaterialENbuscarPorTipoContenedorHQL");
-                query.SetParameter ("p_tipoContenedor", p_tipoContenedor);
+                query.SetParameter ("tipo_contenedor", tipo_contenedor);
 
                 result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN>();
                 SessionCommit ();

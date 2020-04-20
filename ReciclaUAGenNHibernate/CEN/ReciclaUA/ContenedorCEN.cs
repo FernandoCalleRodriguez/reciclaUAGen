@@ -97,9 +97,9 @@ public System.Collections.Generic.IList<ContenedorEN> BuscarTodos (int first, in
         list = _IContenedorCAD.BuscarTodos (first, size);
         return list;
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorTipo ()
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorTipo (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
 {
-        return _IContenedorCAD.BuscarContenedoresPorTipo ();
+        return _IContenedorCAD.BuscarContenedoresPorTipo (tipo_contenedor);
 }
 }
 }

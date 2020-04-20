@@ -39,9 +39,9 @@ public IMaterialCAD get_IMaterialCAD ()
         return this._IMaterialCAD;
 }
 
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (int ? p_tipoContenedor)
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
 {
-        return _IMaterialCAD.BuscarPorTipoContenedor (p_tipoContenedor);
+        return _IMaterialCAD.BuscarPorTipoContenedor (tipo_contenedor);
 }
 public void Modificar (int p_Material_OID, string p_nombre, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_contenedor, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido)
 {

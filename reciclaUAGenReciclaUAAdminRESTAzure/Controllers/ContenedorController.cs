@@ -150,7 +150,7 @@ public HttpResponseMessage BuscarPorId (int idContenedor)
 
 [Route ("~/api/Contenedor/BuscarContenedoresPorTipo")]
 
-public HttpResponseMessage BuscarContenedoresPorTipo (     )
+public HttpResponseMessage BuscarContenedoresPorTipo (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
 {
         // CAD, CEN, EN, returnValue
 
@@ -175,7 +175,7 @@ public HttpResponseMessage BuscarContenedoresPorTipo (     )
 
 
 
-                en = contenedorCEN.BuscarContenedoresPorTipo (   ).ToList ();
+                en = contenedorCEN.BuscarContenedoresPorTipo (tipo_contenedor).ToList ();
 
 
 

@@ -15,7 +15,7 @@ System.Collections.Generic.IList<MaterialEN> ReadAllDefault (int first, int size
 
 
 
-System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (int ? p_tipoContenedor);
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor);
 
 
 int Crear (MaterialEN material);

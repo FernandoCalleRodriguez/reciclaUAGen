@@ -43,6 +43,6 @@
 		 </class>	
 		  
 		  <query name="ContenedorENReadAllHQL">from ContenedorEN</query>
-		  <query name="ContenedorENbuscarContenedoresPorTipoHQL"><![CDATA[FROM ContenedorEN]]></query>
+		  <query name="ContenedorENbuscarContenedoresPorTipoHQL"><![CDATA[FROM ContenedorEN as contenedor where contenedor.Tipo = :tipo_contenedor]]></query>
 		</hibernate-mapping>
 	

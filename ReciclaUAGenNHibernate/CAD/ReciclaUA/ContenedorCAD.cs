@@ -258,15 +258,16 @@ public System.Collections.Generic.IList<ContenedorEN> BuscarTodos (int first, in
         return result;
 }
 
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorTipo ()
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorTipo (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
 {
         System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ContenedorEN self where FROM ContenedorEN";
+                //String sql = @"FROM ContenedorEN self where FROM ContenedorEN as contenedor where contenedor.Tipo = :tipo_contenedor";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ContenedorENbuscarContenedoresPorTipoHQL");
+                query.SetParameter ("tipo_contenedor", tipo_contenedor);
 
                 result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN>();
                 SessionCommit ();
