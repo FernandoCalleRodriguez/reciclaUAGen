@@ -22,6 +22,9 @@ class AccionReciclarDTOA : DTOA
 	/* Rol: AccionReciclar o--> Contenedor */
 	var contenedorAccion: ContenedorDTOA?;
 
+	/* Rol: AccionReciclar o--> UsuarioWeb */
+	var usuarioAccionReciclar: UsuarioWebDTOA?;
+
 	
 	
 	
@@ -56,6 +59,11 @@ class AccionReciclarDTOA : DTOA
 			self.contenedorAccion = ContenedorDTOA(fromJSONObject: json["ContenedorAccion"]);
 		}
 
+		if (json["UsuarioAccionReciclar"] != JSON.null)
+		{
+			self.usuarioAccionReciclar = UsuarioWebDTOA(fromJSONObject: json["UsuarioAccionReciclar"]);
+		}
+
 		
 	}
 	
@@ -80,6 +88,8 @@ class AccionReciclarDTOA : DTOA
 		dictionary["ItemAccion"] = self.itemAccion?.toDictionary() ?? NSNull();
 
 		dictionary["ContenedorAccion"] = self.contenedorAccion?.toDictionary() ?? NSNull();
+
+		dictionary["UsuarioAccionReciclar"] = self.usuarioAccionReciclar?.toDictionary() ?? NSNull();
 
 		
 		

@@ -33,6 +33,11 @@ public class AccionWebDTOA extends DTOA
 	public TipoAccionDTOA getTipo () { return tipo; }
 	public void setTipo (TipoAccionDTOA tipo) { this.tipo = tipo; }
 
+	/* Rol: AccionWeb o--> UsuarioWeb */
+	private UsuarioWebDTOA usuarioAccionWeb;
+	public UsuarioWebDTOA getUsuarioAccionWeb () { return usuarioAccionWeb; }
+	public void setUsuarioAccionWeb (UsuarioWebDTOA usuarioAccionWeb) { this.usuarioAccionWeb = usuarioAccionWeb; }
+
 	
 	
 	// endregion
@@ -74,6 +79,15 @@ public class AccionWebDTOA extends DTOA
 				this.tipo = tmp;
 			}
 
+
+			JSONObject jsonUsuarioAccionWeb = json.optJSONObject("UsuarioAccionWeb");
+			if (jsonUsuarioAccionWeb != null)
+			{
+				UsuarioWebDTOA tmp = new UsuarioWebDTOA();
+				tmp.setFromJSON(jsonUsuarioAccionWeb);
+				this.usuarioAccionWeb = tmp;
+			}
+
 			
 		}
 		catch (Exception e)
@@ -103,6 +117,12 @@ public class AccionWebDTOA extends DTOA
 				json.put("Tipo", this.tipo.toJSON());
 			}
 
+
+			if (this.usuarioAccionWeb != null)
+			{
+				json.put("UsuarioAccionWeb", this.usuarioAccionWeb.toJSON());
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -129,6 +149,7 @@ public class AccionWebDTOA extends DTOA
 		
 		// Roles
 					// TODO: from DTOA [ Tipo ] (dataType : TipoAccionDTOA) to DTO [ Tipo ]
+					// TODO: from DTOA [ UsuarioAccionWeb ] (dataType : UsuarioWebDTOA) to DTO [ Usuario ]
 		
 		
 		return dto;

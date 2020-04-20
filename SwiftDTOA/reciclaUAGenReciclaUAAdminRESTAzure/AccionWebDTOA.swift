@@ -18,6 +18,9 @@ class AccionWebDTOA : DTOA
 	/* Rol: AccionWeb o--> TipoAccion */
 	var tipo: TipoAccionDTOA?;
 
+	/* Rol: AccionWeb o--> UsuarioWeb */
+	var usuarioAccionWeb: UsuarioWebDTOA?;
+
 	
 	
 	
@@ -46,6 +49,11 @@ class AccionWebDTOA : DTOA
 			self.tipo = TipoAccionDTOA(fromJSONObject: json["Tipo"]);
 		}
 
+		if (json["UsuarioAccionWeb"] != JSON.null)
+		{
+			self.usuarioAccionWeb = UsuarioWebDTOA(fromJSONObject: json["UsuarioAccionWeb"]);
+		}
+
 		
 	}
 	
@@ -63,6 +71,8 @@ class AccionWebDTOA : DTOA
 	
 		
 		dictionary["Tipo"] = self.tipo?.toDictionary() ?? NSNull();
+
+		dictionary["UsuarioAccionWeb"] = self.usuarioAccionWeb?.toDictionary() ?? NSNull();
 
 		
 		

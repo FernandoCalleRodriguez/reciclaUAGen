@@ -46,5 +46,13 @@ public ContenedorDTOA ContenedorAccion
         get { return contenedorAccion; }
         set { contenedorAccion = value; }
 }
+
+/* Rol: AccionReciclar o--> UsuarioWeb */
+private UsuarioWebDTOA usuarioAccionReciclar;
+public UsuarioWebDTOA UsuarioAccionReciclar
+{
+        get { return usuarioAccionReciclar; }
+        set { usuarioAccionReciclar = value; }
+}
 }
 }

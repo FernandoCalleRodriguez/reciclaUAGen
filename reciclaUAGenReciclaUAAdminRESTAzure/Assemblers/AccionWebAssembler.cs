@@ -47,6 +47,9 @@ public static AccionWebDTOA Convert (AccionEN en, NHibernate.ISession session = 
                 /* Rol: AccionWeb o--> TipoAccion */
                 dto.Tipo = TipoAccionAssembler.Convert ((TipoAccionEN)enHijo.Tipo, session);
 
+                /* Rol: AccionWeb o--> UsuarioWeb */
+                dto.UsuarioAccionWeb = UsuarioWebAssembler.Convert ((UsuarioEN)enHijo.Usuario, session);
+
 
                 //
                 // Service

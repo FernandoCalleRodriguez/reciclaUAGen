@@ -42,6 +42,11 @@ public class AccionReciclarDTOA extends DTOA
 	public ContenedorDTOA getContenedorAccion () { return contenedorAccion; }
 	public void setContenedorAccion (ContenedorDTOA contenedorAccion) { this.contenedorAccion = contenedorAccion; }
 
+	/* Rol: AccionReciclar o--> UsuarioWeb */
+	private UsuarioWebDTOA usuarioAccionReciclar;
+	public UsuarioWebDTOA getUsuarioAccionReciclar () { return usuarioAccionReciclar; }
+	public void setUsuarioAccionReciclar (UsuarioWebDTOA usuarioAccionReciclar) { this.usuarioAccionReciclar = usuarioAccionReciclar; }
+
 	
 	
 	// endregion
@@ -99,6 +104,15 @@ public class AccionReciclarDTOA extends DTOA
 				this.contenedorAccion = tmp;
 			}
 
+
+			JSONObject jsonUsuarioAccionReciclar = json.optJSONObject("UsuarioAccionReciclar");
+			if (jsonUsuarioAccionReciclar != null)
+			{
+				UsuarioWebDTOA tmp = new UsuarioWebDTOA();
+				tmp.setFromJSON(jsonUsuarioAccionReciclar);
+				this.usuarioAccionReciclar = tmp;
+			}
+
 			
 		}
 		catch (Exception e)
@@ -138,6 +152,12 @@ public class AccionReciclarDTOA extends DTOA
 				json.put("ContenedorAccion", this.contenedorAccion.toJSON());
 			}
 
+
+			if (this.usuarioAccionReciclar != null)
+			{
+				json.put("UsuarioAccionReciclar", this.usuarioAccionReciclar.toJSON());
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -167,6 +187,7 @@ public class AccionReciclarDTOA extends DTOA
 		// Roles
 					// TODO: from DTOA [ ItemAccion ] (dataType : ItemDTOA) to DTO [ Item ]
 					// TODO: from DTOA [ ContenedorAccion ] (dataType : ContenedorDTOA) to DTO [ Contenedor ]
+					// TODO: from DTOA [ UsuarioAccionReciclar ] (dataType : UsuarioWebDTOA) to DTO [ Usuario ]
 		
 		
 		return dto;

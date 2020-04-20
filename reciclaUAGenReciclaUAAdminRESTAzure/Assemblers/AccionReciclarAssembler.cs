@@ -54,6 +54,9 @@ public static AccionReciclarDTOA Convert (AccionEN en, NHibernate.ISession sessi
                 /* Rol: AccionReciclar o--> Contenedor */
                 dto.ContenedorAccion = ContenedorAssembler.Convert ((ContenedorEN)enHijo.Contenedor, session);
 
+                /* Rol: AccionReciclar o--> UsuarioWeb */
+                dto.UsuarioAccionReciclar = UsuarioWebAssembler.Convert ((UsuarioEN)enHijo.Usuario, session);
+
 
                 //
                 // Service

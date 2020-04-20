@@ -31,5 +31,13 @@ public TipoAccionDTOA Tipo
         get { return tipo; }
         set { tipo = value; }
 }
+
+/* Rol: AccionWeb o--> UsuarioWeb */
+private UsuarioWebDTOA usuarioAccionWeb;
+public UsuarioWebDTOA UsuarioAccionWeb
+{
+        get { return usuarioAccionWeb; }
+        set { usuarioAccionWeb = value; }
+}
 }
 }
