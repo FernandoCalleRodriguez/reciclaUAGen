@@ -14,8 +14,8 @@ class EstanciaDTOA : DTOA
 	var id: String?;
 	
 	var actividad: String?;
-	var latitud: String?;
-	var longitud: String?;
+	var latitud: Double?;
+	var longitud: Double?;
 	var nombre: String?;
 	
 	/* Rol: Estancia o--> Edificio */
@@ -45,8 +45,8 @@ class EstanciaDTOA : DTOA
 		
 	
 		self.actividad = json["Actividad"].object as? String;
-		self.latitud = json["Latitud"].object as? String;
-		self.longitud = json["Longitud"].object as? String;
+		self.latitud = json["Latitud"].object as? Double;
+		self.longitud = json["Longitud"].object as? Double;
 		self.nombre = json["Nombre"].object as? String;
 		
 		if (json["EdificioEstancia"] != JSON.null)

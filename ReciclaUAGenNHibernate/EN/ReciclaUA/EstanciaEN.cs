@@ -22,14 +22,14 @@ private string actividad;
 /**
  *	Atributo latitud
  */
-private string latitud;
+private double latitud;
 
 
 
 /**
  *	Atributo longitud
  */
-private string longitud;
+private double longitud;
 
 
 
@@ -76,13 +76,13 @@ public virtual string Actividad {
 
 
 
-public virtual string Latitud {
+public virtual double Latitud {
         get { return latitud; } set { latitud = value;  }
 }
 
 
 
-public virtual string Longitud {
+public virtual double Longitud {
         get { return longitud; } set { longitud = value;  }
 }
 
@@ -121,7 +121,7 @@ public EstanciaEN()
 
 
 
-public EstanciaEN(string id, string actividad, string latitud, string longitud, string nombre, ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN edificio, ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN planta, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos
+public EstanciaEN(string id, string actividad, double latitud, double longitud, string nombre, ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN edificio, ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN planta, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos
                   )
 {
         this.init (Id, actividad, latitud, longitud, nombre, edificio, planta, puntos);
@@ -134,7 +134,7 @@ public EstanciaEN(EstanciaEN estancia)
 }
 
 private void init (string id
-                   , string actividad, string latitud, string longitud, string nombre, ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN edificio, ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN planta, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos)
+                   , string actividad, double latitud, double longitud, string nombre, ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN edificio, ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN planta, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos)
 {
         this.Id = id;
 

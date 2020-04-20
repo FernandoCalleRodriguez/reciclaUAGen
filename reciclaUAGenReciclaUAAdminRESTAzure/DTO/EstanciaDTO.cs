@@ -14,12 +14,12 @@ private string actividad;
 public string Actividad {
         get { return actividad; } set { actividad = value;  }
 }
-private string latitud;
-public string Latitud {
+private double latitud;
+public double Latitud {
         get { return latitud; } set { latitud = value;  }
 }
-private string longitud;
-public string Longitud {
+private double longitud;
+public double Longitud {
         get { return longitud; } set { longitud = value;  }
 }
 private string nombre;
