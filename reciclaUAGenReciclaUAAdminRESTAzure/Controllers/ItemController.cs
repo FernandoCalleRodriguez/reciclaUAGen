@@ -52,7 +52,7 @@ public HttpResponseMessage BuscarTodos ()
                 itemCEN = new ItemCEN (itemRESTCAD);
 
                 // Data
-                // TODO: paginación
+                // TODO: paginaciï¿½n
 
                 itemEN = itemCEN.BuscarTodos (0, -1).ToList ();
 
@@ -827,7 +827,6 @@ public HttpResponseMessage DescartarItem (int p_oid)
         {
             string tempName = id + imageName;
             var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages/" + tempName);
-
             Byte[] image = File.ReadAllBytes(filePath);
             return image;
         }
@@ -836,9 +835,7 @@ public HttpResponseMessage DescartarItem (int p_oid)
         [Route("~/api/Item/RemoveImage")]
         public bool RemoveImage(int id, string imageName)
         {
-
             string tempName = id + imageName;
-
             var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages/" + tempName);
             File.Delete(filePath);
             return true;
