@@ -753,6 +753,98 @@ public HttpResponseMessage DescartarItem (int p_oid)
 
 /*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_ItemControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
+   [HttpPost]
+        [Route("~/api/Item/UploadImage")]
+        public async Task<HttpResponseMessage> UploadImage(int p_oid)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+
+                var httpRequest = HttpContext.Current.Request;
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 5; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+
+                            string imageName = p_oid + postedFile.FileName;
+
+                            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages/" + imageName);
+
+                            postedFile.SaveAs(filePath);
+
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+
+
+        [HttpGet]
+        [Route("~/api/Item/GetImage")]
+        public Byte[] GetImage(int id, string imageName)
+        {
+            string tempName = id + imageName;
+            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages/" + tempName);
+
+            Byte[] image = File.ReadAllBytes(filePath);
+            return image;
+        }
+
+        [HttpPost]
+        [Route("~/api/Item/RemoveImage")]
+        public bool RemoveImage(int id, string imageName)
+        {
+
+            string tempName = id + imageName;
+
+            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages/" + tempName);
+            File.Delete(filePath);
+            return true;
+
+        }
+       
 /*PROTECTED REGION END*/
 }
 }
