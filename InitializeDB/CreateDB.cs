@@ -177,7 +177,7 @@ public static void InitializeData ()
                 nivelCEN.Crear (nivel.Numero, nivel.Puntuacion);
 
 
-                var meterialDeTipo = materialCEN.BuscarPorTipoContenedor (2);
+                var meterialDeTipo = materialCEN.BuscarPorTipoContenedor (TipoContenedorEnum.cristal);
                 Console.WriteLine ("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
                 ItemEN tempItem = itemCEN.BuscarPorId (itemId1);
                 Console.WriteLine ("item1 antes: " + tempItem.EsValido);

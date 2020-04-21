@@ -16,7 +16,9 @@ using ReciclaUAGenNHibernate.CP.ReciclaUA;
 
 
 /*PROTECTED REGION ID(usingreciclaUAGenReciclaUAAdminRESTAzure_ItemControllerAzure) ENABLED START*/
-// Meter las referencias para las operaciones que invoquen a las CPs
+using System.Web;
+using System.Threading.Tasks;
+using System.IO;
 /*PROTECTED REGION END*/
 
 
