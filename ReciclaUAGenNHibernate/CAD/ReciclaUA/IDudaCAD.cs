@@ -42,5 +42,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> Bus
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> BuscarDudasPorUsuario (int id_usuario);
+
+
+int BuscarDudasCount ();
 }
 }

@@ -71,5 +71,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
 {
         return _IUsuarioWebCAD.BuscarNoBorrados ();
 }
+public int BuscarTodosCount ()
+{
+        return _IUsuarioWebCAD.BuscarTodosCount ();
+}
 }
 }

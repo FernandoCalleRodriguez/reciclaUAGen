@@ -43,5 +43,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebE
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarNoBorrados ();
+
+
+int BuscarTodosCount ();
 }
 }

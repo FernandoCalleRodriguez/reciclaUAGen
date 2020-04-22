@@ -97,5 +97,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Item
 {
         return _IItemCAD.BuscarItemsPorNivel (id_nivel);
 }
+public int Operation ()
+{
+        return _IItemCAD.Operation ();
+}
 }
 }

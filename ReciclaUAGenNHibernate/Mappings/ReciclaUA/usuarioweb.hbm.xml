@@ -43,5 +43,6 @@
 		  <query name="UsuarioWebENobtenerPuntuacionesHQL"><![CDATA[FROM UsuarioWebEN as usu order by usu.Puntuacion desc]]></query>
 		  <query name="UsuarioWebENbuscarPorCorreoHQL"><![CDATA[FROM UsuarioWebEN as usu WHERE usu.Email =:p_email]]></query>
 		  <query name="UsuarioWebENbuscarNoBorradosHQL"><![CDATA[FROM UsuarioWebEN as usu WHERE usu.Borrado = false]]></query>
+		  <query name="UsuarioWebENBuscarTodosCountHQL"><![CDATA[SELECT cast(count(usu) as int) FROM UsuarioWebEN as usu WHERE usu.Borrado = false]]></query>
 		</hibernate-mapping>
 	

@@ -66,5 +66,6 @@
 		  <query name="DudaENbuscarDudaPorTituloHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Titulo LIKE '%'+:p_titulo+'%']]></query>
 		  <query name="DudaENbuscarDudaPorTemaHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Tema = :p_tema]]></query>
 		  <query name="DudaENbuscarDudasPorUsuarioHQL"><![CDATA[FROM DudaEN as duda WHERE duda.Usuario is not empty and duda.Usuario.Id = :id_usuario]]></query>
+		  <query name="DudaENbuscarDudasCountHQL"><![CDATA[select cast(count(duda) as int) FROM DudaEN as duda]]></query>
 		</hibernate-mapping>
 	

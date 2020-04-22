@@ -104,5 +104,9 @@ public int BuscarPuntosPorValidarCount ()
 {
         return _IPuntoReciclajeCAD.BuscarPuntosPorValidarCount ();
 }
+public System.Collections.Generic.IList<int> BuscarPuntosCount ()
+{
+        return _IPuntoReciclajeCAD.BuscarPuntosCount ();
+}
 }
 }

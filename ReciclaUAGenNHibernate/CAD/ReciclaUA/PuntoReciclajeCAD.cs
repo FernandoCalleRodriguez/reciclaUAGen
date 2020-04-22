@@ -488,5 +488,34 @@ public int BuscarPuntosPorValidarCount ()
 
         return result;
 }
+public System.Collections.Generic.IList<int> BuscarPuntosCount ()
+{
+        System.Collections.Generic.IList<int> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PuntoReciclajeEN self where select cast(count(punto) as int) FROM PuntoReciclajeEN as punto ";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENBuscarPuntosCountHQL");
+
+                result = query.List<int>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in PuntoReciclajeCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

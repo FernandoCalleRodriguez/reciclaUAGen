@@ -90,5 +90,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Duda
 {
         return _IDudaCAD.BuscarDudasPorUsuario (id_usuario);
 }
+public int BuscarDudasCount ()
+{
+        return _IDudaCAD.BuscarDudasCount ();
+}
 }
 }

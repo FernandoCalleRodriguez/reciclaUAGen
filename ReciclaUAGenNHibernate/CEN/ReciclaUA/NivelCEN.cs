@@ -104,5 +104,9 @@ public void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<i
 
         _INivelCAD.DesasignarItems (p_Nivel_OID, p_item_OIDs);
 }
+public int BuscarNivelCount ()
+{
+        return _INivelCAD.BuscarNivelCount ();
+}
 }
 }

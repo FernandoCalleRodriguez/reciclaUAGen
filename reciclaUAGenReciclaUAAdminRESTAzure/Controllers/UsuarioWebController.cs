@@ -361,6 +361,68 @@ public HttpResponseMessage BuscarNoBorrados (      )
 }
 
 
+// No pasa el slEnables: BuscarTodosCount
+
+[HttpGet]
+
+[Route ("~/api/UsuarioWeb/BuscarTodosCount")]
+
+public HttpResponseMessage BuscarTodosCount (      )
+{
+        // CAD, CEN, EN, returnValue
+
+        UsuarioWebRESTCAD usuarioWebRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+
+
+        int returnValue;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
+
+
+
+                usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebRESTCAD);
+
+                // CEN return
+
+
+
+                returnValue = usuarioWebCEN.BuscarTodosCount (   );
+
+
+
+
+                // Convert return
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
 
 
 

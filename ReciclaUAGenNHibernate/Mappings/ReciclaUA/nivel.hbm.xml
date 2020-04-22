@@ -41,5 +41,6 @@
 		 </class>	
 		  
 		  <query name="NivelENReadAllHQL">from NivelEN</query>
+		  <query name="NivelENbuscarNivelCountHQL"><![CDATA[SELECT cast(count(nivel) as int) FROM NivelEN as nivel]]></query>
 		</hibernate-mapping>
 	

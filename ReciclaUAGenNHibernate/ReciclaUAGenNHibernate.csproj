@@ -133,6 +133,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
@@ -170,6 +171,7 @@
 			<Compile Include="CP\ReciclaUA\DudaCP_ObtenerNumeroDeRespuestas.cs" />
 			
 			<Compile Include="CP\ReciclaUA\DudaCP_ObtenerSiRespuestaValida.cs" />
+			
 			
 			
 	<Compile Include="EN\ReciclaUA\RespuestaEN.cs" />
@@ -226,6 +228,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
@@ -257,11 +260,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\NivelEN.cs" />
 	<Compile Include="CEN\ReciclaUA\NivelCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\INivelCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\NivelCAD.cs" />
 	<Compile Include="CP\ReciclaUA\NivelCP.cs" />
+			
 			
 			
 			

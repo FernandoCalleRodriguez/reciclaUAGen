@@ -333,5 +333,36 @@ public void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<i
                 SessionClose ();
         }
 }
+public int BuscarNivelCount ()
+{
+        int result;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM NivelEN self where SELECT cast(count(nivel) as int) FROM NivelEN as nivel";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("NivelENbuscarNivelCountHQL");
+
+
+                result = query.UniqueResult<int>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in NivelCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -53,5 +53,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoRecicl
 
 
 int BuscarPuntosPorValidarCount ();
+
+
+System.Collections.Generic.IList<int> BuscarPuntosCount ();
 }
 }
