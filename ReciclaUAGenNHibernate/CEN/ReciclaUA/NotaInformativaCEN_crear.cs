@@ -37,7 +37,7 @@ public int Crear (int p_usuarioAdministrador, string p_titulo, string p_cuerpo)
 
         notaInformativaEN.Titulo = p_titulo;
 
-        notaInformativaEN.Fecha = DateTime.Today;
+        notaInformativaEN.Fecha = DateTime.Now;
 
 
         notaInformativaEN.Cuerpo = p_cuerpo;
