@@ -36,7 +36,7 @@ public int Crear (double p_latitud, double p_longitud, int p_usuario, string p_e
         puntoReciclajeEN.EsValido = Enumerated.ReciclaUA.EstadoEnum.enProceso;
 
         if (p_usuario != -1) {
-                puntoReciclajeEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN ();
+                puntoReciclajeEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();
                 puntoReciclajeEN.Usuario.Id = p_usuario;
         }
 

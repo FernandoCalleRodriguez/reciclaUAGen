@@ -39,7 +39,7 @@ public int Crear (string p_cuerpo, int p_duda, int p_usuario)
 
 
         if (p_usuario != -1) {
-                respuestaEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN ();
+                respuestaEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();
                 respuestaEN.Usuario.Id = p_usuario;
         }
 

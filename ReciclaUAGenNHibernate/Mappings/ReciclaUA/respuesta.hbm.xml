@@ -13,7 +13,7 @@
 			
 					
 					<property name="Cuerpo" type="string"> 
-						<column name="cuerpo"  not-null="true"/>
+						<column name="cuerpo" length="1500" not-null="true"/>
 					</property>
 					<property name="Fecha" type="date"> 
 						<column name="fecha"  not-null="true"/>
