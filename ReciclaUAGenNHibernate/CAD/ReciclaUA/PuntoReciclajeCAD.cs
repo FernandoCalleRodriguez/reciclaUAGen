@@ -128,7 +128,7 @@ public int Crear (PuntoReciclajeEN puntoReciclaje)
                 SessionInitializeTransaction ();
                 if (puntoReciclaje.Usuario != null) {
                         // Argumento OID y no colección.
-                        puntoReciclaje.Usuario = (ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN), puntoReciclaje.Usuario.Id);
+                        puntoReciclaje.Usuario = (ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN), puntoReciclaje.Usuario.Id);
 
                         puntoReciclaje.Usuario.Puntos
                         .Add (puntoReciclaje);
