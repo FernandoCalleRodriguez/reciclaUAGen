@@ -250,5 +250,37 @@ public System.Collections.Generic.IList<EdificioEN> BuscarTodos (int first, int 
 
         return result;
 }
+
+public ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN BuscarEdificioPorPlanta (int planta_id)
+{
+        ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM EdificioEN self where select edificio FROM EdificioEN as edificio inner join edificio.Plantas as planta where planta.Id = :planta_id";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("EdificioENbuscarEdificioPorPlantaHQL");
+                query.SetParameter ("planta_id", planta_id);
+
+
+                result = query.UniqueResult<ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in EdificioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

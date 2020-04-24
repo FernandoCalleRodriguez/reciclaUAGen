@@ -45,5 +45,6 @@
 		 </class>	
 		  
 		  <query name="EdificioENReadAllHQL">from EdificioEN</query>
+		  <query name="EdificioENbuscarEdificioPorPlantaHQL"><![CDATA[select edificio FROM EdificioEN as edificio inner join edificio.Plantas as planta where planta.Id = :planta_id]]></query>
 		</hibernate-mapping>
 	

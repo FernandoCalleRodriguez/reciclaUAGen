@@ -29,5 +29,8 @@ EdificioEN BuscarPorId (int id
 
 
 System.Collections.Generic.IList<EdificioEN> BuscarTodos (int first, int size);
+
+
+ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN BuscarEdificioPorPlanta (int planta_id);
 }
 }

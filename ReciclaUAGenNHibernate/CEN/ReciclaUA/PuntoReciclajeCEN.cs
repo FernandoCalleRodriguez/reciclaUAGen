@@ -104,9 +104,13 @@ public int BuscarPuntosPorValidarCount ()
 {
         return _IPuntoReciclajeCAD.BuscarPuntosPorValidarCount ();
 }
-public System.Collections.Generic.IList<int> BuscarPuntosCount ()
+public int BuscarPuntosCount ()
 {
         return _IPuntoReciclajeCAD.BuscarPuntosCount ();
+}
+public ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN BuscarPuntoPorContenedor (int contenedor_id)
+{
+        return _IPuntoReciclajeCAD.BuscarPuntoPorContenedor (contenedor_id);
 }
 }
 }

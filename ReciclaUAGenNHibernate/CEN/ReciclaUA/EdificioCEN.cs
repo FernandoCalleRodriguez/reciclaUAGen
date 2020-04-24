@@ -91,5 +91,9 @@ public System.Collections.Generic.IList<EdificioEN> BuscarTodos (int first, int 
         list = _IEdificioCAD.BuscarTodos (first, size);
         return list;
 }
+public ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN BuscarEdificioPorPlanta (int planta_id)
+{
+        return _IEdificioCAD.BuscarEdificioPorPlanta (planta_id);
+}
 }
 }

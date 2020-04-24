@@ -68,5 +68,6 @@
 		  <query name="PuntoReciclajeENbuscarPuntosPorUsuarioHQL"><![CDATA[FROM PuntoReciclajeEN as punto where punto.Usuario is not empty and punto.Usuario.Id = :id_usuario]]></query>
 		  <query name="PuntoReciclajeENbuscarPuntosPorValidarCountHQL"><![CDATA[select cast(count(punto) as int) FROM PuntoReciclajeEN as punto where punto.EsValido = 2]]></query>
 		  <query name="PuntoReciclajeENBuscarPuntosCountHQL"><![CDATA[select cast(count(punto) as int) FROM PuntoReciclajeEN as punto ]]></query>
+		  <query name="PuntoReciclajeENbuscarPuntoPorContenedorHQL"><![CDATA[select punto FROM PuntoReciclajeEN as punto inner join punto.Contenedores as contenedor where contenedor.Id = :contenedor_id]]></query>
 		</hibernate-mapping>
 	

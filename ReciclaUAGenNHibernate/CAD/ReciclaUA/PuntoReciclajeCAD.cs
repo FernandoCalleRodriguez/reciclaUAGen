@@ -488,9 +488,10 @@ public int BuscarPuntosPorValidarCount ()
 
         return result;
 }
-public System.Collections.Generic.IList<int> BuscarPuntosCount ()
+public int BuscarPuntosCount ()
 {
-        System.Collections.Generic.IList<int> result;
+        int result;
+
         try
         {
                 SessionInitializeTransaction ();
@@ -498,7 +499,39 @@ public System.Collections.Generic.IList<int> BuscarPuntosCount ()
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENBuscarPuntosCountHQL");
 
-                result = query.List<int>();
+
+                result = query.UniqueResult<int>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in PuntoReciclajeCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN BuscarPuntoPorContenedor (int contenedor_id)
+{
+        ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PuntoReciclajeEN self where select punto FROM PuntoReciclajeEN as punto inner join punto.Contenedores as contenedor where contenedor.Id = :contenedor_id";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PuntoReciclajeENbuscarPuntoPorContenedorHQL");
+                query.SetParameter ("contenedor_id", contenedor_id);
+
+
+                result = query.UniqueResult<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN>();
                 SessionCommit ();
         }
 

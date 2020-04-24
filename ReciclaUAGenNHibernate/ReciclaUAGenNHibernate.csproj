@@ -229,6 +229,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
@@ -361,6 +362,7 @@
 	<Compile Include="CAD\ReciclaUA\IEdificioCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\EdificioCAD.cs" />
 	<Compile Include="CP\ReciclaUA\EdificioCP.cs" />
+			
 			
 			
 			

@@ -398,6 +398,66 @@ public HttpResponseMessage BuscarPuntosPorUsuario (int id_usuario)
 }
 
 
+// No pasa el slEnables: buscarPuntoPorContenedor
+
+[HttpGet]
+
+[Route ("~/api/PuntoReciclaje/BuscarPuntoPorContenedor")]
+
+public HttpResponseMessage BuscarPuntoPorContenedor (int contenedor_id)
+{
+        // CAD, CEN, EN, returnValue
+
+        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+        PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+
+        PuntoReciclajeEN en;
+
+        PuntoReciclajeDTOA returnValue;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+
+                // CEN return
+
+
+
+                en = puntoReciclajeCEN.BuscarPuntoPorContenedor (contenedor_id);
+
+
+
+
+                // Convert return
+                returnValue = PuntoReciclajeAssembler.Convert (en, session);
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
 
 
 
