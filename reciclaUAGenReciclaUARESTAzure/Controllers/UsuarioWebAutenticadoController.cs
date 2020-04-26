@@ -353,6 +353,51 @@ public HttpResponseMessage Borrar (int p_usuarioweb_oid)
 
 
 
+[HttpPost]
+
+[Route ("~/api/UsuarioWebAutenticado/CambiarPassword")]
+
+
+public HttpResponseMessage CambiarPassword (int p_oid, String p_pass)
+{
+        // CAD, CEN, returnValue
+        UsuarioWebAutenticadoRESTCAD usuarioWebAutenticadoRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                usuarioWebAutenticadoRESTCAD = new UsuarioWebAutenticadoRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebAutenticadoRESTCAD);
+
+
+                // Operation
+                usuarioWebCEN.CambiarPassword (p_oid, p_pass);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 
