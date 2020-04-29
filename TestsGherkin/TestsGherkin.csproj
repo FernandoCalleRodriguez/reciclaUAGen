@@ -169,6 +169,7 @@
     <Compile Include="Usuario\ObtenerUsuarioPorEmailSteps.cs" />
     <Compile Include="UsuarioWeb\VerificarEmailSteps.cs" />
     <Compile Include="Validacion\ValidarItemSteps.cs" />
+    <Compile Include="Validacion\ValidarMaterialSteps.cs" />
     <Compile Include="Validacion\ValidarPuntoSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +183,7 @@
     <None Include="Usuario\login.feature" />
     <None Include="Usuario\ObtenerUsuarioPorEmail.feature" />
     <None Include="packages.config" />
+    <None Include="Validacion\ValidarMaterial.feature" />
     <None Include="Validacion\ValidarPunto.feature" />
     <None Include="Validacion\ValidarItem.feature" />
   </ItemGroup>
