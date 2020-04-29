@@ -19,19 +19,19 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class UsuarioWebCEN
 {
-public void CambiarPassword (int p_oid, String p_pass)
+public void CambiarPassword (int p_UsuarioWeb_OID, String p_pass)
 {
-        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_cambiarPassword) ENABLED START*/
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_cambiarPassword_customized) START*/
 
         UsuarioWebEN usuarioWebEN = null;
 
         //Initialized UsuarioWebEN
         usuarioWebEN = new UsuarioWebEN ();
-        usuarioWebEN.Id = p_oid;
+        usuarioWebEN.Id = p_UsuarioWeb_OID;
         usuarioWebEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         //Call to UsuarioWebCAD
 
-        _IUsuarioWebCAD.Modificar (usuarioWebEN);
+        _IUsuarioWebCAD.CambiarPassword (usuarioWebEN);
 
         /*PROTECTED REGION END*/
 }

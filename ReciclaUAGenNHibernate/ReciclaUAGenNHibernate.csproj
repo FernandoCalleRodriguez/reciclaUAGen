@@ -327,8 +327,6 @@
 			
 			<Compile Include="CEN\ReciclaUA\UsuarioCEN_Login.cs" />
 			
-			<Compile Include="CEN\ReciclaUA\UsuarioCEN_RecuperarPassword.cs" />
-			
 	<Compile Include="EN\ReciclaUA\AccionReciclarEN.cs" />
 	<Compile Include="CEN\ReciclaUA\AccionReciclarCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />

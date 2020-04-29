@@ -30,6 +30,59 @@ public class UsuarioWebNoRegistradoController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/UsuarioWebNoRegistrado/BuscarTodos")]
+public HttpResponseMessage BuscarTodos ()
+{
+        // CAD, CEN, EN, returnValue
+        UsuarioWebNoRegistradoRESTCAD usuarioWebNoRegistradoRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+
+        List<UsuarioWebEN> usuarioWebEN = null;
+        List<UsuarioWebNoRegistradoDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                usuarioWebNoRegistradoRESTCAD = new UsuarioWebNoRegistradoRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
+
+                // Data
+                // TODO: paginación
+
+                usuarioWebEN = usuarioWebCEN.BuscarTodos (0, -1).ToList ();
+
+                // Convert return
+                if (usuarioWebEN != null) {
+                        returnValue = new List<UsuarioWebNoRegistradoDTOA>();
+                        foreach (UsuarioWebEN entry in usuarioWebEN)
+                                returnValue.Add (UsuarioWebNoRegistradoAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
 
 
 
@@ -119,6 +172,67 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioWebDTO dto)
 
 
 
+[HttpPut]
+
+
+
+[Route ("~/api/UsuarioWebNoRegistrado/CambiarPassword")]
+
+
+public HttpResponseMessage CambiarPassword (int idUsuarioWebNoRegistrado, [FromBody] UsuarioWebDTO dto)
+{
+        // CAD, CEN, returnValue
+        UsuarioWebNoRegistradoRESTCAD usuarioWebNoRegistradoRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+        UsuarioWebNoRegistradoDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                usuarioWebNoRegistradoRESTCAD = new UsuarioWebNoRegistradoRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
+
+                // Modify
+                usuarioWebCEN.CambiarPassword (idUsuarioWebNoRegistrado,
+                        dto.Pass
+                        );
+
+                // Return modified object
+                returnValue = UsuarioWebNoRegistradoAssembler.Convert (usuarioWebNoRegistradoRESTCAD.ReadOIDDefault (idUsuarioWebNoRegistrado), session);
+
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+                return response;
+        }
+}
+
 
 
 
@@ -149,51 +263,6 @@ public HttpResponseMessage VerificarEmail (int p_usuarioweb_oid)
 
                 // Operation
                 usuarioWebCEN.VerificarEmail (p_usuarioweb_oid);
-                SessionCommit ();
-        }
-
-        catch (Exception e)
-        {
-                SessionRollBack ();
-
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK);
-}
-
-
-
-[HttpPost]
-
-[Route ("~/api/UsuarioWebNoRegistrado/CambiarPassword")]
-
-
-public HttpResponseMessage CambiarPassword (int p_oid, String p_pass)
-{
-        // CAD, CEN, returnValue
-        UsuarioWebNoRegistradoRESTCAD usuarioWebNoRegistradoRESTCAD = null;
-        UsuarioWebCEN usuarioWebCEN = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                usuarioWebNoRegistradoRESTCAD = new UsuarioWebNoRegistradoRESTCAD (session);
-                usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
-
-
-                // Operation
-                usuarioWebCEN.CambiarPassword (p_oid, p_pass);
                 SessionCommit ();
         }
 

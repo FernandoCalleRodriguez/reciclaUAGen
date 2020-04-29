@@ -38,6 +38,9 @@ public static UsuarioWebNoRegistradoDTOA Convert (UsuarioEN en, NHibernate.ISess
 
                 dto.Id = en.Id;
 
+                dto.Email = en.Email;
+
+
                 //
                 // TravesalLink
 

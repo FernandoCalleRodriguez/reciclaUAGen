@@ -13,6 +13,7 @@ class UsuarioWebNoRegistradoDTOA : DTOA
 
 	var id: Int?;
 	
+	var email: String?;
 	
 	
 	
@@ -34,6 +35,7 @@ class UsuarioWebNoRegistradoDTOA : DTOA
 		self.id = json["Id"].object as? Int
 		
 	
+		self.email = json["Email"].object as? String;
 		
 		
 	}
@@ -44,6 +46,11 @@ class UsuarioWebNoRegistradoDTOA : DTOA
 		
 		dictionary["Id"] = self.id;
 		
+	
+
+	
+		dictionary["Email"] = self.email;
+	
 	
 		
 		

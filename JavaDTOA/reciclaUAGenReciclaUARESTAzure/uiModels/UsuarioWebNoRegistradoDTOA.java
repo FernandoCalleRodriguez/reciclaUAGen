@@ -23,6 +23,10 @@ public class UsuarioWebNoRegistradoDTOA extends DTOA
 	public void setId (Integer id) { this.id = id; }
 
 	
+	private String email;
+	public String getEmail () { return email; }
+	public void setEmail (String email) { this.email = email; }
+	
 	
 	
 	
@@ -47,6 +51,13 @@ public class UsuarioWebNoRegistradoDTOA extends DTOA
 				this.id = (Integer) json.opt("Id");
 			}
 			
+
+			if (!JSONObject.NULL.equals(json.opt("Email")))
+			{
+			 
+				this.email = (String) json.opt("Email");
+			 
+			}
 			
 			
 		}
@@ -66,6 +77,10 @@ public class UsuarioWebNoRegistradoDTOA extends DTOA
 				json.put("Id", this.id);
 			}
 			
+		
+		  if (this.email != null)
+			json.put("Email", this.email);
+		
 			
 			
 		}
@@ -87,6 +102,8 @@ public class UsuarioWebNoRegistradoDTOA extends DTOA
 	dto.setId (this.getId());
 
 		
+	dto.setEmail (this.getEmail());
+
 		
 		
 		// Roles
