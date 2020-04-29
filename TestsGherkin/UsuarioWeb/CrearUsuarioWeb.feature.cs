@@ -20,7 +20,7 @@ namespace TestsGherkin.UsuarioWeb
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class CambiarPasswordFeature
+    public partial class CrearUsuarioWebFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.UsuarioWeb
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CambiarPassword.feature"
+#line 1 "CrearUsuarioWeb.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace TestsGherkin.UsuarioWeb
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CambiarPassword", "\tPara cambiar la contraseña\r\n\tComo usuario web\r\n\tQuiero obtener el usuario con la" +
-                    " nueva contraseña", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CrearUsuarioWeb", "\tPara crear un nuevo usuario web\r\n\tComo usuario no autenticado\r\n\tQuiero obtener e" +
+                    "l nuevo usuario", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace TestsGherkin.UsuarioWeb
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "CambiarPassword")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "CrearUsuarioWeb")))
             {
-                global::TestsGherkin.UsuarioWeb.CambiarPasswordFeature.FeatureSetup(null);
+                global::TestsGherkin.UsuarioWeb.CrearUsuarioWebFeature.FeatureSetup(null);
             }
         }
         
@@ -93,14 +93,14 @@ namespace TestsGherkin.UsuarioWeb
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test cambiarPassword")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CambiarPassword")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test crearUsuarioWeb")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CrearUsuarioWeb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void TestCambiarPassword()
+        public virtual void TestCrearUsuarioWeb()
         {
             string[] tagsOfScenario = new string[] {
                     "mytag"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test cambiarPassword", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test crearUsuarioWeb", null, new string[] {
                         "mytag"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -122,17 +122,24 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "nombre",
+                            "apellidos",
+                            "email",
+                            "pass"});
+                table1.AddRow(new string[] {
+                            "usu",
+                            "2",
+                            "usu2@ua.es",
+                            "usu2"});
 #line 8
- testRunner.Given("Hay un usuario con id 32769", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("Cambiar la contraseña del usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.And("Obtener el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("No existe un usuario", ((string)(null)), table1, "Given ");
 #line hidden
 #line 11
- testRunner.Then("obtengo el usuario con la nueva contrasena", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Creo el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("Obtengo al nuevo usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

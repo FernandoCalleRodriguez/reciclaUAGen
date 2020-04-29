@@ -4,8 +4,8 @@
 	Quiero obtener el usuario con la nueva contraseña
 
 @mytag
-Scenario: Test obtenerUsuarioPorEmail
+Scenario: Test cambiarPassword
 	Given Hay un usuario con id 32769
 	When Cambiar la contraseña del usuario
 	And Obtener el usuario
-	Then Devuelvo el usuario
+	Then obtengo el usuario con la nueva contrasena

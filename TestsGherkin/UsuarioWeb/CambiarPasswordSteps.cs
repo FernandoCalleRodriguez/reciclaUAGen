@@ -34,11 +34,12 @@ namespace TestsGherkin.UsuarioWeb
         {
             usuario = usuarioCEN.BuscarPorId(id);
         }
-        
-        [Then(@"Devuelvo el usuario")]
-        public void ThenDevuelvoElUsuario()
+
+        [Then(@"obtengo el usuario con la nueva contrasena")]
+        public void ThenObtengoElUsuarioConLaNuevaContrasena()
         {
             Assert.AreEqual(usuario.Pass, ReciclaUAGenNHibernate.Utils.Util.GetEncondeMD5(newPass));
         }
+
     }
 }

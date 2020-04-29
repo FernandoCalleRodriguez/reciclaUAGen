@@ -20,7 +20,7 @@ namespace TestsGherkin.UsuarioWeb
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class CambiarPasswordFeature
+    public partial class BuscarNoBorradosFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.UsuarioWeb
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CambiarPassword.feature"
+#line 1 "BuscarNoBorrados.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace TestsGherkin.UsuarioWeb
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CambiarPassword", "\tPara cambiar la contraseña\r\n\tComo usuario web\r\n\tQuiero obtener el usuario con la" +
-                    " nueva contraseña", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BuscarNoBorrados", "\tPara buscar los usuarios no borrados\r\n\tComo usuario\r\n\tQuiero todos los usuarios " +
+                    "no borrados", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace TestsGherkin.UsuarioWeb
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "CambiarPassword")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "BuscarNoBorrados")))
             {
-                global::TestsGherkin.UsuarioWeb.CambiarPasswordFeature.FeatureSetup(null);
+                global::TestsGherkin.UsuarioWeb.BuscarNoBorradosFeature.FeatureSetup(null);
             }
         }
         
@@ -93,14 +93,14 @@ namespace TestsGherkin.UsuarioWeb
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test cambiarPassword")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CambiarPassword")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BuscarNoBorrados")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void TestCambiarPassword()
+        public virtual void AddTwoNumbers()
         {
             string[] tagsOfScenario = new string[] {
                     "mytag"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test cambiarPassword", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, new string[] {
                         "mytag"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -123,16 +123,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("Hay un usuario con id 32769", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Existen usuarios no borrados", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("Cambiar la contraseña del usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Obtengo los usuarios no borrados", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("Obtener el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("obtengo el usuario con la nueva contrasena", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Devuelvo el resultado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

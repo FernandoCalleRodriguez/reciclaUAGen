@@ -122,16 +122,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "email",
                             "pass",
                             "id"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "admin@ua.es",
                             "admin",
                             "32768"});
 #line 8
- testRunner.Given("Hay un usuario", ((string)(null)), table1, "Given ");
+ testRunner.Given("Hay un usuario", ((string)(null)), table2, "Given ");
 #line hidden
 #line 11
  testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

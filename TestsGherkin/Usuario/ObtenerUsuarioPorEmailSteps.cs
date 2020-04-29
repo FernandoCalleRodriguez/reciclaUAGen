@@ -13,7 +13,6 @@ namespace TestsGherkin.PruebasAceptacion
         ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioCEN usuarioCEN;
         UsuarioEN usuario;
         string email;
-        Inicializar inicializar;
 
         [Given(@"Hay un usuario con email ""(.*)""")]
         public void GivenHayUnUsuarioConEmail(string p0)

@@ -89,12 +89,16 @@ public static void InitializeData ()
                 UsuarioAdministradorCEN admin = new UsuarioAdministradorCEN ();
                 var id_admin = admin.Crear ("admin", "admin", "admin@ua.es", "admin");
 
+
                 NotaInformativaCEN nota = new NotaInformativaCEN ();
                 var id_nota = nota.Crear (id_admin, "Esto es una nota", "Esto es el cuerpo del titulo");
 
                 UsuarioWebCEN usu1 = new UsuarioWebCEN ();
                 var id_usu1 = usu1.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
                 Console.WriteLine ("ID Usuario 1: " + id_usu1);
+
+                var id_admin2 = admin.Crear("admin", "2", "admin2@ua.es", "admin2");
+                Console.WriteLine("ID Usuario Admin 2: " + id_admin2);
 
                 /*usu1.Borrar(id_usu1);
                  * Console.WriteLine( usu1.BuscarPorId(id_usu1).Borrado);*/

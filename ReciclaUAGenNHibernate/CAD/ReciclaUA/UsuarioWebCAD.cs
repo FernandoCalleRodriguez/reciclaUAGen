@@ -340,6 +340,32 @@ public void CambiarPassword (UsuarioWebEN usuarioWeb)
                 SessionClose ();
         }
 }
+public void VerificarEmail (UsuarioWebEN usuarioWeb)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), usuarioWeb.Id);
+
+                usuarioWebEN.EmailVerificado = usuarioWeb.EmailVerificado;
+
+                session.Update (usuarioWebEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioWebCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarPorCorreo (string p_email)
 {
         System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> result;

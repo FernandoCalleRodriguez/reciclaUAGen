@@ -40,6 +40,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebE
 void CambiarPassword (UsuarioWebEN usuarioWeb);
 
 
+void VerificarEmail (UsuarioWebEN usuarioWeb);
+
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarPorCorreo (string p_email);
 

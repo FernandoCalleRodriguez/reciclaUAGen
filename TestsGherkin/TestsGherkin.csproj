@@ -159,15 +159,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UsuarioAdmin\BorrarUsuarioAdminSteps.cs" />
+    <Compile Include="UsuarioAdmin\ModificarUsuarioAdminSteps.cs" />
+    <Compile Include="UsuarioWeb\BuscarNoBorradosSteps.cs" />
     <Compile Include="UsuarioWeb\CambiarPasswordSteps.cs" />
+    <Compile Include="UsuarioWeb\CrearUsuarioWebSteps.cs" />
     <Compile Include="Usuario\LoginSteps.cs" />
-    <Compile Include="utils\Inicializar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario\ObtenerUsuarioPorEmailSteps.cs" />
+    <Compile Include="UsuarioWeb\VerificarEmailSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="UsuarioAdmin\BorrarUsuarioAdmin.feature" />
+    <None Include="UsuarioAdmin\ModificarUsuarioAdmin.feature" />
+    <None Include="UsuarioWeb\BuscarNoBorrados.feature" />
     <None Include="UsuarioWeb\CambiarPassword.feature" />
+    <None Include="UsuarioWeb\CrearUsuarioWeb.feature" />
+    <None Include="UsuarioWeb\VerificarEmail.feature" />
     <None Include="Usuario\login.feature" />
     <None Include="Usuario\ObtenerUsuarioPorEmail.feature" />
     <None Include="packages.config" />
@@ -186,9 +195,7 @@
       <Name>reciclaUAGenReciclaUARESTAzure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UsuarioAdmin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
