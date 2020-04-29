@@ -12,20 +12,21 @@ namespace TestsGherkin.Validacion
     [Binding]
     public class ValidarItemSteps
     {
-        public ItemCEN itemCEN = new ItemCEN();
+        public static ItemCEN itemCEN = new ItemCEN();
         public string exception = "ModelException";
-        public ItemEN item;
-        public int id;
+        public static ItemEN item;
+        public static int id;
 
-        [Before]
-        public void InitializeData()
+        [Before(tags: "ValidarItem")]
+        public static void InitializeData()
         {
+            Console.WriteLine("Init");
             id = itemCEN.Crear("Item Test", "Item Test", "IMG TEST", -1, -1);
             item = itemCEN.BuscarPorId(id);
         }
 
-        [After]
-        public void CleanData()
+        [After(tags: "ValidarItem")]
+        public static void CleanData()
         {
             itemCEN.Borrar(id);
         }

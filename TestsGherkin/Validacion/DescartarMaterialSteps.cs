@@ -11,20 +11,20 @@ namespace TestsGherkin.Validacion
     [Binding]
     public class DescartarMaterialSteps
     {
-        public MaterialCEN materialCEN = new MaterialCEN();
+        public static MaterialCEN materialCEN = new MaterialCEN();
         public string exception = "ModelException";
-        public MaterialEN material;
-        public int id;
+        public static MaterialEN material;
+        public static int id;
 
-        [Before]
-        public void InitializeData()
+        [Before(tags: "DescartarMaterial")]
+        public static void InitializeData()
         {
             id = materialCEN.Crear("Material Test", TipoContenedorEnum.cristal, -1);
             material = materialCEN.BuscarPorId(id);
         }
 
-        [After]
-        public void CleanData()
+        [After(tags: "DescartarMaterial")]
+        public static void CleanData()
         {
             materialCEN.Borrar(id);
         }

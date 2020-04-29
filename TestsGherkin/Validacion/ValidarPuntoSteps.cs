@@ -11,20 +11,20 @@ namespace TestsGherkin.Validacion
     [Binding]
     public class ValidarPuntoSteps
     {
-        public PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN();
+        public static PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN();
         public string exception = "ModelException";
-        public PuntoReciclajeEN punto;
-        public int id;
+        public static PuntoReciclajeEN punto;
+        public static int id;
 
-        [Before]
-        public void InitializeData()
+        [Before(tags: "ValidarPunto")]
+        public static void InitializeData()
         {
             id = puntoCEN.Crear(0.0d, 0.0d, -1, null);
             punto = puntoCEN.BuscarPorId(id);
         }
 
-        [After]
-        public void CleanData()
+        [After(tags: "ValidarPunto")]
+        public static void CleanData()
         {
             puntoCEN.Borrar(id);
         }
