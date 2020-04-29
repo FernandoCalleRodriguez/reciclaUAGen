@@ -172,6 +172,7 @@
     <Compile Include="Validacion\DescartarMaterialSteps.cs" />
     <Compile Include="Validacion\DescartarPuntoSteps.cs" />
     <Compile Include="Validacion\ObtenerItemsPorValidarSteps.cs" />
+    <Compile Include="Validacion\ObtenerMaterialesPorValidarSteps.cs" />
     <Compile Include="Validacion\ValidarItemSteps.cs" />
     <Compile Include="Validacion\ValidarMaterialSteps.cs" />
     <Compile Include="Validacion\ValidarPuntoSteps.cs" />
@@ -187,6 +188,7 @@
     <None Include="Usuario\login.feature" />
     <None Include="Usuario\ObtenerUsuarioPorEmail.feature" />
     <None Include="packages.config" />
+    <None Include="Validacion\ObtenerMaterialesPorValidar.feature" />
     <None Include="Validacion\ObtenerItemsPorValidar.feature" />
     <None Include="Validacion\DescartarPunto.feature" />
     <None Include="Validacion\DescartarMaterial.feature" />
