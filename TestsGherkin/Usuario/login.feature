@@ -3,10 +3,18 @@
 	Como usuario
 	Quiero comfirma que las credenciales son correstas
 
-@mytag
+@Login
 Scenario: Existe el usuario
 	Given Hay un usuario
-		| email       | pass  | id    |
-		| admin@ua.es | admin | 32768 |
+		| email         | pass       |
+		| usuario@ua.es | contrasena |
 	When Compruebo las credenciales
 	Then Obtengo al usuario
+
+@Login
+Scenario: No existe el usuario
+	Given Hay un usuario
+		| email         | pass  |
+		| usuarioprueba@ua.es | contrasena |
+	When Compruebo las credenciales
+	Then No existe el usuario

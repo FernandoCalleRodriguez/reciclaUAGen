@@ -95,13 +95,13 @@ namespace TestsGherkin.Usuario
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existe el usuario")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
         public virtual void ExisteElUsuario()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "Login"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existe el usuario", null, new string[] {
-                        "mytag"});
+                        "Login"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -124,12 +124,10 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "email",
-                            "pass",
-                            "id"});
+                            "pass"});
                 table2.AddRow(new string[] {
-                            "admin@ua.es",
-                            "admin",
-                            "32768"});
+                            "usuario@ua.es",
+                            "contrasena"});
 #line 8
  testRunner.Given("Hay un usuario", ((string)(null)), table2, "Given ");
 #line hidden
@@ -138,6 +136,55 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 12
  testRunner.Then("Obtengo al usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existe el usuario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
+        public virtual void NoExisteElUsuario()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Login"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existe el usuario", null, new string[] {
+                        "Login"});
+#line 15
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "email",
+                            "pass"});
+                table3.AddRow(new string[] {
+                            "usuarioprueba@ua.es",
+                            "contrasena"});
+#line 16
+ testRunner.Given("Hay un usuario", ((string)(null)), table3, "Given ");
+#line hidden
+#line 19
+ testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("No existe el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

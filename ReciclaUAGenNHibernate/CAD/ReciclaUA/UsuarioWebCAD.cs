@@ -171,14 +171,13 @@ public void Modificar (UsuarioWebEN usuarioWeb)
                 SessionClose ();
         }
 }
-public void Borrar (int id
-                    )
+public void Borrar (UsuarioWebEN usuarioWeb)
 {
         try
         {
                 SessionInitializeTransaction ();
-                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), id);
-                session.Delete (usuarioWebEN);
+                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), usuarioWeb.Id);
+                session.Update (usuarioWebEN);
                 SessionCommit ();
         }
 
@@ -195,7 +194,6 @@ public void Borrar (int id
                 SessionClose ();
         }
 }
-
 //Sin e: BuscarPorId
 //Con e: UsuarioWebEN
 public UsuarioWebEN BuscarPorId (int id

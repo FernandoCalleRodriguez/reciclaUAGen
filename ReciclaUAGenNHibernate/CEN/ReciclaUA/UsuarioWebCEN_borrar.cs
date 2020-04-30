@@ -19,25 +19,27 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class UsuarioWebCEN
 {
-public void Borrar (int id
-                    )
+public void Borrar (int p_UsuarioWeb_OID)
 {
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_borrar_customized) ENABLED START*/
 
 
         UsuarioWebEN usuarioWebEN = null;
 
-        //Initialized UsuarioAdministradorEN
-        usuarioWebEN = _IUsuarioWebCAD.BuscarPorId (id);
-        usuarioWebEN.Id = id;
-        usuarioWebEN.Nombre = "";
-        usuarioWebEN.Apellidos = "";
-        usuarioWebEN.Email = "";
-        usuarioWebEN.Borrado = true;
-        usuarioWebEN.Puntuacion = -1;
-        //Call to UsuarioAdministradorCAD
+        usuarioWebEN = _IUsuarioWebCAD.BuscarPorId (p_UsuarioWeb_OID);
 
-        _IUsuarioWebCAD.Modificar (usuarioWebEN);
+        if (usuarioWebEN != null) { //Initialized UsuarioAdministradorEN
+                usuarioWebEN = _IUsuarioWebCAD.BuscarPorId (p_UsuarioWeb_OID);
+                usuarioWebEN.Id = p_UsuarioWeb_OID;
+                usuarioWebEN.Nombre = "";
+                usuarioWebEN.Apellidos = "";
+                usuarioWebEN.Email = "";
+                usuarioWebEN.Borrado = true;
+                usuarioWebEN.Puntuacion = -1;
+                //Call to UsuarioAdministradorCAD
+
+                _IUsuarioWebCAD.Modificar (usuarioWebEN);
+        }
         /*PROTECTED REGION END*/
 }
 }

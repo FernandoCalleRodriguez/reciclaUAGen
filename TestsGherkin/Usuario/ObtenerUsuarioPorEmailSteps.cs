@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ReciclaUAGenNHibernate.CEN.ReciclaUA;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
 using System;
 using TechTalk.SpecFlow;
@@ -11,8 +12,23 @@ namespace TestsGherkin.PruebasAceptacion
     {
 
         ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioCEN usuarioCEN;
+        public static UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN();
         UsuarioEN usuario;
         string email;
+        public static int id;
+
+        [Before(tags: "Login")]
+        public static void InitializeData()
+        {
+            Console.WriteLine("Init");
+            id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            if (id == -1)
+            {
+                id = adminCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+
+            }
+        }
+
 
         [Given(@"Hay un usuario con email ""(.*)""")]
         public void GivenHayUnUsuarioConEmail(string p0)
@@ -34,5 +50,12 @@ namespace TestsGherkin.PruebasAceptacion
         {
             Assert.AreEqual(email, usuario.Email);
         }
+
+        [Then(@"No se puede devolver al suario")]
+        public void ThenNoSePuedeDevolverAlSuario()
+        {
+            Assert.IsNull(usuario);
+        }
+
     }
 }
