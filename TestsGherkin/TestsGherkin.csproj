@@ -161,6 +161,7 @@
   <ItemGroup>
     <Compile Include="Foro\DesmarcarRespuestaCorrectaSteps.cs" />
     <Compile Include="Foro\MarcarRespuestaCorrectaSteps.cs" />
+    <Compile Include="Foro\ObtenerSiRespuestaCorrectaSteps.cs" />
     <Compile Include="Foro\ObtenerUltimaRespuestaSteps.cs" />
     <Compile Include="UsuarioAdmin\BorrarUsuarioAdminSteps.cs" />
     <Compile Include="UsuarioAdmin\ModificarUsuarioAdminSteps.cs" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Foro\DesmarcarRespuestaCorrecta.feature" />
+    <None Include="Foro\ObtenerSiRespuestaCorrecta.feature" />
     <None Include="Foro\ObtenerUltimaRespuesta.feature" />
     <None Include="Foro\MarcarRespuestaCorrecta.feature" />
     <None Include="UsuarioAdmin\BorrarUsuarioAdmin.feature" />
