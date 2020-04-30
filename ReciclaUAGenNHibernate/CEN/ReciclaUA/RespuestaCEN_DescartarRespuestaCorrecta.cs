@@ -26,10 +26,9 @@ public bool DescartarRespuestaCorrecta (int p_oid)
         RespuestaEN resp = _IRespuestaCAD.BuscarPorId (p_oid);
 
         if (!resp.EsCorrecta)
-                //    return false;
-                //throw new ModelException ("El estado de la respuesta no es correcta");
+                throw new ModelException ("El estado de la respuesta no es correcta");
 
-                resp.EsCorrecta = false;
+        resp.EsCorrecta = false;
 
         _IRespuestaCAD.Modificar (resp);
 
