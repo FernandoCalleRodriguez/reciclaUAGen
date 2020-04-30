@@ -4,7 +4,13 @@
 	Quiero cambiar su información
 
 @mytag
-Scenario: Add two numbers
-	Given Existe un usuario admin 32770
+Scenario: Modificar usuario existente
+	Given Existe un usuario
 	When Modifico los datos del usuario
 	Then Obtengo el usuario con los datos modificados
+
+	@mytag
+Scenario: Modificar usuario no existente
+	Given No existe el usuario -1
+	When Modifico los datos del usuario
+	Then No se puede modificar el usuario

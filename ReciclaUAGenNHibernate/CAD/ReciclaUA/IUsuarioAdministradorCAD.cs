@@ -18,8 +18,7 @@ System.Collections.Generic.IList<UsuarioAdministradorEN> ReadAllDefault (int fir
 void Modificar (UsuarioAdministradorEN usuarioAdministrador);
 
 
-void Borrar (int id
-             );
+void Borrar (UsuarioAdministradorEN usuarioAdministrador);
 
 
 UsuarioAdministradorEN BuscarPorId (int id

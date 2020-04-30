@@ -142,14 +142,13 @@ public void Modificar (UsuarioAdministradorEN usuarioAdministrador)
                 SessionClose ();
         }
 }
-public void Borrar (int id
-                    )
+public void Borrar (UsuarioAdministradorEN usuarioAdministrador)
 {
         try
         {
                 SessionInitializeTransaction ();
-                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), id);
-                session.Delete (usuarioAdministradorEN);
+                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), usuarioAdministrador.Id);
+                session.Update (usuarioAdministradorEN);
                 SessionCommit ();
         }
 
@@ -166,7 +165,6 @@ public void Borrar (int id
                 SessionClose ();
         }
 }
-
 //Sin e: BuscarPorId
 //Con e: UsuarioAdministradorEN
 public UsuarioAdministradorEN BuscarPorId (int id

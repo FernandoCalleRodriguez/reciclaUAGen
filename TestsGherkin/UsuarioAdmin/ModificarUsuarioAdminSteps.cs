@@ -9,33 +9,52 @@ namespace TestsGherkin.UsuarioAdmin
     [Binding]
     public class ModificarUsuarioAdminSteps
     {
-        UsuarioAdministradorCEN usuarioCEN;
+        public static UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN();
         UsuarioAdministradorEN usuario;
+        public static int id;
 
-        int id;
-
-        [Given(@"Existe un usuario admin (.*)")]
-        public void GivenExisteUnUsuarioAdmin(int p0)
+        [Before(tags: "Login")]
+        public static void InitializeData()
         {
-            usuario = new UsuarioAdministradorEN();
-            usuarioCEN = new UsuarioAdministradorCEN();
-            this.id = p0;
-            usuario.Email = "admin2@ua.es";
-            usuario.Nombre = "admin2@ua.es";
-            usuario.Apellidos = "admin2@ua.es";
+            Console.WriteLine("Init");
+            id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            if (id == -1)
+            {
+                id = adminCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+
+            }
         }
-        
+
+        [Given(@"Existe un usuario")]
+        public void GivenExisteUnUsuario()
+        {
+        }
+
+        [Given(@"No existe el usuario (.*)")]
+        public void GivenNoExisteElUsuario(int p0)
+        {
+            id = p0;
+        }
+
+
         [When(@"Modifico los datos del usuario")]
         public void WhenModificoLosDatosDelUsuario()
         {
-            usuarioCEN.Modificar(id, "admin2", "admin2", "admin2@ua.es");
-            usuario = usuarioCEN.BuscarPorId(id);
+            adminCEN.Modificar(id, "usuarioprueba", "prueba", "usuario@ua.es");
+            usuario = adminCEN.BuscarPorId(id);
         }
-        
+
         [Then(@"Obtengo el usuario con los datos modificados")]
         public void ThenObtengoElUsuarioConLosDatosModificados()
         {
-            Assert.AreEqual("admin2", usuario.Nombre);
+            Assert.AreEqual("usuarioprueba", usuario.Nombre);
         }
+
+        [Then(@"No se puede modificar el usuario")]
+        public void ThenNoSePuedeModificarElUsuario()
+        {
+            Assert.IsNull(usuario);
+        }
+
     }
 }

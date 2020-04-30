@@ -11,24 +11,40 @@ namespace TestsGherkin.UsuarioWeb
     public class BuscarNoBorradosSteps
     {
         IList<UsuarioWebEN> usuarios;
-        UsuarioWebCEN usuarioCEN;
-        
+        public static UsuarioWebCEN usuarioCEN = new UsuarioWebCEN();
+        public static int id;
+
+
+        [Before(tags: "BuscarNoBorrados")]
+        public static void InitializeData()
+        {
+            Console.WriteLine("Init");
+            id = usuarioCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            if (id == -1)
+            {
+                id = usuarioCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+
+            }
+
+        }
+
         [Given(@"Existen usuarios no borrados")]
         public void GivenExistenUsuariosNoBorrados()
         {
             usuarioCEN = new UsuarioWebCEN();
         }
-        
+
         [When(@"Obtengo los usuarios no borrados")]
         public void WhenObtengoLosUsuariosNoBorrados()
         {
             usuarios = usuarioCEN.BuscarNoBorrados();
         }
-        
-        [Then(@"Devuelvo el resultado")]
-        public void ThenDevuelvoElResultado()
+
+        [Then(@"Devuelvo el los usuario no borrados")]
+        public void ThenDevuelvoElLosUsuarioNoBorrados()
         {
-            Assert.AreEqual(usuarios.Count,1);
+            Assert.IsNotNull(usuarios);
         }
+
     }
 }

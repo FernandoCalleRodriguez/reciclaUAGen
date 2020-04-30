@@ -20,8 +20,7 @@ int Crear (UsuarioWebEN usuarioWeb);
 void Modificar (UsuarioWebEN usuarioWeb);
 
 
-void Borrar (int id
-             );
+void Borrar (UsuarioWebEN usuarioWeb);
 
 
 UsuarioWebEN BuscarPorId (int id

@@ -37,5 +37,12 @@ namespace TestsGherkin.UsuarioAdmin
         {
             Assert.AreEqual(usuario.Nombre, "");
         }
+
+        [Then(@"No se puede borrar el usuario")]
+        public void ThenNoSePuedeBorrarElUsuario()
+        {
+            Assert.IsNull(usuario);
+        }
+
     }
 }

@@ -97,8 +97,8 @@ public static void InitializeData ()
                 var id_usu1 = usu1.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
                 Console.WriteLine ("ID Usuario 1: " + id_usu1);
 
-                var id_admin2 = admin.Crear("admin", "2", "admin2@ua.es", "admin2");
-                Console.WriteLine("ID Usuario Admin 2: " + id_admin2);
+                var id_admin2 = admin.Crear ("admin", "2", "admin2@ua.es", "admin2");
+                Console.WriteLine ("ID Usuario Admin 2: " + id_admin2);
 
                 /*usu1.Borrar(id_usu1);
                  * Console.WriteLine( usu1.BuscarPorId(id_usu1).Borrado);*/
