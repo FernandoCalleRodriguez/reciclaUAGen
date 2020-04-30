@@ -159,6 +159,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Foro\MarcarRespuestaCorrectaSteps.cs" />
     <Compile Include="UsuarioAdmin\BorrarUsuarioAdminSteps.cs" />
     <Compile Include="UsuarioAdmin\ModificarUsuarioAdminSteps.cs" />
     <Compile Include="UsuarioWeb\BuscarNoBorradosSteps.cs" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Foro\MarcarRespuestaCorrecta.feature" />
     <None Include="UsuarioAdmin\BorrarUsuarioAdmin.feature" />
     <None Include="UsuarioAdmin\ModificarUsuarioAdmin.feature" />
     <None Include="UsuarioWeb\BuscarNoBorrados.feature" />
