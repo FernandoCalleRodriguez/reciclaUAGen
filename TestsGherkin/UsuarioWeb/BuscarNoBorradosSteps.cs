@@ -22,7 +22,7 @@ namespace TestsGherkin.UsuarioWeb
             id = usuarioCEN.Crear("usuario", "prueba", "usuarioweb@ua.es", "contrasena");
             if (id == -1)
             {
-                id = usuarioCEN.BuscarPorCorreo("usuario@ua.es").Id;
+                id = usuarioCEN.BuscarPorCorreo("usuarioweb@ua.es").Id;
 
             }
 
