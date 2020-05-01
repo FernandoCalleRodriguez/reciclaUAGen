@@ -17,46 +17,44 @@ using ReciclaUAGenNHibernate.CAD.ReciclaUA;
 
 namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
-    public partial class UsuarioAdministradorCEN
-    {
-        public int Crear(string p_nombre, string p_apellidos, string p_email, String p_pass)
-        {
-            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioAdministrador_crear_customized) ENABLED START*/
+public partial class UsuarioAdministradorCEN
+{
+public int Crear (string p_nombre, string p_apellidos, string p_email, String p_pass)
+{
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioAdministrador_crear_customized) ENABLED START*/
 
-            UsuarioAdministradorEN usuarioAdministradorEN = null;
-            UsuarioCEN usuarioCEN = new UsuarioCEN();
+        UsuarioAdministradorEN usuarioAdministradorEN = null;
+        UsuarioCEN usuarioCEN = new UsuarioCEN ();
 
-            int oid;
+        int oid;
 
-            //Initialized UsuarioAdministradorEN
-            usuarioAdministradorEN = new UsuarioAdministradorEN();
-            usuarioAdministradorEN.Nombre = p_nombre;
+        //Initialized UsuarioAdministradorEN
+        usuarioAdministradorEN = new UsuarioAdministradorEN ();
+        usuarioAdministradorEN.Nombre = p_nombre;
 
-            usuarioAdministradorEN.Apellidos = p_apellidos;
+        usuarioAdministradorEN.Apellidos = p_apellidos;
 
-            usuarioAdministradorEN.Email = p_email;
+        usuarioAdministradorEN.Email = p_email;
 
-            usuarioAdministradorEN.Pass = Utils.Util.GetEncondeMD5(p_pass);
+        usuarioAdministradorEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
 
-            usuarioAdministradorEN.Borrado = false;
+        usuarioAdministradorEN.Borrado = false;
 
-            usuarioAdministradorEN.EmailVerificado = false;
+        usuarioAdministradorEN.EmailVerificado = false;
 
-            usuarioAdministradorEN.Fecha = DateTime.Now;
+        usuarioAdministradorEN.Fecha = DateTime.Now;
 
-            //Call to UsuarioAdministradorCAD
-            UsuarioEN usu = usuarioCEN.BuscarPorCorreo(p_email);
-            //Call to UsuarioWebCAD
-            if (usu == null)
-            {
-                oid = _IUsuarioAdministradorCAD.Crear(usuarioAdministradorEN);
-            }
-            else
-            {
-                oid = -1;
-            }
-            return oid;
-            /*PROTECTED REGION END*/
+        //Call to UsuarioAdministradorCAD
+        UsuarioEN usu = usuarioCEN.BuscarPorCorreo (p_email);
+        //Call to UsuarioWebCAD
+        if (usu == null) {
+                oid = _IUsuarioAdministradorCAD.Crear (usuarioAdministradorEN);
         }
-    }
+        else{
+                oid = -1;
+        }
+        return oid;
+        /*PROTECTED REGION END*/
+}
+}
 }

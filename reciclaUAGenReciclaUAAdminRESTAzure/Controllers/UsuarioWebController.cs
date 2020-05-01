@@ -577,6 +577,72 @@ public HttpResponseMessage Modificar (int idUsuarioWeb, [FromBody] UsuarioWebDTO
         }
 }
 
+[HttpPut]
+
+
+
+[Route ("~/api/UsuarioWeb/VerificarEmail")]
+
+
+public HttpResponseMessage VerificarEmail (int idUsuarioWeb, [FromBody] UsuarioWebDTO dto)
+{
+        // CAD, CEN, returnValue
+        UsuarioWebRESTCAD usuarioWebRESTCAD = null;
+        UsuarioWebCEN usuarioWebCEN = null;
+        UsuarioWebDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
+
+
+                usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
+                usuarioWebCEN = new UsuarioWebCEN (usuarioWebRESTCAD);
+
+                // Modify
+                usuarioWebCEN.VerificarEmail (idUsuarioWeb,
+                        dto.EmailVerificado
+                        );
+
+                // Return modified object
+                returnValue = UsuarioWebAssembler.Convert (usuarioWebRESTCAD.ReadOIDDefault (idUsuarioWeb), session);
+
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+                return response;
+        }
+}
+
 
 
 
@@ -641,56 +707,6 @@ public HttpResponseMessage Borrar (int p_usuarioweb_oid)
 }
 
 
-
-
-
-[HttpPost]
-
-[Route ("~/api/UsuarioWeb/VerificarEmail")]
-
-
-public HttpResponseMessage VerificarEmail (int p_usuarioweb_oid)
-{
-        // CAD, CEN, returnValue
-        UsuarioWebRESTCAD usuarioWebRESTCAD = null;
-        UsuarioWebCEN usuarioWebCEN = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-                string token = "";
-                if (Request.Headers.Authorization != null)
-                        token = Request.Headers.Authorization.ToString ();
-                int id = new UsuarioCEN ().CheckToken (token);
-
-
-
-                usuarioWebRESTCAD = new UsuarioWebRESTCAD (session);
-                usuarioWebCEN = new UsuarioWebCEN (usuarioWebRESTCAD);
-
-
-                // Operation
-                usuarioWebCEN.VerificarEmail (p_usuarioweb_oid);
-                SessionCommit ();
-        }
-
-        catch (Exception e)
-        {
-                SessionRollBack ();
-
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK);
-}
 
 
 
