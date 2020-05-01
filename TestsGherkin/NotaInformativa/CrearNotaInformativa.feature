@@ -1,0 +1,13 @@
+﻿Feature: CrearNotaInformativa
+	Para crear una nueva nota informativa
+	Como usuario admin 
+	Quiero crear una nota informativa
+
+@mytag
+Scenario: Crear una nota nueva informativa
+	Given Quiero crear una nueva nota informativa que contenga
+		| titulo         | cuerpo      |
+		| Titulo de nota informativa | Cuerpo de nota informativa |
+	And Logueado con el usuario admin 32768
+	When Creo la nota informativa
+	Then Obtengo la nueva nota informativa
