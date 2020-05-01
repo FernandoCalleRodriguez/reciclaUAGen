@@ -63,7 +63,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
 {
         return _IUsuarioWebCAD.ObtenerPuntuaciones ();
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarPorCorreo (string p_email)
+public ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN BuscarPorCorreo (string p_email)
 {
         return _IUsuarioWebCAD.BuscarPorCorreo (p_email);
 }

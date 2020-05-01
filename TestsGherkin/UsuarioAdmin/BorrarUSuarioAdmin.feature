@@ -3,14 +3,14 @@
 	Como usuario
 	Quiero borrar el usuario
 
-@mytag
+@BorrarUsuario
 Scenario: Borrar usuario existente
-	Given Hay un usuario admin 32770
+	Given TEngo un usuario existente
 	When Elimino el usuario
 	Then Devuelvo el usuario con datos borrados
 
-	@mytag
+	@BorrarUsuario
 Scenario: Borrar usuario no existente
-	Given Hay un usuario admin -1
+	Given No existe un usuario admin -1
 	When Elimino el usuario
 	Then No se puede borrar el usuario

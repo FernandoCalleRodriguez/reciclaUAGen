@@ -20,7 +20,8 @@ int Crear (UsuarioWebEN usuarioWeb);
 void Modificar (UsuarioWebEN usuarioWeb);
 
 
-void Borrar (UsuarioWebEN usuarioWeb);
+void Borrar (int id
+             );
 
 
 UsuarioWebEN BuscarPorId (int id
@@ -42,7 +43,7 @@ void CambiarPassword (UsuarioWebEN usuarioWeb);
 void VerificarEmail (UsuarioWebEN usuarioWeb);
 
 
-System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarPorCorreo (string p_email);
+ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN BuscarPorCorreo (string p_email);
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarNoBorrados ();

@@ -22,7 +22,15 @@ namespace TestsGherkin.UsuarioWeb
             this.id = Convert.ToInt32(p0);
             this.newPass = "new_pass";
         }
-        
+
+        [Given(@"No existe el web  usuario (.*)")]
+        public void GivenNoExisteElWebUsuario(int p0)
+        {
+            usuarioCEN = new UsuarioWebCEN();
+            this.id = Convert.ToInt32(p0);
+            this.newPass = "new_pass";
+        }
+
         [When(@"Cambiar la contraseña del usuario")]
         public void WhenCambiarLaContrasenaDelUsuario()
         {
@@ -40,6 +48,14 @@ namespace TestsGherkin.UsuarioWeb
         {
             Assert.AreEqual(usuario.Pass, ReciclaUAGenNHibernate.Utils.Util.GetEncondeMD5(newPass));
         }
+
+        [Then(@"No se puede obtener el usuario")]
+        public void ThenNoSePuedeObtenerElUsuario()
+        {
+
+            Assert.IsNull(usuario);
+        }
+
 
     }
 }

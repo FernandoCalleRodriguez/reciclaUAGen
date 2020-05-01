@@ -95,13 +95,13 @@ namespace TestsGherkin.Usuario
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Obtener usuario por email existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "obtenerUsuarioPorEmail")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerUsuarioPorEmail")]
         public virtual void ObtenerUsuarioPorEmailExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "ObtenerUsuarioPorEmail"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtener usuario por email existente", null, new string[] {
-                        "mytag"});
+                        "ObtenerUsuarioPorEmail"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -138,13 +138,13 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Obtener usuario por email inexistente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "obtenerUsuarioPorEmail")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerUsuarioPorEmail")]
         public virtual void ObtenerUsuarioPorEmailInexistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "ObtenerUsuarioPorEmail"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtener usuario por email inexistente", null, new string[] {
-                        "mytag"});
+                        "ObtenerUsuarioPorEmail"});
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

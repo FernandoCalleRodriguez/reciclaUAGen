@@ -4,7 +4,7 @@
 	Quiero todos los usuarios no borrados
 
 @BuscarNoBorrados
-Scenario: Obtner usuarios no borrados
+Scenario: Obtener usuarios no borrados
 	Given Existen usuarios no borrados
 	When Obtengo los usuarios no borrados
 	Then Devuelvo el los usuario no borrados

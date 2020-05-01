@@ -11,18 +11,37 @@ namespace TestsGherkin.UsuarioAdmin
     public class BorrarUsuarioAdminSteps
     {
 
-        UsuarioAdministradorCEN usuarioCEN;
+        public static UsuarioAdministradorCEN usuarioCEN = new UsuarioAdministradorCEN();
         UsuarioAdministradorEN usuario;
-        int id;
+        public static int id;
 
-        [Given(@"Hay un usuario admin (.*)")]
-        public void GivenHayUnUsuarioAdmin(int p0)
+
+        [Before(tags: "BorrarUsuario")]
+        public static void InitializeData()
+        {
+            Console.WriteLine("Init");
+            id = usuarioCEN.Crear("usuario", "prueba", "usuarioborrar@ua.es", "contrasena");
+            if (id == -1)
+            {
+                id = usuarioCEN.BuscarPorCorreo("usuarioborrar@ua.es").Id;
+
+            }
+        }
+
+
+        [Given(@"TEngo un usuario existente")]
+        public void GivenTEngoUnUsuarioExistente()
+        {
+        }
+
+        [Given(@"No existe un usuario admin (.*)")]
+        public void GivenNoExisteUnUsuarioAdmin(int p0)
         {
             usuarioCEN = new UsuarioAdministradorCEN();
-            this.id = p0;
-
+            id = p0;
         }
-        
+
+
         [When(@"Elimino el usuario")]
         public void WhenEliminoElUsuario()
         {

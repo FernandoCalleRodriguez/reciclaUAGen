@@ -94,13 +94,13 @@ namespace TestsGherkin.UsuarioAdmin
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Modificar usuario existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ModificarUsuarioAdmin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ModificarUsuario")]
         public virtual void ModificarUsuarioExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "ModificarUsuario"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Modificar usuario existente", null, new string[] {
-                        "mytag"});
+                        "ModificarUsuario"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -137,13 +137,13 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Modificar usuario no existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ModificarUsuarioAdmin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ModificarUsuario")]
         public virtual void ModificarUsuarioNoExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "ModificarUsuario"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Modificar usuario no existente", null, new string[] {
-                        "mytag"});
+                        "ModificarUsuario"});
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

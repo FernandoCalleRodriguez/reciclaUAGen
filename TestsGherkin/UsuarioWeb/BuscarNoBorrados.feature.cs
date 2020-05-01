@@ -93,14 +93,14 @@ namespace TestsGherkin.UsuarioWeb
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Obtner usuarios no borrados")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Obtener usuarios no borrados")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BuscarNoBorrados")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("BuscarNoBorrados")]
-        public virtual void ObtnerUsuariosNoBorrados()
+        public virtual void ObtenerUsuariosNoBorrados()
         {
             string[] tagsOfScenario = new string[] {
                     "BuscarNoBorrados"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtner usuarios no borrados", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtener usuarios no borrados", null, new string[] {
                         "BuscarNoBorrados"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);

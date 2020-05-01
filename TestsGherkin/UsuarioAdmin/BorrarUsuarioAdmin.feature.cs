@@ -94,13 +94,13 @@ namespace TestsGherkin.UsuarioAdmin
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar usuario existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BorrarUsuarioAdmin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("BorrarUsuario")]
         public virtual void BorrarUsuarioExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "BorrarUsuario"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar usuario existente", null, new string[] {
-                        "mytag"});
+                        "BorrarUsuario"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("Hay un usuario admin 32770", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("TEngo un usuario existente", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.When("Elimino el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -137,13 +137,13 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar usuario no existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BorrarUsuarioAdmin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("BorrarUsuario")]
         public virtual void BorrarUsuarioNoExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "BorrarUsuario"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar usuario no existente", null, new string[] {
-                        "mytag"});
+                        "BorrarUsuario"});
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -165,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 14
- testRunner.Given("Hay un usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("No existe un usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
  testRunner.When("Elimino el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

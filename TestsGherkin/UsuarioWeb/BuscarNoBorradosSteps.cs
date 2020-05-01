@@ -19,10 +19,10 @@ namespace TestsGherkin.UsuarioWeb
         public static void InitializeData()
         {
             Console.WriteLine("Init");
-            id = usuarioCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            id = usuarioCEN.Crear("usuario", "prueba", "usuarioweb@ua.es", "contrasena");
             if (id == -1)
             {
-                id = usuarioCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+                id = usuarioCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
             }
 

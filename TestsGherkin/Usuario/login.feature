@@ -9,7 +9,7 @@ Scenario: Existe el usuario
 		| email         | pass       |
 		| usuario@ua.es | contrasena |
 	When Compruebo las credenciales
-	Then Obtengo al usuario
+	Then Devuelvo el usuario
 
 @Login
 Scenario: No existe el usuario

@@ -18,7 +18,8 @@ System.Collections.Generic.IList<UsuarioAdministradorEN> ReadAllDefault (int fir
 void Modificar (UsuarioAdministradorEN usuarioAdministrador);
 
 
-void Borrar (UsuarioAdministradorEN usuarioAdministrador);
+void Borrar (int id
+             );
 
 
 UsuarioAdministradorEN BuscarPorId (int id
@@ -33,7 +34,7 @@ int Crear (UsuarioAdministradorEN usuarioAdministrador);
 void CambiarPassword (UsuarioAdministradorEN usuarioAdministrador);
 
 
-System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarPorCorreo (string p_correo);
+ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN BuscarPorCorreo (string p_correo);
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarNoBorrados ();

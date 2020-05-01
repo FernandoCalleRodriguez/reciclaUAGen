@@ -21,17 +21,20 @@ public partial class UsuarioWebCEN
 {
 public void CambiarPassword (int p_UsuarioWeb_OID, String p_pass)
 {
-        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_cambiarPassword_customized) START*/
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_cambiarPassword_customized) ENABLED START*/
 
         UsuarioWebEN usuarioWebEN = null;
 
         //Initialized UsuarioWebEN
-        usuarioWebEN = new UsuarioWebEN ();
-        usuarioWebEN.Id = p_UsuarioWeb_OID;
-        usuarioWebEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-        //Call to UsuarioWebCAD
+        if (_IUsuarioWebCAD.BuscarPorId (p_UsuarioWeb_OID) != null) {
+                usuarioWebEN = new UsuarioWebEN ();
+                usuarioWebEN.Id = p_UsuarioWeb_OID;
+                usuarioWebEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
+                //Call to UsuarioWebCAD
 
-        _IUsuarioWebCAD.CambiarPassword (usuarioWebEN);
+                _IUsuarioWebCAD.CambiarPassword (usuarioWebEN);
+        }
+
 
         /*PROTECTED REGION END*/
 }

@@ -19,17 +19,18 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class UsuarioAdministradorCEN
 {
-public void Borrar (int p_UsuarioAdministrador_OID)
+public void Borrar (int id
+                    )
 {
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioAdministrador_borrar_customized) ENABLED START*/
 
         UsuarioAdministradorEN usuarioAdministradorEN = null;
 
         //Initialized UsuarioAdministradorEN
-        usuarioAdministradorEN = _IUsuarioAdministradorCAD.BuscarPorId (p_UsuarioAdministrador_OID);
+        usuarioAdministradorEN = _IUsuarioAdministradorCAD.BuscarPorId (id);
 
         if (usuarioAdministradorEN != null) {
-                usuarioAdministradorEN.Id = p_UsuarioAdministrador_OID;
+                usuarioAdministradorEN.Id = id;
                 usuarioAdministradorEN.Nombre = "";
                 usuarioAdministradorEN.Apellidos = "";
                 usuarioAdministradorEN.Email = "";

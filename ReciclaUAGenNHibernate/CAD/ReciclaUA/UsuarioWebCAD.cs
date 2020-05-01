@@ -171,13 +171,14 @@ public void Modificar (UsuarioWebEN usuarioWeb)
                 SessionClose ();
         }
 }
-public void Borrar (UsuarioWebEN usuarioWeb)
+public void Borrar (int id
+                    )
 {
         try
         {
                 SessionInitializeTransaction ();
-                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), usuarioWeb.Id);
-                session.Update (usuarioWebEN);
+                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), id);
+                session.Delete (usuarioWebEN);
                 SessionCommit ();
         }
 
@@ -194,6 +195,7 @@ public void Borrar (UsuarioWebEN usuarioWeb)
                 SessionClose ();
         }
 }
+
 //Sin e: BuscarPorId
 //Con e: UsuarioWebEN
 public UsuarioWebEN BuscarPorId (int id
@@ -364,9 +366,9 @@ public void VerificarEmail (UsuarioWebEN usuarioWeb)
                 SessionClose ();
         }
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> BuscarPorCorreo (string p_email)
+public ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN BuscarPorCorreo (string p_email)
 {
-        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN> result;
+        ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN result;
         try
         {
                 SessionInitializeTransaction ();
@@ -375,7 +377,8 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioWebENbuscarPorCorreoHQL");
                 query.SetParameter ("p_email", p_email);
 
-                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN>();
+
+                result = query.UniqueResult<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN>();
                 SessionCommit ();
         }
 

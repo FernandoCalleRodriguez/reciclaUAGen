@@ -17,14 +17,14 @@ namespace TestsGherkin.PruebasAceptacion
         string email;
         public static int id;
 
-        [Before(tags: "Login")]
+        [Before(tags: "ObtenerUsuarioPorEmail")]
         public static void InitializeData()
         {
             Console.WriteLine("Init");
             id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
             if (id == -1)
             {
-                id = adminCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+                id = adminCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
             }
         }

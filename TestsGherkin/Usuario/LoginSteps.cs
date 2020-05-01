@@ -28,7 +28,7 @@ namespace TestsGherkin.Usuario
             id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
             if (id == -1)
             {
-                id = adminCEN.BuscarPorCorreo("usuario@ua.es")[0].Id;
+                id = adminCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
             }
         }
@@ -56,10 +56,10 @@ namespace TestsGherkin.Usuario
             token = usuarioCEN.Login(contrasena, email);
         }
 
-        [Then(@"Obtengo al usuario")]
-        public void ThenObtengoAlUsuario()
-        {
 
+        [Then(@"Devuelvo el usuario")]
+        public void ThenDevuelvoElUsuario()
+        {
             var jwtToken = new JwtSecurityToken(token);
             Console.WriteLine(jwtToken);
             string idtoken;
@@ -69,8 +69,8 @@ namespace TestsGherkin.Usuario
                 Assert.AreEqual(id, Convert.ToInt32(idtoken));
 
             }
-
         }
+
 
         [Then(@"No existe el usuario")]
         public void ThenNoExisteElUsuario()

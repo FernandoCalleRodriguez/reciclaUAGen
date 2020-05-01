@@ -142,13 +142,14 @@ public void Modificar (UsuarioAdministradorEN usuarioAdministrador)
                 SessionClose ();
         }
 }
-public void Borrar (UsuarioAdministradorEN usuarioAdministrador)
+public void Borrar (int id
+                    )
 {
         try
         {
                 SessionInitializeTransaction ();
-                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), usuarioAdministrador.Id);
-                session.Update (usuarioAdministradorEN);
+                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), id);
+                session.Delete (usuarioAdministradorEN);
                 SessionCommit ();
         }
 
@@ -165,6 +166,7 @@ public void Borrar (UsuarioAdministradorEN usuarioAdministrador)
                 SessionClose ();
         }
 }
+
 //Sin e: BuscarPorId
 //Con e: UsuarioAdministradorEN
 public UsuarioAdministradorEN BuscarPorId (int id
@@ -277,9 +279,9 @@ public void CambiarPassword (UsuarioAdministradorEN usuarioAdministrador)
                 SessionClose ();
         }
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarPorCorreo (string p_correo)
+public ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN BuscarPorCorreo (string p_correo)
 {
-        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> result;
+        ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN result;
         try
         {
                 SessionInitializeTransaction ();
@@ -288,7 +290,8 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioAdministradorENbuscarPorCorreoHQL");
                 query.SetParameter ("p_correo", p_correo);
 
-                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN>();
+
+                result = query.UniqueResult<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN>();
                 SessionCommit ();
         }
 
