@@ -42,6 +42,15 @@ public static EdificioDTOA Convert (EdificioEN en, NHibernate.ISession session =
                 //
                 // TravesalLink
 
+                /* Rol: Edificio o--> Planta */
+                dto.PlantasEdicio = null;
+                List<PlantaEN> PlantasEdicio = edificioRESTCAD.PlantasEdicio (en.Id).ToList ();
+                if (PlantasEdicio != null) {
+                        dto.PlantasEdicio = new List<PlantaDTOA>();
+                        foreach (PlantaEN entry in PlantasEdicio)
+                                dto.PlantasEdicio.Add (PlantaAssembler.Convert (entry, session));
+                }
+
 
                 //
                 // Service

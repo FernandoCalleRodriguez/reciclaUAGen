@@ -28,6 +28,11 @@ public class EdificioDTOA extends DTOA
 	public void setNombre (String nombre) { this.nombre = nombre; }
 	
 	
+	/* Rol: Edificio o--> Planta */
+	private ArrayList<PlantaDTOA> plantasEdificio;
+	public ArrayList<PlantaDTOA> getPlantasEdificio () { return plantasEdificio; }
+	public void setPlantasEdificio (ArrayList<PlantaDTOA> plantasEdificio) { this.plantasEdificio = plantasEdificio; }
+
 	
 	
 	// endregion
@@ -59,6 +64,20 @@ public class EdificioDTOA extends DTOA
 			 
 			}
 			
+
+			JSONArray arrayPlantasEdificio = json.optJSONArray("PlantasEdificio");
+			if (arrayPlantasEdificio != null)
+			{
+				this.plantasEdificio = new ArrayList<PlantaDTOA>();
+				for (int i = 0; i < arrayPlantasEdificio.length(); ++i)
+				{
+					JSONObject subJson = (JSONObject) arrayPlantasEdificio.opt(i);
+					PlantaDTOA tmp = new PlantaDTOA();
+					tmp.setFromJSON(subJson);
+					this.plantasEdificio.add(tmp);
+				}
+			}
+
 			
 		}
 		catch (Exception e)
@@ -82,6 +101,17 @@ public class EdificioDTOA extends DTOA
 			json.put("Nombre", this.nombre);
 		
 			
+
+			if (this.plantasEdificio != null)
+			{
+				JSONArray jsonArray = new JSONArray();
+				for (int i = 0; i < this.plantasEdificio.size(); ++i)
+				{
+					jsonArray.put(this.plantasEdificio.get(i).toJSON());
+				}
+				json.put("PlantasEdificio", jsonArray);
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -107,6 +137,7 @@ public class EdificioDTOA extends DTOA
 		
 		
 		// Roles
+					// TODO: from DTOA [ PlantasEdificio ] (dataType : ArrayList<PlantaDTOA>) to DTO [ Plantas ]
 		
 		
 		return dto;

@@ -22,5 +22,14 @@ public string Nombre
         get { return nombre; }
         set { nombre = value; }
 }
+
+
+/* Rol: Edificio o--> Planta */
+private IList<PlantaDTOA> plantasEdificio;
+public IList<PlantaDTOA> PlantasEdificio
+{
+        get { return plantasEdificio; }
+        set { plantasEdificio = value; }
+}
 }
 }

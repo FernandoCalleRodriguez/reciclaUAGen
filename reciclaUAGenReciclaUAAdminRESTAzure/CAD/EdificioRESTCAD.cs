@@ -25,5 +25,41 @@ public EdificioRESTCAD(ISession sessionAux)
         : base (sessionAux)
 {
 }
+
+
+
+public IList<PlantaEN> PlantasEdificio (int id)
+{
+        IList<PlantaEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM PlantaEN self inner join self.Edificio as target with target.Id=:p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<PlantaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in EdificioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
