@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReciclaUAGenNHibernate.CEN.ReciclaUA;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
+using ReciclaUAGenNHibernate.Exceptions;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,31 +10,50 @@ namespace TestsGherkin.NotaInformativa
     [Binding]
     public class BorrarNotaInformativaSteps
     {
-        public static NotaInformativaCEN notaCEN;
+        public static NotaInformativaCEN notaCEN = new NotaInformativaCEN();
         public static NotaInformativaEN nota = null;
-        public static int notaId = -1;
+        public static int notaId;
+        public string exception = "ModelException";
 
-        [Given(@"Hay una nota informativa (.*)")]
-        public void GivenHayUnaNotaInformativa(int p0)
+        [Before(tags: "BorrarNotaInformativa")]
+        public static void InitializeData()
         {
-            notaCEN = new NotaInformativaCEN();
-            notaId = 65536;
+            NotaInformativaEN nota = new NotaInformativaEN()
+            {
+                Titulo = "Titulo de nota informativa TEST",
+                Cuerpo = "Cuerpo de nota informativa TEST",
+            };
+
+            nota.UsuarioAdministrador = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN();
+            nota.UsuarioAdministrador.Id = 32768;
+
+            notaId = notaCEN.Crear(32768, nota.Titulo, nota.Cuerpo);
         }
 
+        [Given(@"Hay una nota informativa especifica")]
+        public void GivenHayUnaNotaInformativaEspecifica()
+        {
+            //Se mantiene el Id creado
+        }
+        
+        [Given(@"No existe la nota informativa especifica")]
+        public void GivenNoExisteLaNotaInformativaEspecifica()
+        {
+            notaId = -1;
+        }
+        
         [When(@"Elimino la nota informativa")]
         public void WhenEliminoLaNotaInformativa()
         {
             try
             {
                 notaCEN.Borrar(notaId);
-                Assert.Fail();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //vacio
+                ScenarioContext.Current.Add(exception, e);
             }
         }
-  
         
         [Then(@"Devuelvo la nota informativa borrada")]
         public void ThenDevuelvoLaNotaInformativaBorrada()
@@ -44,7 +64,8 @@ namespace TestsGherkin.NotaInformativa
         [Then(@"No se puede borrar la nota informativa")]
         public void ThenNoSePuedeBorrarLaNotaInformativa()
         {
-            Assert.IsNull(notaCEN.BuscarPorId(notaId));
+            var e = ScenarioContext.Current[exception];
+            Assert.IsNotNull(e);
         }
     }
 }

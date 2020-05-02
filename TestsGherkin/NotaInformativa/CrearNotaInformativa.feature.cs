@@ -93,15 +93,15 @@ namespace TestsGherkin.NotaInformativa
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Crear una nota nueva informativa")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Crear una nueva nota informativa")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CrearNotaInformativa")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void CrearUnaNotaNuevaInformativa()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CrearNuevaNotaInformativa")]
+        public virtual void CrearUnaNuevaNotaInformativa()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Crear una nota nueva informativa", null, new string[] {
-                        "mytag"});
+                    "CrearNuevaNotaInformativa"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Crear una nueva nota informativa", null, new string[] {
+                        "CrearNuevaNotaInformativa"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,14 +122,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "titulo",
                             "cuerpo"});
-                table1.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Titulo de nota informativa",
                             "Cuerpo de nota informativa"});
 #line 8
- testRunner.Given("Quiero crear una nueva nota informativa que contenga", ((string)(null)), table1, "Given ");
+ testRunner.Given("Quiero crear una nueva nota informativa que contenga", ((string)(null)), table7, "Given ");
 #line hidden
 #line 11
  testRunner.And("Logueado con el usuario admin 32768", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

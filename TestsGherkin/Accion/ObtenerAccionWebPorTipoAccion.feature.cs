@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TestsGherkin.NotaInformativa
+namespace TestsGherkin.Accion
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace TestsGherkin.NotaInformativa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class BorrarNotaInformativaFeature
+    public partial class ObtenerAccionWebPorTipoAccionFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.NotaInformativa
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "BorrarNotaInformativa.feature"
+#line 1 "ObtenerAccionWebPorTipoAccion.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,9 @@ namespace TestsGherkin.NotaInformativa
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BorrarNotaInformativa", "\tPara borrar una nota informativa\r\n\tComo usuario admin \r\n\tQuiero borrar la nota i" +
-                    "nformativa", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ObtenerAccionWebPorTipoAccion", "\tPara obtener todas las acciones web filtradas por un tipo de accion\r\n\tComo usuar" +
+                    "io\r\n\tQuiero obtener una lista todas las acciones web filtradas por un tipo de ac" +
+                    "cion", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +65,9 @@ namespace TestsGherkin.NotaInformativa
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "BorrarNotaInformativa")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "ObtenerAccionWebPorTipoAccion")))
             {
-                global::TestsGherkin.NotaInformativa.BorrarNotaInformativaFeature.FeatureSetup(null);
+                global::TestsGherkin.Accion.ObtenerAccionWebPorTipoAccionFeature.FeatureSetup(null);
             }
         }
         
@@ -93,15 +94,15 @@ namespace TestsGherkin.NotaInformativa
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar nota informativa existente")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BorrarNotaInformativa")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("BorrarNotaInformativa")]
-        public virtual void BorrarNotaInformativaExistente()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existen acciones web con el tipo de accion indicado")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionWebPorTipoAccion")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesWebConTipoAccion")]
+        public virtual void ExistenAccionesWebConElTipoDeAccionIndicado()
         {
             string[] tagsOfScenario = new string[] {
-                    "BorrarNotaInformativa"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar nota informativa existente", null, new string[] {
-                        "BorrarNotaInformativa"});
+                    "ObtenerAccionesWebConTipoAccion"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existen acciones web con el tipo de accion indicado", null, new string[] {
+                        "ObtenerAccionesWebConTipoAccion"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -123,29 +124,33 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("Hay una nota informativa especifica", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Tengo acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "tipo"});
+                table5.AddRow(new string[] {
+                            "Tipo Prueba"});
 #line 9
- testRunner.When("Elimino la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table5, "When ");
 #line hidden
-#line 10
- testRunner.Then("Devuelvo la nota informativa borrada", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.Then("Obtengo la lista de las acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar nota informativa no existente")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "BorrarNotaInformativa")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("BorrarNotaInformativaNoExistente")]
-        public virtual void BorrarNotaInformativaNoExistente()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existen acciones web con el tipo de accion indicado")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionWebPorTipoAccion")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesWebConTipoAccionNoExistente")]
+        public virtual void NoExistenAccionesWebConElTipoDeAccionIndicado()
         {
             string[] tagsOfScenario = new string[] {
-                    "BorrarNotaInformativaNoExistente"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar nota informativa no existente", null, new string[] {
-                        "BorrarNotaInformativaNoExistente"});
-#line 13
+                    "ObtenerAccionesWebConTipoAccionNoExistente"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existen acciones web con el tipo de accion indicado", null, new string[] {
+                        "ObtenerAccionesWebConTipoAccionNoExistente"});
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -165,14 +170,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 14
- testRunner.Given("No existe la nota informativa especifica", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 15
- testRunner.When("Elimino la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 16
- testRunner.Then("No se puede borrar la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("No tengo acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "tipo"});
+                table6.AddRow(new string[] {
+                            "Tipo Prueba"});
+#line 17
+ testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table6, "When ");
+#line hidden
+#line 20
+ testRunner.Then("No obtengo la lista de las acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -3,8 +3,8 @@
 	Como usuario admin 
 	Quiero crear una nota informativa
 
-@mytag
-Scenario: Crear una nota nueva informativa
+@CrearNuevaNotaInformativa
+Scenario: Crear una nueva nota informativa
 	Given Quiero crear una nueva nota informativa que contenga
 		| titulo         | cuerpo      |
 		| Titulo de nota informativa | Cuerpo de nota informativa |
