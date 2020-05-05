@@ -122,14 +122,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "email",
                             "pass"});
-                table2.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "usuario@ua.es",
                             "contrasena"});
 #line 8
- testRunner.Given("Hay un usuario", ((string)(null)), table2, "Given ");
+ testRunner.Given("Hay un usuario", ((string)(null)), table11, "Given ");
 #line hidden
 #line 11
  testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -171,14 +171,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "email",
                             "pass"});
-                table3.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "usuarioprueba@ua.es",
                             "contrasena"});
 #line 16
- testRunner.Given("Hay un usuario", ((string)(null)), table3, "Given ");
+ testRunner.Given("Hay un usuario", ((string)(null)), table12, "Given ");
 #line hidden
 #line 19
  testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

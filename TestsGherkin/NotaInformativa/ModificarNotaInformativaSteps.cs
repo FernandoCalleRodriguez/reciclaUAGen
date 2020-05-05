@@ -56,7 +56,7 @@ namespace TestsGherkin.NotaInformativa
         {
             try
             {
-                notaCEN.Modificar(notaId, nota.Titulo, nota.Cuerpo, null);
+                notaCEN.Modificar(notaId, nota.Titulo, nota.Cuerpo, DateTime.Now);
             }
             catch (Exception e)
             {
