@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TestsGherkin.Usuario
+namespace TestsGherkin.Accion
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace TestsGherkin.Usuario
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class LoginFeature
+    public partial class ObtenerAccionReciclarPorMaterialFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.Usuario
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "login.feature"
+#line 1 "ObtenerAccionReciclarPorMaterial.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,9 @@ namespace TestsGherkin.Usuario
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "login", "\tPara realizar el login\r\n\tComo usuario\r\n\tQuiero comfirma que las credenciales son" +
-                    " correstas", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ObtenerAccionReciclarPorMaterial", "\tPara obtener todas las acciones de reciclaje filtradas por un material\r\n\tComo us" +
+                    "uario\r\n\tQuiero obtener una lista de todas las acciones de reciclaje filtradas po" +
+                    "r un material", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +65,9 @@ namespace TestsGherkin.Usuario
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "login")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "ObtenerAccionReciclarPorMaterial")))
             {
-                global::TestsGherkin.Usuario.LoginFeature.FeatureSetup(null);
+                global::TestsGherkin.Accion.ObtenerAccionReciclarPorMaterialFeature.FeatureSetup(null);
             }
         }
         
@@ -93,15 +94,15 @@ namespace TestsGherkin.Usuario
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existe el usuario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
-        public virtual void ExisteElUsuario()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existen acciones de reciclaje con el material indicado")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionReciclarPorMaterial")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesReciclarPorMaterial")]
+        public virtual void ExistenAccionesDeReciclajeConElMaterialIndicado()
         {
             string[] tagsOfScenario = new string[] {
-                    "Login"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existe el usuario", null, new string[] {
-                        "Login"});
+                    "ObtenerAccionesReciclarPorMaterial"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existen acciones de reciclaje con el material indicado", null, new string[] {
+                        "ObtenerAccionesReciclarPorMaterial"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,35 +123,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "email",
-                            "pass"});
-                table11.AddRow(new string[] {
-                            "usuario@ua.es",
-                            "contrasena"});
 #line 8
- testRunner.Given("Hay un usuario", ((string)(null)), table11, "Given ");
+ testRunner.Given("Tengo acciones de reciclaje con el material indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
- testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "material"});
+                table3.AddRow(new string[] {
+                            "Contenedor 1"});
+#line 9
+ testRunner.When("Obtengo las acciones de reciclaje con el material", ((string)(null)), table3, "When ");
 #line hidden
 #line 12
- testRunner.Then("Devuelvo el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Obtengo la lista de las acciones de reciclaje con el material indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existe el usuario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
-        public virtual void NoExisteElUsuario()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existen acciones de reciclaje con el material indicado")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionReciclarPorMaterial")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesReciclarPorMaterialNoExistente")]
+        public virtual void NoExistenAccionesDeReciclajeConElMaterialIndicado()
         {
             string[] tagsOfScenario = new string[] {
-                    "Login"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existe el usuario", null, new string[] {
-                        "Login"});
+                    "ObtenerAccionesReciclarPorMaterialNoExistente"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existen acciones de reciclaje con el material indicado", null, new string[] {
+                        "ObtenerAccionesReciclarPorMaterialNoExistente"});
 #line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -171,20 +170,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
-                            "email",
-                            "pass"});
-                table12.AddRow(new string[] {
-                            "usuarioprueba@ua.es",
-                            "contrasena"});
 #line 16
- testRunner.Given("Hay un usuario", ((string)(null)), table12, "Given ");
+ testRunner.Given("No tengo acciones de reciclaje con el material indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 19
- testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "material"});
+                table4.AddRow(new string[] {
+                            "plastico prueba"});
+#line 17
+ testRunner.When("Obtengo las acciones de reciclaje con el material", ((string)(null)), table4, "When ");
 #line hidden
 #line 20
- testRunner.Then("No existe el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("No obtengo la lista de las acciones de reciclaje con el material indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

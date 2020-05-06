@@ -159,6 +159,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accion\BorrarAccionWebSteps.cs" />
+    <Compile Include="Accion\CrearAccionReciclarSteps.cs" />
+    <Compile Include="Accion\CrearTipoAccionSteps.cs" />
+    <Compile Include="Accion\ObtenerAccionReciclarPorAutorSteps.cs" />
+    <Compile Include="Accion\ObtenerAccionReciclarPorFechaSteps.cs" />
+    <Compile Include="Accion\ObtenerAccionWebPorTipoAccionSteps.cs" />
+    <Compile Include="Accion\ObtenerTiposAccionSteps.cs" />
     <Compile Include="Foro\DesmarcarRespuestaCorrectaSteps.cs" />
     <Compile Include="Foro\MarcarRespuestaCorrectaSteps.cs" />
     <Compile Include="Foro\ObtenerSiRespuestaCorrectaSteps.cs" />
@@ -195,6 +202,10 @@
     <Compile Include="Juego\Nivel\GetNivelSteps.cs" />
     <Compile Include="Juego\Nivel\UpdateNivel.feature.cs" />
     <Compile Include="Juego\Nivel\UpdateNivelSteps.cs" />
+    <Compile Include="NotaInformativa\BorrarNotaInformativaSteps.cs" />
+    <Compile Include="NotaInformativa\CrearNotaInformativaSteps.cs" />
+    <Compile Include="NotaInformativa\ModificarNotaInformativaSteps.cs" />
+    <Compile Include="NotaInformativa\ObtenerNotasInformativasSteps.cs" />
     <Compile Include="UsuarioAdmin\BorrarUsuarioAdminSteps.cs" />
     <Compile Include="UsuarioAdmin\ModificarUsuarioAdminSteps.cs" />
     <Compile Include="UsuarioWeb\BuscarNoBorradosSteps.cs" />
@@ -237,6 +248,13 @@
     <Compile Include="Zonas\Punto\PuntoPorContenedorSteps.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Accion\BorrarAccionWeb.feature" />
+    <None Include="Accion\CrearAccionReciclar.feature" />
+    <None Include="Accion\CrearTipoAccion.feature" />
+    <None Include="Accion\ObtenerAccionReciclarPorAutor.feature" />
+    <None Include="Accion\ObtenerAccionReciclarPorFecha.feature" />
+    <None Include="Accion\ObtenerAccionWebPorTipoAccion.feature" />
+    <None Include="Accion\ObtenerTiposAccion.feature" />
     <None Include="app.config" />
     <None Include="Foro\DesmarcarRespuestaCorrecta.feature" />
     <None Include="Foro\ObtenerSiRespuestaCorrecta.feature" />
@@ -258,6 +276,10 @@
     <None Include="Juego\Nivel\GetNivel.feature" />
     <None Include="Juego\Nivel\GetNivelById.feature" />
     <None Include="Juego\Nivel\UpdateNivel.feature" />
+    <None Include="NotaInformativa\BorrarNotaInformativa.feature" />
+    <None Include="NotaInformativa\CrearNotaInformativa.feature" />
+    <None Include="NotaInformativa\ModificarNotaInformativa.feature" />
+    <None Include="NotaInformativa\ObtenerNotasInformativas.feature" />
     <None Include="UsuarioAdmin\BorrarUsuarioAdmin.feature" />
     <None Include="UsuarioAdmin\ModificarUsuarioAdmin.feature" />
     <None Include="UsuarioWeb\BuscarNoBorrados.feature" />

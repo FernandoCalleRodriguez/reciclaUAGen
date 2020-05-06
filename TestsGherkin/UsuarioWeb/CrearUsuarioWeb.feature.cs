@@ -122,18 +122,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "nombre",
                             "apellidos",
                             "email",
                             "pass"});
-                table1.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "usu",
                             "2",
                             "usu2@ua.es",
                             "usu2"});
 #line 8
- testRunner.Given("No existe un usuario", ((string)(null)), table1, "Given ");
+ testRunner.Given("No existe un usuario", ((string)(null)), table10, "Given ");
 #line hidden
 #line 11
  testRunner.When("Creo el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

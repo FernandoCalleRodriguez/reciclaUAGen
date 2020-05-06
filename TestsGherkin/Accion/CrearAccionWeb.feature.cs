@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TestsGherkin.Usuario
+namespace TestsGherkin.Accion
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace TestsGherkin.Usuario
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class LoginFeature
+    public partial class CrearAccionWebFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.Usuario
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "login.feature"
+#line 1 "CrearAccionWeb.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace TestsGherkin.Usuario
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "login", "\tPara realizar el login\r\n\tComo usuario\r\n\tQuiero comfirma que las credenciales son" +
-                    " correstas", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CrearAccionWeb", "\tPara crear una nueva accion web\r\n\tComo usuario \r\n\tQuiero crear una nueva accion " +
+                    "web", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace TestsGherkin.Usuario
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "login")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "CrearAccionWeb")))
             {
-                global::TestsGherkin.Usuario.LoginFeature.FeatureSetup(null);
+                global::TestsGherkin.Accion.CrearAccionWebFeature.FeatureSetup(null);
             }
         }
         
@@ -93,15 +93,15 @@ namespace TestsGherkin.Usuario
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existe el usuario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
-        public virtual void ExisteElUsuario()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Crear una nueva accion web")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CrearAccionWeb")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CrearNuevaAccionWeb")]
+        public virtual void CrearUnaNuevaAccionWeb()
         {
             string[] tagsOfScenario = new string[] {
-                    "Login"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existe el usuario", null, new string[] {
-                        "Login"});
+                    "CrearNuevaAccionWeb"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Crear una nueva accion web", null, new string[] {
+                        "CrearNuevaAccionWeb"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,69 +122,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "email",
-                            "pass"});
-                table11.AddRow(new string[] {
-                            "usuario@ua.es",
-                            "contrasena"});
 #line 8
- testRunner.Given("Hay un usuario", ((string)(null)), table11, "Given ");
+ testRunner.Given("Quiero crear una nueva accion web de tipo 262144", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("Logueado con el usuario 32769", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.When("Creo la accion web", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 12
- testRunner.Then("Devuelvo el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existe el usuario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "login")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Login")]
-        public virtual void NoExisteElUsuario()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Login"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existe el usuario", null, new string[] {
-                        "Login"});
-#line 15
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
-                            "email",
-                            "pass"});
-                table12.AddRow(new string[] {
-                            "usuarioprueba@ua.es",
-                            "contrasena"});
-#line 16
- testRunner.Given("Hay un usuario", ((string)(null)), table12, "Given ");
-#line hidden
-#line 19
- testRunner.When("Compruebo las credenciales", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.Then("No existe el usuario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Obtengo la nueva accion web", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
