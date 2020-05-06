@@ -18,15 +18,15 @@ namespace TestsGherkin.Accion
         public static int itemId = -1;
         public static int accionReciclarId = -1;
         public static int cantidad;
-        public static int user;
+        public static int user = -1;
         public static DateTime fechaActual;
 
         [Before(tags: "ObtenerAccionesReciclarPorFecha")]
         public static void InitializeData()
         {
-            contenedorId = contenedorCEN.Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, 360448);
-            itemId = 196608;
-            user = 32769;
+            contenedorId = contenedorCEN.Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, -1);
+            // itemId = 196608;
+            // user = 32769;
             fechaActual = DateTime.Now;
 
             accionReciclarId = accionReciclarCEN.Crear(user, fechaActual, contenedorId, itemId, cantidad);

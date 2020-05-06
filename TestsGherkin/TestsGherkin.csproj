@@ -162,7 +162,6 @@
     <Compile Include="Accion\BorrarAccionWebSteps.cs" />
     <Compile Include="Accion\CrearAccionReciclarSteps.cs" />
     <Compile Include="Accion\CrearTipoAccionSteps.cs" />
-    <Compile Include="Accion\ObtenerAccionReciclarPorAutorSteps.cs" />
     <Compile Include="Accion\ObtenerAccionReciclarPorFechaSteps.cs" />
     <Compile Include="Accion\ObtenerAccionWebPorTipoAccionSteps.cs" />
     <Compile Include="Accion\ObtenerTiposAccionSteps.cs" />
@@ -251,7 +250,6 @@
     <None Include="Accion\BorrarAccionWeb.feature" />
     <None Include="Accion\CrearAccionReciclar.feature" />
     <None Include="Accion\CrearTipoAccion.feature" />
-    <None Include="Accion\ObtenerAccionReciclarPorAutor.feature" />
     <None Include="Accion\ObtenerAccionReciclarPorFecha.feature" />
     <None Include="Accion\ObtenerAccionWebPorTipoAccion.feature" />
     <None Include="Accion\ObtenerTiposAccion.feature" />
