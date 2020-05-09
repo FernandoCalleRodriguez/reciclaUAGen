@@ -50,5 +50,9 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebE
 
 
 int BuscarTodosCount ();
+
+
+void Destroy (int id
+              );
 }
 }

@@ -38,5 +38,9 @@ ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN BuscarPorCorreo (stri
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN> BuscarNoBorrados ();
+
+
+void Destroy (int id
+              );
 }
 }

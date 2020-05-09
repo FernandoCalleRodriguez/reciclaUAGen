@@ -457,5 +457,29 @@ public int BuscarTodosCount ()
 
         return result;
 }
+public void Destroy (int id
+                     )
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), id);
+                session.Delete (usuarioWebEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioWebCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

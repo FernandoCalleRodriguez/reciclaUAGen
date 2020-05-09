@@ -339,5 +339,29 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
 
         return result;
 }
+public void Destroy (int id
+                     )
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), id);
+                session.Delete (usuarioAdministradorEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioAdministradorCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

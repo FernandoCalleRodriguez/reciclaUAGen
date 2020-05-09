@@ -75,5 +75,10 @@ public int BuscarTodosCount ()
 {
         return _IUsuarioWebCAD.BuscarTodosCount ();
 }
+public void Destroy (int id
+                     )
+{
+        _IUsuarioWebCAD.Destroy (id);
+}
 }
 }

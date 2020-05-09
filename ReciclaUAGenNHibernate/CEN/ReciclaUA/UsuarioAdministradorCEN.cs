@@ -63,5 +63,10 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Usua
 {
         return _IUsuarioAdministradorCAD.BuscarNoBorrados ();
 }
+public void Destroy (int id
+                     )
+{
+        _IUsuarioAdministradorCAD.Destroy (id);
+}
 }
 }
