@@ -3,7 +3,7 @@
 	Como usuario no autenticado
 	Quiero obtener el nuevo usuario
 
-@mytag
+@CrearUsuarioWeb
 Scenario: Test crearUsuarioWeb
 	Given No existe un usuario
 		| nombre | apellidos | email      | pass |

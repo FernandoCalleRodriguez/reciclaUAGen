@@ -13,6 +13,8 @@ namespace TestsGherkin.UsuarioWeb
         IList<UsuarioWebEN> usuarios;
         public static UsuarioWebCEN usuarioCEN = new UsuarioWebCEN();
         public static int id;
+        public static int id_creado;
+
 
 
         [Before(tags: "BuscarNoBorrados")]
@@ -25,6 +27,15 @@ namespace TestsGherkin.UsuarioWeb
                 id = usuarioCEN.BuscarPorCorreo("usuarioweb@ua.es").Id;
 
             }
+
+            id_creado = id;
+        }
+
+
+        [After(tags: "BuscarNoBorrados")]
+        public static void CleanData()
+        {
+            usuarioCEN.Destroy(id_creado);
 
         }
 

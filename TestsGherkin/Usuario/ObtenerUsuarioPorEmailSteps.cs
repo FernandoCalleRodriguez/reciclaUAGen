@@ -22,13 +22,15 @@ namespace TestsGherkin.PruebasAceptacion
         {
             Console.WriteLine("Init");
             id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
-            if (id == -1)
-            {
-                id = adminCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
-            }
         }
 
+        [After(tags: "ObtenerUsuarioPorEmail")]
+        public static void CleanData()
+        {
+            adminCEN.Destroy(id);
+
+        }
 
         [Given(@"Hay un usuario con email ""(.*)""")]
         public void GivenHayUnUsuarioConEmail(string p0)

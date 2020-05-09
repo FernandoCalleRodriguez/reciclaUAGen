@@ -95,13 +95,13 @@ namespace TestsGherkin.UsuarioWeb
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cambiar contraseña existe usuario")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CambiarPassword")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Cambiarâssword")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Cambiarpassword")]
         public virtual void CambiarContrasenaExisteUsuario()
         {
             string[] tagsOfScenario = new string[] {
-                    "Cambiarâssword"};
+                    "Cambiarpassword"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cambiar contraseña existe usuario", null, new string[] {
-                        "Cambiarâssword"});
+                        "Cambiarpassword"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -141,13 +141,13 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cambiar contraseña no existe usuario")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CambiarPassword")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Cambiarâssword")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Cambiarpassword")]
         public virtual void CambiarContrasenaNoExisteUsuario()
         {
             string[] tagsOfScenario = new string[] {
-                    "Cambiarâssword"};
+                    "Cambiarpassword"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cambiar contraseña no existe usuario", null, new string[] {
-                        "Cambiarâssword"});
+                        "Cambiarpassword"});
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

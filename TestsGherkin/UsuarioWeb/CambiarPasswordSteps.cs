@@ -10,16 +10,33 @@ namespace TestsGherkin.UsuarioWeb
     public class CambiarPasswordSteps
     {
 
-        UsuarioWebCEN usuarioCEN;
+        public static UsuarioWebCEN usuarioCEN = new UsuarioWebCEN();
         UsuarioWebEN usuario;
         string newPass;
-        int id;
+        public static int id;
+        public static int id_creado;
+
+
+        [Before(tags: "Cambiarpassword")]
+        public static void InitializeData()
+        {
+            Console.WriteLine("Init");
+            id = usuarioCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            id_creado = id;
+
+        }
+
+        [After(tags: "Cambiarpassword")]
+        public static void CleanData()
+        {
+            usuarioCEN.Destroy(id_creado);
+
+        }
 
         [Given(@"Hay un usuario con id (.*)")]
         public void GivenHayUnUsuarioConId(int p0)
         {
             usuarioCEN = new UsuarioWebCEN();
-            this.id = Convert.ToInt32(p0);
             this.newPass = "new_pass";
         }
 
@@ -27,7 +44,7 @@ namespace TestsGherkin.UsuarioWeb
         public void GivenNoExisteElWebUsuario(int p0)
         {
             usuarioCEN = new UsuarioWebCEN();
-            this.id = Convert.ToInt32(p0);
+            id = Convert.ToInt32(p0);
             this.newPass = "new_pass";
         }
 

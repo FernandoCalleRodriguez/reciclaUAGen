@@ -9,9 +9,17 @@ namespace TestsGherkin.UsuarioWeb
     [Binding]
     public class CrearUsuarioWebSteps
     {
-        ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioCEN usuarioCEN;
+        public static ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioWebCEN usuarioCEN = new ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioWebCEN();
         UsuarioEN usuarioCrear;
-        int id;
+        public static int id;
+
+        [After(tags: "CrearUsuarioWeb")]
+        public static void CleanData()
+
+        {
+            usuarioCEN.Destroy(id);
+
+        }
 
         [Given(@"No existe un usuario")]
         public void GivenNoExisteUnUsuario(Table table)
@@ -20,7 +28,6 @@ namespace TestsGherkin.UsuarioWeb
         {
             usuarioCrear = new UsuarioEN();
             var usuarios = table.CreateSet<UsuarioEN>();
-            usuarioCEN = new ReciclaUAGenNHibernate.CEN.ReciclaUA.UsuarioCEN();
 
             foreach (UsuarioEN usuario in usuarios)
             {
@@ -33,6 +40,7 @@ namespace TestsGherkin.UsuarioWeb
 
             }
         }
+
 
         [When(@"Creo el usuario")]
         public void WhenCreoElUsuario()

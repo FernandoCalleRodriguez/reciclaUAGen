@@ -95,13 +95,13 @@ namespace TestsGherkin.UsuarioWeb
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test verificarEmail")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "VerificarEmail")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("VerificarEmail")]
         public virtual void TestVerificarEmail()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "VerificarEmail"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test verificarEmail", null, new string[] {
-                        "mytag"});
+                        "VerificarEmail"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

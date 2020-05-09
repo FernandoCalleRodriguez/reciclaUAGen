@@ -12,6 +12,7 @@ namespace TestsGherkin.UsuarioAdmin
         public static UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN();
         UsuarioAdministradorEN usuario;
         public static int id;
+        public static int id_creado;
 
         [Before(tags: "ModificarUsuario")]
         public static void InitializeData()
@@ -23,8 +24,15 @@ namespace TestsGherkin.UsuarioAdmin
                 id = adminCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
             }
+            id_creado = id;
         }
 
+        [After(tags: "ModificarUsuario")]
+        public static void CleanData()
+        {
+            adminCEN.Destroy(id_creado);
+
+        }
         [Given(@"Existe un usuario")]
         public void GivenExisteUnUsuario()
         {
