@@ -21,16 +21,16 @@ public partial class UsuarioWebCEN
 {
 public void VerificarEmail (int p_UsuarioWeb_OID)
 {
-            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_verificarEmail) ENABLED START*/
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_verificarEmail) ENABLED START*/
 
-            UsuarioWebEN resp = _IUsuarioWebCAD.BuscarPorId(p_UsuarioWeb_OID);
+        UsuarioWebEN resp = _IUsuarioWebCAD.BuscarPorId (p_UsuarioWeb_OID);
 
-            resp.EmailVerificado = true;
+        resp.EmailVerificado = true;
 
 
-            _IUsuarioWebCAD.Modificar(resp);
+        _IUsuarioWebCAD.Modificar (resp);
 
-            /*PROTECTED REGION END*/
-        }
+        /*PROTECTED REGION END*/
+}
 }
 }
