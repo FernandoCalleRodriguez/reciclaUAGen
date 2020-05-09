@@ -30,7 +30,7 @@ namespace TestsGherkin.Zonas.Punto
         [When(@"Creo el Punto")]
         public void WhenCreoElPunto()
         {
-            id = puntoReciclajeCEN.Crear(12, 12, -1, "0500PB001");
+            id = puntoReciclajeCEN.Crear(12, 12, -1, null);
         }
 
         [Then(@"Se Creo el Punto")]

@@ -15,7 +15,7 @@ namespace TestsGherkin.Zonas.Punto
         public static void InitializeData()
         {
             puntoReciclajeCEN = new PuntoReciclajeCEN();
-            punto_id = puntoReciclajeCEN.Crear(12, 12, -1, "0500PB001");
+            punto_id = puntoReciclajeCEN.Crear(12, 12, -1, null);
 
         }
         

@@ -19,10 +19,7 @@ namespace TestsGherkin.Zonas.Contenedor
         public static void InitializeData()
         {
             contenedorCEN = new ContenedorCEN();
-            foreach (var item in contenedorCEN.BuscarTodos(0,-1))
-            {
-                contenedorCEN.Borrar(item.Id);
-            }
+           
             id_contenedor = new ContenedorCEN().Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, -1);
 
         }

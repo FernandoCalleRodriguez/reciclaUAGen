@@ -19,7 +19,7 @@ namespace TestsGherkin.Zonas.Punto
         public static void InitializeData()
         {
            
-                punto_id = new PuntoReciclajeCEN().Crear(12, 12, -1, "0500PB001");
+                punto_id = new PuntoReciclajeCEN().Crear(12, 12, -1, null);
                 contenedor_id = new ContenedorCEN().Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, punto_id);
            
         }
