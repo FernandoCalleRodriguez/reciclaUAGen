@@ -19,22 +19,18 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class UsuarioWebCEN
 {
-public void VerificarEmail (int p_UsuarioWeb_OID, bool p_EmailVerificado)
+public void VerificarEmail (int p_UsuarioWeb_OID)
 {
-        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_verificarEmail_customized) ENABLED START*/
+            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_UsuarioWeb_verificarEmail) ENABLED START*/
 
-        UsuarioWebEN usuarioWebEN = null;
+            UsuarioWebEN resp = _IUsuarioWebCAD.BuscarPorId(p_UsuarioWeb_OID);
 
-        //Initialized UsuarioWebEN
-        usuarioWebEN = new UsuarioWebEN ();
-        usuarioWebEN.Id = p_UsuarioWeb_OID;
-        usuarioWebEN.EmailVerificado = p_EmailVerificado;
+            resp.EmailVerificado = true;
 
-        //Call to UsuarioWebCAD
 
-        _IUsuarioWebCAD.VerificarEmail (usuarioWebEN);
+            _IUsuarioWebCAD.Modificar(resp);
 
-        /*PROTECTED REGION END*/
-}
+            /*PROTECTED REGION END*/
+        }
 }
 }

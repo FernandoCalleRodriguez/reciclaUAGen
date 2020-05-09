@@ -199,9 +199,7 @@ public HttpResponseMessage VerificarEmail (int idUsuarioWebNoRegistrado, [FromBo
                 usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
 
                 // Modify
-                usuarioWebCEN.VerificarEmail (idUsuarioWebNoRegistrado,
-                        dto.EmailVerificado
-                        );
+                usuarioWebCEN.VerificarEmail (idUsuarioWebNoRegistrado, );
 
                 // Return modified object
                 returnValue = UsuarioWebNoRegistradoAssembler.Convert (usuarioWebNoRegistradoRESTCAD.ReadOIDDefault (idUsuarioWebNoRegistrado), session);

@@ -286,6 +286,11 @@
 		<Compile Include="Assemblers\UsuarioAdminRecuperarPassAssembler.cs" />
 		<Compile Include="Controllers\UsuarioAdminRecuperarPassController.cs" />
 		
+		<Compile Include="CAD\UsuarioWebVerificarCuentaRESTCAD.cs" />
+		<Compile Include="DTOA\UsuarioWebVerificarCuentaDTOA.cs" />
+		<Compile Include="Assemblers\UsuarioWebVerificarCuentaAssembler.cs" />
+		<Compile Include="Controllers\UsuarioWebVerificarCuentaController.cs" />
+		
 	
 	
 	
