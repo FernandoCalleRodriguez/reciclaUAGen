@@ -94,13 +94,13 @@ namespace TestsGherkin.Zonas.Punto
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar Punto existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeletePunto")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("DeletePuntoExists")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("DeletePunto")]
         public virtual void BorrarPuntoExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "DeletePuntoExists"};
+                    "DeletePunto"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar Punto existente", null, new string[] {
-                        "DeletePuntoExists"});
+                        "DeletePunto"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -137,13 +137,13 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Borrar Punto no existente")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeletePunto")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("DeletePuntoDoesntExists")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("DeletePunto")]
         public virtual void BorrarPuntoNoExistente()
         {
             string[] tagsOfScenario = new string[] {
-                    "DeletePuntoDoesntExists"};
+                    "DeletePunto"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Borrar Punto no existente", null, new string[] {
-                        "DeletePuntoDoesntExists"});
+                        "DeletePunto"});
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -11,7 +11,7 @@ namespace TestsGherkin.Zonas.Punto
         public static int punto_id;
         public static  PuntoReciclajeCEN puntoReciclajeCEN;
         
-        [Before(tags: "DeletePuntoExists")]
+        [Before(tags: "DeletePunto")]
         public static void InitializeData()
         {
             puntoReciclajeCEN = new PuntoReciclajeCEN();

@@ -44,8 +44,6 @@ namespace TestsGherkin.Zonas.Edificio
         {
             edificioCEN = new EdificioCEN();
             plantaCEN = new PlantaCEN();
-
-            id_planta = -1;
         }
 
         [When(@"Busco el edificio por ese planta")]
@@ -60,7 +58,7 @@ namespace TestsGherkin.Zonas.Edificio
         {
             try
             {
-                edificio = edificioCEN.BuscarEdificioPorPlanta(id_planta);
+                edificio = edificioCEN.BuscarEdificioPorPlanta(-1);
                 Assert.Fail();
             }
             catch (Exception)

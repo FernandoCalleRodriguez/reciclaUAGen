@@ -11,8 +11,9 @@ namespace TestsGherkin
     [Binding]
     public class GetMaterialSteps
     {
-        MaterialCEN materialCEN;
+        public static MaterialCEN materialCEN;
         IList<MaterialEN> materiales = new List<MaterialEN>();
+        public static int id1, id2;
 
         [Before(tags: "GetMaterial")]
         public static void InitializeData()
@@ -28,8 +29,15 @@ namespace TestsGherkin
                 Contenedor = TipoContenedorEnum.cristal,
                 Nombre = "Contenedor 2"
             };
-            int id1 = new MaterialCEN().Crear(material.Nombre, material.Contenedor, -1);
-            int id2 = new MaterialCEN().Crear(material2.Nombre, material2.Contenedor, -1);
+            id1 = new MaterialCEN().Crear(material.Nombre, material.Contenedor, -1);
+            id2 = new MaterialCEN().Crear(material2.Nombre, material2.Contenedor, -1);
+        }
+
+        [After(tags: "GetMaterial")]
+        public static void CleanData()
+        {
+            materialCEN.Borrar(id1);
+            materialCEN.Borrar(id2);
         }
 
 

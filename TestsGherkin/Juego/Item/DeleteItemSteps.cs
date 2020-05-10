@@ -36,12 +36,12 @@ namespace TestsGherkin.Juego.Item
             };
             itemId = new ItemCEN().Crear(item.Nombre, item.Descripcion, item.Imagen, -1, idMaterial);
         }
-        //[After(tags: "DeleteItemExists")]
-        //public static void CleanData()
-        //{
-        //    new MaterialCEN().Borrar(idMaterial);
-        //    itemCEN.Borrar(itemId);
-        //}
+
+        [After(tags: "DeleteItemExists")]
+        public static void CleanData()
+        {
+            new MaterialCEN().Borrar(idMaterial);
+        }
 
 
         [Given(@"Hay un Item con un id especifico")]

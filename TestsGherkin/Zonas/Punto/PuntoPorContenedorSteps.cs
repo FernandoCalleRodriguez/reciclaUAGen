@@ -31,9 +31,9 @@ namespace TestsGherkin.Zonas.Punto
             {
                 contenedorCEN.Borrar(contenedor_id);
                 puntoCEN.Borrar(punto_id);
-
             }
         }
+
         [Given(@"Hay un punto de una contenedor especifica")]
         public void GivenHayUnPuntoDeUnaContenedorEspecifica()
         {
@@ -46,7 +46,6 @@ namespace TestsGherkin.Zonas.Punto
         {
             puntoCEN = new PuntoReciclajeCEN();
             contenedorCEN = new ContenedorCEN();
-            contenedor_id = -1;
         }
 
         [When(@"Busco el punto por ese contenedor")]
@@ -60,7 +59,7 @@ namespace TestsGherkin.Zonas.Punto
         {
             try
             {
-                puntoReciclaje = puntoCEN.BuscarPuntoPorContenedor(contenedor_id);
+                puntoReciclaje = puntoCEN.BuscarPuntoPorContenedor(-1);
                 Assert.Fail();
             }
             catch (Exception)

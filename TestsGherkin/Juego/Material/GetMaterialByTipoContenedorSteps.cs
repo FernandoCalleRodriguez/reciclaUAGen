@@ -15,6 +15,8 @@ namespace TestsGherkin
         public static MaterialCEN materialCEN;
         public static IList<MaterialEN> materiales = new List<MaterialEN>();
         public static int materialId = -1;
+        public static int id1, id2;
+
         [Before(tags: "GetMaterialByTipoContenedor")]
         public static void InitializeData()
         {
@@ -28,20 +30,18 @@ namespace TestsGherkin
                 Contenedor = TipoContenedorEnum.papel,
                 Nombre = "Contenedor 2"
             };
-            int id1 = new MaterialCEN().Crear(material.Nombre, material.Contenedor, -1);
-            int id2 = new MaterialCEN().Crear(material2.Nombre, material2.Contenedor, -1);
+            id1 = new MaterialCEN().Crear(material.Nombre, material.Contenedor, -1);
+            id2 = new MaterialCEN().Crear(material2.Nombre, material2.Contenedor, -1);
 
         }
 
         [After(tags: "GetMaterialByTipoContenedor")]
         public static void CleanData()
         {
-            foreach (var item in materiales)
-            {
-                materialCEN.Borrar(item.Id);
-
-            }
+            materialCEN.Borrar(id1);
+            materialCEN.Borrar(id2);
         }
+
         [Given(@"Tengo materiales de un TipoContenedor específico")]
         public void GivenTengoMaterialesDeUnTipoContenedorEspecifico()
         {

@@ -214,7 +214,6 @@
     <Compile Include="Usuario\LoginSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario\ObtenerUsuarioPorEmailSteps.cs" />
-    <Compile Include="UsuarioWeb\VerificarEmailSteps.cs" />
     <Compile Include="Validacion\DescartarItemSteps.cs" />
     <Compile Include="Validacion\DescartarMaterialSteps.cs" />
     <Compile Include="Validacion\DescartarPuntoSteps.cs" />
@@ -285,7 +284,6 @@
     <None Include="UsuarioWeb\BuscarNoBorrados.feature" />
     <None Include="UsuarioWeb\CambiarPassword.feature" />
     <None Include="UsuarioWeb\CrearUsuarioWeb.feature" />
-    <None Include="UsuarioWeb\VerificarEmail.feature" />
     <None Include="Usuario\login.feature" />
     <None Include="Usuario\ObtenerUsuarioPorEmail.feature" />
     <None Include="packages.config" />

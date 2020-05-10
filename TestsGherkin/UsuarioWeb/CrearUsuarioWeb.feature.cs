@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table10.AddRow(new string[] {
                             "usu",
                             "2",
-                            "usu2@ua.es",
+                            "213sdal213test@ua.es",
                             "usu2"});
 #line 8
  testRunner.Given("No existe un usuario", ((string)(null)), table10, "Given ");

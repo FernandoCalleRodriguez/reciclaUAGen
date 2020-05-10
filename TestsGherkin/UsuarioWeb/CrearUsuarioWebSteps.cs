@@ -18,13 +18,10 @@ namespace TestsGherkin.UsuarioWeb
 
         {
             usuarioCEN.Destroy(id);
-
         }
 
         [Given(@"No existe un usuario")]
         public void GivenNoExisteUnUsuario(Table table)
-        
-        
         {
             usuarioCrear = new UsuarioEN();
             var usuarios = table.CreateSet<UsuarioEN>();
@@ -35,9 +32,6 @@ namespace TestsGherkin.UsuarioWeb
                 usuarioCrear.Pass = usuario.Pass; 
                 usuarioCrear.Nombre = usuario.Nombre; 
                 usuarioCrear.Apellidos = usuario.Apellidos;
-
-
-
             }
         }
 

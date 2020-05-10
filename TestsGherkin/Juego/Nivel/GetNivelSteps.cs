@@ -13,47 +13,27 @@ namespace TestsGherkin.Juego.Nivel
     {
         public static IList<NivelEN> niveles;
         public static NivelCEN nivelCEN;
+        public static int id;
 
 
         [Before(tags: "GetNivel")]
         public static void InitializeData()
         {
-            ItemEN item = new ItemEN()
-            {
-                Nombre = "item",
-                Descripcion = "description",
-                Imagen = "image file path",
-                EsValido = EstadoEnum.enProceso
-            };
-            ItemEN item2 = new ItemEN()
-            {
-                Nombre = "item2",
-                Descripcion = "description2",
-                Imagen = "image file path2",
-                EsValido = EstadoEnum.enProceso
-            };
-            List<ItemEN> items = new List<ItemEN>();
-            items.Add(item);
             Console.WriteLine("Init");
             NivelEN nivel = new NivelEN()
             {
-                Item = items,
                 Numero = 1,
                 Puntuacion = 1
             };
-            new NivelCEN().Crear(nivel.Numero, nivel.Puntuacion);
+            id = new NivelCEN().Crear(nivel.Numero, nivel.Puntuacion);
         }
 
         [After(tags: "GetNivel")]
         public static void CleanData()
         {
-            foreach (var item in niveles)
-            {
-                nivelCEN.Borrar(item.Id);
-
-            }
-
+            nivelCEN.Borrar(id);
         }
+
         [Given(@"tengo niveles")]
         public void GivenTengoNiveles()
         {

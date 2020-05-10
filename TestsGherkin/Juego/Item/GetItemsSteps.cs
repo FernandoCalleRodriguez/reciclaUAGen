@@ -14,6 +14,8 @@ namespace TestsGherkin.Juego.Item
         public static ItemCEN itemCEN;
         public static IList<ItemEN> items = new List<ItemEN>();
         public static int idMaterial;
+        public static int itemId1, itemId2;
+
         [Before(tags: "GetItems")]
         public static void InitializeData()
         {
@@ -32,7 +34,7 @@ namespace TestsGherkin.Juego.Item
                 Imagen = "image file path",
                 EsValido = EstadoEnum.enProceso
             };
-            int itemId = new ItemCEN().Crear(item.Nombre, item.Descripcion, item.Imagen, -1, idMaterial);
+            itemId1 = new ItemCEN().Crear(item.Nombre, item.Descripcion, item.Imagen, -1, idMaterial);
             item = new ItemEN()
             {
                 Nombre = "item2",
@@ -40,19 +42,18 @@ namespace TestsGherkin.Juego.Item
                 Imagen = "image file path2",
                 EsValido = EstadoEnum.descartado
             };
-            itemId = new ItemCEN().Crear(item.Nombre, item.Descripcion, item.Imagen, -1, idMaterial);
+            itemId2 = new ItemCEN().Crear(item.Nombre, item.Descripcion, item.Imagen, -1, idMaterial);
 
         }
 
         [After(tags: "GetItems")]
         public static void CleanData()
         {
-
-            foreach (var item in items)
-            {
-                itemCEN.Borrar(item.Id);
-            }
+            new MaterialCEN().Borrar(idMaterial);
+            itemCEN.Borrar(itemId1);
+            itemCEN.Borrar(itemId2);
         }
+
         [Given(@"tengo Items")]
         public void GivenTengoItems()
         {
