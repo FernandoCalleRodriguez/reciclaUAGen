@@ -50,19 +50,15 @@ namespace TestsGherkin.Accion
         {
             //
         }
-        
         [When(@"Obtengo las acciones de reciclaje")]
         public void WhenObtengoLasAccionesDeReciclaje()
         {
-            acciones = accionReciclarCEN.BuscarTodos(0,-1);
         }
-        
         [Then(@"Obtengo la lista de las acciones de reciclaje")]
         public void ThenObtengoLaListaDeLasAccionesDeReciclaje()
         {
             Assert.IsTrue(acciones.Count > 0);
         }
-        
         [Then(@"No obtengo la lista de las acciones de reciclaje")]
         public void ThenNoObtengoLaListaDeLasAccionesDeReciclaje()
         {
