@@ -41,7 +41,7 @@ namespace TestsGherkin
         [When(@"Cambio el usuario a verificado")]
         public void WhenCambioElUsuarioAVerificado()
         {
-            usuarioCEN.VerificarEmail(id, true);
+            usuarioCEN.VerificarEmail(id);
             usuario = usuarioCEN.BuscarPorId(id);
 
         }
