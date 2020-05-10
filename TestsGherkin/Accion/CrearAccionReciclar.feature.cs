@@ -130,6 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Quiero crear una nueva accion de reciclaje", ((string)(null)), table1, "Given ");
 #line hidden
 #line 11
+ testRunner.And("Logueado con el usuario -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.When("Creo la accion de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

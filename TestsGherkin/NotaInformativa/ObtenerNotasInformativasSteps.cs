@@ -30,6 +30,8 @@ namespace TestsGherkin.NotaInformativa
                 Cuerpo = "Cuerpo de nota informativa TEST 2",
             };
 
+            notaId = notaCEN.Crear(-1, nota.Titulo, nota.Cuerpo);
+            notaId2 = notaCEN.Crear(-1, nota2.Titulo, nota2.Cuerpo);
         }
 
         [After(tags: "ObtenerNotasInformativas")]

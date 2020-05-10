@@ -8,5 +8,6 @@ Scenario: Crear una nueva nota informativa
 	Given Quiero crear una nueva nota informativa que contenga
 		| titulo         | cuerpo      |
 		| Titulo de nota informativa | Cuerpo de nota informativa |
+	And Logueado con el usuario admin -1
 	When Creo la nota informativa
 	Then Obtengo la nueva nota informativa

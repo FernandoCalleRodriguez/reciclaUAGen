@@ -8,5 +8,6 @@ Scenario: Crear una nueva accion de reciclaje
 	Given Quiero crear una nueva accion de reciclaje
 		| cantidad | 
 		| 300 | 
+	And Logueado con el usuario -1
 	When Creo la accion de reciclaje
 	Then Obtengo la accion de reciclaje
