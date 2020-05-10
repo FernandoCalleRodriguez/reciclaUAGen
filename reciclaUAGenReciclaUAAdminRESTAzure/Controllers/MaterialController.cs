@@ -744,8 +744,14 @@ public HttpResponseMessage DescartarMaterial (int p_oid)
 
 
 
-/*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_MaterialControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
-/*PROTECTED REGION END*/
-}
+        /*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_MaterialControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
+        [HttpGet]
+        [Route("~/api/Material/MaterialCount")]
+        public int MaterialCount()
+        {
+            return new MaterialCEN().BuscarTodos(0, -1).Count();
+        }
+        /*PROTECTED REGION END*/
+    }
 }

@@ -834,6 +834,13 @@ public bool RemoveImage (int id, string imageName)
         return true;
 }
 
-/*PROTECTED REGION END*/
-}
+        [HttpGet]
+        [Route("~/api/Item/ItemCount")]
+        public int NivelCount()
+        {
+            return new ItemCEN().BuscarTodos(0, -1).Count();
+        }
+
+        /*PROTECTED REGION END*/
+    }
 }
