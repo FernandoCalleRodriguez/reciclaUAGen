@@ -21,8 +21,10 @@ namespace TestsGherkin.Accion
         [Before(tags: "CrearNuevaAccionReciclaje")]
         public static void InitializeData()
         {
+            //contenedorId = contenedorCEN.Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, 360448);
+            //itemId = 196608;
+
             contenedorId = contenedorCEN.Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, -1);
-            // itemId = 196608;
         }
 
         [After(tags: "CrearNuevaAccionReciclaje")]

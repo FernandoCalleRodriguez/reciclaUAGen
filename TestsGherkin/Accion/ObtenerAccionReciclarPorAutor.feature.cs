@@ -127,7 +127,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tengo acciones de reciclaje con el autor indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("Obtengo las acciones de reciclaje con el autor 32769", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("Obtengo la lista de las acciones de reciclaje con el autor indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -170,7 +169,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("No tengo acciones de reciclaje con el autor indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("Obtengo las acciones de reciclaje con el autor 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
  testRunner.Then("No obtengo la lista de las acciones de reciclaje con el autor indicado", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

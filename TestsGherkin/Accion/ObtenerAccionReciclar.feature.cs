@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TestsGherkin.NotaInformativa
+namespace TestsGherkin.Accion
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace TestsGherkin.NotaInformativa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class ModificarNotaInformativaFeature
+    public partial class ObtenerAccionReciclarFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace TestsGherkin.NotaInformativa
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "ModificarNotaInformativa.feature"
+#line 1 "ObtenerAccionReciclar.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace TestsGherkin.NotaInformativa
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ModificarNotaInformativa", "\tPara modificiar una nota informativa\r\n\tComo usuario admin\r\n\tQuiero cambiar el co" +
-                    "ntenido de la nota informativa", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ObtenerAccionReciclar", "\tPara obtener todas las acciones de reciclaje \r\n\tComo usuario\r\n\tQuiero obtener un" +
+                    "a lista de todas las acciones de reciclaje ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace TestsGherkin.NotaInformativa
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "ModificarNotaInformativa")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "ObtenerAccionReciclar")))
             {
-                global::TestsGherkin.NotaInformativa.ModificarNotaInformativaFeature.FeatureSetup(null);
+                global::TestsGherkin.Accion.ObtenerAccionReciclarFeature.FeatureSetup(null);
             }
         }
         
@@ -93,15 +93,15 @@ namespace TestsGherkin.NotaInformativa
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Modificar una nota informativa existente")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ModificarNotaInformativa")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ModificarNotaInformativaExistente")]
-        public virtual void ModificarUnaNotaInformativaExistente()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Existen acciones de reciclaje")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionReciclar")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesReciclarExistentes")]
+        public virtual void ExistenAccionesDeReciclaje()
         {
             string[] tagsOfScenario = new string[] {
-                    "ModificarNotaInformativaExistente"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Modificar una nota informativa existente", null, new string[] {
-                        "ModificarNotaInformativaExistente"});
+                    "ObtenerAccionesReciclarExistentes"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Existen acciones de reciclaje", null, new string[] {
+                        "ObtenerAccionesReciclarExistentes"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -122,38 +122,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                            "titulo",
-                            "cuerpo"});
-                table8.AddRow(new string[] {
-                            "Titulo de nota informativa modificada",
-                            "Cuerpo de nota informativa modificada"});
 #line 8
- testRunner.Given("Quiero modificar una nota informativa con la siguiente informacion", ((string)(null)), table8, "Given ");
+ testRunner.Given("Tengo acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 9
+ testRunner.When("Obtengo las acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.When("Modifico la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
- testRunner.Then("Obtengo la nueva nota informativa modificada", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.Then("Obtengo la lista de las acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Modificar una nota informativa no existente")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ModificarNotaInformativa")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ModificarNotaInformativaNoExistente")]
-        public virtual void ModificarUnaNotaInformativaNoExistente()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No existen acciones de reciclaje")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ObtenerAccionReciclar")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ObtenerAccionesReciclarNoExistentes")]
+        public virtual void NoExistenAccionesDeReciclaje()
         {
             string[] tagsOfScenario = new string[] {
-                    "ModificarNotaInformativaNoExistente"};
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Modificar una nota informativa no existente", null, new string[] {
-                        "ModificarNotaInformativaNoExistente"});
-#line 16
+                    "ObtenerAccionesReciclarNoExistentes"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No existen acciones de reciclaje", null, new string[] {
+                        "ObtenerAccionesReciclarNoExistentes"});
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -173,22 +165,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                            "titulo",
-                            "cuerpo"});
-                table9.AddRow(new string[] {
-                            "Titulo de nota informativa modificada",
-                            "Cuerpo de nota informativa modificada"});
-#line 17
- testRunner.Given("Quiero modificar una nota informativa no existente con la siguiente informacion", ((string)(null)), table9, "Given ");
+#line 14
+ testRunner.Given("No tengo acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 15
+ testRunner.When("Obtengo las acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
- testRunner.When("Modifico la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.Then("No se puede modificar la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Then("No obtengo la lista de las acciones de reciclaje", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
