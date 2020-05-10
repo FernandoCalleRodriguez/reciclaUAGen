@@ -77,43 +77,5 @@ public System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int 
         list = _IEstanciaCAD.BuscarTodos (first, size);
         return list;
 }
-public string Crear (string p_id, string p_actividad, double p_latitud, double p_longitud, string p_nombre, int p_edificio, int p_planta)
-{
-        EstanciaEN estanciaEN = null;
-        string oid;
-
-        //Initialized EstanciaEN
-        estanciaEN = new EstanciaEN ();
-        estanciaEN.Id = p_id;
-
-        estanciaEN.Actividad = p_actividad;
-
-        estanciaEN.Latitud = p_latitud;
-
-        estanciaEN.Longitud = p_longitud;
-
-        estanciaEN.Nombre = p_nombre;
-
-
-        if (p_edificio != -1) {
-                // El argumento p_edificio -> Property edificio es oid = false
-                // Lista de oids id
-                estanciaEN.Edificio = new ReciclaUAGenNHibernate.EN.ReciclaUA.EdificioEN ();
-                estanciaEN.Edificio.Id = p_edificio;
-        }
-
-
-        if (p_planta != -1) {
-                // El argumento p_planta -> Property planta es oid = false
-                // Lista de oids id
-                estanciaEN.Planta = new ReciclaUAGenNHibernate.EN.ReciclaUA.PlantaEN ();
-                estanciaEN.Planta.Id = p_planta;
-        }
-
-        //Call to EstanciaCAD
-
-        oid = _IEstanciaCAD.Crear (estanciaEN);
-        return oid;
-}
 }
 }

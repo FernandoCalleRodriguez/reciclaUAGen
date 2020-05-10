@@ -144,6 +144,8 @@ public HttpResponseMessage BuscarPorId (string idEstancia)
 
 
 
+
+
 [HttpPost]
 
 
@@ -224,8 +226,6 @@ public HttpResponseMessage Crear ( [FromBody] EstanciaDTO dto)
 
         return response;
 }
-
-
 
 
 

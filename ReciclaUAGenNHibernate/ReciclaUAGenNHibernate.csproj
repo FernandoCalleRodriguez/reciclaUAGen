@@ -387,6 +387,7 @@
 			
 			
 			
+			<Compile Include="CEN\ReciclaUA\EstanciaCEN_Crear.cs" />
 			
 	<Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
 	<Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />
