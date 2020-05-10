@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace TestsGherkin.Accion
 {
     [Binding]
-    public class ObtenerAccionReciclarPorFechaSteps
+    public class ObtenerAccionReciclarSteps
     {
         public static AccionReciclarCEN accionReciclarCEN = new AccionReciclarCEN();
         public static AccionReciclarEN accionReciclar = new AccionReciclarEN();
@@ -19,52 +19,52 @@ namespace TestsGherkin.Accion
         public static int accionReciclarId = -1;
         public static int cantidad;
         public static int user;
-        public static DateTime fechaActual;
 
-        [Before(tags: "ObtenerAccionesReciclarPorFecha")]
+        [Before(tags: "@ObtenerAccionesReciclarExistentes")]
         public static void InitializeData()
         {
             contenedorId = contenedorCEN.Crear(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum.cristal, -1);
             itemId = -1;
             user = -1;
-            fechaActual = DateTime.Now;
 
-            accionReciclarId = accionReciclarCEN.Crear(user, fechaActual, contenedorId, itemId, cantidad);
+            accionReciclarId = accionReciclarCEN.Crear(user, DateTime.Now, contenedorId, itemId, cantidad);
         }
 
-        [After(tags: "ObtenerAccionesReciclarPorFecha")]
+
+        [After(tags: "ObtenerAccionesReciclarExistentes")]
         public static void CleanData()
         {
             accionReciclarCEN.Borrar(accionReciclarId);
             contenedorCEN.Borrar(contenedorId);
         }
 
-        [Given(@"Tengo acciones de reciclaje con la fecha indicada")]
-        public void GivenTengoAccionesDeReciclajeConLaFechaIndicada()
-        {
-           //
-        }
-        
-        [Given(@"No tengo acciones de reciclaje con la fecha indicada")]
-        public void GivenNoTengoAccionesDeReciclajeConLaFechaIndicada()
+        [Given(@"Tengo acciones de reciclaje")]
+        public void GivenTengoAccionesDeReciclaje()
         {
             //
         }
-        
-        [When(@"Obtengo las acciones de reciclaje con la fecha")]
-        public void WhenObtengoLasAccionesDeReciclajeConLaFecha(Table table)
+
+
+        [Given(@"No tengo acciones de reciclaje")]
+        public void GivenNoTengoAccionesDeReciclaje()
         {
-            acciones = accionReciclarCEN.BuscarPorFecha(fechaActual);
+            //
         }
-        
-        [Then(@"Obtengo la lista de las acciones de reciclaje con la fecha indicada")]
-        public void ThenObtengoLaListaDeLasAccionesDeReciclajeConLaFechaIndicada()
+
+        [When(@"Obtengo las acciones de reciclaje")]
+        public void WhenObtengoLasAccionesDeReciclaje()
+        {
+            acciones = accionReciclarCEN.BuscarTodos(0, -1);
+        }
+
+        [Then(@"Obtengo la lista de las acciones de reciclaje")]
+        public void ThenObtengoLaListaDeLasAccionesDeReciclaje()
         {
             Assert.IsTrue(acciones.Count > 0);
         }
-        
-        [Then(@"No obtengo la lista de las acciones de reciclaje con la fecha indicada")]
-        public void ThenNoObtengoLaListaDeLasAccionesDeReciclajeConLaFechaIndicada()
+
+        [Then(@"No obtengo la lista de las acciones de reciclaje")]
+        public void ThenNoObtengoLaListaDeLasAccionesDeReciclaje()
         {
             Assert.IsTrue(acciones.Count == 0);
         }

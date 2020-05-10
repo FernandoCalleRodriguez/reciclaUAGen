@@ -163,6 +163,7 @@
     <Compile Include="Accion\CrearAccionReciclarSteps.cs" />
     <Compile Include="Accion\CrearTipoAccionSteps.cs" />
     <Compile Include="Accion\ObtenerAccionReciclarPorFechaSteps.cs" />
+    <Compile Include="Accion\ObtenerAccionReciclarSteps.cs" />
     <Compile Include="Accion\ObtenerAccionWebPorTipoAccionSteps.cs" />
     <Compile Include="Accion\ObtenerTiposAccionSteps.cs" />
     <Compile Include="Foro\DesmarcarRespuestaCorrectaSteps.cs" />
@@ -250,6 +251,7 @@
     <None Include="Accion\BorrarAccionWeb.feature" />
     <None Include="Accion\CrearAccionReciclar.feature" />
     <None Include="Accion\CrearTipoAccion.feature" />
+    <None Include="Accion\ObtenerAccionReciclar.feature" />
     <None Include="Accion\ObtenerAccionReciclarPorFecha.feature" />
     <None Include="Accion\ObtenerAccionWebPorTipoAccion.feature" />
     <None Include="Accion\ObtenerTiposAccion.feature" />

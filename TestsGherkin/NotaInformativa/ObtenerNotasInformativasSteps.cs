@@ -24,20 +24,14 @@ namespace TestsGherkin.NotaInformativa
                 Cuerpo = "Cuerpo de nota informativa TEST",
             };
 
-            nota.UsuarioAdministrador = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN();
-            nota.UsuarioAdministrador.Id = 32768;
-
             NotaInformativaEN nota2 = new NotaInformativaEN()
             {
                 Titulo = "Titulo de nota informativa TEST 2",
                 Cuerpo = "Cuerpo de nota informativa TEST 2",
             };
 
-            nota2.UsuarioAdministrador = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdministradorEN();
-            nota2.UsuarioAdministrador.Id = 32768;
-
-            notaId = notaCEN.Crear(32768, nota.Titulo, nota.Cuerpo);
-            notaId2 = notaCEN.Crear(32768, nota2.Titulo, nota2.Cuerpo);
+            notaId = notaCEN.Crear(-1, nota.Titulo, nota.Cuerpo);
+            notaId2 = notaCEN.Crear(-1, nota2.Titulo, nota2.Cuerpo);
         }
 
         [After(tags: "ObtenerNotasInformativas")]

@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Quiero modificar una nota informativa con la siguiente informacion", ((string)(null)), table8, "Given ");
 #line hidden
 #line 11
- testRunner.And("Logueado con el usuario admin 32768", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Logueado con el usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.When("Modifico la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -184,7 +184,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Quiero modificar una nota informativa no existente con la siguiente informacion", ((string)(null)), table9, "Given ");
 #line hidden
 #line 20
- testRunner.And("Logueado con el usuario admin 32768", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Logueado con el usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
  testRunner.When("Modifico la nota informativa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
