@@ -176,67 +176,6 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioWebDTO dto)
 
 
 
-[Route ("~/api/UsuarioWebNoRegistrado/VerificarEmail")]
-
-
-public HttpResponseMessage VerificarEmail (int idUsuarioWebNoRegistrado, [FromBody] UsuarioWebDTO dto)
-{
-        // CAD, CEN, returnValue
-        UsuarioWebNoRegistradoRESTCAD usuarioWebNoRegistradoRESTCAD = null;
-        UsuarioWebCEN usuarioWebCEN = null;
-        UsuarioWebNoRegistradoDTOA returnValue = null;
-
-        // HTTP response
-        HttpResponseMessage response = null;
-        string uri = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                usuarioWebNoRegistradoRESTCAD = new UsuarioWebNoRegistradoRESTCAD (session);
-                usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
-
-                // Modify
-                usuarioWebCEN.VerificarEmail (idUsuarioWebNoRegistrado,
-                        dto.EmailVerificado
-                        );
-
-                // Return modified object
-                returnValue = UsuarioWebNoRegistradoAssembler.Convert (usuarioWebNoRegistradoRESTCAD.ReadOIDDefault (idUsuarioWebNoRegistrado), session);
-
-                SessionCommit ();
-        }
-
-        catch (Exception e)
-        {
-                SessionRollBack ();
-
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 404 - Not found
-        if (returnValue == null)
-                return this.Request.CreateResponse (HttpStatusCode.NotFound);
-        // Return 200 - OK
-        else{
-                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-                return response;
-        }
-}
-
-[HttpPut]
-
-
-
 [Route ("~/api/UsuarioWebNoRegistrado/CambiarPassword")]
 
 

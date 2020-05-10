@@ -9,16 +9,33 @@ namespace TestsGherkin
     [Binding]
     public class VerificarEmailSteps
     {
-        UsuarioWebCEN usuarioCEN;
+        public static UsuarioWebCEN usuarioCEN = new UsuarioWebCEN();
         UsuarioWebEN usuario;
-        int id;
+        public static int id;
+        public static int id_creado;
+
+
+        [Before(tags: "VerificarEmail")]
+        public static void InitializeData()
+        {
+            Console.WriteLine("Init");
+            id = usuarioCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
+            id_creado = id;
+    }
+
+    [After(tags: "VerificarEmail")]
+        public static void CleanData()
+        {
+            usuarioCEN.Destroy(id_creado);
+
+        }
 
         [Given(@"Un usuario (.*)")]
         public void GivenUnUsuario(int p0)
         {
             usuarioCEN = new UsuarioWebCEN();
-            this.id = Convert.ToInt32(p0);
         }
+
 
 
         [When(@"Cambio el usuario a verificado")]

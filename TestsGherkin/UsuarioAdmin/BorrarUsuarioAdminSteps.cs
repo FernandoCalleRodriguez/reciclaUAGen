@@ -14,6 +14,7 @@ namespace TestsGherkin.UsuarioAdmin
         public static UsuarioAdministradorCEN usuarioCEN = new UsuarioAdministradorCEN();
         UsuarioAdministradorEN usuario;
         public static int id;
+        public static int id_creado;
 
 
         [Before(tags: "BorrarUsuario")]
@@ -21,11 +22,19 @@ namespace TestsGherkin.UsuarioAdmin
         {
             Console.WriteLine("Init");
             id = usuarioCEN.Crear("usuario", "prueba", "usuarioborrar@ua.es", "contrasena");
-            if (id == -1)
+            if(id == -1)
             {
                 id = usuarioCEN.BuscarPorCorreo("usuarioborrar@ua.es").Id;
-
             }
+
+            id_creado = id;
+        }
+
+        [After(tags: "BorrarUsuario")]
+        public static void CleanData()
+        {
+            usuarioCEN.Destroy(id_creado);
+
         }
 
 

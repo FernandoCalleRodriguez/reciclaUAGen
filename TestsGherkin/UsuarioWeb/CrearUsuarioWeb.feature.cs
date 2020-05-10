@@ -95,13 +95,13 @@ namespace TestsGherkin.UsuarioWeb
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Test crearUsuarioWeb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CrearUsuarioWeb")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CrearUsuarioWeb")]
         public virtual void TestCrearUsuarioWeb()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "CrearUsuarioWeb"};
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test crearUsuarioWeb", null, new string[] {
-                        "mytag"});
+                        "CrearUsuarioWeb"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

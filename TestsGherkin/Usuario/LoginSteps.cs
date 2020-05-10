@@ -26,11 +26,14 @@ namespace TestsGherkin.Usuario
         {
             Console.WriteLine("Init");
             id = adminCEN.Crear("usuario", "prueba", "usuario@ua.es", "contrasena");
-            if (id == -1)
-            {
-                id = adminCEN.BuscarPorCorreo("usuario@ua.es").Id;
 
-            }
+        }
+
+        [After(tags: "Login")]
+        public static void CleanData()
+        {
+            adminCEN.Destroy(id);
+
         }
 
 
