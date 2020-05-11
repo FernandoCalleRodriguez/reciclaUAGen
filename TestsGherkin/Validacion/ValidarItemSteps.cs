@@ -34,19 +34,19 @@ namespace TestsGherkin.Validacion
         [Given(@"Tengo un item sin validar")]
         public void GivenTengoUnItemSinValidar()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso, 10);
         }
 
         [Given(@"Tengo un item validado")]
         public void GivenTengoUnItemValidado()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.verificado);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.verificado, 10);
         }
 
         [Given(@"Tengo un item descartado")]
         public void GivenTengoUnItemDescartado()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.descartado);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.descartado, 10);
         }
 
         [When(@"Valido el item")]
@@ -54,7 +54,7 @@ namespace TestsGherkin.Validacion
         {
             try
             {
-                itemCEN.ValidarItem(id);
+                itemCEN.ValidarItem(id, 10);
             }
             catch (ModelException e)
             {

@@ -185,7 +185,7 @@ public static void InitializeData ()
                 Console.WriteLine ("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
                 ItemEN tempItem = itemCEN.BuscarPorId (itemId1);
                 Console.WriteLine ("item1 antes: " + tempItem.EsValido);
-                itemCEN.ValidarItem (tempItem.Id);
+                itemCEN.ValidarItem (tempItem.Id, 10);
                 tempItem = itemCEN.BuscarPorId (itemId1);
                 Console.WriteLine ("item1 despues de validar: " + tempItem.EsValido);
 

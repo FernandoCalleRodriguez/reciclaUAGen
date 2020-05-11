@@ -39,7 +39,7 @@ public IItemCAD get_IItemCAD ()
         return this._IItemCAD;
 }
 
-public void Modificar (int p_Item_OID, string p_nombre, string p_descripcion, string p_imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido)
+public void Modificar (int p_Item_OID, string p_nombre, string p_descripcion, string p_imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum p_esValido, int p_puntuacion)
 {
         ItemEN itemEN = null;
 
@@ -50,6 +50,7 @@ public void Modificar (int p_Item_OID, string p_nombre, string p_descripcion, st
         itemEN.Descripcion = p_descripcion;
         itemEN.Imagen = p_imagen;
         itemEN.EsValido = p_esValido;
+        itemEN.Puntuacion = p_puntuacion;
         //Call to ItemCAD
 
         _IItemCAD.Modificar (itemEN);

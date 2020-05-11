@@ -39,6 +39,10 @@ public class ItemDTOA extends DTOA
 	public Estado getEsValido () { return esValido; }
 	public void setEsValido (Estado esValido) { this.esValido = esValido; }
 	
+	private Integer puntuacion;
+	public Integer getPuntuacion () { return puntuacion; }
+	public void setPuntuacion (Integer puntuacion) { this.puntuacion = puntuacion; }
+	
 	
 	/* Rol: Item o--> Material */
 	private MaterialDTOA materialItem;
@@ -96,6 +100,13 @@ public class ItemDTOA extends DTOA
 				this.esValido = Estado.fromRawValue(enumRawValue);
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Puntuacion")))
+			{
+			 
+				this.puntuacion = (Integer) json.opt("Puntuacion");
+			 
+			}
 			
 
 			JSONObject jsonMaterialItem = json.optJSONObject("MaterialItem");
@@ -140,6 +151,10 @@ public class ItemDTOA extends DTOA
 		  if (this.esValido != null)
 			json.put("EsValido", this.esValido.getRawValue());
 		
+		
+		  if (this.puntuacion != null)
+			json.put("Puntuacion", this.puntuacion.intValue());
+		
 			
 
 			if (this.materialItem != null)
@@ -174,6 +189,8 @@ public class ItemDTOA extends DTOA
 	dto.setImagen (this.getImagen());
 
 	dto.setEsValido (this.getEsValido());
+
+	dto.setPuntuacion (this.getPuntuacion());
 
 		
 		

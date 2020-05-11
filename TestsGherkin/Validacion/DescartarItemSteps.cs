@@ -33,19 +33,19 @@ namespace TestsGherkin.Validacion
         [Given(@"Tengo un item sin descartar")]
         public void GivenTengoUnItemSinDescartar()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso, 10);
         }
         
         [Given(@"Tengo un item ya validado")]
         public void GivenTengoUnItemYaValidado()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.verificado);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.verificado, 10);
         }
         
         [Given(@"Tengo un item ya descartado")]
         public void GivenTengoUnItemYaDescartado()
         {
-            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.descartado);
+            itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.descartado, 10);
         }
         
         [When(@"Descarto el item")]

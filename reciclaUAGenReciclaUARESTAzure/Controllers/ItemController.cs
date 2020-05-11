@@ -390,6 +390,8 @@ public HttpResponseMessage Modificar (int idItem, [FromBody] ItemDTO dto)
                         dto.Imagen
                         ,
                         dto.EsValido
+                        ,
+                        dto.Puntuacion
                         );
 
                 // Return modified object

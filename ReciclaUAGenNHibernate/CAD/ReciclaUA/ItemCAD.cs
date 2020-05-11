@@ -106,6 +106,9 @@ public void ModifyDefault (ItemEN item)
 
 
 
+
+                itemEN.Puntuacion = item.Puntuacion;
+
                 session.Update (itemEN);
                 SessionCommit ();
         }
@@ -182,6 +185,9 @@ public void Modificar (ItemEN item)
 
 
                 itemEN.EsValido = item.EsValido;
+
+
+                itemEN.Puntuacion = item.Puntuacion;
 
                 session.Update (itemEN);
                 SessionCommit ();

@@ -36,6 +36,9 @@
 		 
 				var accionReciclar_oid: [Int]?;
 				    	 
+		 
+				var puntuacion: Int?;
+				    	 
 	   	   
 			// MARK: - Constructor
 			
@@ -85,6 +88,10 @@
 
 					dictionary["accionReciclar_oid"] = self.accionReciclar_oid;
 			
+
+				
+					dictionary["puntuacion"] = self.puntuacion;
+				
 						
 				return dictionary;
 			}

@@ -577,6 +577,8 @@ public HttpResponseMessage Modificar (int idItem, [FromBody] ItemDTO dto)
                         dto.Imagen
                         ,
                         dto.EsValido
+                        ,
+                        dto.Puntuacion
                         );
 
                 // Return modified object
@@ -665,7 +667,7 @@ public HttpResponseMessage Borrar (int p_item_oid)
 [Route ("~/api/Item/ValidarItem")]
 
 
-public HttpResponseMessage ValidarItem (int p_oid)
+public HttpResponseMessage ValidarItem (int p_oid, int p_puntuacion)
 {
         // CAD, CEN, returnValue
         ItemRESTCAD itemRESTCAD = null;
@@ -681,7 +683,7 @@ public HttpResponseMessage ValidarItem (int p_oid)
 
 
                 // Operation
-                itemCEN.ValidarItem (p_oid);
+                itemCEN.ValidarItem (p_oid, p_puntuacion);
                 SessionCommit ();
         }
 
@@ -834,13 +836,13 @@ public bool RemoveImage (int id, string imageName)
         return true;
 }
 
-        [HttpGet]
-        [Route("~/api/Item/ItemCount")]
-        public int NivelCount()
-        {
-            return new ItemCEN().BuscarTodos(0, -1).Count();
-        }
+[HttpGet]
+[Route ("~/api/Item/ItemCount")]
+public int NivelCount ()
+{
+        return new ItemCEN ().BuscarTodos (0, -1).Count ();
+}
 
-        /*PROTECTED REGION END*/
-    }
+/*PROTECTED REGION END*/
+}
 }

@@ -68,6 +68,13 @@ private System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Acc
 
 
 
+/**
+ *	Atributo puntuacion
+ */
+private int puntuacion;
+
+
+
 
 
 
@@ -125,6 +132,12 @@ public virtual System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.Recicl
 
 
 
+public virtual int Puntuacion {
+        get { return puntuacion; } set { puntuacion = value;  }
+}
+
+
+
 
 
 public ItemEN()
@@ -134,20 +147,20 @@ public ItemEN()
 
 
 
-public ItemEN(int id, string nombre, string descripcion, string imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum esValido, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivel, ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN material, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN> accionReciclar
+public ItemEN(int id, string nombre, string descripcion, string imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum esValido, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivel, ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN material, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN> accionReciclar, int puntuacion
               )
 {
-        this.init (Id, nombre, descripcion, imagen, esValido, usuario, nivel, material, accionReciclar);
+        this.init (Id, nombre, descripcion, imagen, esValido, usuario, nivel, material, accionReciclar, puntuacion);
 }
 
 
 public ItemEN(ItemEN item)
 {
-        this.init (Id, item.Nombre, item.Descripcion, item.Imagen, item.EsValido, item.Usuario, item.Nivel, item.Material, item.AccionReciclar);
+        this.init (Id, item.Nombre, item.Descripcion, item.Imagen, item.EsValido, item.Usuario, item.Nivel, item.Material, item.AccionReciclar, item.Puntuacion);
 }
 
 private void init (int id
-                   , string nombre, string descripcion, string imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum esValido, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivel, ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN material, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN> accionReciclar)
+                   , string nombre, string descripcion, string imagen, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum esValido, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuario, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivel, ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN material, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN> accionReciclar, int puntuacion)
 {
         this.Id = id;
 
@@ -167,6 +180,8 @@ private void init (int id
         this.Material = material;
 
         this.AccionReciclar = accionReciclar;
+
+        this.Puntuacion = puntuacion;
 }
 
 public override bool Equals (object obj)

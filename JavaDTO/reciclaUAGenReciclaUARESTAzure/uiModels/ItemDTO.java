@@ -53,6 +53,10 @@
 				public ArrayList<Integer>  getAccionReciclar_oid () { return accionReciclar_oid; } 
 				public void setAccionReciclar_oid (ArrayList<Integer> value) { accionReciclar_oid = value;  } 
 				    	 
+				private Integer puntuacion;
+				public Integer getPuntuacion () { return puntuacion; } 
+				public void setPuntuacion  (Integer value) { puntuacion = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -101,6 +105,9 @@
 							json.put("AccionReciclar_oid", jsonArray);
 						}
 		
+				
+						  json.put("Puntuacion", this.puntuacion.intValue());
+				
 						
 					}
 					catch (JSONException e)

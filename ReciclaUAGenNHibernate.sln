@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsGherkin", "TestsGherki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "reciclaUAGenReciclaUAAdminRESTAzure", "reciclaUAGenReciclaUAAdminRESTAzure\reciclaUAGenReciclaUAAdminRESTAzure.csproj", "{C8CED487-D6EE-4407-BD05-EB963E5B5689}"
 EndProject
+
+
+
+
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

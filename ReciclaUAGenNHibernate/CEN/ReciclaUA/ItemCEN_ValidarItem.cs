@@ -19,7 +19,7 @@ namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
 public partial class ItemCEN
 {
-public void ValidarItem (int p_oid)
+public void ValidarItem (int p_oid, int p_puntuacion)
 {
         /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Item_validarItem) ENABLED START*/
         ItemCAD cad = new ItemCAD ();
@@ -32,6 +32,7 @@ public void ValidarItem (int p_oid)
         }
 
         item.EsValido = Enumerated.ReciclaUA.EstadoEnum.verificado;
+        item.Puntuacion = p_puntuacion;
 
         cad.Modificar (item);
         //throw new NotImplementedException ("Method ValidarItem() not yet implemented.");

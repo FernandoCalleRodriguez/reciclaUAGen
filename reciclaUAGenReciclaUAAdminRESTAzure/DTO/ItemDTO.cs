@@ -53,5 +53,10 @@ private System.Collections.Generic.IList<int> accionReciclar_oid;
 public System.Collections.Generic.IList<int> AccionReciclar_oid {
         get { return accionReciclar_oid; } set { accionReciclar_oid = value;  }
 }
+
+private int puntuacion;
+public int Puntuacion {
+        get { return puntuacion; } set { puntuacion = value;  }
+}
 }
 }

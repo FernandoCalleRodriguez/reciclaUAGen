@@ -541,14 +541,14 @@ public HttpResponseMessage DesasignarItems (int p_nivel_oid, System.Collections.
 
 
 
-        /*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_NivelControllerAzure) ENABLED START*/
-        // Meter las operaciones que invoquen a las CPs
-        [HttpGet]
-        [Route("~/api/Nivel/NivelCount")]
-        public int NivelCount()
-        {
-            return new NivelCEN().BuscarTodos(0, -1).Count();
-        }
-        /*PROTECTED REGION END*/
-    }
+/*PROTECTED REGION ID(reciclaUAGenReciclaUAAdminRESTAzure_NivelControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
+[HttpGet]
+[Route ("~/api/Nivel/NivelCount")]
+public int NivelCount ()
+{
+        return new NivelCEN ().BuscarTodos (0, -1).Count ();
+}
+/*PROTECTED REGION END*/
+}
 }

@@ -44,6 +44,13 @@ public ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum EsValido
         set { esValido = value; }
 }
 
+private int puntuacion;
+public int Puntuacion
+{
+        get { return puntuacion; }
+        set { puntuacion = value; }
+}
+
 
 /* Rol: Item o--> Material */
 private MaterialDTOA materialItem;

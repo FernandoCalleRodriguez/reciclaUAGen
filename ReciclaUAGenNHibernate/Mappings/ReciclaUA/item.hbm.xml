@@ -24,6 +24,9 @@
 					<property name="EsValido" > 
 						<column name="esValido"  not-null="true"/>
 					</property>
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -58,6 +61,8 @@
 					      	</key>
 							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.AccionReciclarEN"/>
 					    </bag>
+					
+			
 					
 					
 					

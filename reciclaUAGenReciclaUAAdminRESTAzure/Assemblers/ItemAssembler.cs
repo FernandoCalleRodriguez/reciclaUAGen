@@ -48,6 +48,9 @@ public static ItemDTOA Convert (ItemEN en, NHibernate.ISession session = null)
                 dto.EsValido = en.EsValido;
 
 
+                dto.Puntuacion = en.Puntuacion;
+
+
                 //
                 // TravesalLink
 

@@ -61,7 +61,7 @@ namespace TestsGherkin.Juego.Item
         [When(@"Modifico los datos de este Item")]
         public void WhenModificoLosDatosDeEsteItem()
         {
-            itemCEN.Modificar(itemId, item.Nombre + " modificado", item.Descripcion, item.Imagen, item.EsValido);
+            itemCEN.Modificar(itemId, item.Nombre + " modificado", item.Descripcion, item.Imagen, item.EsValido, 10);
         }
 
         [When(@"Entento odifico los datos de este Item")]
@@ -69,7 +69,7 @@ namespace TestsGherkin.Juego.Item
         {
             try
             {
-                itemCEN.Modificar(itemId, item.Nombre + " modificado", item.Descripcion, item.Imagen, item.EsValido);
+                itemCEN.Modificar(itemId, item.Nombre + " modificado", item.Descripcion, item.Imagen, item.EsValido, 10);
                 Assert.Fail();
             }
             catch (Exception)

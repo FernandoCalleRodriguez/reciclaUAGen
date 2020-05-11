@@ -27,7 +27,7 @@ namespace TestsGherkin.Validacion
                 if(i.EsValido == EstadoEnum.enProceso)
                 {
                     changed_ids.Add(i.Id);
-                    itemCEN.Modificar(i.Id, i.Nombre, i.Descripcion, i.Imagen, EstadoEnum.descartado);
+                    itemCEN.Modificar(i.Id, i.Nombre, i.Descripcion, i.Imagen, EstadoEnum.descartado, 10);
                     // Console.WriteLine("Mod " +  i.Id);
                 }
             }
@@ -35,7 +35,7 @@ namespace TestsGherkin.Validacion
             {
                 int id = itemCEN.Crear("Item Test", "Item Test", "TEST IMG", -1, -1);
                 item = itemCEN.BuscarPorId(id);
-                itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso);
+                itemCEN.Modificar(id, item.Nombre, item.Descripcion, item.Imagen, EstadoEnum.enProceso, 10);
                 ids.Add(id);
                 // Console.WriteLine("Added " + id);
             }
@@ -48,7 +48,7 @@ namespace TestsGherkin.Validacion
             foreach (int id in changed_ids)
             {
                 ItemEN i = itemCEN.BuscarPorId(id);
-                itemCEN.Modificar(id, i.Nombre, i.Descripcion, i.Imagen, EstadoEnum.enProceso);
+                itemCEN.Modificar(id, i.Nombre, i.Descripcion, i.Imagen, EstadoEnum.enProceso, 10);
                 // Console.WriteLine("Recover " + id);
             }
             foreach(int id in ids)

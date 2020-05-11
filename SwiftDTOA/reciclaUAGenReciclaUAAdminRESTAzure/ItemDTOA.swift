@@ -17,6 +17,7 @@ class ItemDTOA : DTOA
 	var descripcion: String?;
 	var imagen: String?;
 	var esValido: Estado?;
+	var puntuacion: Int?;
 	
 	/* Rol: Item o--> Material */
 	var materialItem: MaterialDTOA?;
@@ -48,6 +49,7 @@ class ItemDTOA : DTOA
 		{
 			self.esValido = Estado(rawValue: enumValue);
 		}
+		self.puntuacion = json["Puntuacion"].object as? Int;
 		
 		if (json["MaterialItem"] != JSON.null)
 		{
@@ -82,6 +84,11 @@ class ItemDTOA : DTOA
 
 	
 		dictionary["EsValido"] = self.esValido?.rawValue;
+	
+	
+
+	
+		dictionary["Puntuacion"] = self.puntuacion;
 	
 	
 		

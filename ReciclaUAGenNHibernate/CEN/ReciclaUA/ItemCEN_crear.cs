@@ -34,7 +34,7 @@ public int Crear (string p_nombre, string p_descripcion, string p_imagen, int p_
         itemEN.Descripcion = p_descripcion;
 
         itemEN.Imagen = p_imagen;
-
+        itemEN.Puntuacion = 1;
 
         if (p_usuario != -1) {
                 itemEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();

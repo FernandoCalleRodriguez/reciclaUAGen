@@ -55,6 +55,7 @@ public static ItemEN Convert (ItemDTO dto)
                                         newinstance.AccionReciclar.Add (accionReciclarCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.Puntuacion = dto.Puntuacion;
                 }
         }
         catch (Exception ex)
