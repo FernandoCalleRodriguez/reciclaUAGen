@@ -209,7 +209,6 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
 
 
 
-
 [HttpPost]
 
 
@@ -217,12 +216,14 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
 
 
 
+
 public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
 {
         // CAD, CEN, returnValue, returnOID
-        AccionReciclarCP accionReciclarCP = null;
+        AccionReciclarRESTCAD accionReciclarRESTCAD = null;
+        AccionReciclarCEN accionReciclarCEN = null;
         AccionReciclarDTOA returnValue = null;
-        AccionReciclarEN returnOID = null;
+        int returnOID = -1;
 
         // HTTP response
         HttpResponseMessage response = null;
@@ -233,19 +234,29 @@ public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
                 SessionInitializeTransaction ();
 
 
-                accionReciclarCP = new AccionReciclarCP (session);
+                accionReciclarRESTCAD = new AccionReciclarRESTCAD (session);
+                accionReciclarCEN = new AccionReciclarCEN (accionReciclarRESTCAD);
 
                 // Create
-                returnOID = accionReciclarCP.Crear (
-                        dto.Usuario_oid
-                        , dto.Contenedor_oid
-                        , dto.Item_oid
-                        , dto.Cantidad
-                        );
+                returnOID = accionReciclarCEN.Crear (
+                        //Atributo OID: p_usuario
+                        // attr.estaRelacionado: true
+                        dto.Usuario_oid                 // association role
+
+                        ,                                         //Atributo OID: p_contenedor
+                        // attr.estaRelacionado: true
+                        dto.Contenedor_oid                 // association role
+
+                        ,                                         //Atributo OID: p_item
+                        // attr.estaRelacionado: true
+                        dto.Item_oid                 // association role
+
+                        ,                                           //Atributo Primitivo: p_cantidad
+                        dto.Cantidad);
                 SessionCommit ();
 
                 // Convert return
-                returnValue = AccionReciclarAssembler.Convert (returnOID, session);
+                returnValue = AccionReciclarAssembler.Convert (accionReciclarRESTCAD.ReadOIDDefault (returnOID), session);
         }
 
         catch (Exception e)
@@ -278,6 +289,7 @@ public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
 
         return response;
 }
+
 
 
 

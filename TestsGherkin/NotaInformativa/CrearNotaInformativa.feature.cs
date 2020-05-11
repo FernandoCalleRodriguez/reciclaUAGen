@@ -122,14 +122,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "titulo",
                             "cuerpo"});
-                table7.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Titulo de nota informativa",
                             "Cuerpo de nota informativa"});
 #line 8
- testRunner.Given("Quiero crear una nueva nota informativa que contenga", ((string)(null)), table7, "Given ");
+ testRunner.Given("Quiero crear una nueva nota informativa que contenga", ((string)(null)), table6, "Given ");
 #line hidden
 #line 11
  testRunner.And("Logueado con el usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

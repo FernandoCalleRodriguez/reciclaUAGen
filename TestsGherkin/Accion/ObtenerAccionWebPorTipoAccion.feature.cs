@@ -126,12 +126,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("Tengo acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "tipo"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Tipo Prueba"});
 #line 9
- testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table5, "When ");
+ testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table4, "When ");
 #line hidden
 #line 12
  testRunner.Then("Obtengo la lista de las acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -173,12 +173,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
  testRunner.Given("No tengo acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "tipo"});
-                table6.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Tipo Prueba"});
 #line 17
- testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table6, "When ");
+ testRunner.When("Obtengo las acciones web con el tipo de accion", ((string)(null)), table5, "When ");
 #line hidden
 #line 20
  testRunner.Then("No obtengo la lista de las acciones web con el tipo de accion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

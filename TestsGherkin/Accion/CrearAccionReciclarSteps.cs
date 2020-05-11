@@ -51,7 +51,7 @@ namespace TestsGherkin.Accion
         [When(@"Creo la accion de reciclaje")]
         public void WhenCreoLaAccionDeReciclaje()
         {
-            accionReciclarId = new AccionReciclarCP().Crear(user, contenedorId, itemId, cantidad).Id;
+            accionReciclarId = accionReciclarCEN.Crear(user, contenedorId, itemId, cantidad);
         }
         
         [Then(@"Obtengo la accion de reciclaje")]

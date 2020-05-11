@@ -202,20 +202,20 @@ public static void InitializeData ()
 
                 ///ADDEL
                 TipoAccionCEN tipoAccionCEN = new TipoAccionCEN ();
-                var idTipo1 = tipoAccionCEN.Crear (5, "Crear Duda");
-                var idTipo2 = tipoAccionCEN.Crear (10, "Crear Respuesta");
+                var idTipo1 = tipoAccionCEN.Crear (10, "Duda");
+                var idTipo2 = tipoAccionCEN.Crear (5, "Respuesta");
+                tipoAccionCEN.Crear (10, "Item");
+                tipoAccionCEN.Crear (30, "Punto");
+                tipoAccionCEN.Crear (10, "Material");
                 AccionWebCEN accionWebCEN = new AccionWebCEN ();
                 AccionWebCP accionWebCP = new AccionWebCP ();
-                accionWebCP.Crear (id_usu1, idTipo1);
-                accionWebCP.Crear (id_usu1, idTipo2);
+                accionWebCEN.Crear (id_usu1, idTipo1);
+                accionWebCEN.Crear (id_usu1, idTipo2);
                 var result = accionWebCEN.BuscarPorAutor (id_usu1);
                 Console.WriteLine ("total de acciones del autor con id " + id_usu1 + " es :" + result.Count);
 
                 result = accionWebCEN.BuscarPorAutor (55);
                 Console.WriteLine ("total de acciones del autor con id 55" + result.Count);
-
-
-
 
                 // PUNTOS RECICLAJE
 
@@ -257,6 +257,17 @@ public static void InitializeData ()
                 foreach (PuntoReciclajeEN pEN in puntoCEN.BuscarPuntosPorEstancia (id_estancia)) {
                         Console.WriteLine ("[" + pEN.Id + "]");
                 }
+
+
+                Console.WriteLine ("Puntuacion antes de la accion: " + usu1.BuscarPorId (id_usu1).Puntuacion);
+                ContenedorCEN contenedorCEN = new ContenedorCEN ();
+                var id_contenedor = contenedorCEN.Crear (TipoContenedorEnum.cristal, id_punto1);
+                var item_validado = itemCEN.Crear ("Botella", "Plástico", "", id_usu1, id1);
+                itemCEN.ValidarItem (item_validado, 20);
+
+                AccionReciclarCEN reciclarCEN = new AccionReciclarCEN ();
+                reciclarCEN.Crear (id_usu1, id_contenedor, item_validado, 2);
+                Console.WriteLine ("Puntuacion despues de la accion: " + usu1.BuscarPorId (id_usu1).Puntuacion);
 
                 /*PROTECTED REGION END*/
         }

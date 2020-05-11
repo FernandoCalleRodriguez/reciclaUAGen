@@ -336,7 +336,7 @@
 	<Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\AccionReciclarCAD.cs" />
 	<Compile Include="CP\ReciclaUA\AccionReciclarCP.cs" />
-			<Compile Include="CP\ReciclaUA\AccionReciclarCP_Crear.cs" />
+			<Compile Include="CEN\ReciclaUA\AccionReciclarCEN_Crear.cs" />
 			
 			
 			
@@ -345,13 +345,15 @@
 			
 			
 			
+			
+			<Compile Include="CP\ReciclaUA\AccionReciclarCP_CrearAccion.cs" />
 			
 	<Compile Include="EN\ReciclaUA\AccionWebEN.cs" />
 	<Compile Include="CEN\ReciclaUA\AccionWebCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IAccionWebCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\AccionWebCAD.cs" />
 	<Compile Include="CP\ReciclaUA\AccionWebCP.cs" />
-			<Compile Include="CP\ReciclaUA\AccionWebCP_Crear.cs" />
+			<Compile Include="CEN\ReciclaUA\AccionWebCEN_Crear.cs" />
 			
 			
 			
@@ -360,6 +362,8 @@
 			
 			
 			
+			
+			<Compile Include="CP\ReciclaUA\AccionWebCP_CrearAccion.cs" />
 			
 	<Compile Include="EN\ReciclaUA\EdificioEN.cs" />
 	<Compile Include="CEN\ReciclaUA\EdificioCEN.cs" />

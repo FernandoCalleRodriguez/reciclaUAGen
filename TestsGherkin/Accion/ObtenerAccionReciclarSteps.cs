@@ -28,7 +28,7 @@ namespace TestsGherkin.Accion
             itemId = -1;
             user = -1;
 
-            accionReciclarId = new AccionReciclarCP().Crear(user, contenedorId, itemId, cantidad).Id;
+            accionReciclarId = accionReciclarCEN.Crear(user, contenedorId, itemId, cantidad);
         }
 
 
@@ -45,13 +45,6 @@ namespace TestsGherkin.Accion
             //
         }
 
-
-        [Given(@"No tengo acciones de reciclaje")]
-        public void GivenNoTengoAccionesDeReciclaje()
-        {
-            //
-        }
-
         [When(@"Obtengo las acciones de reciclaje")]
         public void WhenObtengoLasAccionesDeReciclaje()
         {
@@ -62,12 +55,6 @@ namespace TestsGherkin.Accion
         public void ThenObtengoLaListaDeLasAccionesDeReciclaje()
         {
             Assert.IsTrue(acciones.Count > 0);
-        }
-
-        [Then(@"No obtengo la lista de las acciones de reciclaje")]
-        public void ThenNoObtengoLaListaDeLasAccionesDeReciclaje()
-        {
-            Assert.IsTrue(acciones.Count == 0);
         }
     }
 }

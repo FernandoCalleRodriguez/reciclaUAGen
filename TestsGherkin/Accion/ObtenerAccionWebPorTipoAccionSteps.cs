@@ -25,8 +25,8 @@ namespace TestsGherkin.Accion
         {
             tipoAccionId = tipoAccionCEN.Crear(5000, "Tipo Prueba");
 
-            accionWebId = new AccionWebCP().Crear(-1, tipoAccionId).Id;
-            accionWebId2 = new AccionWebCP().Crear(-1, tipoAccionId).Id;
+            accionWebId = accionWebCEN.Crear(-1, tipoAccionId);
+            accionWebId2 = accionWebCEN.Crear(-1, tipoAccionId);
         }
 
         [After(tags: "ObtenerAccionesWebConTipoAccion")]

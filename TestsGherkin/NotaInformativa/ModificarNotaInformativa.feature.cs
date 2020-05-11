@@ -122,14 +122,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "titulo",
                             "cuerpo"});
-                table8.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Titulo de nota informativa modificada",
                             "Cuerpo de nota informativa modificada"});
 #line 8
- testRunner.Given("Quiero modificar una nota informativa con la siguiente informacion", ((string)(null)), table8, "Given ");
+ testRunner.Given("Quiero modificar una nota informativa con la siguiente informacion", ((string)(null)), table7, "Given ");
 #line hidden
 #line 11
  testRunner.And("Logueado con el usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -174,14 +174,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "titulo",
                             "cuerpo"});
-                table9.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Titulo de nota informativa modificada",
                             "Cuerpo de nota informativa modificada"});
 #line 17
- testRunner.Given("Quiero modificar una nota informativa no existente con la siguiente informacion", ((string)(null)), table9, "Given ");
+ testRunner.Given("Quiero modificar una nota informativa no existente con la siguiente informacion", ((string)(null)), table8, "Given ");
 #line hidden
 #line 20
  testRunner.And("Logueado con el usuario admin -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

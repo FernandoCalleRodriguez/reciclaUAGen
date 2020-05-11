@@ -10,11 +10,3 @@ Scenario: Existen acciones de reciclaje con la fecha indicada
 	| fecha| 
 	| hoy | 
 	Then Obtengo la lista de las acciones de reciclaje con la fecha indicada
-
-@ObtenerAccionesReciclarPorFechaNoExistente
-Scenario: No existen acciones de reciclaje con la fecha indicada
-	Given No tengo acciones de reciclaje con la fecha indicada
-	When Obtengo las acciones de reciclaje con la fecha 
-	| fecha| 
-	| hoy | 
-	Then No obtengo la lista de las acciones de reciclaje con la fecha indicada

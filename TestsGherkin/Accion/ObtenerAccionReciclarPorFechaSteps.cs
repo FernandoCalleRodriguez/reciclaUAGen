@@ -30,7 +30,7 @@ namespace TestsGherkin.Accion
             user = -1;
             fechaActual = DateTime.Now;
 
-            accionReciclarId = new AccionReciclarCP().Crear(user, contenedorId, itemId, cantidad).Id;
+            accionReciclarId = accionReciclarCEN.Crear(user, contenedorId, itemId, cantidad);
         }
 
         [After(tags: "ObtenerAccionesReciclarPorFecha")]
@@ -46,12 +46,6 @@ namespace TestsGherkin.Accion
            //
         }
         
-        [Given(@"No tengo acciones de reciclaje con la fecha indicada")]
-        public void GivenNoTengoAccionesDeReciclajeConLaFechaIndicada()
-        {
-            //
-        }
-        
         [When(@"Obtengo las acciones de reciclaje con la fecha")]
         public void WhenObtengoLasAccionesDeReciclajeConLaFecha(Table table)
         {
@@ -62,12 +56,6 @@ namespace TestsGherkin.Accion
         public void ThenObtengoLaListaDeLasAccionesDeReciclajeConLaFechaIndicada()
         {
             Assert.IsTrue(acciones.Count > 0);
-        }
-        
-        [Then(@"No obtengo la lista de las acciones de reciclaje con la fecha indicada")]
-        public void ThenNoObtengoLaListaDeLasAccionesDeReciclajeConLaFechaIndicada()
-        {
-            Assert.IsTrue(acciones.Count == 0);
         }
     }
 }
