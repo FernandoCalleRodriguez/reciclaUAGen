@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReciclaUAGenNHibernate.CEN.ReciclaUA;
+using ReciclaUAGenNHibernate.CP.ReciclaUA;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace TestsGherkin.Accion
             itemId = -1;
             user = -1;
 
-            accionReciclarId = accionReciclarCEN.Crear(user, DateTime.Now, contenedorId, itemId, cantidad);
+            accionReciclarId = new AccionReciclarCP().Crear(user, contenedorId, itemId, cantidad).Id;
         }
 
 

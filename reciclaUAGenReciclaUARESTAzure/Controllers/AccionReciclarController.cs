@@ -210,6 +210,75 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
 
 
 
+[HttpPost]
+
+
+[Route ("~/api/AccionReciclar/Crear")]
+
+
+
+public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        AccionReciclarCP accionReciclarCP = null;
+        AccionReciclarDTOA returnValue = null;
+        AccionReciclarEN returnOID = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                accionReciclarCP = new AccionReciclarCP (session);
+
+                // Create
+                returnOID = accionReciclarCP.Crear (
+                        dto.Usuario_oid
+                        , dto.Contenedor_oid
+                        , dto.Item_oid
+                        , dto.Cantidad
+                        );
+                SessionCommit ();
+
+                // Convert return
+                returnValue = AccionReciclarAssembler.Convert (returnOID, session);
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+
+        // Location Header
+        /*
+         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
+         *
+         * // TODO: y rolPaths
+         * routeValues.Add("id", returnOID);
+         *
+         * uri = Url.Link("GetOIDAccionReciclar", routeValues);
+         * response.Headers.Location = new Uri(uri);
+         */
+
+        return response;
+}
+
 
 
 

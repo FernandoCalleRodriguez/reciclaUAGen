@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReciclaUAGenNHibernate.CEN.ReciclaUA;
+using ReciclaUAGenNHibernate.CP.ReciclaUA;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
 using System;
 using TechTalk.SpecFlow;
@@ -50,7 +51,7 @@ namespace TestsGherkin.Accion
         [When(@"Creo la accion de reciclaje")]
         public void WhenCreoLaAccionDeReciclaje()
         {
-            accionReciclarId = accionReciclarCEN.Crear(user, DateTime.Now, contenedorId, itemId, cantidad);
+            accionReciclarId = new AccionReciclarCP().Crear(user, contenedorId, itemId, cantidad).Id;
         }
         
         [Then(@"Obtengo la accion de reciclaje")]

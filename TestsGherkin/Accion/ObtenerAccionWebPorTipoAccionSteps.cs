@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReciclaUAGenNHibernate.CEN.ReciclaUA;
+using ReciclaUAGenNHibernate.CP.ReciclaUA;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace TestsGherkin.Accion
         {
             tipoAccionId = tipoAccionCEN.Crear(5000, "Tipo Prueba");
 
-            accionWebId = accionWebCEN.Crear(-1, DateTime.Now, tipoAccionId);
-            accionWebId2 = accionWebCEN.Crear(-1, DateTime.Now, tipoAccionId);
+            accionWebId = new AccionWebCP().Crear(-1, tipoAccionId).Id;
+            accionWebId2 = new AccionWebCP().Crear(-1, tipoAccionId).Id;
         }
 
         [After(tags: "ObtenerAccionesWebConTipoAccion")]

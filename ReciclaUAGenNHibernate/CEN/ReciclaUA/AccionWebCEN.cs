@@ -39,37 +39,6 @@ public IAccionWebCAD get_IAccionWebCAD ()
         return this._IAccionWebCAD;
 }
 
-public int Crear (int p_usuario, Nullable<DateTime> p_fecha, int p_tipo)
-{
-        AccionWebEN accionWebEN = null;
-        int oid;
-
-        //Initialized AccionWebEN
-        accionWebEN = new AccionWebEN ();
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                accionWebEN.Usuario = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioWebEN ();
-                accionWebEN.Usuario.Id = p_usuario;
-        }
-
-        accionWebEN.Fecha = p_fecha;
-
-
-        if (p_tipo != -1) {
-                // El argumento p_tipo -> Property tipo es oid = false
-                // Lista de oids id
-                accionWebEN.Tipo = new ReciclaUAGenNHibernate.EN.ReciclaUA.TipoAccionEN ();
-                accionWebEN.Tipo.Id = p_tipo;
-        }
-
-        //Call to AccionWebCAD
-
-        oid = _IAccionWebCAD.Crear (accionWebEN);
-        return oid;
-}
-
 public void Modificar (int p_AccionWeb_OID, Nullable<DateTime> p_fecha)
 {
         AccionWebEN accionWebEN = null;

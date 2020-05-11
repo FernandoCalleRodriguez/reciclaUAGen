@@ -135,6 +135,8 @@
 			
 			
 			
+			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_IncrementarPuntuacion.cs" />
+			
 	<Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
@@ -334,6 +336,7 @@
 	<Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\AccionReciclarCAD.cs" />
 	<Compile Include="CP\ReciclaUA\AccionReciclarCP.cs" />
+			<Compile Include="CP\ReciclaUA\AccionReciclarCP_Crear.cs" />
 			
 			
 			
@@ -348,6 +351,7 @@
 	<Compile Include="CAD\ReciclaUA\IAccionWebCAD.cs" />
 	<Compile Include="CAD\ReciclaUA\AccionWebCAD.cs" />
 	<Compile Include="CP\ReciclaUA\AccionWebCP.cs" />
+			<Compile Include="CP\ReciclaUA\AccionWebCP_Crear.cs" />
 			
 			
 			

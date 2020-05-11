@@ -12,6 +12,7 @@ using System.Net;
 using System.IO;
 using System.Linq;
 using ReciclaUAGenNHibernate.Enumerated.ReciclaUA;
+using ReciclaUAGenNHibernate.CP.ReciclaUA;
 //using ReciclaUAGenNHibernate.Enumerated.ReciclaUA;
 
 
@@ -201,9 +202,12 @@ public static void InitializeData ()
 
                 ///ADDEL
                 TipoAccionCEN tipoAccionCEN = new TipoAccionCEN ();
-                var idTipo = tipoAccionCEN.Crear (1, "tipo accion 1");
+                var idTipo1 = tipoAccionCEN.Crear (5, "Crear Duda");
+                var idTipo2 = tipoAccionCEN.Crear (10, "Crear Respuesta");
                 AccionWebCEN accionWebCEN = new AccionWebCEN ();
-                accionWebCEN.Crear (id_usu1, DateTime.Now, idTipo);
+                AccionWebCP accionWebCP = new AccionWebCP ();
+                accionWebCP.Crear (id_usu1, idTipo1);
+                accionWebCP.Crear (id_usu1, idTipo2);
                 var result = accionWebCEN.BuscarPorAutor (id_usu1);
                 Console.WriteLine ("total de acciones del autor con id " + id_usu1 + " es :" + result.Count);
 
