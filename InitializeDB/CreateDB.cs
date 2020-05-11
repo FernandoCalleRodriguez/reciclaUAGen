@@ -182,7 +182,7 @@ public static void InitializeData ()
 
                 int id1 = materialCEN.Crear (material.Nombre, material.Contenedor, id_usu1);
                 int id2 = materialCEN.Crear (material2.Nombre, material2.Contenedor, id_usu1);
-
+                materialCEN.ValidarMaterial(id1);
                 int itemId1 = itemCEN.Crear (item.Nombre, item.Descripcion, item.Imagen, id_usu1, id1);
                 int itemId2 = itemCEN.Crear (item2.Nombre, item2.Descripcion, item2.Imagen, id_usu1, id1);
 
