@@ -31,7 +31,6 @@ public void CrearAccion (int p_oid)
         UsuarioWebCEN usuarioWebCEN = null;
         AccionWebEN result = null;
 
-
         try
         {
                 SessionInitializeTransaction ();
@@ -40,8 +39,7 @@ public void CrearAccion (int p_oid)
                 usuarioWebCAD = new UsuarioWebCAD (session);
                 usuarioWebCEN = new UsuarioWebCEN (usuarioWebCAD);
 
-
-                result = accionWebCAD.ReadOIDDefault (p_oid);
+                result = accionWebCAD.BuscarPorId (p_oid);
 
                 if (result.Usuario != null) {
                         usuarioWebCEN.IncrementarPuntuacion (result.Usuario.Id, result.Tipo.Puntuacion);

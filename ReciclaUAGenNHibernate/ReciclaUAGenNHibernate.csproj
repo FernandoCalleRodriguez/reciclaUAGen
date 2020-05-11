@@ -178,6 +178,8 @@
 			
 			
 			
+			<Compile Include="CP\ReciclaUA\DudaCP_CrearAccionDuda.cs" />
+			
 	<Compile Include="EN\ReciclaUA\RespuestaEN.cs" />
 	<Compile Include="CEN\ReciclaUA\RespuestaCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IRespuestaCAD.cs" />
@@ -201,6 +203,8 @@
 			
 			<Compile Include="CP\ReciclaUA\RespuestaCP_ObtenerUltimaRespuesta.cs" />
 			
+			
+			<Compile Include="CP\ReciclaUA\RespuestaCP_CrearAccionRespuesta.cs" />
 			
 	<Compile Include="EN\ReciclaUA\AccionEN.cs" />
 	<Compile Include="CEN\ReciclaUA\AccionCEN.cs" />
@@ -234,6 +238,8 @@
 			
 			
 			
+			<Compile Include="CP\ReciclaUA\PuntoReciclajeCP_CrearAccionPunto.cs" />
+			
 	<Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
 	<Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
 	<Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
@@ -265,6 +271,7 @@
 			
 			
 			
+			<Compile Include="CP\ReciclaUA\ItemCP_CrearAccionItem.cs" />
 			
 	<Compile Include="EN\ReciclaUA\NivelEN.cs" />
 	<Compile Include="CEN\ReciclaUA\NivelCEN.cs" />
@@ -320,6 +327,8 @@
 			
 			
 			
+			
+			<Compile Include="CP\ReciclaUA\MaterialCP_CrearAccionMaterial.cs" />
 			
 	<Compile Include="EN\ReciclaUA\UsuarioEN.cs" />
 	<Compile Include="CEN\ReciclaUA\UsuarioCEN.cs" />

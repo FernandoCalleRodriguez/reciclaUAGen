@@ -85,6 +85,13 @@ public static void InitializeData ()
 
         try
         {
+                TipoAccionCEN tipoAccionCEN = new TipoAccionCEN();
+                var idTipo1 = tipoAccionCEN.Crear(10, "Duda");
+                var idTipo2 = tipoAccionCEN.Crear(5, "Respuesta");
+                tipoAccionCEN.Crear(10, "Item");
+                tipoAccionCEN.Crear(30, "Punto");
+                tipoAccionCEN.Crear(10, "Material");
+
                 // Insert the initilizations of entities using the CEN classes
 
                 UsuarioAdministradorCEN admin = new UsuarioAdministradorCEN ();
@@ -201,16 +208,12 @@ public static void InitializeData ()
                 Console.WriteLine ("el total de items validados es :" + itemsValidados.Count);
 
                 ///ADDEL
-                TipoAccionCEN tipoAccionCEN = new TipoAccionCEN ();
-                var idTipo1 = tipoAccionCEN.Crear (10, "Duda");
-                var idTipo2 = tipoAccionCEN.Crear (5, "Respuesta");
-                tipoAccionCEN.Crear (10, "Item");
-                tipoAccionCEN.Crear (30, "Punto");
-                tipoAccionCEN.Crear (10, "Material");
+                
                 AccionWebCEN accionWebCEN = new AccionWebCEN ();
-                AccionWebCP accionWebCP = new AccionWebCP ();
-                accionWebCEN.Crear (id_usu1, idTipo1);
-                accionWebCEN.Crear (id_usu1, idTipo2);
+                // AccionWebCP accionWebCP = new AccionWebCP ();
+                // accionWebCEN.Crear (id_usu1, idTipo1);
+                // accionWebCEN.Crear (id_usu1, idTipo2);
+
                 var result = accionWebCEN.BuscarPorAutor (id_usu1);
                 Console.WriteLine ("total de acciones del autor con id " + id_usu1 + " es :" + result.Count);
 

@@ -440,36 +440,5 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Item
 
         return result;
 }
-public int Operation ()
-{
-        int result;
-
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM ItemEN self where select cast(count(item) as int) FROM ItemEN as item";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ItemENoperationHQL");
-
-
-                result = query.UniqueResult<int>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in ItemCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 }
 }
