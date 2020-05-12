@@ -48,7 +48,7 @@ namespace ReciclaUAGenNHibernate.CP.ReciclaUA
 
                 duda = dudaCEN.BuscarPorId(p_oid);
 
-                if (usuarioWebCEN.BuscarPorId(duda.Usuario.Id) != null)
+                if (duda.Usuario != null && usuarioWebCEN.BuscarPorId(duda.Usuario.Id) != null)
                 {
                     tipoAccion = tipoAccionCEN.BuscarTodos(0, -1).Where(t => t.Nombre.Equals("Duda")).FirstOrDefault();
 

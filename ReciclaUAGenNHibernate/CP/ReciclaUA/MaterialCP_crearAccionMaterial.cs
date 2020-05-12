@@ -48,7 +48,7 @@ namespace ReciclaUAGenNHibernate.CP.ReciclaUA
 
                 material = materialCEN.BuscarPorId(p_oid);
 
-                if (usuarioWebCEN.BuscarPorId(material.Usuario.Id) != null)
+                if (material.Usuario != null && usuarioWebCEN.BuscarPorId(material.Usuario.Id) != null)
                 {
                     tipoAccion = tipoAccionCEN.BuscarTodos(0, -1).Where(t => t.Nombre.Equals("Material")).FirstOrDefault();
 

@@ -49,7 +49,7 @@ namespace ReciclaUAGenNHibernate.CP.ReciclaUA
 
                 item = itemCEN.BuscarPorId(p_oid);
 
-                if(usuarioWebCEN.BuscarPorId(item.Usuario.Id) != null)
+                if(item.Usuario != null && usuarioWebCEN.BuscarPorId(item.Usuario.Id) != null)
                 {
                     tipoAccion = tipoAccionCEN.BuscarTodos(0, -1).Where(t => t.Nombre.Equals("Item")).FirstOrDefault();
 

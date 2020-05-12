@@ -48,7 +48,7 @@ namespace ReciclaUAGenNHibernate.CP.ReciclaUA
 
                 punto = puntoReciclajeCEN.BuscarPorId(p_oid);
 
-                if (usuarioWebCEN.BuscarPorId(punto.Usuario.Id) != null)
+                if (punto.Usuario != null && usuarioWebCEN.BuscarPorId(punto.Usuario.Id) != null)
                 {
                     tipoAccion = tipoAccionCEN.BuscarTodos(0, -1).Where(t => t.Nombre.Equals("Punto")).FirstOrDefault();
 
