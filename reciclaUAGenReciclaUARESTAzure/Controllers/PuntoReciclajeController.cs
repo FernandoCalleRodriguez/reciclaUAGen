@@ -662,11 +662,14 @@ public HttpResponseMessage Borrar (int p_puntoreciclaje_oid)
 [Route ("~/api/PuntoReciclaje/BuscarPuntosCercanos")]
 
 
-public HttpResponseMessage BuscarPuntosCercanos (int p_oid)
+public HttpResponseMessage BuscarPuntosCercanos (double p_latitud, double p_longitud, int p_limit)
 {
         // CAD, CEN, returnValue
         PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
         PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
+        System.Collections.Generic.List<PuntoReciclajeEN> en;
 
         try
         {
@@ -678,8 +681,15 @@ public HttpResponseMessage BuscarPuntosCercanos (int p_oid)
 
 
                 // Operation
-                puntoReciclajeCEN.BuscarPuntosCercanos (p_oid);
+                en = puntoReciclajeCEN.BuscarPuntosCercanos (p_latitud, p_longitud, p_limit).ToList ();
                 SessionCommit ();
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                        foreach (PuntoReciclajeEN entry in en)
+                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                }
         }
 
         catch (Exception e)
@@ -697,7 +707,7 @@ public HttpResponseMessage BuscarPuntosCercanos (int p_oid)
         }
 
         // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK);
+        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
 }
 
 

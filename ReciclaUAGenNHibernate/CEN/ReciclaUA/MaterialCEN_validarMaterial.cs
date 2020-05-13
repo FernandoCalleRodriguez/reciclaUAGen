@@ -18,29 +18,28 @@ using ReciclaUAGenNHibernate.CP.ReciclaUA;
 
 namespace ReciclaUAGenNHibernate.CEN.ReciclaUA
 {
-    public partial class MaterialCEN
-    {
-        public void ValidarMaterial(int p_oid)
-        {
-            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Material_validarMaterial) ENABLED START*/
+public partial class MaterialCEN
+{
+public void ValidarMaterial (int p_oid)
+{
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Material_validarMaterial) ENABLED START*/
 
-            // Write here your custom code...
+        // Write here your custom code...
 
-            MaterialCAD cad = new MaterialCAD();
-            MaterialEN en = cad.BuscarPorId(p_oid);
+        MaterialCAD cad = new MaterialCAD ();
+        MaterialEN en = cad.BuscarPorId (p_oid);
 
-            if (en.EsValido != Enumerated.ReciclaUA.EstadoEnum.enProceso)
-            {
-                throw new ModelException("No se puede validar un material que no esta en proceso de validacion");
-            }
-
-            en.EsValido = Enumerated.ReciclaUA.EstadoEnum.verificado;
-
-            cad.Modificar(en);
-
-            MaterialCP cp = new MaterialCP();
-            cp.CrearAccionMaterial(p_oid);
-            /*PROTECTED REGION END*/
+        if (en.EsValido != Enumerated.ReciclaUA.EstadoEnum.enProceso) {
+                throw new ModelException ("No se puede validar un material que no esta en proceso de validacion");
         }
-    }
+
+        en.EsValido = Enumerated.ReciclaUA.EstadoEnum.verificado;
+
+        cad.Modificar (en);
+
+        MaterialCP cp = new MaterialCP ();
+        cp.CrearAccionMaterial (p_oid);
+        /*PROTECTED REGION END*/
+}
+}
 }
