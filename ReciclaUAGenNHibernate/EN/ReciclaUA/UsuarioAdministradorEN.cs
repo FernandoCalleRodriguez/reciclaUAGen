@@ -33,20 +33,20 @@ public UsuarioAdministradorEN() : base ()
 
 
 public UsuarioAdministradorEN(int id, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> notas
-                              , string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado
+                              , string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juego
                               )
 {
-        this.init (Id, notas, nombre, apellidos, email, pass, fecha, items, dudas, respuestas, puntos, emailVerificado, materiales, borrado);
+        this.init (Id, notas, nombre, apellidos, email, pass, fecha, items, dudas, respuestas, puntos, emailVerificado, materiales, borrado, juego);
 }
 
 
 public UsuarioAdministradorEN(UsuarioAdministradorEN usuarioAdministrador)
 {
-        this.init (Id, usuarioAdministrador.Notas, usuarioAdministrador.Nombre, usuarioAdministrador.Apellidos, usuarioAdministrador.Email, usuarioAdministrador.Pass, usuarioAdministrador.Fecha, usuarioAdministrador.Items, usuarioAdministrador.Dudas, usuarioAdministrador.Respuestas, usuarioAdministrador.Puntos, usuarioAdministrador.EmailVerificado, usuarioAdministrador.Materiales, usuarioAdministrador.Borrado);
+        this.init (Id, usuarioAdministrador.Notas, usuarioAdministrador.Nombre, usuarioAdministrador.Apellidos, usuarioAdministrador.Email, usuarioAdministrador.Pass, usuarioAdministrador.Fecha, usuarioAdministrador.Items, usuarioAdministrador.Dudas, usuarioAdministrador.Respuestas, usuarioAdministrador.Puntos, usuarioAdministrador.EmailVerificado, usuarioAdministrador.Materiales, usuarioAdministrador.Borrado, usuarioAdministrador.Juego);
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> notas, string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado)
+                   , System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> notas, string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juego)
 {
         this.Id = id;
 
@@ -76,6 +76,8 @@ private void init (int id
         this.Materiales = materiales;
 
         this.Borrado = borrado;
+
+        this.Juego = juego;
 }
 
 public override bool Equals (object obj)

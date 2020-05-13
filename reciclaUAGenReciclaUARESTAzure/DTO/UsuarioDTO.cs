@@ -73,5 +73,11 @@ private bool borrado;
 public bool Borrado {
         get { return borrado; } set { borrado = value;  }
 }
+
+
+private int juego_oid;
+public int Juego_oid {
+        get { return juego_oid; } set { juego_oid = value;  }
+}
 }
 }

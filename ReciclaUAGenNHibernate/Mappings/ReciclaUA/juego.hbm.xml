@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="ReciclaUAGenNHibernate"
+		                   namespace="ReciclaUAGenNHibernate.EN.ReciclaUA">
+		    
+		    
+			
+				<class name="JuegoEN" table="Juego"> 
+				  	
+						<id name="Id" column="idJuego" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="ItemActual" type="integer"> 
+						<column name="itemActual"  not-null="true"/>
+					</property>
+					<property name="Aciertos" type="integer"> 
+						<column name="aciertos"  not-null="true"/>
+					</property>
+					<property name="Fallos" type="integer"> 
+						<column name="fallos"  not-null="true"/>
+					</property>
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+					<property name="IntentosItemActual" type="integer"> 
+						<column name="intentosItemActual"  not-null="true"/>
+					</property>
+					<property name="Finalizado" type="boolean"> 
+						<column name="finalizado"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Usuarios" >
+							<key>
+							
+								
+								<column name="FK_idJuego_idJuego"/>
+					      	</key>
+							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="NivelActual" class="ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN" >	
+								<column name="FK_idNivel_idNivel"/> 
+						</many-to-one>
+											 					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="JuegoENReadAllHQL">from JuegoEN</query>
+		</hibernate-mapping>
+	

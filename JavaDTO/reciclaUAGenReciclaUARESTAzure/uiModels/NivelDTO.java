@@ -33,6 +33,10 @@
 				public ArrayList<Integer>  getItem_oid () { return item_oid; } 
 				public void setItem_oid (ArrayList<Integer> value) { item_oid = value;  } 
 				    	 
+				private ArrayList<Integer> juego_oid;
+				public ArrayList<Integer>  getJuego_oid () { return juego_oid; } 
+				public void setJuego_oid (ArrayList<Integer> value) { juego_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -58,6 +62,17 @@
 								jsonArray.put(this.item_oid.get(i));
 							}
 							json.put("Item_oid", jsonArray);
+						}
+		
+
+						if (this.juego_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.juego_oid.size(); ++i)
+							{
+								jsonArray.put(this.juego_oid.get(i));
+							}
+							json.put("Juego_oid", jsonArray);
 						}
 		
 						

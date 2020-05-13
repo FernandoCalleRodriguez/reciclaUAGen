@@ -38,6 +38,14 @@ public static NivelEN Convert (NivelDTO dto)
                                         newinstance.Item.Add (itemCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Juego_oid != null) {
+                                ReciclaUAGenNHibernate.CAD.ReciclaUA.IJuegoCAD juegoCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.JuegoCAD ();
+
+                                newinstance.Juego = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN>();
+                                foreach (int entry in dto.Juego_oid) {
+                                        newinstance.Juego.Add (juegoCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception ex)

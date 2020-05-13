@@ -116,6 +116,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioEN.Borrado = usuario.Borrado;
 
+
                 session.Update (usuarioEN);
                 SessionCommit ();
         }

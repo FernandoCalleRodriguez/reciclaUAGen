@@ -97,6 +97,13 @@
 					    </bag>
 					
 			
+			
+		  			
+						<many-to-one name="Juego" class="ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN" >	
+								<column name="FK_idJuego_idJuego"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					

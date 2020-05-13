@@ -188,6 +188,8 @@
 	<Compile Include="AssemblersDTO\PlantaAssemblerDTO.cs" />
 	<Compile Include="DTO\EstanciaDTO.cs" />
 	<Compile Include="AssemblersDTO\EstanciaAssemblerDTO.cs" />
+	<Compile Include="DTO\JuegoDTO.cs" />
+	<Compile Include="AssemblersDTO\JuegoAssemblerDTO.cs" />
 	
 
     

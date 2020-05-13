@@ -245,6 +245,11 @@
     <Compile Include="CAD\ReciclaUA\EstanciaCAD.cs" />
     <Compile Include="CP\ReciclaUA\EstanciaCP.cs" />
     <Compile Include="CEN\ReciclaUA\EstanciaCEN_Crear.cs" />
+    <Compile Include="EN\ReciclaUA\JuegoEN.cs" />
+    <Compile Include="CEN\ReciclaUA\JuegoCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IJuegoCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\JuegoCAD.cs" />
+    <Compile Include="CP\ReciclaUA\JuegoCP.cs" />
     <Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
     <Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />
     <Compile Include="Enumerated\ReciclaUA\EstadoEnum.cs" />
@@ -275,6 +280,7 @@
     <EmbeddedResource Include="Mappings\ReciclaUA\edificio.hbm.xml" />
     <EmbeddedResource Include="Mappings\ReciclaUA\planta.hbm.xml" />
     <EmbeddedResource Include="Mappings\ReciclaUA\estancia.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\juego.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
