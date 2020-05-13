@@ -44,5 +44,6 @@
 		  
 		  <query name="ContenedorENReadAllHQL">from ContenedorEN</query>
 		  <query name="ContenedorENbuscarContenedoresPorTipoHQL"><![CDATA[FROM ContenedorEN as contenedor where contenedor.Tipo = :tipo_contenedor]]></query>
+		  <query name="ContenedorENbuscarContenedoresPorPuntoHQL"><![CDATA[FROM ContenedorEN as contenedor where contenedor.Punto is not empty and contenedor.Punto.Id = :id_punto]]></query>
 		</hibernate-mapping>
 	

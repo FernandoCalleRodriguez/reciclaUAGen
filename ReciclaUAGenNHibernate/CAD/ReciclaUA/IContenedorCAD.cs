@@ -32,5 +32,8 @@ System.Collections.Generic.IList<ContenedorEN> BuscarTodos (int first, int size)
 
 
 System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorTipo (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor);
+
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorPunto (int id_punto);
 }
 }

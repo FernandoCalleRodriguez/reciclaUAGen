@@ -288,5 +288,35 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Cont
 
         return result;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorPunto (int id_punto)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ContenedorEN self where FROM ContenedorEN as contenedor where contenedor.Punto is not empty and contenedor.Punto.Id = :id_punto";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ContenedorENbuscarContenedoresPorPuntoHQL");
+                query.SetParameter ("id_punto", id_punto);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in ContenedorCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -101,5 +101,9 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Cont
 {
         return _IContenedorCAD.BuscarContenedoresPorTipo (tipo_contenedor);
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ContenedorEN> BuscarContenedoresPorPunto (int id_punto)
+{
+        return _IContenedorCAD.BuscarContenedoresPorPunto (id_punto);
+}
 }
 }

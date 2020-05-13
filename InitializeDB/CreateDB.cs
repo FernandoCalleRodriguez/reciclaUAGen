@@ -233,13 +233,31 @@ public static void InitializeData ()
 
 
                 PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN ();
-                puntoCEN.Crear (41.042171, -4.996339, id_usu1, id_estancia);
-                puntoCEN.Crear (38.351020, -0.498823, id_usu1, id_estancia);
-                puntoCEN.Crear (41.972265, -6.451450, id_usu1, id_estancia);
-                puntoCEN.Crear (39.203261, -1.716253, id_usu1, id_estancia);
-                puntoCEN.Crear (38.386952, -0.555871, id_usu1, id_estancia);
+                var p1 = puntoCEN.Crear (41.042171, -4.996339, id_usu1, id_estancia);
+                var p2 = puntoCEN.Crear (38.351020, -0.498823, id_usu1, id_estancia);
+                var p3 = puntoCEN.Crear (41.972265, -6.451450, id_usu1, id_estancia);
+                var p4 = puntoCEN.Crear (39.203261, -1.716253, id_usu1, id_estancia);
+                var p5 = puntoCEN.Crear (38.386952, -0.555871, id_usu1, id_estancia);
+
+                ContenedorCEN contenedorCEN = new ContenedorCEN ();
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p1);
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p2);
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p5);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p3);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p4);
+                contenedorCEN.Crear(TipoContenedorEnum.organico, p5);
 
                 puntoCEN.BuscarPuntosCercanos (38.340515, -0.515409, 1000);
+
+                Console.WriteLine ("Cristal");
+                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor (38.340515, -0.515409, TipoContenedorEnum.cristal, 0)) {
+                        Console.WriteLine ("Punto (" + p.Latitud + ", " + p.Longitud + ")");
+                }
+
+                Console.WriteLine ("Organico");
+                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor (38.340515, -0.515409, TipoContenedorEnum.organico, 0)) {
+                        Console.WriteLine ("Punto (" + p.Latitud + ", " + p.Longitud + ")");
+                }
 
                 /*
                  * int id_punto1 = puntoCEN.Crear (123, 123, id_usu1, id_estancia);
