@@ -245,7 +245,7 @@ public static void InitializeData ()
                 contenedorCEN.Crear (TipoContenedorEnum.cristal, p5);
                 contenedorCEN.Crear (TipoContenedorEnum.organico, p3);
                 contenedorCEN.Crear (TipoContenedorEnum.organico, p4);
-                contenedorCEN.Crear(TipoContenedorEnum.organico, p5);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p5);
 
                 puntoCEN.BuscarPuntosCercanos (38.340515, -0.515409, 1000);
 

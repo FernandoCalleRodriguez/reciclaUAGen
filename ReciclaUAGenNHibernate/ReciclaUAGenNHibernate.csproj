@@ -168,6 +168,7 @@
     <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanos.cs" />
     <Compile Include="CP\ReciclaUA\PuntoReciclajeCP_CrearAccionPunto.cs" />
     <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanosPorContenedor.cs" />
+    <Compile Include="CP\ReciclaUA\PuntoReciclajeCP_ObtenerPuntosCercanos.cs" />
     <Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
     <Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
     <Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />

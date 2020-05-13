@@ -712,6 +712,61 @@ public HttpResponseMessage BuscarPuntosCercanos (double p_latitud, double p_long
 
 
 
+[HttpPost]
+
+[Route ("~/api/PuntoReciclaje/BuscarPuntosCercanosPorContenedor")]
+
+
+public HttpResponseMessage BuscarPuntosCercanosPorContenedor (double p_latitud, double p_longitud, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_tipo, int p_limit)
+{
+        // CAD, CEN, returnValue
+        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+        PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
+        System.Collections.Generic.List<PuntoReciclajeEN> en;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+
+
+                // Operation
+                en = puntoReciclajeCEN.BuscarPuntosCercanosPorContenedor (p_latitud, p_longitud, p_tipo, p_limit).ToList ();
+                SessionCommit ();
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                        foreach (PuntoReciclajeEN entry in en)
+                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 
