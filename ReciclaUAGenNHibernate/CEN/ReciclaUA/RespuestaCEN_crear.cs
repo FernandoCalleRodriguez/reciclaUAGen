@@ -36,7 +36,7 @@ public int Crear (string p_cuerpo, int p_duda, int p_usuario)
 
         respuestaEN.EsCorrecta = false;
 
-        respuestaEN.Fecha = DateTime.Today;
+        respuestaEN.Fecha = DateTime.Now;
 
 
         if (p_usuario != -1) {
@@ -54,8 +54,8 @@ public int Crear (string p_cuerpo, int p_duda, int p_usuario)
 
         oid = _IRespuestaCAD.Crear (respuestaEN);
 
-        RespuestaCP cp = new RespuestaCP ();
-        cp.CrearAccionRespuesta (oid);
+        // RespuestaCP cp = new RespuestaCP (((RespuestaCAD)_IRespuestaCAD).GetSession ());
+        // cp.CrearAccionRespuesta (oid);
 
         return oid;
         /*PROTECTED REGION END*/

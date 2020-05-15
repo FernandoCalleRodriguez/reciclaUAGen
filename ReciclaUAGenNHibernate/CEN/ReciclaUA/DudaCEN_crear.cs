@@ -36,7 +36,7 @@ public int Crear (string p_titulo, string p_cuerpo, int p_usuario, ReciclaUAGenN
 
         dudaEN.Tema = p_tema;
 
-        dudaEN.Fecha = DateTime.Today;
+        dudaEN.Fecha = DateTime.Now;
 
 
         if (p_usuario != -1) {
@@ -48,8 +48,8 @@ public int Crear (string p_titulo, string p_cuerpo, int p_usuario, ReciclaUAGenN
 
         oid = _IDudaCAD.Crear (dudaEN);
 
-        DudaCP cp = new DudaCP ();
-        cp.CrearAccionDuda (oid);
+        // DudaCP cp = new DudaCP ();
+        // cp.CrearAccionDuda (oid);
 
         return oid;
         /*PROTECTED REGION END*/
