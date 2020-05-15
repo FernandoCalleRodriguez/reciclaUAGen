@@ -13,6 +13,8 @@ using System.IO;
 using System.Linq;
 using ReciclaUAGenNHibernate.Enumerated.ReciclaUA;
 using ReciclaUAGenNHibernate.CP.ReciclaUA;
+using System.Globalization;
+using Newtonsoft.Json.Linq;
 //using ReciclaUAGenNHibernate.Enumerated.ReciclaUA;
 
 
@@ -85,6 +87,7 @@ public static void InitializeData ()
 
         try
         {
+                /** TipoAccionCEN **/
                 TipoAccionCEN tipoAccionCEN = new TipoAccionCEN ();
                 var idTipo1 = tipoAccionCEN.Crear (10, "Duda");
                 var idTipo2 = tipoAccionCEN.Crear (5, "Respuesta");
@@ -92,24 +95,24 @@ public static void InitializeData ()
                 tipoAccionCEN.Crear (30, "Punto");
                 tipoAccionCEN.Crear (10, "Material");
 
-                // Insert the initilizations of entities using the CEN classes
+                /** UsuarioAdministradorCEN **/
+                UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN ();
+                var idAdminFer = adminCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdlc4@alu.ua.es", "fdlc4");
+                // var idAdminAddel = adminCEN.Crear ("Addel Arnaldo", "Goya Jorge", "aagj2@alu.ua.es", "aagj2");
+                var id_admin = adminCEN.Crear ("admin", "admin", "admin@ua.es", "admin");
 
-                UsuarioAdministradorCEN admin = new UsuarioAdministradorCEN ();
-                var id_admin = admin.Crear ("admin", "admin", "admin@ua.es", "admin");
 
+                /** NotaInformativaCEN **/
+                NotaInformativaCEN notaCEN = new NotaInformativaCEN ();
+                var id_nota = notaCEN.Crear (id_admin, "Esto es una nota", "Esto es el cuerpo del titulo");
 
-                NotaInformativaCEN nota = new NotaInformativaCEN ();
-                var id_nota = nota.Crear (id_admin, "Esto es una nota", "Esto es el cuerpo del titulo");
-
-                UsuarioWebCEN usu1 = new UsuarioWebCEN ();
-                var id_usu1 = usu1.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
+                UsuarioWebCEN usuCEN = new UsuarioWebCEN ();
+                // var idWebAngela = usuCEN.Crear ("Angela Sofia", "Sbrizzi Quilotte", "assq1@alu.ua.es", "assq1");
+                // var idWebJose = usuCEN.Crear ("José Antonio", "Agulló García", "jaag14@alu.ua.es", "jaag14");
+                // var idWebWallid = usuCEN.Crear ("mohamed", "walid Nebili", "mwn1@alu.ua.es", "mwn1");
+                var idWebFer = adminCEN.Crear("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
+                var id_usu1 = usuCEN.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
                 Console.WriteLine ("ID Usuario 1: " + id_usu1);
-
-                var id_admin2 = admin.Crear ("admin", "2", "admin2@ua.es", "admin2");
-                Console.WriteLine ("ID Usuario Admin 2: " + id_admin2);
-
-                /*usu1.Borrar(id_usu1);
-                 * Console.WriteLine( usu1.BuscarPorId(id_usu1).Borrado);*/
 
                 /*
                  *  DUDA
@@ -307,82 +310,70 @@ public static void InitializeData ()
                  * /*
                  * ACESSO SIGUA
                  */
-                /*
-                 * string path = @"..\..\resources\sigua_backup.json";
-                 * StreamReader sr = File.OpenText(path);
-                 * //Console.WriteLine(sr.ReadToEnd().Trim());
-                 * JArray aEdificios = JArray.Parse(sr.ReadToEnd().Trim());
-                 *
-                 * foreach (var itemEdificio in aEdificios.Children())
-                 * {
-                 *     var edificioProperties = itemEdificio.Children<JProperty>();
-                 *
-                 *     var id = edificioProperties.FirstOrDefault(x => x.Name == "id");
-                 *     var nombre = edificioProperties.FirstOrDefault(x => x.Name == "nombre");
-                 *     var plantas = edificioProperties.FirstOrDefault(x => x.Name == "plantas");
-                 *
-                 *     id_edificio = Int32.Parse(id.Value.ToString());
-                 *     EdificioCEN e = new EdificioCEN();
-                 *     id_edificio = e.Crear(nombre.Value.ToString(), id_edificio);
-                 *
-                 *
-                 *     foreach (var planta in plantas.Children().Children())
-                 *     {
-                 *         PlantaEnum plantaE;
-                 *         JProperty plantaProperties = (JProperty)planta;
-                 *
-                 *         if (plantaProperties.Name == "P1")
-                 *         {
-                 *             plantaE = PlantaEnum.P1;
-                 *         }
-                 *         else if (plantaProperties.Name == "P2")
-                 *         {
-                 *             plantaE = PlantaEnum.P2;
-                 *         }
-                 *         else if (plantaProperties.Name == "P3")
-                 *         {
-                 *             plantaE = PlantaEnum.P3;
-                 *         }
-                 *         else if (plantaProperties.Name == "P4")
-                 *         {
-                 *             plantaE = PlantaEnum.P4;
-                 *         }
-                 *         else if (plantaProperties.Name == "PS")
-                 *         {
-                 *             plantaE = PlantaEnum.PS;
-                 *         }
-                 *         else
-                 *         {
-                 *             plantaE = PlantaEnum.PB;
-                 *         }
-                 *
-                 *         plantaCEN = new PlantaCEN();
-                 *         id_planta = plantaCEN.Crear(plantaE, id_edificio);
-                 *
-                 *         foreach (var itemEstancia in planta.Children().Children())
-                 *         {
-                 *             var estanciaProperties = itemEstancia.Children<JProperty>();
-                 *
-                 *             var estancia_codigo = estanciaProperties.FirstOrDefault(x => x.Name == "codigo");
-                 *             var estancia_lon = estanciaProperties.FirstOrDefault(x => x.Name == "longitud");
-                 *             var estancia_lat = estanciaProperties.FirstOrDefault(x => x.Name == "latitud");
-                 *             var estancia_nom = estanciaProperties.FirstOrDefault(x => x.Name == "nombre");
-                 *             var estancia_act = estanciaProperties.FirstOrDefault(x => x.Name == "actividad");
-                 *
-                 *             //if(estancia_act.Value.ToString() == "Aseos" || estancia_act.Value.ToString() == "Vestuarios" || estancia_act.Value.ToString() == "Pasillos" || estancia_act.Value.ToString() == "Aseo femenino" || estancia_act.Value.ToString() == "Aseo masculino"|| estancia_act.Value.ToString() == "Jardines")
-                 *
-                 *             if (estanciaCEN.BuscarPorId(estancia_codigo.Value.ToString()) == null)
-                 *             {
-                 *                 estanciaCEN = new EstanciaCEN();
-                 *                 estanciaCEN.Crear(estancia_codigo.Value.ToString(), estancia_act.Value.ToString(), double.Parse(estancia_lat.Value.ToString(), CultureInfo.InvariantCulture), double.Parse(estancia_lon.Value.ToString(), CultureInfo.InvariantCulture), estancia_nom.Value.ToString(), id_edificio, id_planta);
-                 *
-                 *             }
-                 *
-                 *
-                 *         }
-                 *     }
-                 * }
-                 */
+
+                string path = @"..\..\resources\sigua_eps.json";
+                StreamReader sr = File.OpenText (path);
+                //Console.WriteLine(sr.ReadToEnd().Trim());
+                JArray aEdificios = JArray.Parse (sr.ReadToEnd ().Trim ());
+
+                foreach (var itemEdificio in aEdificios.Children ()) {
+                        var edificioProperties = itemEdificio.Children<JProperty>();
+
+                        var id = edificioProperties.FirstOrDefault (x => x.Name == "id");
+                        var nombre = edificioProperties.FirstOrDefault (x => x.Name == "nombre");
+                        var plantas = edificioProperties.FirstOrDefault (x => x.Name == "plantas");
+
+                        id_edificio = Int32.Parse (id.Value.ToString ());
+                        //EdificioCEN edificioCEN = new EdificioCEN ();
+                        edificioCEN = new EdificioCEN ();
+                        id_edificio = edificioCEN.Crear (nombre.Value.ToString (), id_edificio);
+
+
+                        foreach (var planta in plantas.Children ().Children ()) {
+                                PlantaEnum plantaE;
+                                JProperty plantaProperties = (JProperty)planta;
+
+                                if (plantaProperties.Name == "P1") {
+                                        plantaE = PlantaEnum.P1;
+                                }
+                                else if (plantaProperties.Name == "P2") {
+                                        plantaE = PlantaEnum.P2;
+                                }
+                                else if (plantaProperties.Name == "P3") {
+                                        plantaE = PlantaEnum.P3;
+                                }
+                                else if (plantaProperties.Name == "P4") {
+                                        plantaE = PlantaEnum.P4;
+                                }
+                                else if (plantaProperties.Name == "PS") {
+                                        plantaE = PlantaEnum.PS;
+                                }
+                                else{
+                                        plantaE = PlantaEnum.PB;
+                                }
+
+                                plantaCEN = new PlantaCEN ();
+                                id_planta = plantaCEN.Crear (plantaE, id_edificio);
+
+                                foreach (var itemEstancia in planta.Children ().Children ()) {
+                                        var estanciaProperties = itemEstancia.Children<JProperty>();
+
+                                        var estancia_codigo = estanciaProperties.FirstOrDefault (x => x.Name == "codigo");
+                                        var estancia_lon = estanciaProperties.FirstOrDefault (x => x.Name == "longitud");
+                                        var estancia_lat = estanciaProperties.FirstOrDefault (x => x.Name == "latitud");
+                                        var estancia_nom = estanciaProperties.FirstOrDefault (x => x.Name == "nombre");
+                                        var estancia_act = estanciaProperties.FirstOrDefault (x => x.Name == "actividad");
+
+                                        //if(estancia_act.Value.ToString() == "Aseos" || estancia_act.Value.ToString() == "Vestuarios" || estancia_act.Value.ToString() == "Pasillos" || estancia_act.Value.ToString() == "Aseo femenino" || estancia_act.Value.ToString() == "Aseo masculino"|| estancia_act.Value.ToString() == "Jardines")
+
+                                        /*if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
+                                                estanciaCEN = new EstanciaCEN ();
+                                                estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString (), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString (), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
+                                        }*/
+                                }
+                        }
+                }
+
 
                 /*PROTECTED REGION END*/
         }
