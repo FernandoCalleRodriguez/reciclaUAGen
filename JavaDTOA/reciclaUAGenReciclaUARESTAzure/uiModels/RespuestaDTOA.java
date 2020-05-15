@@ -27,10 +27,6 @@ public class RespuestaDTOA extends DTOA
 	public String getCuerpo () { return cuerpo; }
 	public void setCuerpo (String cuerpo) { this.cuerpo = cuerpo; }
 	
-	private java.util.Date fecha;
-	public java.util.Date getFecha () { return fecha; }
-	public void setFecha (java.util.Date fecha) { this.fecha = fecha; }
-	
 	private Boolean esCorrecta;
 	public Boolean getEsCorrecta () { return esCorrecta; }
 	public void setEsCorrecta (Boolean esCorrecta) { this.esCorrecta = esCorrecta; }
@@ -38,6 +34,10 @@ public class RespuestaDTOA extends DTOA
 	private Integer util;
 	public Integer getUtil () { return util; }
 	public void setUtil (Integer util) { this.util = util; }
+	
+	private java.util.Date fecha;
+	public java.util.Date getFecha () { return fecha; }
+	public void setFecha (java.util.Date fecha) { this.fecha = fecha; }
 	
 	
 	/* Rol: Respuesta o--> UsuarioWebAutenticado */
@@ -76,14 +76,6 @@ public class RespuestaDTOA extends DTOA
 			 
 			}
 
-			if (!JSONObject.NULL.equals(json.opt("Fecha")))
-			{
-			 
-			 	String stringDate = (String) json.opt("Fecha");
-				this.fecha = DateUtils.stringToDateFormat(stringDate);
-			 
-			}
-
 			if (!JSONObject.NULL.equals(json.opt("EsCorrecta")))
 			{
 			 
@@ -95,6 +87,14 @@ public class RespuestaDTOA extends DTOA
 			{
 			 
 				this.util = (Integer) json.opt("Util");
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Fecha")))
+			{
+			 
+			 	String stringDate = (String) json.opt("Fecha");
+				this.fecha = DateUtils.stringToDateFormat(stringDate);
 			 
 			}
 			
@@ -130,16 +130,16 @@ public class RespuestaDTOA extends DTOA
 			json.put("Cuerpo", this.cuerpo);
 		
 		
-		  if (this.fecha != null)
-			json.put("Fecha", DateUtils.dateToFormatString(this.fecha));
-		
-		
 		  if (this.esCorrecta != null)
 			json.put("EsCorrecta", this.esCorrecta);
 		
 		
 		  if (this.util != null)
 			json.put("Util", this.util.intValue());
+		
+		
+		  if (this.fecha != null)
+			json.put("Fecha", DateUtils.dateToFormatString(this.fecha));
 		
 			
 
@@ -170,11 +170,11 @@ public class RespuestaDTOA extends DTOA
 		
 	dto.setCuerpo (this.getCuerpo());
 
-	dto.setFecha (this.getFecha());
-
 	dto.setEsCorrecta (this.getEsCorrecta());
 
 	dto.setUtil (this.getUtil());
+
+	dto.setFecha (this.getFecha());
 
 		
 		

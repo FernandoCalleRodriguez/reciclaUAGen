@@ -14,9 +14,9 @@ class RespuestaDTOA : DTOA
 	var id: Int?;
 	
 	var cuerpo: String?;
-	var fecha: NSDate?;
 	var esCorrecta: Bool?;
 	var util: Int?;
+	var fecha: NSDate?;
 	
 	/* Rol: Respuesta o--> UsuarioWebAutenticado */
 	var usuarioRespuesta: UsuarioWebAutenticadoDTOA?;
@@ -42,10 +42,10 @@ class RespuestaDTOA : DTOA
 		
 	
 		self.cuerpo = json["Cuerpo"].object as? String;
-	
-		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		self.esCorrecta = json["EsCorrecta"].object as? Bool;
 		self.util = json["Util"].object as? Int;
+	
+		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		
 		if (json["UsuarioRespuesta"] != JSON.null)
 		{
@@ -69,17 +69,17 @@ class RespuestaDTOA : DTOA
 	
 
 	
-		dictionary["Fecha"] = self.fecha?.toString();
-	
-	
-
-	
 		dictionary["EsCorrecta"] = self.esCorrecta;
 	
 	
 
 	
 		dictionary["Util"] = self.util;
+	
+	
+
+	
+		dictionary["Fecha"] = self.fecha?.toString();
 	
 	
 		

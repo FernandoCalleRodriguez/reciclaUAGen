@@ -23,13 +23,6 @@ public string Cuerpo
         set { cuerpo = value; }
 }
 
-private Nullable<DateTime> fecha;
-public Nullable<DateTime> Fecha
-{
-        get { return fecha; }
-        set { fecha = value; }
-}
-
 private bool esCorrecta;
 public bool EsCorrecta
 {
@@ -42,6 +35,13 @@ public int Util
 {
         get { return util; }
         set { util = value; }
+}
+
+private Nullable<DateTime> fecha;
+public Nullable<DateTime> Fecha
+{
+        get { return fecha; }
+        set { fecha = value; }
 }
 
 

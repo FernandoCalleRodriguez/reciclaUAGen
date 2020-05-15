@@ -23,365 +23,361 @@ using ReciclaUAGenNHibernate.CP.ReciclaUA;
 
 namespace reciclaUAGenReciclaUARESTAzure.Controllers
 {
-    [RoutePrefix("~/api/Material")]
-    public class MaterialController : BasicController
-    {
-        // Voy a generar el readAll
+[RoutePrefix ("~/api/Material")]
+public class MaterialController : BasicController
+{
+// Voy a generar el readAll
 
 
 
-        // ReadAll Generado a partir del NavigationalOperation
-        [HttpGet]
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
 
-        [Route("~/api/Material/BuscarTodos")]
-        public HttpResponseMessage BuscarTodos()
+[Route ("~/api/Material/BuscarTodos")]
+public HttpResponseMessage BuscarTodos ()
+{
+        // CAD, CEN, EN, returnValue
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+
+        List<MaterialEN> materialEN = null;
+        List<MaterialDTOA> returnValue = null;
+
+        try
         {
-            // CAD, CEN, EN, returnValue
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-
-            List<MaterialEN> materialEN = null;
-            List<MaterialDTOA> returnValue = null;
-
-            try
-            {
-                SessionInitializeWithoutTransaction();
+                SessionInitializeWithoutTransaction ();
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // Data
                 // TODO: paginación
 
-                materialEN = materialCEN.BuscarTodos(0, -1).ToList();
+                materialEN = materialCEN.BuscarTodos (0, -1).ToList ();
 
                 // Convert return
-                if (materialEN != null)
-                {
-                    returnValue = new List<MaterialDTOA>();
-                    foreach (MaterialEN entry in materialEN)
-                        returnValue.Add(MaterialAssembler.Convert(entry, session));
+                if (materialEN != null) {
+                        returnValue = new List<MaterialDTOA>();
+                        foreach (MaterialEN entry in materialEN)
+                                returnValue.Add (MaterialAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-
-
-
-
-
-
-
-        [HttpGet]
-        // [Route("{idMaterial}", Name="GetOIDMaterial")]
-
-        [Route("~/api/Material/{idMaterial}")]
-
-        public HttpResponseMessage BuscarPorId(int idMaterial)
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-            MaterialEN materialEN = null;
-            MaterialDTOA returnValue = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeWithoutTransaction();
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+
+
+
+
+
+
+
+
+[HttpGet]
+// [Route("{idMaterial}", Name="GetOIDMaterial")]
+
+[Route ("~/api/Material/{idMaterial}")]
+
+public HttpResponseMessage BuscarPorId (int idMaterial)
+{
+        // CAD, CEN, EN, returnValue
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+        MaterialEN materialEN = null;
+        MaterialDTOA returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // Data
-                materialEN = materialCEN.BuscarPorId(idMaterial);
+                materialEN = materialCEN.BuscarPorId (idMaterial);
 
                 // Convert return
-                if (materialEN != null)
-                {
-                    returnValue = MaterialAssembler.Convert(materialEN, session);
+                if (materialEN != null) {
+                        returnValue = MaterialAssembler.Convert (materialEN, session);
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 404 - Not found
-            if (returnValue == null)
-                return this.Request.CreateResponse(HttpStatusCode.NotFound);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-        // No pasa el slEnables: buscarPorTipoContenedor
-
-        [HttpGet]
-
-        [Route("~/api/Material/BuscarPorTipoContenedor")]
-
-        public HttpResponseMessage BuscarPorTipoContenedor(ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum? tipo_contenedor)
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-
-
-            System.Collections.Generic.List<MaterialEN> en;
-
-            System.Collections.Generic.List<MaterialDTOA> returnValue = null;
-
-            try
-            {
-                SessionInitializeWithoutTransaction();
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+// No pasa el slEnables: buscarPorTipoContenedor
+
+[HttpGet]
+
+[Route ("~/api/Material/BuscarPorTipoContenedor")]
+
+public HttpResponseMessage BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum ? tipo_contenedor)
+{
+        // CAD, CEN, EN, returnValue
+
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+
+
+        System.Collections.Generic.List<MaterialEN> en;
+
+        System.Collections.Generic.List<MaterialDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // CEN return
 
 
 
-                en = materialCEN.BuscarPorTipoContenedor(tipo_contenedor).ToList();
+                en = materialCEN.BuscarPorTipoContenedor (tipo_contenedor).ToList ();
 
 
 
 
                 // Convert return
-                if (en != null)
-                {
-                    returnValue = new System.Collections.Generic.List<MaterialDTOA>();
-                    foreach (MaterialEN entry in en)
-                        returnValue.Add(MaterialAssembler.Convert(entry, session));
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<MaterialDTOA>();
+                        foreach (MaterialEN entry in en)
+                                returnValue.Add (MaterialAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-        // No pasa el slEnables: buscarMaterialesPorUsuario
-
-        [HttpGet]
-
-        [Route("~/api/Material/BuscarMaterialesPorUsuario")]
-
-        public HttpResponseMessage BuscarMaterialesPorUsuario(int id_usuario)
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
-            System.Collections.Generic.List<MaterialEN> en;
+// No pasa el slEnables: buscarMaterialesPorUsuario
 
-            System.Collections.Generic.List<MaterialDTOA> returnValue = null;
+[HttpGet]
 
-            try
-            {
-                SessionInitializeWithoutTransaction();
+[Route ("~/api/Material/BuscarMaterialesPorUsuario")]
+
+public HttpResponseMessage BuscarMaterialesPorUsuario (int id_usuario)
+{
+        // CAD, CEN, EN, returnValue
+
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+
+
+        System.Collections.Generic.List<MaterialEN> en;
+
+        System.Collections.Generic.List<MaterialDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
 
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // CEN return
 
 
 
-                en = materialCEN.BuscarMaterialesPorUsuario(id_usuario).ToList();
+                en = materialCEN.BuscarMaterialesPorUsuario (id_usuario).ToList ();
 
 
 
 
                 // Convert return
-                if (en != null)
-                {
-                    returnValue = new System.Collections.Generic.List<MaterialDTOA>();
-                    foreach (MaterialEN entry in en)
-                        returnValue.Add(MaterialAssembler.Convert(entry, session));
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<MaterialDTOA>();
+                        foreach (MaterialEN entry in en)
+                                returnValue.Add (MaterialAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-
-
-        [HttpPost]
-
-
-        [Route("~/api/Material/Crear")]
-
-
-
-
-        public HttpResponseMessage Crear([FromBody] MaterialDTO dto)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue, returnOID
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-            MaterialDTOA returnValue = null;
-            int returnOID = -1;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
-            try
-            {
-                SessionInitializeTransaction();
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+
+
+[HttpPost]
+
+
+[Route ("~/api/Material/Crear")]
+
+
+
+
+public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+        MaterialDTOA returnValue = null;
+        int returnOID = -1;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // Create
-                returnOID = materialCEN.Crear(
+                returnOID = materialCEN.Crear (
                         //Atributo Primitivo: p_nombre
                         dto.Nombre,                                                                                                                                         //Atributo Primitivo: p_contenedor
                         dto.Contenedor,                                                                                                                                   //Atributo OID: p_usuario
-                                                                                                                                                                          // attr.estaRelacionado: true
+                        // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
                         );
-                SessionCommit();
+                SessionCommit ();
 
                 // Convert return
-                returnValue = MaterialAssembler.Convert(materialRESTCAD.ReadOIDDefault(returnOID), session);
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 201 - Created
-            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
-
-            // Location Header
-            /*
-             * Dictionary<string, object> routeValues = new Dictionary<string, object>();
-             *
-             * // TODO: y rolPaths
-             * routeValues.Add("id", returnOID);
-             *
-             * uri = Url.Link("GetOIDMaterial", routeValues);
-             * response.Headers.Location = new Uri(uri);
-             */
-
-            return response;
+                returnValue = MaterialAssembler.Convert (materialRESTCAD.ReadOIDDefault (returnOID), session);
         }
 
-
-
-
-        [HttpPut]
-
-
-
-        [Route("~/api/Material/Modificar")]
-
-        public HttpResponseMessage Modificar(int idMaterial, [FromBody] MaterialDTO dto)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-            MaterialDTOA returnValue = null;
+                SessionRollBack ();
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeTransaction();
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+
+        // Location Header
+        /*
+         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
+         *
+         * // TODO: y rolPaths
+         * routeValues.Add("id", returnOID);
+         *
+         * uri = Url.Link("GetOIDMaterial", routeValues);
+         * response.Headers.Location = new Uri(uri);
+         */
+
+        return response;
+}
 
 
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
+
+
+[HttpPut]
+
+
+
+[Route ("~/api/Material/Modificar")]
+
+public HttpResponseMessage Modificar (int idMaterial, [FromBody] MaterialDTO dto)
+{
+        // CAD, CEN, returnValue
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+        MaterialDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
 
                 // Modify
-                materialCEN.Modificar(idMaterial,
+                materialCEN.Modificar (idMaterial,
                         dto.Nombre
                         ,
                         dto.Contenedor
@@ -390,82 +386,80 @@ namespace reciclaUAGenReciclaUARESTAzure.Controllers
                         );
 
                 // Return modified object
-                returnValue = MaterialAssembler.Convert(materialRESTCAD.ReadOIDDefault(idMaterial), session);
+                returnValue = MaterialAssembler.Convert (materialRESTCAD.ReadOIDDefault (idMaterial), session);
 
-                SessionCommit();
-            }
+                SessionCommit ();
+        }
 
-            catch (Exception e)
-            {
-                SessionRollBack();
+        catch (Exception e)
+        {
+                SessionRollBack ();
 
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            // Return 404 - Not found
-            if (returnValue == null)
-                return this.Request.CreateResponse(HttpStatusCode.NotFound);
-            // Return 200 - OK
-            else
-            {
-                response = this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
 
                 return response;
-            }
+        }
+}
+
+
+
+
+
+[HttpDelete]
+
+
+[Route ("~/api/Material/Borrar")]
+
+public HttpResponseMessage Borrar (int p_material_oid)
+{
+        // CAD, CEN
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
+
+                materialCEN.Borrar (p_material_oid);
+                SessionCommit ();
         }
 
-
-
-
-
-        [HttpDelete]
-
-
-        [Route("~/api/Material/Borrar")]
-
-        public HttpResponseMessage Borrar(int p_material_oid)
+        catch (Exception e)
         {
-            // CAD, CEN
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
+                SessionRollBack ();
 
-            try
-            {
-                SessionInitializeTransaction();
-
-
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
-
-                materialCEN.Borrar(p_material_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - No Content
-            return this.Request.CreateResponse(HttpStatusCode.NoContent);
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
         }
 
+        // Return 204 - No Content
+        return this.Request.CreateResponse (HttpStatusCode.NoContent);
+}
 
 
 
@@ -474,62 +468,63 @@ namespace reciclaUAGenReciclaUARESTAzure.Controllers
 
 
 
-        /*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_MaterialControllerAzure) ENABLED START*/
-        // Meter las operaciones que invoquen a las CPs
 
-        [HttpPost]
-        [Route("~/api/Material/CrearCP")]
-        public HttpResponseMessage CrearCP([FromBody] MaterialDTO dto)
+/*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_MaterialControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
+
+[HttpPost]
+[Route ("~/api/Material/CrearCP")]
+public HttpResponseMessage CrearCP ( [FromBody] MaterialDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        MaterialRESTCAD materialRESTCAD = null;
+        MaterialCEN materialCEN = null;
+        MaterialDTOA returnValue = null;
+        MaterialCP materialCP = null;
+        int returnOID = -1;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
         {
-            // CAD, CEN, returnValue, returnOID
-            MaterialRESTCAD materialRESTCAD = null;
-            MaterialCEN materialCEN = null;
-            MaterialDTOA returnValue = null;
-            MaterialCP materialCP = null;
-            int returnOID = -1;
+                SessionInitializeTransaction ();
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
-
-            try
-            {
-                SessionInitializeTransaction();
-
-                materialRESTCAD = new MaterialRESTCAD(session);
-                materialCEN = new MaterialCEN(materialRESTCAD);
-                materialCP = new MaterialCP(session);
+                materialRESTCAD = new MaterialRESTCAD (session);
+                materialCEN = new MaterialCEN (materialRESTCAD);
+                materialCP = new MaterialCP (session);
 
                 // Create
-                returnOID = materialCEN.Crear(dto.Nombre, dto.Contenedor, dto.Usuario_oid);
-                materialCP.CrearAccionMaterial(returnOID);
+                returnOID = materialCEN.Crear (dto.Nombre, dto.Contenedor, dto.Usuario_oid);
+                materialCP.CrearAccionMaterial (returnOID);
 
-                SessionCommit();
+                SessionCommit ();
 
                 // Convert return
-                returnValue = MaterialAssembler.Convert(materialRESTCAD.ReadOIDDefault(returnOID), session);
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 201 - Created
-            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
-
-            return response;
+                returnValue = MaterialAssembler.Convert (materialRESTCAD.ReadOIDDefault (returnOID), session);
         }
 
-        /*PROTECTED REGION END*/
-    }
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+
+        return response;
+}
+
+/*PROTECTED REGION END*/
+}
 }

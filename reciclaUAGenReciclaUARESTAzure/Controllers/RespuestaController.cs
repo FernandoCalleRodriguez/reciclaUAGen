@@ -23,434 +23,429 @@ using ReciclaUAGenNHibernate.CP.ReciclaUA;
 
 namespace reciclaUAGenReciclaUARESTAzure.Controllers
 {
-    [RoutePrefix("~/api/Respuesta")]
-    public class RespuestaController : BasicController
-    {
-        // Voy a generar el readAll
+[RoutePrefix ("~/api/Respuesta")]
+public class RespuestaController : BasicController
+{
+// Voy a generar el readAll
 
 
 
-        // ReadAll Generado a partir del NavigationalOperation
-        [HttpGet]
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
 
-        [Route("~/api/Respuesta/BuscarTodos")]
-        public HttpResponseMessage BuscarTodos()
+[Route ("~/api/Respuesta/BuscarTodos")]
+public HttpResponseMessage BuscarTodos ()
+{
+        // CAD, CEN, EN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+        List<RespuestaEN> respuestaEN = null;
+        List<RespuestaDTOA> returnValue = null;
+
+        try
         {
-            // CAD, CEN, EN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-
-            List<RespuestaEN> respuestaEN = null;
-            List<RespuestaDTOA> returnValue = null;
-
-            try
-            {
-                SessionInitializeWithoutTransaction();
+                SessionInitializeWithoutTransaction ();
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // Data
                 // TODO: paginación
 
-                respuestaEN = respuestaCEN.BuscarTodos(0, -1).ToList();
+                respuestaEN = respuestaCEN.BuscarTodos (0, -1).ToList ();
 
                 // Convert return
-                if (respuestaEN != null)
-                {
-                    returnValue = new List<RespuestaDTOA>();
-                    foreach (RespuestaEN entry in respuestaEN)
-                        returnValue.Add(RespuestaAssembler.Convert(entry, session));
+                if (respuestaEN != null) {
+                        returnValue = new List<RespuestaDTOA>();
+                        foreach (RespuestaEN entry in respuestaEN)
+                                returnValue.Add (RespuestaAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-
-
-        [HttpGet]
-
-
-
-
-
-        [Route("~/api/Respuesta/RespuestasDuda")]
-
-        public HttpResponseMessage RespuestasDuda(int idDuda)
+        catch (Exception e)
         {
-            // CAD, EN
-            DudaRESTCAD dudaRESTCAD = null;
-            DudaEN dudaEN = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            // returnValue
-            List<RespuestaEN> en = null;
-            List<RespuestaDTOA> returnValue = null;
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
-            try
-            {
-                SessionInitializeWithoutTransaction();
 
 
-                dudaRESTCAD = new DudaRESTCAD(session);
+
+
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Respuesta/RespuestasDuda")]
+
+public HttpResponseMessage RespuestasDuda (int idDuda)
+{
+        // CAD, EN
+        DudaRESTCAD dudaRESTCAD = null;
+        DudaEN dudaEN = null;
+
+        // returnValue
+        List<RespuestaEN> en = null;
+        List<RespuestaDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                dudaRESTCAD = new DudaRESTCAD (session);
 
                 // Exists Duda
-                dudaEN = dudaRESTCAD.ReadOIDDefault(idDuda);
-                if (dudaEN == null) throw new HttpResponseException(this.Request.CreateResponse(HttpStatusCode.NotFound, "Duda#" + idDuda + " not found"));
+                dudaEN = dudaRESTCAD.ReadOIDDefault (idDuda);
+                if (dudaEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Duda#" + idDuda + " not found"));
 
                 // Rol
                 // TODO: paginación
 
 
-                en = dudaRESTCAD.RespuestasDuda(idDuda).ToList();
+                en = dudaRESTCAD.RespuestasDuda (idDuda).ToList ();
 
 
 
                 // Convert return
-                if (en != null)
-                {
-                    returnValue = new List<RespuestaDTOA>();
-                    foreach (RespuestaEN entry in en)
-                        returnValue.Add(RespuestaAssembler.Convert(entry, session));
+                if (en != null) {
+                        returnValue = new List<RespuestaDTOA>();
+                        foreach (RespuestaEN entry in en)
+                                returnValue.Add (RespuestaAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-
-
-
-
-        [HttpGet]
-        // [Route("{idRespuesta}", Name="GetOIDRespuesta")]
-
-        [Route("~/api/Respuesta/{idRespuesta}")]
-
-        public HttpResponseMessage BuscarPorId(int idRespuesta)
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-            RespuestaEN respuestaEN = null;
-            RespuestaDTOA returnValue = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeWithoutTransaction();
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+
+
+
+
+[HttpGet]
+// [Route("{idRespuesta}", Name="GetOIDRespuesta")]
+
+[Route ("~/api/Respuesta/{idRespuesta}")]
+
+public HttpResponseMessage BuscarPorId (int idRespuesta)
+{
+        // CAD, CEN, EN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+        RespuestaEN respuestaEN = null;
+        RespuestaDTOA returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // Data
-                respuestaEN = respuestaCEN.BuscarPorId(idRespuesta);
+                respuestaEN = respuestaCEN.BuscarPorId (idRespuesta);
 
                 // Convert return
-                if (respuestaEN != null)
-                {
-                    returnValue = RespuestaAssembler.Convert(respuestaEN, session);
+                if (respuestaEN != null) {
+                        returnValue = RespuestaAssembler.Convert (respuestaEN, session);
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 404 - Not found
-            if (returnValue == null)
-                return this.Request.CreateResponse(HttpStatusCode.NotFound);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-        // No pasa el slEnables: buscarRespuestaPorDuda
-
-        [HttpGet]
-
-        [Route("~/api/Respuesta/BuscarRespuestaPorDuda")]
-
-        public HttpResponseMessage BuscarRespuestaPorDuda(int? id_duda)
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-
-
-            System.Collections.Generic.List<RespuestaEN> en;
-
-            System.Collections.Generic.List<RespuestaDTOA> returnValue = null;
-
-            try
-            {
-                SessionInitializeWithoutTransaction();
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+// No pasa el slEnables: buscarRespuestaPorDuda
+
+[HttpGet]
+
+[Route ("~/api/Respuesta/BuscarRespuestaPorDuda")]
+
+public HttpResponseMessage BuscarRespuestaPorDuda (int ? id_duda)
+{
+        // CAD, CEN, EN, returnValue
+
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+
+        System.Collections.Generic.List<RespuestaEN> en;
+
+        System.Collections.Generic.List<RespuestaDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // CEN return
 
 
 
-                en = respuestaCEN.BuscarRespuestaPorDuda(id_duda).ToList();
+                en = respuestaCEN.BuscarRespuestaPorDuda (id_duda).ToList ();
 
 
 
 
                 // Convert return
-                if (en != null)
-                {
-                    returnValue = new System.Collections.Generic.List<RespuestaDTOA>();
-                    foreach (RespuestaEN entry in en)
-                        returnValue.Add(RespuestaAssembler.Convert(entry, session));
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<RespuestaDTOA>();
+                        foreach (RespuestaEN entry in en)
+                                returnValue.Add (RespuestaAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-        // No pasa el slEnables: buscarRespuestaPorEsCorrecta
-
-        [HttpGet]
-
-        [Route("~/api/Respuesta/BuscarRespuestaPorEsCorrecta")]
-
-        public HttpResponseMessage BuscarRespuestaPorEsCorrecta()
+        catch (Exception e)
         {
-            // CAD, CEN, EN, returnValue
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
-            System.Collections.Generic.List<RespuestaEN> en;
+// No pasa el slEnables: buscarRespuestaPorEsCorrecta
 
-            System.Collections.Generic.List<RespuestaDTOA> returnValue = null;
+[HttpGet]
 
-            try
-            {
-                SessionInitializeWithoutTransaction();
+[Route ("~/api/Respuesta/BuscarRespuestaPorEsCorrecta")]
+
+public HttpResponseMessage BuscarRespuestaPorEsCorrecta (          )
+{
+        // CAD, CEN, EN, returnValue
+
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+
+        System.Collections.Generic.List<RespuestaEN> en;
+
+        System.Collections.Generic.List<RespuestaDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
 
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // CEN return
 
 
 
-                en = respuestaCEN.BuscarRespuestaPorEsCorrecta().ToList();
+                en = respuestaCEN.BuscarRespuestaPorEsCorrecta ( ).ToList ();
 
 
 
 
                 // Convert return
-                if (en != null)
-                {
-                    returnValue = new System.Collections.Generic.List<RespuestaDTOA>();
-                    foreach (RespuestaEN entry in en)
-                        returnValue.Add(RespuestaAssembler.Convert(entry, session));
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<RespuestaDTOA>();
+                        foreach (RespuestaEN entry in en)
+                                returnValue.Add (RespuestaAssembler.Convert (entry, session));
                 }
-            }
-
-            catch (Exception e)
-            {
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - Empty
-            if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse(HttpStatusCode.NoContent);
-            // Return 200 - OK
-            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-
-
-
-
-        [HttpPost]
-
-
-        [Route("~/api/Respuesta/Crear")]
-
-
-
-
-        public HttpResponseMessage Crear([FromBody] RespuestaDTO dto)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue, returnOID
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-            RespuestaDTOA returnValue = null;
-            int returnOID = -1;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
-            try
-            {
-                SessionInitializeTransaction();
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+
+[HttpPost]
+
+
+[Route ("~/api/Respuesta/Crear")]
+
+
+
+
+public HttpResponseMessage Crear ( [FromBody] RespuestaDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+        RespuestaDTOA returnValue = null;
+        int returnOID = -1;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // Create
-                returnOID = respuestaCEN.Crear(
+                returnOID = respuestaCEN.Crear (
                         //Atributo Primitivo: p_cuerpo
                         dto.Cuerpo,                                                                                                                                       //Atributo OID: p_duda
-                                                                                                                                                                          // attr.estaRelacionado: true
+                        // attr.estaRelacionado: true
                         dto.Duda_oid                 // association role
 
                         ,                                         //Atributo OID: p_usuario
-                                                                  // attr.estaRelacionado: true
+                        // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
                         );
-                SessionCommit();
+                SessionCommit ();
 
                 // Convert return
-                returnValue = RespuestaAssembler.Convert(respuestaRESTCAD.ReadOIDDefault(returnOID), session);
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 201 - Created
-            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
-
-            // Location Header
-            /*
-             * Dictionary<string, object> routeValues = new Dictionary<string, object>();
-             *
-             * // TODO: y rolPaths
-             * routeValues.Add("id", returnOID);
-             *
-             * uri = Url.Link("GetOIDRespuesta", routeValues);
-             * response.Headers.Location = new Uri(uri);
-             */
-
-            return response;
+                returnValue = RespuestaAssembler.Convert (respuestaRESTCAD.ReadOIDDefault (returnOID), session);
         }
 
-
-
-
-        [HttpPut]
-
-
-
-        [Route("~/api/Respuesta/Modificar")]
-
-        public HttpResponseMessage Modificar(int idRespuesta, [FromBody] RespuestaDTO dto)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-            RespuestaDTOA returnValue = null;
+                SessionRollBack ();
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeTransaction();
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+
+        // Location Header
+        /*
+         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
+         *
+         * // TODO: y rolPaths
+         * routeValues.Add("id", returnOID);
+         *
+         * uri = Url.Link("GetOIDRespuesta", routeValues);
+         * response.Headers.Location = new Uri(uri);
+         */
+
+        return response;
+}
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+
+[HttpPut]
+
+
+
+[Route ("~/api/Respuesta/Modificar")]
+
+public HttpResponseMessage Modificar (int idRespuesta, [FromBody] RespuestaDTO dto)
+{
+        // CAD, CEN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+        RespuestaDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
                 // Modify
-                respuestaCEN.Modificar(idRespuesta,
+                respuestaCEN.Modificar (idRespuesta,
                         dto.Cuerpo
                         ,
                         dto.Fecha
@@ -461,372 +456,371 @@ namespace reciclaUAGenReciclaUARESTAzure.Controllers
                         );
 
                 // Return modified object
-                returnValue = RespuestaAssembler.Convert(respuestaRESTCAD.ReadOIDDefault(idRespuesta), session);
+                returnValue = RespuestaAssembler.Convert (respuestaRESTCAD.ReadOIDDefault (idRespuesta), session);
 
-                SessionCommit();
-            }
+                SessionCommit ();
+        }
 
-            catch (Exception e)
-            {
-                SessionRollBack();
+        catch (Exception e)
+        {
+                SessionRollBack ();
 
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            // Return 404 - Not found
-            if (returnValue == null)
-                return this.Request.CreateResponse(HttpStatusCode.NotFound);
-            // Return 200 - OK
-            else
-            {
-                response = this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
 
                 return response;
-            }
+        }
+}
+
+
+
+
+
+[HttpDelete]
+
+
+[Route ("~/api/Respuesta/Borrar")]
+
+public HttpResponseMessage Borrar (int p_respuesta_oid)
+{
+        // CAD, CEN
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
+
+                respuestaCEN.Borrar (p_respuesta_oid);
+                SessionCommit ();
         }
 
-
-
-
-
-        [HttpDelete]
-
-
-        [Route("~/api/Respuesta/Borrar")]
-
-        public HttpResponseMessage Borrar(int p_respuesta_oid)
+        catch (Exception e)
         {
-            // CAD, CEN
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
+                SessionRollBack ();
 
-            try
-            {
-                SessionInitializeTransaction();
-
-
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
-
-                respuestaCEN.Borrar(p_respuesta_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 204 - No Content
-            return this.Request.CreateResponse(HttpStatusCode.NoContent);
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
         }
 
+        // Return 204 - No Content
+        return this.Request.CreateResponse (HttpStatusCode.NoContent);
+}
 
 
 
 
 
-        [HttpPost]
 
-        [Route("~/api/Respuesta/IndicarRespuestaUtil")]
+[HttpPost]
+
+[Route ("~/api/Respuesta/IndicarRespuestaUtil")]
 
 
-        public HttpResponseMessage IndicarRespuestaUtil(int p_oid)
+public HttpResponseMessage IndicarRespuestaUtil (int p_oid)
+{
+        // CAD, CEN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+        try
         {
-            // CAD, CEN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-
-            try
-            {
-                SessionInitializeTransaction();
+                SessionInitializeTransaction ();
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
 
                 // Operation
-                respuestaCEN.IndicarRespuestaUtil(p_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 200 - OK
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+                respuestaCEN.IndicarRespuestaUtil (p_oid);
+                SessionCommit ();
         }
 
-
-
-        [HttpPost]
-
-        [Route("~/api/Respuesta/IndicarRespuestaNoUtil")]
-
-
-        public HttpResponseMessage IndicarRespuestaNoUtil(int p_oid)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
+                SessionRollBack ();
 
-            try
-            {
-                SessionInitializeTransaction();
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+[HttpPost]
+
+[Route ("~/api/Respuesta/IndicarRespuestaNoUtil")]
+
+
+public HttpResponseMessage IndicarRespuestaNoUtil (int p_oid)
+{
+        // CAD, CEN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
 
                 // Operation
-                respuestaCEN.IndicarRespuestaNoUtil(p_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 200 - OK
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+                respuestaCEN.IndicarRespuestaNoUtil (p_oid);
+                SessionCommit ();
         }
 
-
-
-        [HttpPost]
-
-        [Route("~/api/Respuesta/ConfirmacionRespuestaCorrecta")]
-
-
-        public HttpResponseMessage ConfirmacionRespuestaCorrecta(int p_oid)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
+                SessionRollBack ();
 
-            try
-            {
-                SessionInitializeTransaction();
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+[HttpPost]
+
+[Route ("~/api/Respuesta/ConfirmacionRespuestaCorrecta")]
+
+
+public HttpResponseMessage ConfirmacionRespuestaCorrecta (int p_oid)
+{
+        // CAD, CEN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
 
                 // Operation
-                respuestaCEN.ConfirmacionRespuestaCorrecta(p_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 200 - OK
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+                respuestaCEN.ConfirmacionRespuestaCorrecta (p_oid);
+                SessionCommit ();
         }
 
-
-
-        [HttpPost]
-
-        [Route("~/api/Respuesta/DescartarRespuestaCorrecta")]
-
-
-        public HttpResponseMessage DescartarRespuestaCorrecta(int p_oid)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-            bool returnValue;
+                SessionRollBack ();
 
-            try
-            {
-                SessionInitializeTransaction();
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
+
+[HttpPost]
+
+[Route ("~/api/Respuesta/DescartarRespuestaCorrecta")]
+
+
+public HttpResponseMessage DescartarRespuestaCorrecta (int p_oid)
+{
+        // CAD, CEN, returnValue
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+        bool returnValue;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
 
 
                 // Operation
-                returnValue = respuestaCEN.DescartarRespuestaCorrecta(p_oid);
-                SessionCommit();
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 200 - OK
-            return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
+                returnValue = respuestaCEN.DescartarRespuestaCorrecta (p_oid);
+                SessionCommit ();
         }
 
-
-
-
-        [HttpPost]
-
-        [Route("~/api/Respuesta/ObtenerUltimaRespuesta")]
-
-        public HttpResponseMessage ObtenerUltimaRespuesta(int p_oid)
+        catch (Exception e)
         {
-            // CP, returnValue
-            RespuestaCP respuestaCP = null;
+                SessionRollBack ();
 
-            RespuestaDTOA returnValue;
-            RespuestaEN en;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeTransaction();
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
 
 
-                respuestaCP = new RespuestaCP(session);
+[HttpPost]
+
+[Route ("~/api/Respuesta/ObtenerUltimaRespuesta")]
+
+public HttpResponseMessage ObtenerUltimaRespuesta (int p_oid)
+{
+        // CP, returnValue
+        RespuestaCP respuestaCP = null;
+
+        RespuestaDTOA returnValue;
+        RespuestaEN en;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+
+
+                respuestaCP = new RespuestaCP (session);
 
                 // Operation
-                en = respuestaCP.ObtenerUltimaRespuesta(p_oid);
-                SessionCommit();
+                en = respuestaCP.ObtenerUltimaRespuesta (p_oid);
+                SessionCommit ();
 
                 // Convert return
-                returnValue = RespuestaAssembler.Convert(en, session);
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 200 - OK
-            return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
+                returnValue = RespuestaAssembler.Convert (en, session);
         }
 
-
-
-
-
-        /*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_RespuestaControllerAzure) ENABLED START*/
-        // Meter las operaciones que invoquen a las CPs
-        [HttpPost]
-        [Route("~/api/Respuesta/CrearCP")]
-        public HttpResponseMessage CrearCP([FromBody] RespuestaDTO dto)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue, returnOID
-            RespuestaRESTCAD respuestaRESTCAD = null;
-            RespuestaCEN respuestaCEN = null;
-            RespuestaDTOA returnValue = null;
-            RespuestaCP respuestaCP = null;
-            int returnOID = -1;
+                SessionRollBack ();
 
-            // HTTP response
-            HttpResponseMessage response = null;
-            string uri = null;
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
 
-            try
-            {
-                SessionInitializeTransaction();
-                respuestaRESTCAD = new RespuestaRESTCAD(session);
-                respuestaCEN = new RespuestaCEN(respuestaRESTCAD);
-                respuestaCP = new RespuestaCP(session);
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
+
+
+/*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_RespuestaControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
+[HttpPost]
+[Route ("~/api/Respuesta/CrearCP")]
+public HttpResponseMessage CrearCP ( [FromBody] RespuestaDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        RespuestaRESTCAD respuestaRESTCAD = null;
+        RespuestaCEN respuestaCEN = null;
+        RespuestaDTOA returnValue = null;
+        RespuestaCP respuestaCP = null;
+        int returnOID = -1;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                respuestaRESTCAD = new RespuestaRESTCAD (session);
+                respuestaCEN = new RespuestaCEN (respuestaRESTCAD);
+                respuestaCP = new RespuestaCP (session);
 
                 // Create
-                returnOID = respuestaCEN.Crear(dto.Cuerpo, dto.Duda_oid, dto.Usuario_oid);
-                respuestaCP.CrearAccionRespuesta(returnOID);
-                
-                SessionCommit();
+                returnOID = respuestaCEN.Crear (dto.Cuerpo, dto.Duda_oid, dto.Usuario_oid);
+                respuestaCP.CrearAccionRespuesta (returnOID);
+
+                SessionCommit ();
 
                 // Convert return
-                returnValue = RespuestaAssembler.Convert(respuestaRESTCAD.ReadOIDDefault(returnOID), session);
-            }
-
-            catch (Exception e)
-            {
-                SessionRollBack();
-
-                if (e.GetType() == typeof(HttpResponseException)) throw e;
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
-                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
-                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
-            }
-            finally
-            {
-                SessionClose();
-            }
-
-            // Return 201 - Created
-            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
-            return response;
+                returnValue = RespuestaAssembler.Convert (respuestaRESTCAD.ReadOIDDefault (returnOID), session);
         }
-        /*PROTECTED REGION END*/
-    }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 201 - Created
+        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
+        return response;
+}
+/*PROTECTED REGION END*/
+}
 }

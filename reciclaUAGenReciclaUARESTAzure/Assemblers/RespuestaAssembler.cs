@@ -39,13 +39,13 @@ public static RespuestaDTOA Convert (RespuestaEN en, NHibernate.ISession session
                 dto.Cuerpo = en.Cuerpo;
 
 
-                dto.Fecha = en.Fecha;
-
-
                 dto.EsCorrecta = en.EsCorrecta;
 
 
                 dto.Util = en.Util;
+
+
+                dto.Fecha = en.Fecha;
 
 
                 //
