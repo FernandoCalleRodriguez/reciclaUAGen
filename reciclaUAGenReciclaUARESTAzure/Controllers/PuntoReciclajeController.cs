@@ -23,552 +23,558 @@ using ReciclaUAGenNHibernate.CP.ReciclaUA;
 
 namespace reciclaUAGenReciclaUARESTAzure.Controllers
 {
-[RoutePrefix ("~/api/PuntoReciclaje")]
-public class PuntoReciclajeController : BasicController
-{
-// Voy a generar el readAll
+    [RoutePrefix("~/api/PuntoReciclaje")]
+    public class PuntoReciclajeController : BasicController
+    {
+        // Voy a generar el readAll
 
 
 
-// ReadAll Generado a partir del NavigationalOperation
-[HttpGet]
+        // ReadAll Generado a partir del NavigationalOperation
+        [HttpGet]
 
-[Route ("~/api/PuntoReciclaje/BuscarTodos")]
-public HttpResponseMessage BuscarTodos ()
-{
-        // CAD, CEN, EN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-        List<PuntoReciclajeEN> puntoReciclajeEN = null;
-        List<PuntoReciclajeDTOA> returnValue = null;
-
-        try
+        [Route("~/api/PuntoReciclaje/BuscarTodos")]
+        public HttpResponseMessage BuscarTodos()
         {
-                SessionInitializeWithoutTransaction ();
+            // CAD, CEN, EN, returnValue
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+            List<PuntoReciclajeEN> puntoReciclajeEN = null;
+            List<PuntoReciclajeDTOA> returnValue = null;
+
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // Data
                 // TODO: paginación
 
-                puntoReciclajeEN = puntoReciclajeCEN.BuscarTodos (0, -1).ToList ();
+                puntoReciclajeEN = puntoReciclajeCEN.BuscarTodos(0, -1).ToList();
 
                 // Convert return
-                if (puntoReciclajeEN != null) {
-                        returnValue = new List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in puntoReciclajeEN)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (puntoReciclajeEN != null)
+                {
+                    returnValue = new List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in puntoReciclajeEN)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+
+
+
+
+
+
+
+        [HttpGet]
+        // [Route("{idPuntoReciclaje}", Name="GetOIDPuntoReciclaje")]
+
+        [Route("~/api/PuntoReciclaje/{idPuntoReciclaje}")]
+
+        public HttpResponseMessage BuscarPorId(int idPuntoReciclaje)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+            PuntoReciclajeEN puntoReciclajeEN = null;
+            PuntoReciclajeDTOA returnValue = null;
 
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
-
-
-
-
-
-
-
-[HttpGet]
-// [Route("{idPuntoReciclaje}", Name="GetOIDPuntoReciclaje")]
-
-[Route ("~/api/PuntoReciclaje/{idPuntoReciclaje}")]
-
-public HttpResponseMessage BuscarPorId (int idPuntoReciclaje)
-{
-        // CAD, CEN, EN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-        PuntoReciclajeEN puntoReciclajeEN = null;
-        PuntoReciclajeDTOA returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // Data
-                puntoReciclajeEN = puntoReciclajeCEN.BuscarPorId (idPuntoReciclaje);
+                puntoReciclajeEN = puntoReciclajeCEN.BuscarPorId(idPuntoReciclaje);
 
                 // Convert return
-                if (puntoReciclajeEN != null) {
-                        returnValue = PuntoReciclajeAssembler.Convert (puntoReciclajeEN, session);
+                if (puntoReciclajeEN != null)
+                {
+                    returnValue = PuntoReciclajeAssembler.Convert(puntoReciclajeEN, session);
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 404 - Not found
+            if (returnValue == null)
+                return this.Request.CreateResponse(HttpStatusCode.NotFound);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+
+        // No pasa el slEnables: buscarPuntosPorEdificio
+
+        [HttpGet]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosPorEdificio")]
+
+        public HttpResponseMessage BuscarPuntosPorEdificio(int? id_edificio)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
 
-        // Return 404 - Not found
-        if (returnValue == null)
-                return this.Request.CreateResponse (HttpStatusCode.NotFound);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
+
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
+
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
 
-// No pasa el slEnables: buscarPuntosPorEdificio
-
-[HttpGet]
-
-[Route ("~/api/PuntoReciclaje/BuscarPuntosPorEdificio")]
-
-public HttpResponseMessage BuscarPuntosPorEdificio (int ? id_edificio)
-{
-        // CAD, CEN, EN, returnValue
-
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
-
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // CEN return
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntosPorEdificio (id_edificio).ToList ();
+                en = puntoReciclajeCEN.BuscarPuntosPorEdificio(id_edificio).ToList();
 
 
 
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+        // No pasa el slEnables: buscarPuntosPorEstancia
+
+        [HttpGet]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosPorEstancia")]
+
+        public HttpResponseMessage BuscarPuntosPorEstancia(string id_estancia)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
 
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
 
-// No pasa el slEnables: buscarPuntosPorEstancia
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
 
-[HttpGet]
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
 
-[Route ("~/api/PuntoReciclaje/BuscarPuntosPorEstancia")]
-
-public HttpResponseMessage BuscarPuntosPorEstancia (string id_estancia)
-{
-        // CAD, CEN, EN, returnValue
-
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
 
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // CEN return
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntosPorEstancia (id_estancia).ToList ();
+                en = puntoReciclajeCEN.BuscarPuntosPorEstancia(id_estancia).ToList();
 
 
 
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+        // No pasa el slEnables: buscarPuntosPorPlanta
+
+        [HttpGet]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosPorPlanta")]
+
+        public HttpResponseMessage BuscarPuntosPorPlanta(int? id_edificio, int? num_planta)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
 
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
 
-// No pasa el slEnables: buscarPuntosPorPlanta
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
 
-[HttpGet]
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
 
-[Route ("~/api/PuntoReciclaje/BuscarPuntosPorPlanta")]
-
-public HttpResponseMessage BuscarPuntosPorPlanta (int? id_edificio, int ? num_planta)
-{
-        // CAD, CEN, EN, returnValue
-
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
 
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // CEN return
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntosPorPlanta (id_edificio, num_planta).ToList ();
+                en = puntoReciclajeCEN.BuscarPuntosPorPlanta(id_edificio, num_planta).ToList();
 
 
 
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+        // No pasa el slEnables: buscarPuntosPorUsuario
+
+        [HttpGet]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosPorUsuario")]
+
+        public HttpResponseMessage BuscarPuntosPorUsuario(int id_usuario)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
 
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
 
-// No pasa el slEnables: buscarPuntosPorUsuario
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
 
-[HttpGet]
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
 
-[Route ("~/api/PuntoReciclaje/BuscarPuntosPorUsuario")]
-
-public HttpResponseMessage BuscarPuntosPorUsuario (int id_usuario)
-{
-        // CAD, CEN, EN, returnValue
-
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
 
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // CEN return
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntosPorUsuario (id_usuario).ToList ();
+                en = puntoReciclajeCEN.BuscarPuntosPorUsuario(id_usuario).ToList();
 
 
 
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+        // No pasa el slEnables: buscarPuntoPorContenedor
+
+        [HttpGet]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntoPorContenedor")]
+
+        public HttpResponseMessage BuscarPuntoPorContenedor(int contenedor_id)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, EN, returnValue
 
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
 
-// No pasa el slEnables: buscarPuntoPorContenedor
+            PuntoReciclajeEN en;
 
-[HttpGet]
+            PuntoReciclajeDTOA returnValue;
 
-[Route ("~/api/PuntoReciclaje/BuscarPuntoPorContenedor")]
-
-public HttpResponseMessage BuscarPuntoPorContenedor (int contenedor_id)
-{
-        // CAD, CEN, EN, returnValue
-
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-
-        PuntoReciclajeEN en;
-
-        PuntoReciclajeDTOA returnValue;
-
-        try
-        {
-                SessionInitializeWithoutTransaction ();
+            try
+            {
+                SessionInitializeWithoutTransaction();
 
 
 
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // CEN return
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntoPorContenedor (contenedor_id);
+                en = puntoReciclajeCEN.BuscarPuntoPorContenedor(contenedor_id);
 
 
 
 
                 // Convert return
-                returnValue = PuntoReciclajeAssembler.Convert (en, session);
+                returnValue = PuntoReciclajeAssembler.Convert(en, session);
+            }
+
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null)
+                return this.Request.CreateResponse(HttpStatusCode.NoContent);
+            // Return 200 - OK
+            else return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+
+
+
+        [HttpPost]
+
+
+        [Route("~/api/PuntoReciclaje/Crear")]
+
+
+
+
+        public HttpResponseMessage Crear([FromBody] PuntoReciclajeDTO dto)
         {
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // CAD, CEN, returnValue, returnOID
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+            PuntoReciclajeDTOA returnValue = null;
+            int returnOID = -1;
 
-        // Return 204 - Empty
-        if (returnValue == null)
-                return this.Request.CreateResponse (HttpStatusCode.NoContent);
-        // Return 200 - OK
-        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            // HTTP response
+            HttpResponseMessage response = null;
+            string uri = null;
+
+            try
+            {
+                SessionInitializeTransaction();
 
 
-
-
-
-[HttpPost]
-
-
-[Route ("~/api/PuntoReciclaje/Crear")]
-
-
-
-
-public HttpResponseMessage Crear ( [FromBody] PuntoReciclajeDTO dto)
-{
-        // CAD, CEN, returnValue, returnOID
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-        PuntoReciclajeDTOA returnValue = null;
-        int returnOID = -1;
-
-        // HTTP response
-        HttpResponseMessage response = null;
-        string uri = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // Create
-                returnOID = puntoReciclajeCEN.Crear (
+                returnOID = puntoReciclajeCEN.Crear(
                         //Atributo Primitivo: p_latitud
                         dto.Latitud,                                                                                                                                        //Atributo Primitivo: p_longitud
                         dto.Longitud,                                                                                                                                     //Atributo OID: p_usuario
-                        // attr.estaRelacionado: true
+                                                                                                                                                                          // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
                         ,                                         //Atributo OID: p_estancia
-                        // attr.estaRelacionado: true
+                                                                  // attr.estaRelacionado: true
                         dto.Estancia_oid                 // association role
 
                         );
-                SessionCommit ();
+                SessionCommit();
 
                 // Convert return
-                returnValue = PuntoReciclajeAssembler.Convert (puntoReciclajeRESTCAD.ReadOIDDefault (returnOID), session);
+                returnValue = PuntoReciclajeAssembler.Convert(puntoReciclajeRESTCAD.ReadOIDDefault(returnOID), session);
+            }
+
+            catch (Exception e)
+            {
+                SessionRollBack();
+
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 201 - Created
+            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
+
+            // Location Header
+            /*
+             * Dictionary<string, object> routeValues = new Dictionary<string, object>();
+             *
+             * // TODO: y rolPaths
+             * routeValues.Add("id", returnOID);
+             *
+             * uri = Url.Link("GetOIDPuntoReciclaje", routeValues);
+             * response.Headers.Location = new Uri(uri);
+             */
+
+            return response;
         }
 
-        catch (Exception e)
+
+
+
+        [HttpPut]
+
+
+
+        [Route("~/api/PuntoReciclaje/Modificar")]
+
+        public HttpResponseMessage Modificar(int idPuntoReciclaje, [FromBody] PuntoReciclajeDTO dto)
         {
-                SessionRollBack ();
+            // CAD, CEN, returnValue
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+            PuntoReciclajeDTOA returnValue = null;
 
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            // HTTP response
+            HttpResponseMessage response = null;
+            string uri = null;
 
-        // Return 201 - Created
-        response = this.Request.CreateResponse (HttpStatusCode.Created, returnValue);
-
-        // Location Header
-        /*
-         * Dictionary<string, object> routeValues = new Dictionary<string, object>();
-         *
-         * // TODO: y rolPaths
-         * routeValues.Add("id", returnOID);
-         *
-         * uri = Url.Link("GetOIDPuntoReciclaje", routeValues);
-         * response.Headers.Location = new Uri(uri);
-         */
-
-        return response;
-}
+            try
+            {
+                SessionInitializeTransaction();
 
 
-
-
-[HttpPut]
-
-
-
-[Route ("~/api/PuntoReciclaje/Modificar")]
-
-public HttpResponseMessage Modificar (int idPuntoReciclaje, [FromBody] PuntoReciclajeDTO dto)
-{
-        // CAD, CEN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-        PuntoReciclajeDTOA returnValue = null;
-
-        // HTTP response
-        HttpResponseMessage response = null;
-        string uri = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
                 // Modify
-                puntoReciclajeCEN.Modificar (idPuntoReciclaje,
+                puntoReciclajeCEN.Modificar(idPuntoReciclaje,
                         dto.Latitud
                         ,
                         dto.Longitud
@@ -577,201 +583,256 @@ public HttpResponseMessage Modificar (int idPuntoReciclaje, [FromBody] PuntoReci
                         );
 
                 // Return modified object
-                returnValue = PuntoReciclajeAssembler.Convert (puntoReciclajeRESTCAD.ReadOIDDefault (idPuntoReciclaje), session);
+                returnValue = PuntoReciclajeAssembler.Convert(puntoReciclajeRESTCAD.ReadOIDDefault(idPuntoReciclaje), session);
 
-                SessionCommit ();
-        }
+                SessionCommit();
+            }
 
-        catch (Exception e)
-        {
-                SessionRollBack ();
+            catch (Exception e)
+            {
+                SessionRollBack();
 
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
 
-        // Return 404 - Not found
-        if (returnValue == null)
-                return this.Request.CreateResponse (HttpStatusCode.NotFound);
-        // Return 200 - OK
-        else{
-                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+            // Return 404 - Not found
+            if (returnValue == null)
+                return this.Request.CreateResponse(HttpStatusCode.NotFound);
+            // Return 200 - OK
+            else
+            {
+                response = this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
 
                 return response;
-        }
-}
-
-
-
-
-
-[HttpDelete]
-
-
-[Route ("~/api/PuntoReciclaje/Borrar")]
-
-public HttpResponseMessage Borrar (int p_puntoreciclaje_oid)
-{
-        // CAD, CEN
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
-
-                puntoReciclajeCEN.Borrar (p_puntoreciclaje_oid);
-                SessionCommit ();
+            }
         }
 
-        catch (Exception e)
-        {
-                SessionRollBack ();
 
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+
+
+
+        [HttpDelete]
+
+
+        [Route("~/api/PuntoReciclaje/Borrar")]
+
+        public HttpResponseMessage Borrar(int p_puntoreciclaje_oid)
+        {
+            // CAD, CEN
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+
+            try
+            {
+                SessionInitializeTransaction();
+
+
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
+
+                puntoReciclajeCEN.Borrar(p_puntoreciclaje_oid);
+                SessionCommit();
+            }
+
+            catch (Exception e)
+            {
+                SessionRollBack();
+
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 204 - No Content
+            return this.Request.CreateResponse(HttpStatusCode.NoContent);
         }
-        finally
+
+
+
+
+
+
+        [HttpPost]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosCercanos")]
+
+
+        public HttpResponseMessage BuscarPuntosCercanos(double p_latitud, double p_longitud, int p_limit)
         {
-                SessionClose ();
-        }
+            // CAD, CEN, returnValue
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
-        // Return 204 - No Content
-        return this.Request.CreateResponse (HttpStatusCode.NoContent);
-}
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
 
-
-
-
-
-
-[HttpPost]
-
-[Route ("~/api/PuntoReciclaje/BuscarPuntosCercanos")]
+            try
+            {
+                SessionInitializeTransaction();
 
 
-public HttpResponseMessage BuscarPuntosCercanos (double p_latitud, double p_longitud, int p_limit)
-{
-        // CAD, CEN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
 
                 // Operation
-                en = puntoReciclajeCEN.BuscarPuntosCercanos (p_latitud, p_longitud, p_limit).ToList ();
-                SessionCommit ();
+                en = puntoReciclajeCEN.BuscarPuntosCercanos(p_latitud, p_longitud, p_limit).ToList();
+                SessionCommit();
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                SessionRollBack();
+
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 200 - OK
+            return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+
+        [HttpPost]
+
+        [Route("~/api/PuntoReciclaje/BuscarPuntosCercanosPorContenedor")]
+
+
+        public HttpResponseMessage BuscarPuntosCercanosPorContenedor(double p_latitud, double p_longitud, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_tipo, int p_limit)
         {
-                SessionRollBack ();
+            // CAD, CEN, returnValue
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
 
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
+            System.Collections.Generic.List<PuntoReciclajeEN> en;
 
-        // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
+            try
+            {
+                SessionInitializeTransaction();
 
 
-
-[HttpPost]
-
-[Route ("~/api/PuntoReciclaje/BuscarPuntosCercanosPorContenedor")]
-
-
-public HttpResponseMessage BuscarPuntosCercanosPorContenedor (double p_latitud, double p_longitud, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_tipo, int p_limit)
-{
-        // CAD, CEN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-        System.Collections.Generic.List<PuntoReciclajeDTOA> returnValue = null;
-        System.Collections.Generic.List<PuntoReciclajeEN> en;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
 
 
                 // Operation
-                en = puntoReciclajeCEN.BuscarPuntosCercanosPorContenedor (p_latitud, p_longitud, p_tipo, p_limit).ToList ();
-                SessionCommit ();
+                en = puntoReciclajeCEN.BuscarPuntosCercanosPorContenedor(p_latitud, p_longitud, p_tipo, p_limit).ToList();
+                SessionCommit();
 
                 // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
-                        foreach (PuntoReciclajeEN entry in en)
-                                returnValue.Add (PuntoReciclajeAssembler.Convert (entry, session));
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PuntoReciclajeDTOA>();
+                    foreach (PuntoReciclajeEN entry in en)
+                        returnValue.Add(PuntoReciclajeAssembler.Convert(entry, session));
                 }
+            }
+
+            catch (Exception e)
+            {
+                SessionRollBack();
+
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 200 - OK
+            return this.Request.CreateResponse(HttpStatusCode.OK, returnValue);
         }
 
-        catch (Exception e)
+
+
+
+
+
+        /*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_PuntoReciclajeControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
+        [HttpPost]
+        [Route("~/api/PuntoReciclaje/CrearCP")]
+        public HttpResponseMessage CrearCP([FromBody] PuntoReciclajeDTO dto)
         {
-                SessionRollBack ();
+            // CAD, CEN, returnValue, returnOID
+            PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
+            PuntoReciclajeCEN puntoReciclajeCEN = null;
+            PuntoReciclajeDTOA returnValue = null;
+            PuntoReciclajeCP puntoCP = null;
+            int returnOID = -1;
 
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+            // HTTP response
+            HttpResponseMessage response = null;
+            string uri = null;
+
+            try
+            {
+                SessionInitializeTransaction();
+
+
+                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD(session);
+                puntoReciclajeCEN = new PuntoReciclajeCEN(puntoReciclajeRESTCAD);
+                puntoCP = new PuntoReciclajeCP(session);
+
+                // Create
+                returnOID = puntoReciclajeCEN.Crear(dto.Latitud, dto.Longitud, dto.Usuario_oid, dto.Estancia_oid);
+                puntoCP.CrearAccionPunto(returnOID);
+                SessionCommit();
+
+                // Convert return
+                returnValue = PuntoReciclajeAssembler.Convert(puntoReciclajeRESTCAD.ReadOIDDefault(returnOID), session);
+            }
+
+            catch (Exception e)
+            {
+                SessionRollBack();
+
+                if (e.GetType() == typeof(HttpResponseException)) throw e;
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) throw new HttpResponseException(HttpStatusCode.Forbidden);
+                else if (e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType() == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+            finally
+            {
+                SessionClose();
+            }
+
+            // Return 201 - Created
+            response = this.Request.CreateResponse(HttpStatusCode.Created, returnValue);
+
+            return response;
         }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
-}
-
-
-
-
-
-
-/*PROTECTED REGION ID(reciclaUAGenReciclaUARESTAzure_PuntoReciclajeControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
-/*PROTECTED REGION END*/
-}
+        /*PROTECTED REGION END*/
+    }
 }
