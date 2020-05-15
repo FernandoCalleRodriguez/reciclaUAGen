@@ -69,6 +69,10 @@
 				public Boolean getBorrado () { return borrado; } 
 				public void setBorrado  (Boolean value) { borrado = value;  } 
 				    	 
+				private Integer juego_oid;
+				public Integer  getJuego_oid () { return juego_oid; } 
+				public void setJuego_oid (Integer value) { juego_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -155,6 +159,11 @@
 				
 						  json.put("Borrado", this.borrado);
 				
+
+						if (this.juego_oid != null)
+						{
+							json.put("Juego_oid", this.juego_oid.intValue());
+						}
 						
 					}
 					catch (JSONException e)

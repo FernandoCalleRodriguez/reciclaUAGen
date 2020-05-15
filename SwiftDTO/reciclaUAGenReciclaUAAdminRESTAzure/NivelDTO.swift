@@ -21,6 +21,9 @@
 		 
 				var item_oid: [Int]?;
 				    	 
+		 
+				var juego_oid: [Int]?;
+				    	 
 	   	   
 			// MARK: - Constructor
 			
@@ -52,6 +55,9 @@
 				
 
 					dictionary["item_oid"] = self.item_oid;
+			
+
+					dictionary["juego_oid"] = self.juego_oid;
 			
 						
 				return dictionary;

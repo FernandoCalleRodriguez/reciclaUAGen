@@ -901,51 +901,6 @@ public HttpResponseMessage Borrar (int p_puntoreciclaje_oid)
 
 [HttpPost]
 
-[Route ("~/api/PuntoReciclaje/BuscarPuntosCercanos")]
-
-
-public HttpResponseMessage BuscarPuntosCercanos (int p_oid)
-{
-        // CAD, CEN, returnValue
-        PuntoReciclajeRESTCAD puntoReciclajeRESTCAD = null;
-        PuntoReciclajeCEN puntoReciclajeCEN = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-
-                puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
-                puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeRESTCAD);
-
-
-                // Operation
-                puntoReciclajeCEN.BuscarPuntosCercanos (p_oid);
-                SessionCommit ();
-        }
-
-        catch (Exception e)
-        {
-                SessionRollBack ();
-
-                if (e.GetType () == typeof(HttpResponseException)) throw e;
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
-                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
-                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
-        }
-        finally
-        {
-                SessionClose ();
-        }
-
-        // Return 200 - OK
-        return this.Request.CreateResponse (HttpStatusCode.OK);
-}
-
-
-
-[HttpPost]
-
 [Route ("~/api/PuntoReciclaje/ValidarPunto")]
 
 

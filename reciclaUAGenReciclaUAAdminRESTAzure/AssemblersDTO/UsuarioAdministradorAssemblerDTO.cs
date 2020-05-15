@@ -83,6 +83,11 @@ public static UsuarioAdministradorEN Convert (UsuarioAdministradorDTO dto)
                                 }
                         }
                         newinstance.Borrado = dto.Borrado;
+                        if (dto.Juego_oid != -1) {
+                                ReciclaUAGenNHibernate.CAD.ReciclaUA.IJuegoCAD juegoCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.JuegoCAD ();
+
+                                newinstance.Juego = juegoCAD.ReadOIDDefault (dto.Juego_oid);
+                        }
                 }
         }
         catch (Exception ex)

@@ -110,7 +110,7 @@ public static void InitializeData ()
                 // var idWebAngela = usuCEN.Crear ("Angela Sofia", "Sbrizzi Quilotte", "assq1@alu.ua.es", "assq1");
                 // var idWebJose = usuCEN.Crear ("José Antonio", "Agulló García", "jaag14@alu.ua.es", "jaag14");
                 // var idWebWallid = usuCEN.Crear ("mohamed", "walid Nebili", "mwn1@alu.ua.es", "mwn1");
-                var idWebFer = adminCEN.Crear("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
+                var idWebFer = adminCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
                 var id_usu1 = usuCEN.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
                 Console.WriteLine ("ID Usuario 1: " + id_usu1);
 
@@ -367,9 +367,9 @@ public static void InitializeData ()
                                         //if(estancia_act.Value.ToString() == "Aseos" || estancia_act.Value.ToString() == "Vestuarios" || estancia_act.Value.ToString() == "Pasillos" || estancia_act.Value.ToString() == "Aseo femenino" || estancia_act.Value.ToString() == "Aseo masculino"|| estancia_act.Value.ToString() == "Jardines")
 
                                         /*if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
-                                                estanciaCEN = new EstanciaCEN ();
-                                                estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString (), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString (), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
-                                        }*/
+                                         *      estanciaCEN = new EstanciaCEN ();
+                                         *      estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString (), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString (), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
+                                         * }*/
                                 }
                         }
                 }
