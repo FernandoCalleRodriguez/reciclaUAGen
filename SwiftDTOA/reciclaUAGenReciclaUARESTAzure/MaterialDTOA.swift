@@ -15,6 +15,7 @@ class MaterialDTOA : DTOA
 	
 	var nombre: String?;
 	var contenedor: TipoContenedor?;
+	var esValido: Estado?;
 	
 	
 	
@@ -41,6 +42,10 @@ class MaterialDTOA : DTOA
 		{
 			self.contenedor = TipoContenedor(rawValue: enumValue);
 		}
+		if let enumValue = json["EsValido"].object as? Int
+		{
+			self.esValido = Estado(rawValue: enumValue);
+		}
 		
 		
 	}
@@ -60,6 +65,11 @@ class MaterialDTOA : DTOA
 
 	
 		dictionary["Contenedor"] = self.contenedor?.rawValue;
+	
+	
+
+	
+		dictionary["EsValido"] = self.esValido?.rawValue;
 	
 	
 		

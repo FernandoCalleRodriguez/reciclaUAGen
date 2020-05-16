@@ -42,6 +42,9 @@ public static MaterialDTOA Convert (MaterialEN en, NHibernate.ISession session =
                 dto.Contenedor = en.Contenedor;
 
 
+                dto.EsValido = en.EsValido;
+
+
                 //
                 // TravesalLink
 

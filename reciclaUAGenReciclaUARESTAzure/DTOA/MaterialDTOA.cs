@@ -29,5 +29,12 @@ public ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum Contenedor
         get { return contenedor; }
         set { contenedor = value; }
 }
+
+private ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum esValido;
+public ReciclaUAGenNHibernate.Enumerated.ReciclaUA.EstadoEnum EsValido
+{
+        get { return esValido; }
+        set { esValido = value; }
+}
 }
 }

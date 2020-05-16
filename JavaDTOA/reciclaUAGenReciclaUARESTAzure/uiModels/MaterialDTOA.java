@@ -31,6 +31,10 @@ public class MaterialDTOA extends DTOA
 	public TipoContenedor getContenedor () { return contenedor; }
 	public void setContenedor (TipoContenedor contenedor) { this.contenedor = contenedor; }
 	
+	private Estado esValido;
+	public Estado getEsValido () { return esValido; }
+	public void setEsValido (Estado esValido) { this.esValido = esValido; }
+	
 	
 	
 	
@@ -69,6 +73,13 @@ public class MaterialDTOA extends DTOA
 				this.contenedor = TipoContenedor.fromRawValue(enumRawValue);
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("EsValido")))
+			{
+				int enumRawValue = (int) json.opt("EsValido");
+				this.esValido = Estado.fromRawValue(enumRawValue);
+			 
+			}
 			
 			
 		}
@@ -96,6 +107,10 @@ public class MaterialDTOA extends DTOA
 		  if (this.contenedor != null)
 			json.put("Contenedor", this.contenedor.getRawValue());
 		
+		
+		  if (this.esValido != null)
+			json.put("EsValido", this.esValido.getRawValue());
+		
 			
 			
 		}
@@ -120,6 +135,8 @@ public class MaterialDTOA extends DTOA
 	dto.setNombre (this.getNombre());
 
 	dto.setContenedor (this.getContenedor());
+
+	dto.setEsValido (this.getEsValido());
 
 		
 		
