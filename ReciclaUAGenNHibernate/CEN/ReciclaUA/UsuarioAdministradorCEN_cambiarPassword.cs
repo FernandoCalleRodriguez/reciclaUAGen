@@ -34,42 +34,6 @@ public void CambiarPassword (int p_UsuarioAdministrador_OID, String p_pass)
         //Call to UsuarioAdministradorCAD
 
         _IUsuarioAdministradorCAD.CambiarPassword (usuarioAdministradorEN);
-        usuarioAdministradorEN = _IUsuarioAdministradorCAD.BuscarPorId (p_UsuarioAdministrador_OID);
-
-        var fromAddress = new MailAddress ("reciclauatfm@gmail.com", "From ReciclaUA");
-        var toAddress = new MailAddress (usuarioAdministradorEN.Email, "To " + usuarioAdministradorEN.Nombre);
-        string fromPassword = "Reciclaua_1";
-        string subject = "Recuperar contrasena";
-        string body = "La nueva contrase�a es: " + p_pass + ". Te sugerimos cambiarla a la mayor brevedad en la gest�n del perfil una vez que inicies sesi�n";
-
-        var smtp = new SmtpClient
-        {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
-        };
-        using (var message = new MailMessage (fromAddress, toAddress){
-                       Subject = subject,
-                       Body = body
-               })
-        {
-                try
-                {
-                        smtp.Send (message);
-                }
-                catch (Exception e)
-                {
-                        throw new Exception (" El correo electronico no ha podido serenviado " + e);
-                }
-                finally
-                {
-                        smtp.Dispose ();
-                }
-        }
-
 
         /*PROTECTED REGION END*/
 }

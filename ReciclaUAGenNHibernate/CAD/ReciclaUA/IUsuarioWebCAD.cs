@@ -52,5 +52,9 @@ int BuscarTodosCount ();
 
 void Destroy (int id
               );
+
+
+
+void RecuperarPassword (UsuarioWebEN usuarioWeb);
 }
 }
