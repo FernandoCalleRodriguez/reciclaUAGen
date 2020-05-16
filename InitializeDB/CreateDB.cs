@@ -110,7 +110,7 @@ public static void InitializeData ()
                 // var idWebAngela = usuCEN.Crear ("Angela Sofia", "Sbrizzi Quilotte", "assq1@alu.ua.es", "assq1");
                 // var idWebJose = usuCEN.Crear ("José Antonio", "Agulló García", "jaag14@alu.ua.es", "jaag14");
                 // var idWebWallid = usuCEN.Crear ("mohamed", "walid Nebili", "mwn1@alu.ua.es", "mwn1");
-                var idWebFer = adminCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
+                var idWebFer = usuCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
                 var id_usu1 = usuCEN.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
                 Console.WriteLine ("ID Usuario 1: " + id_usu1);
 

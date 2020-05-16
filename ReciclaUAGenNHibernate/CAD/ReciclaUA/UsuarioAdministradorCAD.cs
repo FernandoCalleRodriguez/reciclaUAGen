@@ -363,5 +363,32 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+public void RecuperarPassword (UsuarioAdministradorEN usuarioAdministrador)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                UsuarioAdministradorEN usuarioAdministradorEN = (UsuarioAdministradorEN)session.Load (typeof(UsuarioAdministradorEN), usuarioAdministrador.Id);
+
+                usuarioAdministradorEN.Pass = usuarioAdministrador.Pass;
+
+                session.Update (usuarioAdministradorEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioAdministradorCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

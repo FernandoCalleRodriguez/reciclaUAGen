@@ -42,5 +42,8 @@ System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioAdmi
 
 void Destroy (int id
               );
+
+
+void RecuperarPassword (UsuarioAdministradorEN usuarioAdministrador);
 }
 }

@@ -176,10 +176,10 @@ public HttpResponseMessage Crear ( [FromBody] UsuarioWebDTO dto)
 
 
 
-[Route ("~/api/UsuarioWebNoRegistrado/CambiarPassword")]
+[Route ("~/api/UsuarioWebNoRegistrado/RecuperarPassword")]
 
 
-public HttpResponseMessage CambiarPassword (int idUsuarioWebNoRegistrado, [FromBody] UsuarioWebDTO dto)
+public HttpResponseMessage RecuperarPassword (int idUsuarioWebNoRegistrado, [FromBody] UsuarioWebDTO dto)
 {
         // CAD, CEN, returnValue
         UsuarioWebNoRegistradoRESTCAD usuarioWebNoRegistradoRESTCAD = null;
@@ -199,7 +199,7 @@ public HttpResponseMessage CambiarPassword (int idUsuarioWebNoRegistrado, [FromB
                 usuarioWebCEN = new UsuarioWebCEN (usuarioWebNoRegistradoRESTCAD);
 
                 // Modify
-                usuarioWebCEN.CambiarPassword (idUsuarioWebNoRegistrado,
+                usuarioWebCEN.RecuperarPassword (idUsuarioWebNoRegistrado,
                         dto.Pass
                         );
 

@@ -455,5 +455,32 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+public void RecuperarPassword (UsuarioWebEN usuarioWeb)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                UsuarioWebEN usuarioWebEN = (UsuarioWebEN)session.Load (typeof(UsuarioWebEN), usuarioWeb.Id);
+
+                usuarioWebEN.Pass = usuarioWeb.Pass;
+
+                session.Update (usuarioWebEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioWebCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

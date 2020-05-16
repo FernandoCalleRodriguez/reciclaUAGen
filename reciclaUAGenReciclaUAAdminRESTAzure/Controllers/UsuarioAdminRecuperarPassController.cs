@@ -51,10 +51,10 @@ public class UsuarioAdminRecuperarPassController : BasicController
 
 
 
-[Route ("~/api/UsuarioAdminRecuperarPass/CambiarPassword")]
+[Route ("~/api/UsuarioAdminRecuperarPass/RecuperarPassword")]
 
 
-public HttpResponseMessage CambiarPassword (int idUsuarioAdminRecuperarPass, [FromBody] UsuarioAdministradorDTO dto)
+public HttpResponseMessage RecuperarPassword (int idUsuarioAdminRecuperarPass, [FromBody] UsuarioAdministradorDTO dto)
 {
         // CAD, CEN, returnValue
         UsuarioAdminRecuperarPassRESTCAD usuarioAdminRecuperarPassRESTCAD = null;
@@ -74,7 +74,7 @@ public HttpResponseMessage CambiarPassword (int idUsuarioAdminRecuperarPass, [Fr
                 usuarioAdministradorCEN = new UsuarioAdministradorCEN (usuarioAdminRecuperarPassRESTCAD);
 
                 // Modify
-                usuarioAdministradorCEN.CambiarPassword (idUsuarioAdminRecuperarPass,
+                usuarioAdministradorCEN.RecuperarPassword (idUsuarioAdminRecuperarPass,
                         dto.Pass
                         );
 

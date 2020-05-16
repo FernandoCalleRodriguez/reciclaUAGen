@@ -120,6 +120,7 @@
     <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_CambiarPassword.cs" />
     <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_VerificarEmail.cs" />
     <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_IncrementarPuntuacion.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_RecuperarPassword.cs" />
     <Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
     <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
     <Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Borrar.cs" />
     <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Crear.cs" />
     <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_CambiarPassword.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_RecuperarPassword.cs" />
     <Compile Include="EN\ReciclaUA\DudaEN.cs" />
     <Compile Include="CEN\ReciclaUA\DudaCEN.cs" />
     <Compile Include="CAD\ReciclaUA\IDudaCAD.cs" />
