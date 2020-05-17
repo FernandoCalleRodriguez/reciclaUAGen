@@ -148,7 +148,7 @@ public HttpResponseMessage BuscarPorId (int idNotaInformativa)
 
 [Route ("~/api/NotaInformativa/BuscarPorTitulo")]
 
-public HttpResponseMessage BuscarPorTitulo (       )
+public HttpResponseMessage BuscarPorTitulo (string p_titulo)
 {
         // CAD, CEN, EN, returnValue
 
@@ -173,7 +173,7 @@ public HttpResponseMessage BuscarPorTitulo (       )
 
 
 
-                en = notaInformativaCEN.BuscarPorTitulo (        ).ToList ();
+                en = notaInformativaCEN.BuscarPorTitulo (p_titulo).ToList ();
 
 
 
