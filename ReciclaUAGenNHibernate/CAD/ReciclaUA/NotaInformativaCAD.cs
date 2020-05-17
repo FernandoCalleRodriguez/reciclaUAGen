@@ -269,15 +269,16 @@ public System.Collections.Generic.IList<NotaInformativaEN> BuscarTodos (int firs
         return result;
 }
 
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo ()
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo (string p_titulo)
 {
         System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM NotaInformativaEN self where FROM NotaInformativaEN";
+                //String sql = @"FROM NotaInformativaEN self where FROM NotaInformativaEN as nota WHERE nota.Titulo LIKE '%'+:p_titulo+'%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("NotaInformativaENbuscarPorTituloHQL");
+                query.SetParameter ("p_titulo", p_titulo);
 
                 result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN>();
                 SessionCommit ();

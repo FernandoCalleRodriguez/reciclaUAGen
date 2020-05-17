@@ -76,9 +76,9 @@ public System.Collections.Generic.IList<NotaInformativaEN> BuscarTodos (int firs
         list = _INotaInformativaCAD.BuscarTodos (first, size);
         return list;
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo ()
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo (string p_titulo)
 {
-        return _INotaInformativaCAD.BuscarPorTitulo ();
+        return _INotaInformativaCAD.BuscarPorTitulo (p_titulo);
 }
 }
 }

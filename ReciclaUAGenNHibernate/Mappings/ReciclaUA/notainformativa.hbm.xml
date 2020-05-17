@@ -41,6 +41,6 @@
 		 </class>	
 		  
 		  <query name="NotaInformativaENReadAllHQL">from NotaInformativaEN</query>
-		  <query name="NotaInformativaENbuscarPorTituloHQL"><![CDATA[FROM NotaInformativaEN]]></query>
+		  <query name="NotaInformativaENbuscarPorTituloHQL"><![CDATA[FROM NotaInformativaEN as nota WHERE nota.Titulo LIKE '%'+:p_titulo+'%']]></query>
 		</hibernate-mapping>
 	

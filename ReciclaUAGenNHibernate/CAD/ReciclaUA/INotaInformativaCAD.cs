@@ -31,6 +31,6 @@ NotaInformativaEN BuscarPorId (int id
 System.Collections.Generic.IList<NotaInformativaEN> BuscarTodos (int first, int size);
 
 
-System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo ();
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NotaInformativaEN> BuscarPorTitulo (string p_titulo);
 }
 }
