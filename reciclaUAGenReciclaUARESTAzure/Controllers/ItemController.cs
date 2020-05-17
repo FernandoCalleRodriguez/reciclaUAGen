@@ -13,6 +13,9 @@ using reciclaUAGenReciclaUARESTAzure.AssemblersDTO;
 using ReciclaUAGenNHibernate.EN.ReciclaUA;
 using ReciclaUAGenNHibernate.CEN.ReciclaUA;
 using ReciclaUAGenNHibernate.CP.ReciclaUA;
+using System.IO;
+using System.Web;
+using System.Threading.Tasks;
 
 
 /*PROTECTED REGION ID(usingreciclaUAGenReciclaUARESTAzure_ItemControllerAzure) ENABLED START*/
@@ -533,6 +536,107 @@ public HttpResponseMessage CrearCP ( [FromBody] ItemDTO dto)
 
         return response;
 }
-/*PROTECTED REGION END*/
-}
+
+
+        [HttpPost]
+        [Route("~/api/Item/UploadImage")]
+        public async Task<HttpResponseMessage> UploadImage(int p_oid)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+                        int MaxContentLength = 1024 * 1024 * 5; //Size = 1 MB
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".jpeg", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            string imageName = p_oid + postedFile.FileName;
+
+                            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages");
+                            bool exists = System.IO.Directory.Exists(filePath);
+                            if (!exists)
+                                System.IO.Directory.CreateDirectory(filePath);
+                            postedFile.SaveAs(filePath + "/" + imageName);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+
+
+        [HttpGet]
+        [Route("~/api/Item/GetImage")]
+        public Byte[] GetImage(int id, string imageName)
+        {
+            string tempName = id + imageName;
+            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages");
+            bool exists = System.IO.Directory.Exists(filePath);
+            if (!exists) return null;
+            exists = System.IO.File.Exists(filePath + "/" + tempName);
+            if (!exists) return null;
+            Byte[] image = File.ReadAllBytes(filePath + "/" + tempName);
+            return image;
+        }
+
+        [HttpPost]
+        [Route("~/api/Item/RemoveImage")]
+        public bool RemoveImage(int id, string imageName)
+        {
+            string tempName = id + imageName;
+            var filePath = HttpContext.Current.Server.MapPath("~/ItemsImages");
+            bool exists = System.IO.Directory.Exists(filePath);
+            if (!exists) return false;
+            exists = System.IO.File.Exists(filePath + "/" + tempName);
+            if (!exists) return false;
+            File.Delete(filePath + "/" + tempName);
+            return true;
+        }
+
+        [HttpGet]
+        [Route("~/api/Item/ItemCount")]
+        public int NivelCount()
+        {
+            return new ItemCEN().BuscarTodos(0, -1).Count();
+        }
+
+        /*PROTECTED REGION END*/
+    }
 }
