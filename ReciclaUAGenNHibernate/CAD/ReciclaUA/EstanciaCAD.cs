@@ -283,5 +283,36 @@ public string Crear (EstanciaEN estancia)
 
         return estancia.Id;
 }
+
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN> BuscarEstanciasPorEdificio (int id_edificio)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM EstanciaEN self where FROM EstanciaEN as estancia where estancia.Edificio is not empty and estancia.Edificio = :id_edificio";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("EstanciaENbuscarEstanciasPorEdificioHQL");
+                query.SetParameter ("id_edificio", id_edificio);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in EstanciaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -77,5 +77,9 @@ public System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int 
         list = _IEstanciaCAD.BuscarTodos (first, size);
         return list;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN> BuscarEstanciasPorEdificio (int id_edificio)
+{
+        return _IEstanciaCAD.BuscarEstanciasPorEdificio (id_edificio);
+}
 }
 }

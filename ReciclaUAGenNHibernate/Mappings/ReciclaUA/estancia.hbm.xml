@@ -62,5 +62,6 @@
 		 </class>	
 		  
 		  <query name="EstanciaENReadAllHQL">from EstanciaEN</query>
+		  <query name="EstanciaENbuscarEstanciasPorEdificioHQL"><![CDATA[FROM EstanciaEN as estancia where estancia.Edificio is not empty and estancia.Edificio = :id_edificio]]></query>
 		</hibernate-mapping>
 	

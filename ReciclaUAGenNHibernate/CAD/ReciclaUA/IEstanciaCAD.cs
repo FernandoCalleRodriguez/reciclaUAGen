@@ -30,5 +30,7 @@ System.Collections.Generic.IList<EstanciaEN> BuscarTodos (int first, int size);
 
 
 string Crear (EstanciaEN estancia);
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.EstanciaEN> BuscarEstanciasPorEdificio (int id_edificio);
 }
 }

@@ -364,12 +364,12 @@ public static void InitializeData ()
                                         var estancia_nom = estanciaProperties.FirstOrDefault (x => x.Name == "nombre");
                                         var estancia_act = estanciaProperties.FirstOrDefault (x => x.Name == "actividad");
 
-                                        //if(estancia_act.Value.ToString() == "Aseos" || estancia_act.Value.ToString() == "Vestuarios" || estancia_act.Value.ToString() == "Pasillos" || estancia_act.Value.ToString() == "Aseo femenino" || estancia_act.Value.ToString() == "Aseo masculino"|| estancia_act.Value.ToString() == "Jardines")
+                                        if (estancia_act.Value.ToString () == "Aseos" || estancia_act.Value.ToString () == "Vestuarios" || estancia_act.Value.ToString () == "Pasillos" || estancia_act.Value.ToString () == "Aseo femenino" || estancia_act.Value.ToString () == "Aseo masculino" || estancia_act.Value.ToString () == "Jardines")
 
-                                        /*if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
-                                         *      estanciaCEN = new EstanciaCEN ();
-                                         *      estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString (), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString (), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
-                                         * }*/
+                                                if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
+                                                        estanciaCEN = new EstanciaCEN ();
+                                                        estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString (), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString (), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
+                                                }
                                 }
                         }
                 }

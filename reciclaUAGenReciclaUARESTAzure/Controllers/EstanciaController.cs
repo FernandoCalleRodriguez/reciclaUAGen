@@ -143,6 +143,70 @@ public HttpResponseMessage BuscarPorId (string idEstancia)
 
 
 
+// No pasa el slEnables: buscarEstanciasPorEdificio
+
+[HttpGet]
+
+[Route ("~/api/Estancia/BuscarEstanciasPorEdificio")]
+
+public HttpResponseMessage BuscarEstanciasPorEdificio (int id_edificio)
+{
+        // CAD, CEN, EN, returnValue
+
+        EstanciaRESTCAD estanciaRESTCAD = null;
+        EstanciaCEN estanciaCEN = null;
+
+
+        System.Collections.Generic.List<EstanciaEN> en;
+
+        System.Collections.Generic.List<EstanciaDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                estanciaRESTCAD = new EstanciaRESTCAD (session);
+                estanciaCEN = new EstanciaCEN (estanciaRESTCAD);
+
+                // CEN return
+
+
+
+                en = estanciaCEN.BuscarEstanciasPorEdificio (id_edificio).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<EstanciaDTOA>();
+                        foreach (EstanciaEN entry in en)
+                                returnValue.Add (EstanciaAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
 
 
 
