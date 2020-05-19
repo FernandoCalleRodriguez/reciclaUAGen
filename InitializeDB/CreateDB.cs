@@ -21,253 +21,245 @@ using Newtonsoft.Json.Linq;
 /*PROTECTED REGION END*/
 namespace InitializeDB
 {
-    public class CreateDB
-    {
-        public static void Create(string databaseArg, string userArg, string passArg)
-        {
-            String database = databaseArg;
-            String user = userArg;
-            String pass = passArg;
+public class CreateDB
+{
+public static void Create (string databaseArg, string userArg, string passArg)
+{
+        String database = databaseArg;
+        String user = userArg;
+        String pass = passArg;
 
-            // Conex DB
-            SqlConnection cnn = new SqlConnection(@"Server=(local); database=master; integrated security=yes");
+        // Conex DB
+        SqlConnection cnn = new SqlConnection (@"Server=(local); database=master; integrated security=yes");
 
-            // Order T-SQL create user
-            String createUser = @"IF NOT EXISTS(SELECT name FROM master.dbo.syslogins WHERE name = '" + user + @"')
+        // Order T-SQL create user
+        String createUser = @"IF NOT EXISTS(SELECT name FROM master.dbo.syslogins WHERE name = '" + user + @"')
             BEGIN
-                CREATE LOGIN [" + user + @"] WITH PASSWORD=N'" + pass + @"', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
-            END";
+                CREATE LOGIN ["                                                                                                                                     + user + @"] WITH PASSWORD=N'" + pass + @"', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+            END"                                                                                                                                                                                                                                                                                    ;
 
-            //Order delete user if exist
-            String deleteDataBase = @"if exists(select * from sys.databases where name = '" + database + "') DROP DATABASE [" + database + "]";
-            //Order create databas
-            string createBD = "CREATE DATABASE " + database;
-            //Order associate user with database
-            String associatedUser = @"USE [" + database + "];CREATE USER [" + user + "] FOR LOGIN [" + user + "];USE [" + database + "];EXEC sp_addrolemember N'db_owner', N'" + user + "'";
-            SqlCommand cmd = null;
+        //Order delete user if exist
+        String deleteDataBase = @"if exists(select * from sys.databases where name = '" + database + "') DROP DATABASE [" + database + "]";
+        //Order create databas
+        string createBD = "CREATE DATABASE " + database;
+        //Order associate user with database
+        String associatedUser = @"USE [" + database + "];CREATE USER [" + user + "] FOR LOGIN [" + user + "];USE [" + database + "];EXEC sp_addrolemember N'db_owner', N'" + user + "'";
+        SqlCommand cmd = null;
 
-            try
-            {
+        try
+        {
                 // Open conex
-                cnn.Open();
+                cnn.Open ();
 
                 //Create user in SQLSERVER
-                cmd = new SqlCommand(createUser, cnn);
-                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand (createUser, cnn);
+                cmd.ExecuteNonQuery ();
 
                 //DELETE database if exist
-                cmd = new SqlCommand(deleteDataBase, cnn);
-                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand (deleteDataBase, cnn);
+                cmd.ExecuteNonQuery ();
 
                 //CREATE DB
-                cmd = new SqlCommand(createBD, cnn);
-                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand (createBD, cnn);
+                cmd.ExecuteNonQuery ();
 
                 //Associate user with db
-                cmd = new SqlCommand(associatedUser, cnn);
-                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand (associatedUser, cnn);
+                cmd.ExecuteNonQuery ();
 
-                System.Console.WriteLine("DataBase create sucessfully..");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (cnn.State == ConnectionState.Open)
-                {
-                    cnn.Close();
-                }
-            }
+                System.Console.WriteLine ("DataBase create sucessfully..");
         }
-
-        public static void InitializeData()
+        catch (Exception ex)
         {
-            /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
+                throw ex;
+        }
+        finally
+        {
+                if (cnn.State == ConnectionState.Open) {
+                        cnn.Close ();
+                }
+        }
+}
 
-            try
-            {
+public static void InitializeData ()
+{
+        /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
+
+        try
+        {
                 /** TipoAccionCEN **/
-                TipoAccionCEN tipoAccionCEN = new TipoAccionCEN();
-                var idTipo1 = tipoAccionCEN.Crear(10, "Duda");
-                var idTipo2 = tipoAccionCEN.Crear(5, "Respuesta");
-                tipoAccionCEN.Crear(10, "Item");
-                tipoAccionCEN.Crear(30, "Punto");
-                tipoAccionCEN.Crear(10, "Material");
+                TipoAccionCEN tipoAccionCEN = new TipoAccionCEN ();
+                var idTipo1 = tipoAccionCEN.Crear (10, "Duda");
+                var idTipo2 = tipoAccionCEN.Crear (5, "Respuesta");
+                tipoAccionCEN.Crear (10, "Item");
+                tipoAccionCEN.Crear (30, "Punto");
+                tipoAccionCEN.Crear (10, "Material");
 
                 /** UsuarioAdministradorCEN **/
-                UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN();
-                var idAdminFer = adminCEN.Crear("Fernando", "de la Calle Rodríguez", "fdlc4@alu.ua.es", "fdlc4");
+                UsuarioAdministradorCEN adminCEN = new UsuarioAdministradorCEN ();
+                var idAdminFer = adminCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdlc4@alu.ua.es", "fdlc4");
                 // var idAdminAddel = adminCEN.Crear ("Addel Arnaldo", "Goya Jorge", "aagj2@alu.ua.es", "aagj2");
-                var id_admin = adminCEN.Crear("admin", "admin", "admin@ua.es", "admin");
+                var id_admin = adminCEN.Crear ("admin", "admin", "admin@ua.es", "admin");
 
 
                 /** NotaInformativaCEN **/
-                NotaInformativaCEN notaCEN = new NotaInformativaCEN();
-                var id_nota = notaCEN.Crear(id_admin, "Esto es una nota", "Esto es el cuerpo del titulo");
+                NotaInformativaCEN notaCEN = new NotaInformativaCEN ();
+                var id_nota = notaCEN.Crear (id_admin, "Esto es una nota", "Esto es el cuerpo del titulo");
 
-                UsuarioWebCEN usuCEN = new UsuarioWebCEN();
+                UsuarioWebCEN usuCEN = new UsuarioWebCEN ();
                 // var idWebAngela = usuCEN.Crear ("Angela Sofia", "Sbrizzi Quilotte", "assq1@alu.ua.es", "assq1");
                 // var idWebJose = usuCEN.Crear ("José Antonio", "Agulló García", "jaag14@alu.ua.es", "jaag14");
                 // var idWebWallid = usuCEN.Crear ("mohamed", "walid Nebili", "mwn1@alu.ua.es", "mwn1");
-                var idWebFer = usuCEN.Crear("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
-                var id_usu1 = usuCEN.Crear("usu1", "usu1", "usu1@ua.es", "usu1");
-                Console.WriteLine("ID Usuario 1: " + id_usu1);
+                var idWebFer = usuCEN.Crear ("Fernando", "de la Calle Rodríguez", "fdelacallerodriguez@gmail.com", "fdlc4");
+                var id_usu1 = usuCEN.Crear ("usu1", "usu1", "usu1@ua.es", "usu1");
+                Console.WriteLine ("ID Usuario 1: " + id_usu1);
 
                 /*
                  *  DUDA
                  */
-                string[] temas = new string[2];
-                temas[0] = "reciclaje";
-                temas[1] = "vidrio";
+                string[] temas = new string [2];
+                temas [0] = "reciclaje";
+                temas [1] = "vidrio";
 
-                DudaCEN duda = new DudaCEN();
-                int id_duda = duda.Crear("Duda1", "Esto es una duda", id_usu1, TemaEnum.anecdota);
-                id_duda = duda.Crear("Duda2", "Esto es una duda 2", id_usu1, TemaEnum.anecdota);
-                id_duda = duda.Crear("Duda3", "Esto es una duda 3", id_usu1, TemaEnum.consejo);
+                DudaCEN duda = new DudaCEN ();
+                int id_duda = duda.Crear ("Duda1", "Esto es una duda", id_usu1, TemaEnum.anecdota);
+                id_duda = duda.Crear ("Duda2", "Esto es una duda 2", id_usu1, TemaEnum.anecdota);
+                id_duda = duda.Crear ("Duda3", "Esto es una duda 3", id_usu1, TemaEnum.consejo);
 
-                duda.IndicarDudaUtil(id_duda);
-                DudaEN dudaResultado = duda.BuscarPorId(id_duda);
-                Console.WriteLine("Utilidad de la duda:" + dudaResultado.Util);
+                duda.IndicarDudaUtil (id_duda);
+                DudaEN dudaResultado = duda.BuscarPorId (id_duda);
+                Console.WriteLine ("Utilidad de la duda:" + dudaResultado.Util);
 
-                duda.IndicarDudaNoUtil(id_duda);
-                dudaResultado = duda.BuscarPorId(id_duda);
-                Console.WriteLine("Utilidad de la duda:" + dudaResultado.Util);
+                duda.IndicarDudaNoUtil (id_duda);
+                dudaResultado = duda.BuscarPorId (id_duda);
+                Console.WriteLine ("Utilidad de la duda:" + dudaResultado.Util);
 
-                RespuestaCEN respuesta = new RespuestaCEN();
-                respuesta.Crear("Esto es una respuesta", id_duda, id_usu1);
-                respuesta.Crear("Esto es una respuesta 2", id_duda, id_usu1);
-                respuesta.Crear("Esto es una respuesta 3", id_duda, id_usu1);
-                int idr = respuesta.Crear("Esto es una respuesta 4", id_duda, id_usu1);
+                RespuestaCEN respuesta = new RespuestaCEN ();
+                respuesta.Crear ("Esto es una respuesta", id_duda, id_usu1);
+                respuesta.Crear ("Esto es una respuesta 2", id_duda, id_usu1);
+                respuesta.Crear ("Esto es una respuesta 3", id_duda, id_usu1);
+                int idr = respuesta.Crear ("Esto es una respuesta 4", id_duda, id_usu1);
 
-                IList<RespuestaEN> respuestaResultados = respuesta.BuscarRespuestaPorDuda(id_duda);
+                IList<RespuestaEN> respuestaResultados = respuesta.BuscarRespuestaPorDuda (id_duda);
                 int id_respuesta = respuestaResultados.First<RespuestaEN>().Id;
-                respuesta.ConfirmacionRespuestaCorrecta(id_respuesta);
-                RespuestaEN respuestaResultado = new RespuestaEN();
-                respuestaResultado = respuesta.BuscarPorId(id_respuesta);
-                Console.WriteLine("�Es respuesta correcta?:" + respuestaResultado.EsCorrecta);
+                respuesta.ConfirmacionRespuestaCorrecta (id_respuesta);
+                RespuestaEN respuestaResultado = new RespuestaEN ();
+                respuestaResultado = respuesta.BuscarPorId (id_respuesta);
+                Console.WriteLine ("�Es respuesta correcta?:" + respuestaResultado.EsCorrecta);
 
 
                 //material,nivel,item
 
-                MaterialCEN materialCEN = new MaterialCEN();
-                NivelCEN nivelCEN = new NivelCEN();
-                ItemCEN itemCEN = new ItemCEN();
+                MaterialCEN materialCEN = new MaterialCEN ();
+                NivelCEN nivelCEN = new NivelCEN ();
+                ItemCEN itemCEN = new ItemCEN ();
 
-                MaterialEN material = new MaterialEN()
-                {
-                    Contenedor = TipoContenedorEnum.cristal,
-                    Nombre = "Contenedor 1"
+                MaterialEN material = new MaterialEN (){
+                        Contenedor = TipoContenedorEnum.cristal,
+                        Nombre = "Contenedor 1"
                 };
-                MaterialEN material2 = new MaterialEN()
-                {
-                    Contenedor = TipoContenedorEnum.cristal,
-                    Nombre = "Contenedor 2"
+                MaterialEN material2 = new MaterialEN (){
+                        Contenedor = TipoContenedorEnum.cristal,
+                        Nombre = "Contenedor 2"
                 };
-                ItemEN item = new ItemEN()
-                {
-                    Nombre = "item",
-                    Descripcion = "description",
-                    Imagen = "image file path",
-                    EsValido = EstadoEnum.enProceso
+                ItemEN item = new ItemEN (){
+                        Nombre = "item",
+                        Descripcion = "description",
+                        Imagen = "image file path",
+                        EsValido = EstadoEnum.enProceso
                 };
-                ItemEN item2 = new ItemEN()
-                {
-                    Nombre = "item2",
-                    Descripcion = "description2",
-                    Imagen = "image file path2",
-                    EsValido = EstadoEnum.enProceso
+                ItemEN item2 = new ItemEN (){
+                        Nombre = "item2",
+                        Descripcion = "description2",
+                        Imagen = "image file path2",
+                        EsValido = EstadoEnum.enProceso
                 };
                 List<ItemEN> items = new List<ItemEN>();
-                items.Add(item);
+                items.Add (item);
                 material.Items = items;
-                NivelEN nivel = new NivelEN()
-                {
-                    Item = items,
-                    Numero = 1,
-                    Puntuacion = 1
+                NivelEN nivel = new NivelEN (){
+                        Item = items,
+                        Numero = 1,
+                        Puntuacion = 1
                 };
 
-                int id1 = materialCEN.Crear(material.Nombre, material.Contenedor, id_usu1);
-                int id2 = materialCEN.Crear(material2.Nombre, material2.Contenedor, id_usu1);
-                materialCEN.ValidarMaterial(id1);
-                int itemId1 = itemCEN.Crear(item.Nombre, item.Descripcion, item.Imagen, id_usu1, id1);
-                int itemId2 = itemCEN.Crear(item2.Nombre, item2.Descripcion, item2.Imagen, id_usu1, id1);
+                int id1 = materialCEN.Crear (material.Nombre, material.Contenedor, id_usu1);
+                int id2 = materialCEN.Crear (material2.Nombre, material2.Contenedor, id_usu1);
+                materialCEN.ValidarMaterial (id1);
+                int itemId1 = itemCEN.Crear (item.Nombre, item.Descripcion, item.Imagen, id_usu1, id1);
+                int itemId2 = itemCEN.Crear (item2.Nombre, item2.Descripcion, item2.Imagen, id_usu1, id1);
 
-                nivelCEN.Crear(nivel.Numero, nivel.Puntuacion);
+                nivelCEN.Crear (nivel.Numero, nivel.Puntuacion);
 
 
-                var meterialDeTipo = materialCEN.BuscarPorTipoContenedor(TipoContenedorEnum.cristal);
-                Console.WriteLine("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
-                ItemEN tempItem = itemCEN.BuscarPorId(itemId1);
-                Console.WriteLine("item1 antes: " + tempItem.EsValido);
-                itemCEN.ValidarItem(tempItem.Id, 10);
-                tempItem = itemCEN.BuscarPorId(itemId1);
-                Console.WriteLine("item1 despues de validar: " + tempItem.EsValido);
+                var meterialDeTipo = materialCEN.BuscarPorTipoContenedor (TipoContenedorEnum.cristal);
+                Console.WriteLine ("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
+                ItemEN tempItem = itemCEN.BuscarPorId (itemId1);
+                Console.WriteLine ("item1 antes: " + tempItem.EsValido);
+                itemCEN.ValidarItem (tempItem.Id, 10);
+                tempItem = itemCEN.BuscarPorId (itemId1);
+                Console.WriteLine ("item1 despues de validar: " + tempItem.EsValido);
 
-                itemCEN.DescartarItem(itemId2);
-                tempItem = itemCEN.BuscarPorId(itemId2);
-                Console.WriteLine("item2 despues de descartar: " + tempItem.EsValido);
+                itemCEN.DescartarItem (itemId2);
+                tempItem = itemCEN.BuscarPorId (itemId2);
+                Console.WriteLine ("item2 despues de descartar: " + tempItem.EsValido);
 
-                var itemsPorValidar = itemCEN.BuscarItemsPorValidar();
-                Console.WriteLine("el total de items por validar es :" + itemsPorValidar.Count);
+                var itemsPorValidar = itemCEN.BuscarItemsPorValidar ();
+                Console.WriteLine ("el total de items por validar es :" + itemsPorValidar.Count);
 
-                var itemsValidados = itemCEN.BuscarItemsValidados();
-                Console.WriteLine("el total de items validados es :" + itemsValidados.Count);
+                var itemsValidados = itemCEN.BuscarItemsValidados ();
+                Console.WriteLine ("el total de items validados es :" + itemsValidados.Count);
 
                 ///ADDEL
 
-                AccionWebCEN accionWebCEN = new AccionWebCEN();
+                AccionWebCEN accionWebCEN = new AccionWebCEN ();
                 // AccionWebCP accionWebCP = new AccionWebCP ();
                 // accionWebCEN.Crear (id_usu1, idTipo1);
                 // accionWebCEN.Crear (id_usu1, idTipo2);
 
-                var result = accionWebCEN.BuscarPorAutor(id_usu1);
-                Console.WriteLine("total de acciones del autor con id " + id_usu1 + " es :" + result.Count);
+                var result = accionWebCEN.BuscarPorAutor (id_usu1);
+                Console.WriteLine ("total de acciones del autor con id " + id_usu1 + " es :" + result.Count);
 
-                result = accionWebCEN.BuscarPorAutor(55);
-                Console.WriteLine("total de acciones del autor con id 55" + result.Count);
+                result = accionWebCEN.BuscarPorAutor (55);
+                Console.WriteLine ("total de acciones del autor con id 55" + result.Count);
 
                 // PUNTOS RECICLAJE
 
-                EdificioCEN edificioCEN = new EdificioCEN();
-                int id_edificio = edificioCEN.Crear("Edificio 1", 500);
+                EdificioCEN edificioCEN = new EdificioCEN ();
+                int id_edificio = edificioCEN.Crear ("Edificio 1", 500);
 
-                PlantaCEN plantaCEN = new PlantaCEN();
-                int id_planta = plantaCEN.Crear(PlantaEnum.PB, id_edificio);
+                PlantaCEN plantaCEN = new PlantaCEN ();
+                int id_planta = plantaCEN.Crear (PlantaEnum.PB, id_edificio);
 
-                EstanciaCEN estanciaCEN = new EstanciaCEN();
-                string id_estancia = estanciaCEN.Crear("0500PB001", "Aula", 123.09999d, 2.3123313d, "Aula PB 001", id_edificio, id_planta);
+                EstanciaCEN estanciaCEN = new EstanciaCEN ();
+                string id_estancia = estanciaCEN.Crear ("0500PB001", "Aula", 123.09999d, 2.3123313d, "Aula PB 001", id_edificio, id_planta);
 
 
-                PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN();
-                var p1 = puntoCEN.Crear(41.042171, -4.996339, id_usu1, id_estancia);
-                var p2 = puntoCEN.Crear(38.351020, -0.498823, id_usu1, id_estancia);
-                var p3 = puntoCEN.Crear(41.972265, -6.451450, id_usu1, id_estancia);
-                var p4 = puntoCEN.Crear(39.203261, -1.716253, id_usu1, id_estancia);
-                var p5 = puntoCEN.Crear(38.386952, -0.555871, id_usu1, id_estancia);
+                PuntoReciclajeCEN puntoCEN = new PuntoReciclajeCEN ();
+                var p1 = puntoCEN.Crear (41.042171, -4.996339, id_usu1, id_estancia);
+                var p2 = puntoCEN.Crear (38.351020, -0.498823, id_usu1, id_estancia);
+                var p3 = puntoCEN.Crear (41.972265, -6.451450, id_usu1, id_estancia);
+                var p4 = puntoCEN.Crear (39.203261, -1.716253, id_usu1, id_estancia);
+                var p5 = puntoCEN.Crear (38.386952, -0.555871, id_usu1, id_estancia);
 
-                ContenedorCEN contenedorCEN = new ContenedorCEN();
-                contenedorCEN.Crear(TipoContenedorEnum.cristal, p1);
-                contenedorCEN.Crear(TipoContenedorEnum.cristal, p2);
-                contenedorCEN.Crear(TipoContenedorEnum.cristal, p5);
-                contenedorCEN.Crear(TipoContenedorEnum.organico, p3);
-                contenedorCEN.Crear(TipoContenedorEnum.organico, p4);
-                contenedorCEN.Crear(TipoContenedorEnum.organico, p5);
+                ContenedorCEN contenedorCEN = new ContenedorCEN ();
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p1);
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p2);
+                contenedorCEN.Crear (TipoContenedorEnum.cristal, p5);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p3);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p4);
+                contenedorCEN.Crear (TipoContenedorEnum.organico, p5);
 
-                puntoCEN.BuscarPuntosCercanos(38.340515, -0.515409, 1000);
+                puntoCEN.BuscarPuntosCercanos (38.340515, -0.515409, 1000);
 
-                Console.WriteLine("Cristal");
-                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor(38.340515, -0.515409, TipoContenedorEnum.cristal, 0))
-                {
-                    Console.WriteLine("Punto (" + p.Latitud + ", " + p.Longitud + ")");
+                Console.WriteLine ("Cristal");
+                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor (38.340515, -0.515409, TipoContenedorEnum.cristal, 0)) {
+                        Console.WriteLine ("Punto (" + p.Latitud + ", " + p.Longitud + ")");
                 }
 
-                Console.WriteLine("Organico");
-                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor(38.340515, -0.515409, TipoContenedorEnum.organico, 0))
-                {
-                    Console.WriteLine("Punto (" + p.Latitud + ", " + p.Longitud + ")");
+                Console.WriteLine ("Organico");
+                foreach (PuntoReciclajeEN p in puntoCEN.BuscarPuntosCercanosPorContenedor (38.340515, -0.515409, TipoContenedorEnum.organico, 0)) {
+                        Console.WriteLine ("Punto (" + p.Latitud + ", " + p.Longitud + ")");
                 }
 
                 /*
@@ -320,88 +312,78 @@ namespace InitializeDB
                  */
 
                 string path = @"..\..\resources\sigua_eps.json";
-                StreamReader sr = File.OpenText(path);
+                StreamReader sr = File.OpenText (path);
                 //Console.WriteLine(sr.ReadToEnd().Trim());
-                JArray aEdificios = JArray.Parse(sr.ReadToEnd().Trim());
+                JArray aEdificios = JArray.Parse (sr.ReadToEnd ().Trim ());
 
-                foreach (var itemEdificio in aEdificios.Children())
-                {
-                    var edificioProperties = itemEdificio.Children<JProperty>();
+                foreach (var itemEdificio in aEdificios.Children ()) {
+                        var edificioProperties = itemEdificio.Children<JProperty>();
 
-                    var id = edificioProperties.FirstOrDefault(x => x.Name == "id");
-                    var nombre = edificioProperties.FirstOrDefault(x => x.Name == "nombre");
-                    var plantas = edificioProperties.FirstOrDefault(x => x.Name == "plantas");
+                        var id = edificioProperties.FirstOrDefault (x => x.Name == "id");
+                        var nombre = edificioProperties.FirstOrDefault (x => x.Name == "nombre");
+                        var plantas = edificioProperties.FirstOrDefault (x => x.Name == "plantas");
 
-                    id_edificio = Int32.Parse(id.Value.ToString());
-                    //EdificioCEN edificioCEN = new EdificioCEN ();
-                    edificioCEN = new EdificioCEN();
-                    id_edificio = edificioCEN.Crear(nombre.Value.ToString(), id_edificio);
+                        id_edificio = Int32.Parse (id.Value.ToString ());
+                        //EdificioCEN edificioCEN = new EdificioCEN ();
+                        edificioCEN = new EdificioCEN ();
+                        id_edificio = edificioCEN.Crear (nombre.Value.ToString (), id_edificio);
 
 
-                    foreach (var planta in plantas.Children().Children())
-                    {
-                        PlantaEnum plantaE;
-                        JProperty plantaProperties = (JProperty)planta;
+                        foreach (var planta in plantas.Children ().Children ()) {
+                                PlantaEnum plantaE;
+                                JProperty plantaProperties = (JProperty)planta;
 
-                        if (plantaProperties.Name == "P1")
-                        {
-                            plantaE = PlantaEnum.P1;
-                        }
-                        else if (plantaProperties.Name == "P2")
-                        {
-                            plantaE = PlantaEnum.P2;
-                        }
-                        else if (plantaProperties.Name == "P3")
-                        {
-                            plantaE = PlantaEnum.P3;
-                        }
-                        else if (plantaProperties.Name == "P4")
-                        {
-                            plantaE = PlantaEnum.P4;
-                        }
-                        else if (plantaProperties.Name == "PS")
-                        {
-                            plantaE = PlantaEnum.PS;
-                        }
-                        else
-                        {
-                            plantaE = PlantaEnum.PB;
-                        }
+                                if (plantaProperties.Name == "P1") {
+                                        plantaE = PlantaEnum.P1;
+                                }
+                                else if (plantaProperties.Name == "P2") {
+                                        plantaE = PlantaEnum.P2;
+                                }
+                                else if (plantaProperties.Name == "P3") {
+                                        plantaE = PlantaEnum.P3;
+                                }
+                                else if (plantaProperties.Name == "P4") {
+                                        plantaE = PlantaEnum.P4;
+                                }
+                                else if (plantaProperties.Name == "PS") {
+                                        plantaE = PlantaEnum.PS;
+                                }
+                                else{
+                                        plantaE = PlantaEnum.PB;
+                                }
 
-                        plantaCEN = new PlantaCEN();
-                        id_planta = plantaCEN.Crear(plantaE, id_edificio);
+                                plantaCEN = new PlantaCEN ();
+                                id_planta = plantaCEN.Crear (plantaE, id_edificio);
 
-                        foreach (var itemEstancia in planta.Children().Children())
-                        {
-                            var estanciaProperties = itemEstancia.Children<JProperty>();
+                                foreach (var itemEstancia in planta.Children ().Children ()) {
+                                        var estanciaProperties = itemEstancia.Children<JProperty>();
 
-                            var estancia_codigo = estanciaProperties.FirstOrDefault(x => x.Name == "codigo");
-                            var estancia_lon = estanciaProperties.FirstOrDefault(x => x.Name == "longitud");
-                            var estancia_lat = estanciaProperties.FirstOrDefault(x => x.Name == "latitud");
-                            var estancia_nom = estanciaProperties.FirstOrDefault(x => x.Name == "nombre");
-                            var estancia_act = estanciaProperties.FirstOrDefault(x => x.Name == "actividad");
+                                        var estancia_codigo = estanciaProperties.FirstOrDefault (x => x.Name == "codigo");
+                                        var estancia_lon = estanciaProperties.FirstOrDefault (x => x.Name == "longitud");
+                                        var estancia_lat = estanciaProperties.FirstOrDefault (x => x.Name == "latitud");
+                                        var estancia_nom = estanciaProperties.FirstOrDefault (x => x.Name == "nombre");
+                                        var estancia_act = estanciaProperties.FirstOrDefault (x => x.Name == "actividad");
 
-                            if (estancia_act.Value.ToString() == "Aseos" || estancia_act.Value.ToString() == "Vestuarios" || estancia_act.Value.ToString() == "Pasillos" || estancia_act.Value.ToString() == "Aseo femenino" || estancia_act.Value.ToString() == "Aseo masculino" || estancia_act.Value.ToString() == "Jardines")
+                                        if (estancia_act.Value.ToString () == "Aseos" || estancia_act.Value.ToString () == "Vestuarios" || estancia_act.Value.ToString () == "Pasillos" || estancia_act.Value.ToString () == "Aseo femenino" || estancia_act.Value.ToString () == "Aseo masculino" || estancia_act.Value.ToString () == "Jardines")
 
-                                if (estanciaCEN.BuscarPorId(estancia_codigo.Value.ToString()) == null)
-                                {
-                                    // estanciaCEN = new EstanciaCEN();
-                                    // Console.WriteLine(estancia_lat.Value.ToString());
-                                    // Console.WriteLine(double.Parse(estancia_lat.Value.ToString(), CultureInfo.InvariantCulture));
-                                    estanciaCEN.Crear(estancia_codigo.Value.ToString(), estancia_act.Value.ToString(), double.Parse(estancia_lat.Value.ToString().Replace(',', '.'), CultureInfo.InvariantCulture), double.Parse(estancia_lon.Value.ToString().Replace(',', '.'), CultureInfo.InvariantCulture), estancia_nom.Value.ToString(), id_edificio, id_planta);
+                                                if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
+                                                        // estanciaCEN = new EstanciaCEN();
+                                                        // Console.WriteLine(estancia_lat.Value.ToString());
+                                                        // Console.WriteLine(double.Parse(estancia_lat.Value.ToString(), CultureInfo.InvariantCulture));
+                                                        estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString ().Replace (',', '.'), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString ().Replace (',', '.'), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
+                                                }
                                 }
                         }
-                    }
                 }
 
 
                 /*PROTECTED REGION END*/
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex.InnerException);
-                throw ex;
-            }
         }
-    }
+        catch (Exception ex)
+        {
+                System.Console.WriteLine (ex.InnerException);
+                throw ex;
+        }
+}
+}
 }

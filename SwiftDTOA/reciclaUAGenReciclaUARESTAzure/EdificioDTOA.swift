@@ -16,7 +16,7 @@ class EdificioDTOA : DTOA
 	var nombre: String?;
 	
 	/* Rol: Edificio o--> Planta */
-	var plantasEdicio: [PlantaDTOA]?;
+	var plantasEdificio: [PlantaDTOA]?;
 
 	
 	
@@ -40,12 +40,12 @@ class EdificioDTOA : DTOA
 	
 		self.nombre = json["Nombre"].object as? String;
 		
-		if (json["PlantasEdicio"] != JSON.null)
+		if (json["PlantasEdificio"] != JSON.null)
 		{
-			self.plantasEdicio = [];
-			for subJson in json["PlantasEdicio"].arrayValue
+			self.plantasEdificio = [];
+			for subJson in json["PlantasEdificio"].arrayValue
 			{
-				self.plantasEdicio!.append(PlantaDTOA(fromJSONObject: subJson));
+				self.plantasEdificio!.append(PlantaDTOA(fromJSONObject: subJson));
 			}
 		}
 
@@ -65,16 +65,16 @@ class EdificioDTOA : DTOA
 	
 	
 		
-		dictionary["PlantasEdicio"] = NSNull();
-		if (self.plantasEdicio != nil)
+		dictionary["PlantasEdificio"] = NSNull();
+		if (self.plantasEdificio != nil)
 		{
 			var arrayOfDictionary: [[String : AnyObject]] = [];
-			for item in self.plantasEdicio!
+			for item in self.plantasEdificio!
 			{
 				arrayOfDictionary.append(item.toDictionary());
 			}
 			
-			dictionary["PlantasEdicio"] = arrayOfDictionary;
+			dictionary["PlantasEdificio"] = arrayOfDictionary;
 		}
 
 		

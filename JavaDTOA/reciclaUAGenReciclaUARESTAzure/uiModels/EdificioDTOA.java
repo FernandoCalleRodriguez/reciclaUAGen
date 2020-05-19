@@ -29,9 +29,9 @@ public class EdificioDTOA extends DTOA
 	
 	
 	/* Rol: Edificio o--> Planta */
-	private ArrayList<PlantaDTOA> plantasEdicio;
-	public ArrayList<PlantaDTOA> getPlantasEdicio () { return plantasEdicio; }
-	public void setPlantasEdicio (ArrayList<PlantaDTOA> plantasEdicio) { this.plantasEdicio = plantasEdicio; }
+	private ArrayList<PlantaDTOA> plantasEdificio;
+	public ArrayList<PlantaDTOA> getPlantasEdificio () { return plantasEdificio; }
+	public void setPlantasEdificio (ArrayList<PlantaDTOA> plantasEdificio) { this.plantasEdificio = plantasEdificio; }
 
 	
 	
@@ -65,16 +65,16 @@ public class EdificioDTOA extends DTOA
 			}
 			
 
-			JSONArray arrayPlantasEdicio = json.optJSONArray("PlantasEdicio");
-			if (arrayPlantasEdicio != null)
+			JSONArray arrayPlantasEdificio = json.optJSONArray("PlantasEdificio");
+			if (arrayPlantasEdificio != null)
 			{
-				this.plantasEdicio = new ArrayList<PlantaDTOA>();
-				for (int i = 0; i < arrayPlantasEdicio.length(); ++i)
+				this.plantasEdificio = new ArrayList<PlantaDTOA>();
+				for (int i = 0; i < arrayPlantasEdificio.length(); ++i)
 				{
-					JSONObject subJson = (JSONObject) arrayPlantasEdicio.opt(i);
+					JSONObject subJson = (JSONObject) arrayPlantasEdificio.opt(i);
 					PlantaDTOA tmp = new PlantaDTOA();
 					tmp.setFromJSON(subJson);
-					this.plantasEdicio.add(tmp);
+					this.plantasEdificio.add(tmp);
 				}
 			}
 
@@ -102,14 +102,14 @@ public class EdificioDTOA extends DTOA
 		
 			
 
-			if (this.plantasEdicio != null)
+			if (this.plantasEdificio != null)
 			{
 				JSONArray jsonArray = new JSONArray();
-				for (int i = 0; i < this.plantasEdicio.size(); ++i)
+				for (int i = 0; i < this.plantasEdificio.size(); ++i)
 				{
-					jsonArray.put(this.plantasEdicio.get(i).toJSON());
+					jsonArray.put(this.plantasEdificio.get(i).toJSON());
 				}
-				json.put("PlantasEdicio", jsonArray);
+				json.put("PlantasEdificio", jsonArray);
 			}
 
 			
@@ -137,7 +137,7 @@ public class EdificioDTOA extends DTOA
 		
 		
 		// Roles
-					// TODO: from DTOA [ PlantasEdicio ] (dataType : ArrayList<PlantaDTOA>) to DTO [ Plantas ]
+					// TODO: from DTOA [ PlantasEdificio ] (dataType : ArrayList<PlantaDTOA>) to DTO [ Plantas ]
 		
 		
 		return dto;

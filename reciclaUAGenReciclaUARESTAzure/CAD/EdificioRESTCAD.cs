@@ -28,7 +28,7 @@ public EdificioRESTCAD(ISession sessionAux)
 
 
 
-public IList<PlantaEN> PlantasEdicio (int id)
+public IList<PlantaEN> PlantasEdificio (int id)
 {
         IList<PlantaEN> result = null;
 

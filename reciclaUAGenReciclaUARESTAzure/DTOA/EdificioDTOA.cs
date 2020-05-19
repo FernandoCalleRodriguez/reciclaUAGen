@@ -25,11 +25,11 @@ public string Nombre
 
 
 /* Rol: Edificio o--> Planta */
-private IList<PlantaDTOA> plantasEdicio;
-public IList<PlantaDTOA> PlantasEdicio
+private IList<PlantaDTOA> plantasEdificio;
+public IList<PlantaDTOA> PlantasEdificio
 {
-        get { return plantasEdicio; }
-        set { plantasEdicio = value; }
+        get { return plantasEdificio; }
+        set { plantasEdificio = value; }
 }
 }
 }
