@@ -25,7 +25,7 @@
 				var puntuacion: Double?;
 				    	 
 		 
-				var usuarios_oid: [Int]?;
+				var usuarios_oid: Int?;
 				    	 
 		 
 				var intentosItemActual: Int?;

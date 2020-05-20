@@ -27,62 +27,62 @@ public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, Rec
 
         IJuegoCAD juegoCAD = null;
         JuegoCEN juegoCEN = null;
+        JuegoEN juegoEN = null;
 
-        ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN result = null;
+        INivelCAD nivelCAD = null;
+        NivelCEN nivelCEN = null;
+        NivelEN nivelEN = null;
 
 
         try
         {
                 SessionInitializeTransaction ();
                 juegoCAD = new JuegoCAD (session);
-                juegoCEN = new  JuegoCEN (juegoCAD);
+                juegoCEN = new JuegoCEN (juegoCAD);
+                juegoEN = juegoCAD.BuscarPorId (p_oid);
+
+                nivelCAD = new NivelCAD (session);
+                nivelCEN = new NivelCEN (nivelCAD);
+
+                ItemCAD Itemcad = new ItemCAD ();
+
+                IList<ItemEN> itemsen = Itemcad.BuscarItemsPorNivel (juegoEN.NivelActual);
+                nivelEN = nivelCAD.BuscarPorId (juegoEN.NivelActual);
 
 
-                /*
-                JuegoCAD Juegocad = new JuegoCAD();
-                JuegoEN juegoen = Juegocad.BuscarPorId(p_oid);
+                if (itemsen [juegoEN.ItemActual].Material.Contenedor == p_tipocontenedor) {
+                        //Acierto
+                        juegoEN.Aciertos++;
+                        double penalizacion = 1 / juegoEN.IntentosItemActual;
 
-                ItemCAD Itemcad = new ItemCAD();
+                        juegoEN.Puntuacion += nivelEN.Puntuacion * penalizacion;
 
-                IList<ItemEN> itemsen = Itemcad.BuscarItemsPorNivel(juegoen.NivelActual.Id);
-
-                if (itemsen[juegoen.ItemActual].Material.Contenedor == p_tipocontenedor)
-                {
-                    //Acierto
-                    juegoen.Aciertos++;
-                    double penalizacion = 1 / juegoen.IntentosItemActual;
-
-                    juegoen.Puntuacion += Convert.ToInt32(juegoen.NivelActual.Puntuacion * penalizacion);
-
-                    juegoen.IntentosItemActual = 1;
+                        juegoEN.IntentosItemActual = 1;
 
 
-                    if (juegoen.ItemActual < itemsen.Count)
-                    {
-                        juegoen.ItemActual++;
-                    }
-                    else
-                    {
-                        juegoen.ItemActual = 0;
-                    }
+                        if (juegoEN.ItemActual <= itemsen.Count) {
+                                juegoEN.ItemActual++;
+                        }
+                        else{
+                                juegoEN.ItemActual = 0;
+                                IList<NivelEN> niveles = nivelCAD.BuscarTodos (0, -1);
 
-                    //Obtener siguente nivel
-
-                    //juegoen.NivelActual++;
-
-                    //Si No existe siguiente nivel
-
-                    //juegoen.Finalizado = true;
+                                if (juegoEN.NivelActual <= niveles.Count) {
+                                        juegoEN.NivelActual++;
+                                }
+                                else{
+                                        juegoEN.Finalizado = true;
+                                }
+                        }
                 }
-                else
-                {
-                    //Fallo
-                    juegoen.Fallos++;
-                    juegoen.IntentosItemActual++;
+                else{
+                        //Fallo
+                        juegoEN.Fallos++;
+                        juegoEN.IntentosItemActual++;
                 }
 
-                Juegocad.Modificar(juegoen);
-                */
+                juegoCAD.Modificar (juegoEN);
+
 
 
 
@@ -97,7 +97,7 @@ public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, Rec
         {
                 SessionClose ();
         }
-        return result;
+        return juegoEN;
 
 
         /*PROTECTED REGION END*/

@@ -39,33 +39,6 @@ public IJuegoCAD get_IJuegoCAD ()
         return this._IJuegoCAD;
 }
 
-public int Crear (int p_itemActual, int p_aciertos, int p_fallos, double p_puntuacion, int p_intentosItemActual, bool p_finalizado, int p_nivelActual)
-{
-        JuegoEN juegoEN = null;
-        int oid;
-
-        //Initialized JuegoEN
-        juegoEN = new JuegoEN ();
-        juegoEN.ItemActual = p_itemActual;
-
-        juegoEN.Aciertos = p_aciertos;
-
-        juegoEN.Fallos = p_fallos;
-
-        juegoEN.Puntuacion = p_puntuacion;
-
-        juegoEN.IntentosItemActual = p_intentosItemActual;
-
-        juegoEN.Finalizado = p_finalizado;
-
-        juegoEN.NivelActual = p_nivelActual;
-
-        //Call to JuegoCAD
-
-        oid = _IJuegoCAD.Crear (juegoEN);
-        return oid;
-}
-
 public void Modificar (int p_Juego_OID, int p_itemActual, int p_aciertos, int p_fallos, double p_puntuacion, int p_intentosItemActual, bool p_finalizado, int p_nivelActual)
 {
         JuegoEN juegoEN = null;

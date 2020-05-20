@@ -43,7 +43,7 @@ private double puntuacion;
 /**
  *	Atributo usuarios
  */
-private System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios;
+private ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuarios;
 
 
 
@@ -101,7 +101,7 @@ public virtual double Puntuacion {
 
 
 
-public virtual System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> Usuarios {
+public virtual ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN Usuarios {
         get { return usuarios; } set { usuarios = value;  }
 }
 
@@ -129,12 +129,11 @@ public virtual int NivelActual {
 
 public JuegoEN()
 {
-        usuarios = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN>();
 }
 
 
 
-public JuegoEN(int id, int itemActual, int aciertos, int fallos, double puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, int intentosItemActual, bool finalizado, int nivelActual
+public JuegoEN(int id, int itemActual, int aciertos, int fallos, double puntuacion, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuarios, int intentosItemActual, bool finalizado, int nivelActual
                )
 {
         this.init (Id, itemActual, aciertos, fallos, puntuacion, usuarios, intentosItemActual, finalizado, nivelActual);
@@ -147,7 +146,7 @@ public JuegoEN(JuegoEN juego)
 }
 
 private void init (int id
-                   , int itemActual, int aciertos, int fallos, double puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, int intentosItemActual, bool finalizado, int nivelActual)
+                   , int itemActual, int aciertos, int fallos, double puntuacion, ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN usuarios, int intentosItemActual, bool finalizado, int nivelActual)
 {
         this.Id = id;
 

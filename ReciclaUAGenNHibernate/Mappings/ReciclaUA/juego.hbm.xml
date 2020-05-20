@@ -41,15 +41,12 @@
 			
 			
 		  			
-						<bag name="Usuarios" >
-							<key>
-							
-								
-								<column name="FK_idJuego_idJuego"/>
-					      	</key>
-							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN"/>
-					    </bag>
 					
+							<many-to-one name="Usuarios" class="ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN" >
+								<column name="FK_id_idUsuario"/> 
+        					</many-to-one>
+					 
+						
 			
 			
 			

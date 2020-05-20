@@ -28,8 +28,8 @@ public double Puntuacion {
 }
 
 
-private System.Collections.Generic.IList<int> usuarios_oid;
-public System.Collections.Generic.IList<int> Usuarios_oid {
+private int usuarios_oid;
+public int Usuarios_oid {
         get { return usuarios_oid; } set { usuarios_oid = value;  }
 }
 

@@ -252,6 +252,7 @@
     <Compile Include="CAD\ReciclaUA\IJuegoCAD.cs" />
     <Compile Include="CAD\ReciclaUA\JuegoCAD.cs" />
     <Compile Include="CP\ReciclaUA\JuegoCP.cs" />
+    <Compile Include="CEN\ReciclaUA\JuegoCEN_Crear.cs" />
     <Compile Include="CP\ReciclaUA\JuegoCP_SiguienteItem.cs" />
     <Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
     <Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />

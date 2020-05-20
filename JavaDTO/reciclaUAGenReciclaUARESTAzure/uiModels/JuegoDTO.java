@@ -37,9 +37,9 @@
 				public Double getPuntuacion () { return puntuacion; } 
 				public void setPuntuacion  (Double value) { puntuacion = value;  } 
 				    	 
-				private ArrayList<Integer> usuarios_oid;
-				public ArrayList<Integer>  getUsuarios_oid () { return usuarios_oid; } 
-				public void setUsuarios_oid (ArrayList<Integer> value) { usuarios_oid = value;  } 
+				private Integer usuarios_oid;
+				public Integer  getUsuarios_oid () { return usuarios_oid; } 
+				public void setUsuarios_oid (Integer value) { usuarios_oid = value;  } 
 				    	 
 				private Integer intentosItemActual;
 				public Integer getIntentosItemActual () { return intentosItemActual; } 
@@ -78,14 +78,8 @@
 
 						if (this.usuarios_oid != null)
 						{
-							JSONArray jsonArray = new JSONArray();
-							for (int i = 0; i < this.usuarios_oid.size(); ++i)
-							{
-								jsonArray.put(this.usuarios_oid.get(i));
-							}
-							json.put("Usuarios_oid", jsonArray);
+							json.put("Usuarios_oid", this.usuarios_oid.intValue());
 						}
-		
 				
 						  json.put("IntentosItemActual", this.intentosItemActual.intValue());
 				

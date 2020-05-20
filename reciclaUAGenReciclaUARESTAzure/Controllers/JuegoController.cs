@@ -91,6 +91,8 @@ public HttpResponseMessage BuscarPorId (int idJuego)
 
 
 
+
+
 [HttpPost]
 
 
@@ -121,14 +123,11 @@ public HttpResponseMessage Crear ( [FromBody] JuegoDTO dto)
 
                 // Create
                 returnOID = juegoCEN.Crear (
-                        //Atributo Primitivo: p_itemActual
-                        dto.ItemActual,                                                                                                                                     //Atributo Primitivo: p_aciertos
-                        dto.Aciertos,                                                                                                                                       //Atributo Primitivo: p_fallos
-                        dto.Fallos,                                                                                                                                         //Atributo Primitivo: p_puntuacion
-                        dto.Puntuacion,                                                                                                                                     //Atributo Primitivo: p_intentosItemActual
-                        dto.IntentosItemActual,                                                                                                                                     //Atributo Primitivo: p_finalizado
-                        dto.Finalizado,                                                                                                                                     //Atributo Primitivo: p_nivelActual
-                        dto.NivelActual);
+                        //Atributo OID: p_usuarios
+                        // attr.estaRelacionado: true
+                        dto.Usuarios_oid                 // association role
+
+                        );
                 SessionCommit ();
 
                 // Convert return
@@ -165,8 +164,6 @@ public HttpResponseMessage Crear ( [FromBody] JuegoDTO dto)
 
         return response;
 }
-
-
 
 
 

@@ -136,6 +136,13 @@ public int Crear (JuegoEN juego)
         try
         {
                 SessionInitializeTransaction ();
+                if (juego.Usuarios != null) {
+                        // Argumento OID y no colección.
+                        juego.Usuarios = (ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN), juego.Usuarios.Id);
+
+                        juego.Usuarios.Juego
+                                = juego;
+                }
 
                 session.Save (juego);
                 SessionCommit ();

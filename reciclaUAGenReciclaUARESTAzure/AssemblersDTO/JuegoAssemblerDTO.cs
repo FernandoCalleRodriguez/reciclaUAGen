@@ -32,13 +32,10 @@ public static JuegoEN Convert (JuegoDTO dto)
                         newinstance.Aciertos = dto.Aciertos;
                         newinstance.Fallos = dto.Fallos;
                         newinstance.Puntuacion = dto.Puntuacion;
-                        if (dto.Usuarios_oid != null) {
+                        if (dto.Usuarios_oid != -1) {
                                 ReciclaUAGenNHibernate.CAD.ReciclaUA.IUsuarioCAD usuarioCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.UsuarioCAD ();
 
-                                newinstance.Usuarios = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN>();
-                                foreach (int entry in dto.Usuarios_oid) {
-                                        newinstance.Usuarios.Add (usuarioCAD.ReadOIDDefault (entry));
-                                }
+                                newinstance.Usuarios = usuarioCAD.ReadOIDDefault (dto.Usuarios_oid);
                         }
                         newinstance.IntentosItemActual = dto.IntentosItemActual;
                         newinstance.Finalizado = dto.Finalizado;
