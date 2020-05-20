@@ -311,6 +311,8 @@ public static void InitializeData ()
                  * ACESSO SIGUA
                  */
 
+
+
                 string path = @"..\..\resources\sigua_eps.json";
                 StreamReader sr = File.OpenText (path);
                 //Console.WriteLine(sr.ReadToEnd().Trim());
@@ -367,9 +369,9 @@ public static void InitializeData ()
                                         if (estancia_act.Value.ToString () == "Aseos" || estancia_act.Value.ToString () == "Vestuarios" || estancia_act.Value.ToString () == "Pasillos" || estancia_act.Value.ToString () == "Aseo femenino" || estancia_act.Value.ToString () == "Aseo masculino" || estancia_act.Value.ToString () == "Jardines")
 
                                                 if (estanciaCEN.BuscarPorId (estancia_codigo.Value.ToString ()) == null) {
-                                                        // estanciaCEN = new EstanciaCEN();
-                                                        // Console.WriteLine(estancia_lat.Value.ToString());
-                                                        // Console.WriteLine(double.Parse(estancia_lat.Value.ToString(), CultureInfo.InvariantCulture));
+                                                        estanciaCEN = new EstanciaCEN ();
+                                                        //Console.WriteLine(estancia_lat.Value.ToString());
+                                                        //Console.WriteLine(double.Parse(estancia_lat.Value.ToString(), CultureInfo.InvariantCulture));
                                                         estanciaCEN.Crear (estancia_codigo.Value.ToString (), estancia_act.Value.ToString (), double.Parse (estancia_lat.Value.ToString ().Replace (',', '.'), CultureInfo.InvariantCulture), double.Parse (estancia_lon.Value.ToString ().Replace (',', '.'), CultureInfo.InvariantCulture), estancia_nom.Value.ToString (), id_edificio, id_planta);
                                                 }
                                 }
