@@ -33,18 +33,6 @@
 							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN"/>
 					    </bag>
 					
-			
-		  			
-						<bag name="Juego" >
-							<key>
-							
-								
-								<column name="FK_idNivel_idNivel"/>
-					      	</key>
-							<one-to-many class="ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN"/>
-					    </bag>
-					
-					
 					
 					
 					

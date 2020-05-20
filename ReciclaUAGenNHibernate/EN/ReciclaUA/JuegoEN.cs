@@ -36,7 +36,7 @@ private int fallos;
 /**
  *	Atributo puntuacion
  */
-private int puntuacion;
+private double puntuacion;
 
 
 
@@ -44,13 +44,6 @@ private int puntuacion;
  *	Atributo usuarios
  */
 private System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios;
-
-
-
-/**
- *	Atributo nivelActual
- */
-private ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivelActual;
 
 
 
@@ -65,6 +58,13 @@ private int intentosItemActual;
  *	Atributo finalizado
  */
 private bool finalizado;
+
+
+
+/**
+ *	Atributo nivelActual
+ */
+private int nivelActual;
 
 
 
@@ -95,7 +95,7 @@ public virtual int Fallos {
 
 
 
-public virtual int Puntuacion {
+public virtual double Puntuacion {
         get { return puntuacion; } set { puntuacion = value;  }
 }
 
@@ -103,12 +103,6 @@ public virtual int Puntuacion {
 
 public virtual System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> Usuarios {
         get { return usuarios; } set { usuarios = value;  }
-}
-
-
-
-public virtual ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN NivelActual {
-        get { return nivelActual; } set { nivelActual = value;  }
 }
 
 
@@ -125,6 +119,12 @@ public virtual bool Finalizado {
 
 
 
+public virtual int NivelActual {
+        get { return nivelActual; } set { nivelActual = value;  }
+}
+
+
+
 
 
 public JuegoEN()
@@ -134,20 +134,20 @@ public JuegoEN()
 
 
 
-public JuegoEN(int id, int itemActual, int aciertos, int fallos, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivelActual, int intentosItemActual, bool finalizado
+public JuegoEN(int id, int itemActual, int aciertos, int fallos, double puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, int intentosItemActual, bool finalizado, int nivelActual
                )
 {
-        this.init (Id, itemActual, aciertos, fallos, puntuacion, usuarios, nivelActual, intentosItemActual, finalizado);
+        this.init (Id, itemActual, aciertos, fallos, puntuacion, usuarios, intentosItemActual, finalizado, nivelActual);
 }
 
 
 public JuegoEN(JuegoEN juego)
 {
-        this.init (Id, juego.ItemActual, juego.Aciertos, juego.Fallos, juego.Puntuacion, juego.Usuarios, juego.NivelActual, juego.IntentosItemActual, juego.Finalizado);
+        this.init (Id, juego.ItemActual, juego.Aciertos, juego.Fallos, juego.Puntuacion, juego.Usuarios, juego.IntentosItemActual, juego.Finalizado, juego.NivelActual);
 }
 
 private void init (int id
-                   , int itemActual, int aciertos, int fallos, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN nivelActual, int intentosItemActual, bool finalizado)
+                   , int itemActual, int aciertos, int fallos, double puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN> usuarios, int intentosItemActual, bool finalizado, int nivelActual)
 {
         this.Id = id;
 
@@ -162,11 +162,11 @@ private void init (int id
 
         this.Usuarios = usuarios;
 
-        this.NivelActual = nivelActual;
-
         this.IntentosItemActual = intentosItemActual;
 
         this.Finalizado = finalizado;
+
+        this.NivelActual = nivelActual;
 }
 
 public override bool Equals (object obj)

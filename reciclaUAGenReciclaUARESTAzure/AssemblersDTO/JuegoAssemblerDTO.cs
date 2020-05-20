@@ -40,13 +40,9 @@ public static JuegoEN Convert (JuegoDTO dto)
                                         newinstance.Usuarios.Add (usuarioCAD.ReadOIDDefault (entry));
                                 }
                         }
-                        if (dto.NivelActual_oid != -1) {
-                                ReciclaUAGenNHibernate.CAD.ReciclaUA.INivelCAD nivelCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.NivelCAD ();
-
-                                newinstance.NivelActual = nivelCAD.ReadOIDDefault (dto.NivelActual_oid);
-                        }
                         newinstance.IntentosItemActual = dto.IntentosItemActual;
                         newinstance.Finalizado = dto.Finalizado;
+                        newinstance.NivelActual = dto.NivelActual;
                 }
         }
         catch (Exception ex)

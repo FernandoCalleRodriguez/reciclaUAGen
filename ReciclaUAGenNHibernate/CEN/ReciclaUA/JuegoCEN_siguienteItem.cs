@@ -34,7 +34,8 @@ public void SiguienteItem (int p_oid, ReciclaUAGenNHibernate.Enumerated.ReciclaU
         if (itemsen [juegoen.ItemActual].Material.Contenedor == p_tipocontenedor) {
                 //Acierto
                 juegoen.Aciertos++;
-                double penalizacion;
+                double penalizacion = 1 / juegoen.IntentosItemActual;
+                /*
                 if (juegoen.IntentosItemActual == 1) {
                         penalizacion = 1;
                 }
@@ -47,13 +48,13 @@ public void SiguienteItem (int p_oid, ReciclaUAGenNHibernate.Enumerated.ReciclaU
                 else{
                         penalizacion = 0.25;
                 }
-
+                */
                 juegoen.Puntuacion += Convert.ToInt32 (juegoen.NivelActual.Puntuacion * penalizacion);
 
                 juegoen.IntentosItemActual = 1;
 
 
-                if (juegoen.ItemActual < 9) {
+                if (juegoen.ItemActual < itemsen.Count) {
                         juegoen.ItemActual++;
                 }
                 else{

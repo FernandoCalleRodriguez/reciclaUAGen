@@ -60,6 +60,9 @@ public static UsuarioWebAutenticadoDTOA Convert (UsuarioEN en, NHibernate.ISessi
                 //
                 // TravesalLink
 
+                /* Rol: UsuarioWebAutenticado o--> Juego */
+                dto.JuegoUsuario = JuegoAssembler.Convert ((JuegoEN)enHijo.Juego, session);
+
 
                 //
                 // Service

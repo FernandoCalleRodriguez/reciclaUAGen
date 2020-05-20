@@ -21,7 +21,7 @@
 					<property name="Fallos" type="integer"> 
 						<column name="fallos"  not-null="true"/>
 					</property>
-					<property name="Puntuacion" type="integer"> 
+					<property name="Puntuacion" type="double"> 
 						<column name="puntuacion"  not-null="true"/>
 					</property>
 					<property name="IntentosItemActual" type="integer"> 
@@ -29,6 +29,9 @@
 					</property>
 					<property name="Finalizado" type="boolean"> 
 						<column name="finalizado"  not-null="true"/>
+					</property>
+					<property name="NivelActual" type="integer"> 
+						<column name="nivelActual"  not-null="true"/>
 					</property>
 			
 			
@@ -48,11 +51,6 @@
 					    </bag>
 					
 			
-		  			
-						<many-to-one name="NivelActual" class="ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN" >	
-								<column name="FK_idNivel_idNivel"/> 
-						</many-to-one>
-											 					
 			
 			
 					

@@ -33,17 +33,13 @@
 				public Integer getFallos () { return fallos; } 
 				public void setFallos  (Integer value) { fallos = value;  } 
 				    	 
-				private Integer puntuacion;
-				public Integer getPuntuacion () { return puntuacion; } 
-				public void setPuntuacion  (Integer value) { puntuacion = value;  } 
+				private Double puntuacion;
+				public Double getPuntuacion () { return puntuacion; } 
+				public void setPuntuacion  (Double value) { puntuacion = value;  } 
 				    	 
 				private ArrayList<Integer> usuarios_oid;
 				public ArrayList<Integer>  getUsuarios_oid () { return usuarios_oid; } 
 				public void setUsuarios_oid (ArrayList<Integer> value) { usuarios_oid = value;  } 
-				    	 
-				private Integer nivelActual_oid;
-				public Integer  getNivelActual_oid () { return nivelActual_oid; } 
-				public void setNivelActual_oid (Integer value) { nivelActual_oid = value;  } 
 				    	 
 				private Integer intentosItemActual;
 				public Integer getIntentosItemActual () { return intentosItemActual; } 
@@ -52,6 +48,10 @@
 				private Boolean finalizado;
 				public Boolean getFinalizado () { return finalizado; } 
 				public void setFinalizado  (Boolean value) { finalizado = value;  } 
+				    	 
+				private Integer nivelActual;
+				public Integer getNivelActual () { return nivelActual; } 
+				public void setNivelActual  (Integer value) { nivelActual = value;  } 
 				    	 
 	   
 			    public JSONObject toJSON ()
@@ -73,7 +73,7 @@
 						  json.put("Fallos", this.fallos.intValue());
 				
 				
-						  json.put("Puntuacion", this.puntuacion.intValue());
+						  json.put("Puntuacion", this.puntuacion);
 				
 
 						if (this.usuarios_oid != null)
@@ -86,16 +86,14 @@
 							json.put("Usuarios_oid", jsonArray);
 						}
 		
-
-						if (this.nivelActual_oid != null)
-						{
-							json.put("NivelActual_oid", this.nivelActual_oid.intValue());
-						}
 				
 						  json.put("IntentosItemActual", this.intentosItemActual.intValue());
 				
 				
 						  json.put("Finalizado", this.finalizado);
+				
+				
+						  json.put("NivelActual", this.nivelActual.intValue());
 				
 						
 					}

@@ -283,6 +283,11 @@
 		<Compile Include="Assemblers\NotaInformativaAssembler.cs" />
 		<Compile Include="Controllers\NotaInformativaController.cs" />
 		
+		<Compile Include="CAD\JuegoRESTCAD.cs" />
+		<Compile Include="DTOA\JuegoDTOA.cs" />
+		<Compile Include="Assemblers\JuegoAssembler.cs" />
+		<Compile Include="Controllers\JuegoController.cs" />
+		
 	
 	
 	

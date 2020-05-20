@@ -22,8 +22,8 @@ private int fallos;
 public int Fallos {
         get { return fallos; } set { fallos = value;  }
 }
-private int puntuacion;
-public int Puntuacion {
+private double puntuacion;
+public double Puntuacion {
         get { return puntuacion; } set { puntuacion = value;  }
 }
 
@@ -33,13 +33,6 @@ public System.Collections.Generic.IList<int> Usuarios_oid {
         get { return usuarios_oid; } set { usuarios_oid = value;  }
 }
 
-
-
-private int nivelActual_oid;
-public int NivelActual_oid {
-        get { return nivelActual_oid; } set { nivelActual_oid = value;  }
-}
-
 private int intentosItemActual;
 public int IntentosItemActual {
         get { return intentosItemActual; } set { intentosItemActual = value;  }
@@ -47,6 +40,10 @@ public int IntentosItemActual {
 private bool finalizado;
 public bool Finalizado {
         get { return finalizado; } set { finalizado = value;  }
+}
+private int nivelActual;
+public int NivelActual {
+        get { return nivelActual; } set { nivelActual = value;  }
 }
 }
 }

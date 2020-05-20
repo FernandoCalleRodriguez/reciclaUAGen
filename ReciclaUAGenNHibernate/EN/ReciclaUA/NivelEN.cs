@@ -33,13 +33,6 @@ private System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Ite
 
 
 
-/**
- *	Atributo juego
- */
-private System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> juego;
-
-
-
 
 
 
@@ -67,36 +60,29 @@ public virtual System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.Recicl
 
 
 
-public virtual System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> Juego {
-        get { return juego; } set { juego = value;  }
-}
-
-
-
 
 
 public NivelEN()
 {
         item = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN>();
-        juego = new System.Collections.Generic.List<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN>();
 }
 
 
 
-public NivelEN(int id, int numero, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> item, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> juego
+public NivelEN(int id, int numero, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> item
                )
 {
-        this.init (Id, numero, puntuacion, item, juego);
+        this.init (Id, numero, puntuacion, item);
 }
 
 
 public NivelEN(NivelEN nivel)
 {
-        this.init (Id, nivel.Numero, nivel.Puntuacion, nivel.Item, nivel.Juego);
+        this.init (Id, nivel.Numero, nivel.Puntuacion, nivel.Item);
 }
 
 private void init (int id
-                   , int numero, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> item, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> juego)
+                   , int numero, int puntuacion, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> item)
 {
         this.Id = id;
 
@@ -106,8 +92,6 @@ private void init (int id
         this.Puntuacion = puntuacion;
 
         this.Item = item;
-
-        this.Juego = juego;
 }
 
 public override bool Equals (object obj)

@@ -104,11 +104,13 @@ public void ModifyDefault (JuegoEN juego)
 
 
 
-
                 juegoEN.IntentosItemActual = juego.IntentosItemActual;
 
 
                 juegoEN.Finalizado = juego.Finalizado;
+
+
+                juegoEN.NivelActual = juego.NivelActual;
 
                 session.Update (juegoEN);
                 SessionCommit ();
@@ -134,13 +136,6 @@ public int Crear (JuegoEN juego)
         try
         {
                 SessionInitializeTransaction ();
-                if (juego.NivelActual != null) {
-                        // Argumento OID y no colección.
-                        juego.NivelActual = (ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN), juego.NivelActual.Id);
-
-                        juego.NivelActual.Juego
-                        .Add (juego);
-                }
 
                 session.Save (juego);
                 SessionCommit ();
@@ -185,6 +180,9 @@ public void Modificar (JuegoEN juego)
 
 
                 juegoEN.Finalizado = juego.Finalizado;
+
+
+                juegoEN.NivelActual = juego.NivelActual;
 
                 session.Update (juegoEN);
                 SessionCommit ();

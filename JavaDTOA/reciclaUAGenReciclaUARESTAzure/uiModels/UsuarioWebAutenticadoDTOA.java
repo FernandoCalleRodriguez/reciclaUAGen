@@ -48,6 +48,11 @@ public class UsuarioWebAutenticadoDTOA extends DTOA
 	public void setBorrado (Boolean borrado) { this.borrado = borrado; }
 	
 	
+	/* Rol: UsuarioWebAutenticado o--> Juego */
+	private JuegoDTOA juegoUsuario;
+	public JuegoDTOA getJuegoUsuario () { return juegoUsuario; }
+	public void setJuegoUsuario (JuegoDTOA juegoUsuario) { this.juegoUsuario = juegoUsuario; }
+
 	
 	
 	// endregion
@@ -118,6 +123,15 @@ public class UsuarioWebAutenticadoDTOA extends DTOA
 			 
 			}
 			
+
+			JSONObject jsonJuegoUsuario = json.optJSONObject("JuegoUsuario");
+			if (jsonJuegoUsuario != null)
+			{
+				JuegoDTOA tmp = new JuegoDTOA();
+				tmp.setFromJSON(jsonJuegoUsuario);
+				this.juegoUsuario = tmp;
+			}
+
 			
 		}
 		catch (Exception e)
@@ -162,6 +176,12 @@ public class UsuarioWebAutenticadoDTOA extends DTOA
 			json.put("Borrado", this.borrado);
 		
 			
+
+			if (this.juegoUsuario != null)
+			{
+				json.put("JuegoUsuario", this.juegoUsuario.toJSON());
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -197,6 +217,7 @@ public class UsuarioWebAutenticadoDTOA extends DTOA
 		
 		
 		// Roles
+					// TODO: from DTOA [ JuegoUsuario ] (dataType : JuegoDTOA) to DTO [ Juego ]
 		
 		
 		return dto;

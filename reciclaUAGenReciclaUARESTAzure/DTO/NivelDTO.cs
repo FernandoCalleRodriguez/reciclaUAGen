@@ -24,12 +24,5 @@ private System.Collections.Generic.IList<int> item_oid;
 public System.Collections.Generic.IList<int> Item_oid {
         get { return item_oid; } set { item_oid = value;  }
 }
-
-
-
-private System.Collections.Generic.IList<int> juego_oid;
-public System.Collections.Generic.IList<int> Juego_oid {
-        get { return juego_oid; } set { juego_oid = value;  }
-}
 }
 }

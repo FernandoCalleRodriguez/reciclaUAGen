@@ -20,6 +20,9 @@ class UsuarioWebAutenticadoDTOA : DTOA
 	var fecha: NSDate?;
 	var borrado: Bool?;
 	
+	/* Rol: UsuarioWebAutenticado o--> Juego */
+	var juegoUsuario: JuegoDTOA?;
+
 	
 	
 	
@@ -48,6 +51,11 @@ class UsuarioWebAutenticadoDTOA : DTOA
 		self.fecha = NSDate.initFromString(json["Fecha"].object as? String);
 		self.borrado = json["Borrado"].object as? Bool;
 		
+		if (json["JuegoUsuario"] != JSON.null)
+		{
+			self.juegoUsuario = JuegoDTOA(fromJSONObject: json["JuegoUsuario"]);
+		}
+
 		
 	}
 	
@@ -93,6 +101,8 @@ class UsuarioWebAutenticadoDTOA : DTOA
 	
 	
 		
+		dictionary["JuegoUsuario"] = self.juegoUsuario?.toDictionary() ?? NSNull();
+
 		
 		
 		return dictionary;

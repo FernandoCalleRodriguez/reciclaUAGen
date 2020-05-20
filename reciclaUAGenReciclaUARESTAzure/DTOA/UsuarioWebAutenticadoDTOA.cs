@@ -56,5 +56,14 @@ public bool Borrado
         get { return borrado; }
         set { borrado = value; }
 }
+
+
+/* Rol: UsuarioWebAutenticado o--> Juego */
+private JuegoDTOA juegoUsuario;
+public JuegoDTOA JuegoUsuario
+{
+        get { return juegoUsuario; }
+        set { juegoUsuario = value; }
+}
 }
 }

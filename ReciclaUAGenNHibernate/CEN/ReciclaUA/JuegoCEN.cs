@@ -39,7 +39,7 @@ public IJuegoCAD get_IJuegoCAD ()
         return this._IJuegoCAD;
 }
 
-public int Crear (int p_itemActual, int p_aciertos, int p_fallos, int p_puntuacion, int p_nivelActual, int p_intentosItemActual, bool p_finalizado)
+public int Crear (int p_itemActual, int p_aciertos, int p_fallos, double p_puntuacion, int p_intentosItemActual, bool p_finalizado, int p_nivelActual)
 {
         JuegoEN juegoEN = null;
         int oid;
@@ -54,17 +54,11 @@ public int Crear (int p_itemActual, int p_aciertos, int p_fallos, int p_puntuaci
 
         juegoEN.Puntuacion = p_puntuacion;
 
-
-        if (p_nivelActual != -1) {
-                // El argumento p_nivelActual -> Property nivelActual es oid = false
-                // Lista de oids id
-                juegoEN.NivelActual = new ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN ();
-                juegoEN.NivelActual.Id = p_nivelActual;
-        }
-
         juegoEN.IntentosItemActual = p_intentosItemActual;
 
         juegoEN.Finalizado = p_finalizado;
+
+        juegoEN.NivelActual = p_nivelActual;
 
         //Call to JuegoCAD
 
@@ -72,7 +66,7 @@ public int Crear (int p_itemActual, int p_aciertos, int p_fallos, int p_puntuaci
         return oid;
 }
 
-public void Modificar (int p_Juego_OID, int p_itemActual, int p_aciertos, int p_fallos, int p_puntuacion, int p_intentosItemActual, bool p_finalizado)
+public void Modificar (int p_Juego_OID, int p_itemActual, int p_aciertos, int p_fallos, double p_puntuacion, int p_intentosItemActual, bool p_finalizado, int p_nivelActual)
 {
         JuegoEN juegoEN = null;
 
@@ -85,6 +79,7 @@ public void Modificar (int p_Juego_OID, int p_itemActual, int p_aciertos, int p_
         juegoEN.Puntuacion = p_puntuacion;
         juegoEN.IntentosItemActual = p_intentosItemActual;
         juegoEN.Finalizado = p_finalizado;
+        juegoEN.NivelActual = p_nivelActual;
         //Call to JuegoCAD
 
         _IJuegoCAD.Modificar (juegoEN);
