@@ -36,5 +36,8 @@ void AsignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item
 void DesasignarItems (int p_Nivel_OID, System.Collections.Generic.IList<int> p_item_OIDs);
 
 int BuscarNivelCount ();
+
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN> BuscarNivelPorNumero (int ? p_numero);
 }
 }

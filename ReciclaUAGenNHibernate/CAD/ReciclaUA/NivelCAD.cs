@@ -364,5 +364,35 @@ public int BuscarNivelCount ()
 
         return result;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN> BuscarNivelPorNumero (int ? p_numero)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM NivelEN self where FROM NivelEN as nivel whrere nivel.Numero = :p_numero";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("NivelENbuscarNivelPorNumeroHQL");
+                query.SetParameter ("p_numero", p_numero);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in NivelCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

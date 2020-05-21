@@ -100,7 +100,7 @@
 			
 		  			
 					
-							   <one-to-one name="Juego" class="ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN" property-ref="Usuarios" />							
+							   <one-to-one name="Juegos" class="ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN" property-ref="Usuarios" />							
 					 
 						
 					

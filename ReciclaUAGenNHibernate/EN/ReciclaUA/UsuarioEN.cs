@@ -97,9 +97,9 @@ private bool borrado;
 
 
 /**
- *	Atributo juego
+ *	Atributo juegos
  */
-private ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juego;
+private ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juegos;
 
 
 
@@ -184,8 +184,8 @@ public virtual bool Borrado {
 
 
 
-public virtual ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN Juego {
-        get { return juego; } set { juego = value;  }
+public virtual ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN Juegos {
+        get { return juegos; } set { juegos = value;  }
 }
 
 
@@ -203,20 +203,20 @@ public UsuarioEN()
 
 
 
-public UsuarioEN(int id, string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juego
+public UsuarioEN(int id, string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juegos
                  )
 {
-        this.init (Id, nombre, apellidos, email, pass, fecha, items, dudas, respuestas, puntos, emailVerificado, materiales, borrado, juego);
+        this.init (Id, nombre, apellidos, email, pass, fecha, items, dudas, respuestas, puntos, emailVerificado, materiales, borrado, juegos);
 }
 
 
 public UsuarioEN(UsuarioEN usuario)
 {
-        this.init (Id, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Pass, usuario.Fecha, usuario.Items, usuario.Dudas, usuario.Respuestas, usuario.Puntos, usuario.EmailVerificado, usuario.Materiales, usuario.Borrado, usuario.Juego);
+        this.init (Id, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Pass, usuario.Fecha, usuario.Items, usuario.Dudas, usuario.Respuestas, usuario.Puntos, usuario.EmailVerificado, usuario.Materiales, usuario.Borrado, usuario.Juegos);
 }
 
 private void init (int id
-                   , string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juego)
+                   , string nombre, string apellidos, string email, String pass, Nullable<DateTime> fecha, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.ItemEN> items, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.DudaEN> dudas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.RespuestaEN> respuestas, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.PuntoReciclajeEN> puntos, bool emailVerificado, System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.MaterialEN> materiales, bool borrado, ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN juegos)
 {
         this.Id = id;
 
@@ -245,7 +245,7 @@ private void init (int id
 
         this.Borrado = borrado;
 
-        this.Juego = juego;
+        this.Juegos = juegos;
 }
 
 public override bool Equals (object obj)

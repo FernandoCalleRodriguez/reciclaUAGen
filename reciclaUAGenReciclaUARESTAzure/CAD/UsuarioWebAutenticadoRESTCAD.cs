@@ -37,7 +37,7 @@ public JuegoEN JuegoUsuario (int id)
                 SessionInitializeTransaction ();
 
 
-                String sql = @"select self.Juego FROM UsuarioWebEN self " +
+                String sql = @"select self.Juegos FROM UsuarioWebEN self " +
                              "where self.Id = :p_Id";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
 

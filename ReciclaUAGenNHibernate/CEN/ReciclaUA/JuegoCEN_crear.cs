@@ -21,7 +21,7 @@ public partial class JuegoCEN
 {
 public int Crear (int p_usuarios)
 {
-        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Juego_crear_customized) START*/
+        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CEN.ReciclaUA_Juego_crear_customized) ENABLED START*/
 
         JuegoEN juegoEN = null;
 
@@ -30,13 +30,13 @@ public int Crear (int p_usuarios)
         //Initialized JuegoEN
         juegoEN = new JuegoEN ();
 
-            juegoEN.ItemActual = 1;
-            juegoEN.Aciertos = 0;
-            juegoEN.Fallos = 0;
-            juegoEN.Puntuacion = 0;
-            juegoEN.IntentosItemActual = 1;
-            juegoEN.Finalizado = false;
-            juegoEN.NivelActual = 1;
+        juegoEN.ItemActual = 1;
+        juegoEN.Aciertos = 0;
+        juegoEN.Fallos = 0;
+        juegoEN.Puntuacion = 0;
+        juegoEN.IntentosItemActual = 1;
+        juegoEN.Finalizado = false;
+        juegoEN.NivelActual = 1;
 
         if (p_usuarios != -1) {
                 juegoEN.Usuarios = new ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN ();

@@ -140,7 +140,7 @@ public int Crear (JuegoEN juego)
                         // Argumento OID y no colección.
                         juego.Usuarios = (ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN)session.Load (typeof(ReciclaUAGenNHibernate.EN.ReciclaUA.UsuarioEN), juego.Usuarios.Id);
 
-                        juego.Usuarios.Juego
+                        juego.Usuarios.Juegos
                                 = juego;
                 }
 
@@ -274,6 +274,37 @@ public System.Collections.Generic.IList<JuegoEN> BuscarTodos (int first, int siz
                                  SetFirstResult (first).SetMaxResults (size).List<JuegoEN>();
                 else
                         result = session.CreateCriteria (typeof(JuegoEN)).List<JuegoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is ReciclaUAGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new ReciclaUAGenNHibernate.Exceptions.DataLayerException ("Error in JuegoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> BuscarJuegoPorUsuario (int p_usuario)
+{
+        System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM JuegoEN self where FROM JuegoEN as juego where juego.Usuarios is not empty and juego.Usuarios = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("JuegoENbuscarJuegoPorUsuarioHQL");
+                query.SetParameter ("p_usuario", p_usuario);
+
+                result = query.List<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN>();
                 SessionCommit ();
         }
 

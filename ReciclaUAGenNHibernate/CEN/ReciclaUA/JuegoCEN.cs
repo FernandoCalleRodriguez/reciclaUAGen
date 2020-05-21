@@ -80,5 +80,9 @@ public System.Collections.Generic.IList<JuegoEN> BuscarTodos (int first, int siz
         list = _IJuegoCAD.BuscarTodos (first, size);
         return list;
 }
+public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> BuscarJuegoPorUsuario (int p_usuario)
+{
+        return _IJuegoCAD.BuscarJuegoPorUsuario (p_usuario);
+}
 }
 }

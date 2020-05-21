@@ -36,21 +36,26 @@ public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, Rec
 
         try
         {
-                SessionInitializeTransaction ();
+                SessionInitializeTransaction();
+
                 juegoCAD = new JuegoCAD (session);
                 juegoCEN = new JuegoCEN (juegoCAD);
                 juegoEN = juegoCAD.BuscarPorId (p_oid);
 
                 nivelCAD = new NivelCAD (session);
                 nivelCEN = new NivelCEN (nivelCAD);
+                IList<NivelEN> niveles = new List<NivelEN>();
 
                 ItemCAD Itemcad = new ItemCAD ();
 
-                IList<ItemEN> itemsen = Itemcad.BuscarItemsPorNivel (juegoEN.NivelActual);
-                nivelEN = nivelCAD.BuscarPorId (juegoEN.NivelActual);
+
+                niveles = nivelCAD.BuscarTodos(0,-1);
+                nivelEN = niveles[juegoEN.NivelActual-1];
+
+                IList<ItemEN> itemsen = Itemcad.BuscarItemsPorNivel(nivelEN.Id);
 
 
-                if (itemsen [juegoEN.ItemActual].Material.Contenedor == p_tipocontenedor) {
+                if (itemsen[juegoEN.ItemActual-1].Material.Contenedor == p_tipocontenedor) {
                         //Acierto
                         juegoEN.Aciertos++;
                         double penalizacion = 1 / juegoEN.IntentosItemActual;
@@ -65,7 +70,7 @@ public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, Rec
                         }
                         else{
                                 juegoEN.ItemActual = 0;
-                                IList<NivelEN> niveles = nivelCAD.BuscarTodos (0, -1);
+                                niveles = nivelCAD.BuscarTodos (0, -1);
 
                                 if (juegoEN.NivelActual <= niveles.Count) {
                                         juegoEN.NivelActual++;
@@ -85,8 +90,7 @@ public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, Rec
 
 
 
-
-                SessionCommit ();
+                SessionCommit();
         }
         catch (Exception ex)
         {

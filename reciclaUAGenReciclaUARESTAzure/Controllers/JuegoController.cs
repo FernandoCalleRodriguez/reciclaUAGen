@@ -30,6 +30,59 @@ public class JuegoController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Juego/BuscarTodos")]
+public HttpResponseMessage BuscarTodos ()
+{
+        // CAD, CEN, EN, returnValue
+        JuegoRESTCAD juegoRESTCAD = null;
+        JuegoCEN juegoCEN = null;
+
+        List<JuegoEN> juegoEN = null;
+        List<JuegoDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                juegoRESTCAD = new JuegoRESTCAD (session);
+                juegoCEN = new JuegoCEN (juegoRESTCAD);
+
+                // Data
+                // TODO: paginación
+
+                juegoEN = juegoCEN.BuscarTodos (0, -1).ToList ();
+
+                // Convert return
+                if (juegoEN != null) {
+                        returnValue = new List<JuegoDTOA>();
+                        foreach (JuegoEN entry in juegoEN)
+                                returnValue.Add (JuegoAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
 
 
 
@@ -88,6 +141,70 @@ public HttpResponseMessage BuscarPorId (int idJuego)
         else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
 }
 
+
+
+// No pasa el slEnables: buscarJuegoPorUsuario
+
+[HttpGet]
+
+[Route ("~/api/Juego/BuscarJuegoPorUsuario")]
+
+public HttpResponseMessage BuscarJuegoPorUsuario (int p_usuario)
+{
+        // CAD, CEN, EN, returnValue
+
+        JuegoRESTCAD juegoRESTCAD = null;
+        JuegoCEN juegoCEN = null;
+
+
+        System.Collections.Generic.List<JuegoEN> en;
+
+        System.Collections.Generic.List<JuegoDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+
+                juegoRESTCAD = new JuegoRESTCAD (session);
+                juegoCEN = new JuegoCEN (juegoRESTCAD);
+
+                // CEN return
+
+
+
+                en = juegoCEN.BuscarJuegoPorUsuario (p_usuario).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<JuegoDTOA>();
+                        foreach (JuegoEN entry in en)
+                                returnValue.Add (JuegoAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
 

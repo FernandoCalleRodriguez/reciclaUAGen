@@ -85,10 +85,10 @@ public static UsuarioWebEN Convert (UsuarioWebDTO dto)
                                 }
                         }
                         newinstance.Borrado = dto.Borrado;
-                        if (dto.Juego_oid != -1) {
+                        if (dto.Juegos_oid != -1) {
                                 ReciclaUAGenNHibernate.CAD.ReciclaUA.IJuegoCAD juegoCAD = new ReciclaUAGenNHibernate.CAD.ReciclaUA.JuegoCAD ();
 
-                                newinstance.Juego = juegoCAD.ReadOIDDefault (dto.Juego_oid);
+                                newinstance.Juegos = juegoCAD.ReadOIDDefault (dto.Juegos_oid);
                         }
                 }
         }

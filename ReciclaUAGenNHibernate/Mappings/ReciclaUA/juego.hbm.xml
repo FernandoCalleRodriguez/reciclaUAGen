@@ -63,5 +63,6 @@
 		 </class>	
 		  
 		  <query name="JuegoENReadAllHQL">from JuegoEN</query>
+		  <query name="JuegoENbuscarJuegoPorUsuarioHQL"><![CDATA[FROM JuegoEN as juego where juego.Usuarios is not empty and juego.Usuarios = :p_usuario]]></query>
 		</hibernate-mapping>
 	

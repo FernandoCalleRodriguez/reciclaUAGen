@@ -154,61 +154,52 @@ public static void InitializeData ()
                 NivelCEN nivelCEN = new NivelCEN ();
                 ItemCEN itemCEN = new ItemCEN ();
 
-                MaterialEN material = new MaterialEN (){
-                        Contenedor = TipoContenedorEnum.cristal,
-                        Nombre = "Contenedor 1"
-                };
-                MaterialEN material2 = new MaterialEN (){
-                        Contenedor = TipoContenedorEnum.cristal,
-                        Nombre = "Contenedor 2"
-                };
-                ItemEN item = new ItemEN (){
-                        Nombre = "item",
-                        Descripcion = "description",
-                        Imagen = "image file path",
-                        EsValido = EstadoEnum.enProceso
-                };
-                ItemEN item2 = new ItemEN (){
-                        Nombre = "item2",
-                        Descripcion = "description2",
-                        Imagen = "image file path2",
-                        EsValido = EstadoEnum.enProceso
-                };
-                List<ItemEN> items = new List<ItemEN>();
-                items.Add (item);
-                material.Items = items;
-                NivelEN nivel = new NivelEN (){
-                        Item = items,
-                        Numero = 1,
-                        Puntuacion = 1
-                };
 
-                int id1 = materialCEN.Crear (material.Nombre, material.Contenedor, id_usu1);
-                int id2 = materialCEN.Crear (material2.Nombre, material2.Contenedor, id_usu1);
-                materialCEN.ValidarMaterial (id1);
-                int itemId1 = itemCEN.Crear (item.Nombre, item.Descripcion, item.Imagen, id_usu1, id1);
-                int itemId2 = itemCEN.Crear (item2.Nombre, item2.Descripcion, item2.Imagen, id_usu1, id1);
+                int id_material_v = materialCEN.Crear ("Vidrio", TipoContenedorEnum.cristal, id_usu1);
+                int id_material_a = materialCEN.Crear ("Alimentos", TipoContenedorEnum.organico, id_usu1);
+                int id_material_c = materialCEN.Crear ("Carton", TipoContenedorEnum.papel, id_usu1);
+                int id_material_p = materialCEN.Crear ("Plastico", TipoContenedorEnum.plastico, id_usu1);
+                Console.WriteLine ("Creados los materiales: " + id_material_a + ", " + id_material_v + ", " + id_material_c + ", " + id_material_p + ", ");
 
-                nivelCEN.Crear (nivel.Numero, nivel.Puntuacion);
+                int id_nivel_1 = nivelCEN.Crear (1, 5);
+                int id_nivel_2 = nivelCEN.Crear (2, 10);
+                Console.WriteLine ("Creados los niveles: " + id_nivel_1 + ", " + id_nivel_2);
 
+                int id_item_1 = itemCEN.Crear ("Botella", "Botella de agua de plastico", "imagen", id_usu1, id_material_p);
+                int id_item_2 = itemCEN.Crear ("Restos de comida", "Restos de macarrones", "imagen", id_usu1, id_material_a);
+                int id_item_3 = itemCEN.Crear ("Caja", "Caja de televisión", "imagen", id_usu1, id_material_p);
+                int id_item_4 = itemCEN.Crear ("Botellin", "Botellin de cristal de cerveza", "imagen", id_usu1, id_material_v);
+                Console.WriteLine ("Creados los items: " + id_item_1 + ", " + id_item_2 + ", " + id_item_3 + ", " + id_item_4 + ", ");
 
-                var meterialDeTipo = materialCEN.BuscarPorTipoContenedor (TipoContenedorEnum.cristal);
-                Console.WriteLine ("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
-                ItemEN tempItem = itemCEN.BuscarPorId (itemId1);
-                Console.WriteLine ("item1 antes: " + tempItem.EsValido);
-                itemCEN.ValidarItem (tempItem.Id, 10);
-                tempItem = itemCEN.BuscarPorId (itemId1);
-                Console.WriteLine ("item1 despues de validar: " + tempItem.EsValido);
+                IList<int> ItemsNivel1 = new List<int>();
+                ItemsNivel1.Add (id_item_1);
+                ItemsNivel1.Add (id_item_2);
 
-                itemCEN.DescartarItem (itemId2);
-                tempItem = itemCEN.BuscarPorId (itemId2);
-                Console.WriteLine ("item2 despues de descartar: " + tempItem.EsValido);
+                nivelCEN.AsignarItems (id_nivel_1, ItemsNivel1);
 
-                var itemsPorValidar = itemCEN.BuscarItemsPorValidar ();
-                Console.WriteLine ("el total de items por validar es :" + itemsPorValidar.Count);
+                IList<int> ItemsNivel2 = new List<int>();
+                ItemsNivel2.Add (id_item_3);
+                ItemsNivel2.Add (id_item_4);
 
-                var itemsValidados = itemCEN.BuscarItemsValidados ();
-                Console.WriteLine ("el total de items validados es :" + itemsValidados.Count);
+                nivelCEN.AsignarItems (id_nivel_2, ItemsNivel2);
+
+                /*var meterialDeTipo = materialCEN.BuscarPorTipoContenedor (TipoContenedorEnum.cristal);
+                 * Console.WriteLine ("materiales de tipo " + TipoContenedorEnum.cristal + " :" + meterialDeTipo.Count);
+                 * ItemEN tempItem = itemCEN.BuscarPorId (itemId1);
+                 * Console.WriteLine ("item1 antes: " + tempItem.EsValido);
+                 * itemCEN.ValidarItem (tempItem.Id, 10);
+                 * tempItem = itemCEN.BuscarPorId (itemId1);
+                 * Console.WriteLine ("item1 despues de validar: " + tempItem.EsValido);
+                 *
+                 * itemCEN.DescartarItem (itemId2);
+                 * tempItem = itemCEN.BuscarPorId (itemId2);
+                 * Console.WriteLine ("item2 despues de descartar: " + tempItem.EsValido);
+                 *
+                 * var itemsPorValidar = itemCEN.BuscarItemsPorValidar ();
+                 * Console.WriteLine ("el total de items por validar es :" + itemsPorValidar.Count);
+                 *
+                 * var itemsValidados = itemCEN.BuscarItemsValidados ();
+                 * Console.WriteLine ("el total de items validados es :" + itemsValidados.Count);*/
 
                 ///ADDEL
 

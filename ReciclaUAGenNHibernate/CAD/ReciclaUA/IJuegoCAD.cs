@@ -29,5 +29,9 @@ JuegoEN BuscarPorId (int id
 
 
 System.Collections.Generic.IList<JuegoEN> BuscarTodos (int first, int size);
+
+
+
+System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN> BuscarJuegoPorUsuario (int p_usuario);
 }
 }

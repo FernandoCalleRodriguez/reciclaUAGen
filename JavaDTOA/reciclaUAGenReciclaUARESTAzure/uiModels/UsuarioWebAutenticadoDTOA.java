@@ -217,7 +217,7 @@ public class UsuarioWebAutenticadoDTOA extends DTOA
 		
 		
 		// Roles
-					// TODO: from DTOA [ JuegoUsuario ] (dataType : JuegoDTOA) to DTO [ Juego ]
+					// TODO: from DTOA [ JuegoUsuario ] (dataType : JuegoDTOA) to DTO [ Juegos ]
 		
 		
 		return dto;
