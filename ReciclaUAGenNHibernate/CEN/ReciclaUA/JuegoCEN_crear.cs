@@ -30,7 +30,8 @@ public int Crear (int p_usuarios)
         //Initialized JuegoEN
         juegoEN = new JuegoEN ();
 
-        juegoEN.ItemActual = 1;
+        juegoEN.ItemActual = 0
+                ;
         juegoEN.Aciertos = 0;
         juegoEN.Fallos = 0;
         juegoEN.Puntuacion = 0;

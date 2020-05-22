@@ -167,7 +167,7 @@ public static void InitializeData ()
 
                 int id_item_1 = itemCEN.Crear ("Botella", "Botella de agua de plastico", "imagen", id_usu1, id_material_p);
                 int id_item_2 = itemCEN.Crear ("Restos de comida", "Restos de macarrones", "imagen", id_usu1, id_material_a);
-                int id_item_3 = itemCEN.Crear ("Caja", "Caja de televisión", "imagen", id_usu1, id_material_p);
+                int id_item_3 = itemCEN.Crear ("Caja", "Caja de televisión", "imagen", id_usu1, id_material_c);
                 int id_item_4 = itemCEN.Crear ("Botellin", "Botellin de cristal de cerveza", "imagen", id_usu1, id_material_v);
                 Console.WriteLine ("Creados los items: " + id_item_1 + ", " + id_item_2 + ", " + id_item_3 + ", " + id_item_4 + ", ");
 

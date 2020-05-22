@@ -19,92 +19,99 @@ using ReciclaUAGenNHibernate.CEN.ReciclaUA;
 
 namespace ReciclaUAGenNHibernate.CP.ReciclaUA
 {
-public partial class JuegoCP : BasicCP
-{
-public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem (int p_oid, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_tipocontenedor)
-{
-        /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CP.ReciclaUA_Juego_siguienteItem) ENABLED START*/
-
-        IJuegoCAD juegoCAD = null;
-        JuegoCEN juegoCEN = null;
-        JuegoEN juegoEN = null;
-
-        INivelCAD nivelCAD = null;
-        NivelCEN nivelCEN = null;
-        NivelEN nivelEN = null;
-
-
-        try
+    public partial class JuegoCP : BasicCP
+    {
+        public ReciclaUAGenNHibernate.EN.ReciclaUA.JuegoEN SiguienteItem(int p_oid, ReciclaUAGenNHibernate.Enumerated.ReciclaUA.TipoContenedorEnum p_tipocontenedor)
         {
+            /*PROTECTED REGION ID(ReciclaUAGenNHibernate.CP.ReciclaUA_Juego_siguienteItem) ENABLED START*/
+
+            IJuegoCAD juegoCAD = null;
+            JuegoCEN juegoCEN = null;
+            JuegoEN juegoEN = null;
+
+            INivelCAD nivelCAD = null;
+            NivelCEN nivelCEN = null;
+            NivelEN nivelEN = null;
+
+
+            try
+            {
                 SessionInitializeTransaction();
 
-                juegoCAD = new JuegoCAD (session);
-                juegoCEN = new JuegoCEN (juegoCAD);
-                juegoEN = juegoCAD.BuscarPorId (p_oid);
+                juegoCAD = new JuegoCAD(session);
+                juegoCEN = new JuegoCEN(juegoCAD);
+                juegoEN = juegoCAD.BuscarPorId(p_oid);
 
-                nivelCAD = new NivelCAD (session);
-                nivelCEN = new NivelCEN (nivelCAD);
+                nivelCAD = new NivelCAD(session);
+                nivelCEN = new NivelCEN(nivelCAD);
                 IList<NivelEN> niveles = new List<NivelEN>();
 
-                ItemCAD Itemcad = new ItemCAD ();
+                ItemCAD Itemcad = new ItemCAD(session);
 
 
-                niveles = nivelCAD.BuscarTodos(0,-1);
-                nivelEN = niveles[juegoEN.NivelActual-1];
+                niveles = nivelCAD.BuscarTodos(0, -1);
+                nivelEN = niveles[juegoEN.NivelActual - 1];
 
                 IList<ItemEN> itemsen = Itemcad.BuscarItemsPorNivel(nivelEN.Id);
 
 
-                if (itemsen[juegoEN.ItemActual-1].Material.Contenedor == p_tipocontenedor) {
-                        //Acierto
-                        juegoEN.Aciertos++;
-                        double penalizacion = 1 / juegoEN.IntentosItemActual;
+                if (itemsen[juegoEN.ItemActual].Material.Contenedor == p_tipocontenedor)
+                {
+                    //Acierto
+                    juegoEN.Aciertos++;
+                    //Decimal penalizacion = 1 / juegoEN.IntentosItemActual;
+                    Decimal penalizacion = Decimal.Divide(1, juegoEN.IntentosItemActual);
 
-                        juegoEN.Puntuacion += nivelEN.Puntuacion * penalizacion;
+                    juegoEN.Puntuacion += Decimal.ToDouble(Decimal.Multiply(Convert.ToDecimal(nivelEN.Puntuacion), penalizacion));
 
-                        juegoEN.IntentosItemActual = 1;
+                    juegoEN.IntentosItemActual = 1;
 
 
-                        if (juegoEN.ItemActual <= itemsen.Count) {
-                                juegoEN.ItemActual++;
+                    if (juegoEN.ItemActual + 1 < itemsen.Count)
+                    {
+                        juegoEN.ItemActual++;
+                    }
+                    else
+                    {
+                        juegoEN.ItemActual = 0;
+                        niveles = nivelCAD.BuscarTodos(0, -1);
+
+                        if (juegoEN.NivelActual < niveles.Count)
+                        {
+                            juegoEN.NivelActual++;
                         }
-                        else{
-                                juegoEN.ItemActual = 0;
-                                niveles = nivelCAD.BuscarTodos (0, -1);
-
-                                if (juegoEN.NivelActual <= niveles.Count) {
-                                        juegoEN.NivelActual++;
-                                }
-                                else{
-                                        juegoEN.Finalizado = true;
-                                }
+                        else
+                        {
+                            juegoEN.Finalizado = true;
                         }
+                    }
                 }
-                else{
-                        //Fallo
-                        juegoEN.Fallos++;
-                        juegoEN.IntentosItemActual++;
+                else
+                {
+                    //Fallo
+                    juegoEN.Fallos++;
+                    juegoEN.IntentosItemActual++;
                 }
 
-                juegoCAD.Modificar (juegoEN);
+                juegoCAD.Modificar(juegoEN);
 
 
 
                 SessionCommit();
-        }
-        catch (Exception ex)
-        {
-                SessionRollBack ();
+            }
+            catch (Exception ex)
+            {
+                SessionRollBack();
                 throw ex;
-        }
-        finally
-        {
-                SessionClose ();
-        }
-        return juegoEN;
+            }
+            finally
+            {
+                SessionClose();
+            }
+            return juegoEN;
 
 
-        /*PROTECTED REGION END*/
-}
-}
+            /*PROTECTED REGION END*/
+        }
+    }
 }
