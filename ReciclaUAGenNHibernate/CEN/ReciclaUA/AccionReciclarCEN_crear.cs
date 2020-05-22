@@ -54,9 +54,6 @@ public int Crear (int p_usuario, int p_contenedor, int p_item, int p_cantidad)
 
         oid = _IAccionReciclarCAD.Crear (accionReciclarEN);
 
-        AccionReciclarCP cp = new AccionReciclarCP ();
-        cp.CrearAccion (oid);
-
         return oid;
         /*PROTECTED REGION END*/
 }
