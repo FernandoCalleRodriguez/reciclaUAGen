@@ -49,7 +49,7 @@
 				var borrado: Bool?;
 				    	 
 		 
-				var juego_oid: Int?;
+				var juegos_oid: Int?;
 				    	 
 	   	   
 			// MARK: - Constructor
@@ -116,7 +116,7 @@
 					dictionary["borrado"] = self.borrado;
 				
 
-					dictionary["juego_oid"] = self.juego_oid;
+					dictionary["juegos_oid"] = self.juegos_oid;
 			
 						
 				return dictionary;

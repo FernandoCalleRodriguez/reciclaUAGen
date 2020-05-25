@@ -75,9 +75,9 @@ public bool Borrado {
 }
 
 
-private int juego_oid;
-public int Juego_oid {
-        get { return juego_oid; } set { juego_oid = value;  }
+private int juegos_oid;
+public int Juegos_oid {
+        get { return juegos_oid; } set { juegos_oid = value;  }
 }
 }
 }

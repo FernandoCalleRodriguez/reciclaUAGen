@@ -22,19 +22,19 @@
 				var fallos: Int?;
 				    	 
 		 
-				var puntuacion: Int?;
+				var puntuacion: Double?;
 				    	 
 		 
-				var usuarios_oid: [Int]?;
-				    	 
-		 
-				var nivelActual_oid: Int?;
+				var usuarios_oid: Int?;
 				    	 
 		 
 				var intentosItemActual: Int?;
 				    	 
 		 
 				var finalizado: Bool?;
+				    	 
+		 
+				var nivelActual: Int?;
 				    	 
 	   	   
 			// MARK: - Constructor
@@ -77,15 +77,16 @@
 					dictionary["usuarios_oid"] = self.usuarios_oid;
 			
 
-					dictionary["nivelActual_oid"] = self.nivelActual_oid;
-			
-
 				
 					dictionary["intentosItemActual"] = self.intentosItemActual;
 				
 
 				
 					dictionary["finalizado"] = self.finalizado;
+				
+
+				
+					dictionary["nivelActual"] = self.nivelActual;
 				
 						
 				return dictionary;
