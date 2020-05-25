@@ -108,9 +108,5 @@ public int BuscarNivelCount ()
 {
         return _INivelCAD.BuscarNivelCount ();
 }
-public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.NivelEN> BuscarNivelPorNumero (int ? p_numero)
-{
-        return _INivelCAD.BuscarNivelPorNumero (p_numero);
-}
 }
 }

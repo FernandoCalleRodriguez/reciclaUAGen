@@ -285,6 +285,79 @@ public HttpResponseMessage Crear ( [FromBody] JuegoDTO dto)
 
 
 
+[HttpPut]
+
+
+
+[Route ("~/api/Juego/Modificar")]
+
+public HttpResponseMessage Modificar (int idJuego, [FromBody] JuegoDTO dto)
+{
+        // CAD, CEN, returnValue
+        JuegoRESTCAD juegoRESTCAD = null;
+        JuegoCEN juegoCEN = null;
+        JuegoDTOA returnValue = null;
+
+        // HTTP response
+        HttpResponseMessage response = null;
+        string uri = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                juegoRESTCAD = new JuegoRESTCAD (session);
+                juegoCEN = new JuegoCEN (juegoRESTCAD);
+
+                // Modify
+                juegoCEN.Modificar (idJuego,
+                        dto.ItemActual
+                        ,
+                        dto.Aciertos
+                        ,
+                        dto.Fallos
+                        ,
+                        dto.Puntuacion
+                        ,
+                        dto.IntentosItemActual
+                        ,
+                        dto.Finalizado
+                        ,
+                        dto.NivelActual
+                        );
+
+                // Return modified object
+                returnValue = JuegoAssembler.Convert (juegoRESTCAD.ReadOIDDefault (idJuego), session);
+
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(ReciclaUAGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NotFound);
+        // Return 200 - OK
+        else{
+                response = this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+
+                return response;
+        }
+}
+
 
 
 

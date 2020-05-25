@@ -43,7 +43,7 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
 
                 IList<Tuple<GeoCoordinate, PuntoReciclajeEN> > coordenadas = new List<Tuple<GeoCoordinate, PuntoReciclajeEN> >();
 
-                foreach (PuntoReciclajeEN punto in puntoReciclajeCEN.BuscarPuntosValidados()) {
+                foreach (PuntoReciclajeEN punto in puntoReciclajeCEN.BuscarPuntosValidados ()) {
                         Console.WriteLine (punto.Estancia.Edificio + " " + punto.Estancia.Planta);
                         coordenadas.Add (new Tuple<GeoCoordinate, PuntoReciclajeEN>(new GeoCoordinate (punto.Latitud, punto.Longitud), punto));
                 }
