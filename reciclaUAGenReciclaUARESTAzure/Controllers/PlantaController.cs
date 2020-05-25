@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);
@@ -109,6 +114,11 @@ public HttpResponseMessage BuscarPorId (int idPlanta)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);

@@ -56,6 +56,11 @@ public HttpResponseMessage BuscarPorId (int idUsuarioWebAutenticado)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebAutenticadoRESTCAD = new UsuarioWebAutenticadoRESTCAD (session);
@@ -112,6 +117,11 @@ public HttpResponseMessage ObtenerRanking (        )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -176,6 +186,11 @@ public HttpResponseMessage ObtenerPuntuaciones (           )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -247,6 +262,11 @@ public HttpResponseMessage Modificar (int idUsuarioWebAutenticado, [FromBody] Us
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebAutenticadoRESTCAD = new UsuarioWebAutenticadoRESTCAD (session);
@@ -312,6 +332,11 @@ public HttpResponseMessage CambiarPassword (int idUsuarioWebAutenticado, [FromBo
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebAutenticadoRESTCAD = new UsuarioWebAutenticadoRESTCAD (session);
@@ -377,6 +402,11 @@ public HttpResponseMessage Borrar (int p_usuarioweb_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 usuarioWebAutenticadoRESTCAD = new UsuarioWebAutenticadoRESTCAD (session);

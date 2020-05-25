@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionReciclarRESTCAD = new AccionReciclarRESTCAD (session);
@@ -107,6 +112,11 @@ public HttpResponseMessage BuscarPorId (int idAccionReciclar)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionReciclarRESTCAD = new AccionReciclarRESTCAD (session);
@@ -148,7 +158,7 @@ public HttpResponseMessage BuscarPorId (int idAccionReciclar)
 
 [Route ("~/api/AccionReciclar/BuscarAccionesReciclajePorUsuario")]
 
-public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
+public HttpResponseMessage BuscarAccionesReciclajePorUsuario (     )
 {
         // CAD, CEN, EN, returnValue
 
@@ -163,6 +173,11 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -173,7 +188,7 @@ public HttpResponseMessage BuscarAccionesReciclajePorUsuario (int id_usuario)
 
 
 
-                en = accionReciclarCEN.BuscarAccionesReciclajePorUsuario (id_usuario).ToList ();
+                en = accionReciclarCEN.BuscarAccionesReciclajePorUsuario (id).ToList ();
 
 
 
@@ -232,6 +247,11 @@ public HttpResponseMessage Crear ( [FromBody] AccionReciclarDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionReciclarRESTCAD = new AccionReciclarRESTCAD (session);
@@ -311,6 +331,11 @@ public HttpResponseMessage Borrar (int p_accionreciclar_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionReciclarRESTCAD = new AccionReciclarRESTCAD (session);

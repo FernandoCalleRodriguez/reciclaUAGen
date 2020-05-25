@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -107,6 +112,11 @@ public HttpResponseMessage BuscarPorId (int idPuntoReciclaje)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -163,6 +173,11 @@ public HttpResponseMessage BuscarPuntosPorEdificio (int ? id_edificio)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -227,6 +242,11 @@ public HttpResponseMessage BuscarPuntosPorEstancia (string id_estancia)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -291,6 +311,11 @@ public HttpResponseMessage BuscarPuntosPorPlanta (int? id_edificio, int ? num_pl
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -340,7 +365,7 @@ public HttpResponseMessage BuscarPuntosPorPlanta (int? id_edificio, int ? num_pl
 
 [Route ("~/api/PuntoReciclaje/BuscarPuntosPorUsuario")]
 
-public HttpResponseMessage BuscarPuntosPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarPuntosPorUsuario (        )
 {
         // CAD, CEN, EN, returnValue
 
@@ -355,6 +380,11 @@ public HttpResponseMessage BuscarPuntosPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -365,7 +395,7 @@ public HttpResponseMessage BuscarPuntosPorUsuario (int id_usuario)
 
 
 
-                en = puntoReciclajeCEN.BuscarPuntosPorUsuario (id_usuario).ToList ();
+                en = puntoReciclajeCEN.BuscarPuntosPorUsuario (id).ToList ();
 
 
 
@@ -419,6 +449,11 @@ public HttpResponseMessage BuscarPuntoPorContenedor (int contenedor_id)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -484,6 +519,11 @@ public HttpResponseMessage Crear ( [FromBody] PuntoReciclajeDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -562,6 +602,11 @@ public HttpResponseMessage Modificar (int idPuntoReciclaje, [FromBody] PuntoReci
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -625,6 +670,11 @@ public HttpResponseMessage Borrar (int p_puntoreciclaje_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -674,6 +724,11 @@ public HttpResponseMessage BuscarPuntosCercanos (double p_latitud, double p_long
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);
@@ -729,6 +784,11 @@ public HttpResponseMessage BuscarPuntosCercanosPorContenedor (double p_latitud, 
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 puntoReciclajeRESTCAD = new PuntoReciclajeRESTCAD (session);

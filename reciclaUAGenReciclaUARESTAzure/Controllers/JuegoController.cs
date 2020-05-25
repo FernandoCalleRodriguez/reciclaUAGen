@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 juegoRESTCAD = new JuegoRESTCAD (session);
@@ -108,6 +113,11 @@ public HttpResponseMessage BuscarPorId (int idJuego)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 juegoRESTCAD = new JuegoRESTCAD (session);
@@ -149,7 +159,7 @@ public HttpResponseMessage BuscarPorId (int idJuego)
 
 [Route ("~/api/Juego/BuscarJuegoPorUsuario")]
 
-public HttpResponseMessage BuscarJuegoPorUsuario (int p_usuario)
+public HttpResponseMessage BuscarJuegoPorUsuario (         )
 {
         // CAD, CEN, EN, returnValue
 
@@ -164,6 +174,11 @@ public HttpResponseMessage BuscarJuegoPorUsuario (int p_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -174,7 +189,7 @@ public HttpResponseMessage BuscarJuegoPorUsuario (int p_usuario)
 
 
 
-                en = juegoCEN.BuscarJuegoPorUsuario (p_usuario).ToList ();
+                en = juegoCEN.BuscarJuegoPorUsuario (id).ToList ();
 
 
 
@@ -233,6 +248,11 @@ public HttpResponseMessage Crear ( [FromBody] JuegoDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 juegoRESTCAD = new JuegoRESTCAD (session);
@@ -305,6 +325,11 @@ public HttpResponseMessage Modificar (int idJuego, [FromBody] JuegoDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 juegoRESTCAD = new JuegoRESTCAD (session);
@@ -376,6 +401,11 @@ public HttpResponseMessage Borrar (int p_juego_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 juegoRESTCAD = new JuegoRESTCAD (session);
@@ -424,6 +454,11 @@ public HttpResponseMessage SiguienteItem (int p_oid, ReciclaUAGenNHibernate.Enum
         try
         {
                 SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
 
 
 
