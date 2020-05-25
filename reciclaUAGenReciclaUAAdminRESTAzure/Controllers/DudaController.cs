@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -108,6 +113,10 @@ public HttpResponseMessage DudaRespuesta (int idRespuesta)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                new UsuarioCEN ().CheckToken (token);
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -171,6 +180,11 @@ public HttpResponseMessage BuscarPorId (int idDuda)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -227,6 +241,11 @@ public HttpResponseMessage BuscarDudaPorTitulo (string p_titulo)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -291,6 +310,11 @@ public HttpResponseMessage BuscarDudaPorTemas (ReciclaUAGenNHibernate.Enumerated
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -340,7 +364,7 @@ public HttpResponseMessage BuscarDudaPorTemas (ReciclaUAGenNHibernate.Enumerated
 
 [Route ("~/api/Duda/BuscarDudasPorUsuario")]
 
-public HttpResponseMessage BuscarDudasPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarDudasPorUsuario (         )
 {
         // CAD, CEN, EN, returnValue
 
@@ -355,6 +379,11 @@ public HttpResponseMessage BuscarDudasPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -365,7 +394,7 @@ public HttpResponseMessage BuscarDudasPorUsuario (int id_usuario)
 
 
 
-                en = dudaCEN.BuscarDudasPorUsuario (id_usuario).ToList ();
+                en = dudaCEN.BuscarDudasPorUsuario (id).ToList ();
 
 
 
@@ -417,6 +446,11 @@ public HttpResponseMessage BuscarDudasCount (      )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -481,6 +515,11 @@ public HttpResponseMessage Crear ( [FromBody] DudaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -556,6 +595,11 @@ public HttpResponseMessage Modificar (int idDuda, [FromBody] DudaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -623,6 +667,11 @@ public HttpResponseMessage Borrar (int p_duda_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -669,6 +718,11 @@ public HttpResponseMessage IndicarDudaUtil (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -714,6 +768,11 @@ public HttpResponseMessage IndicarDudaNoUtil (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -761,6 +820,11 @@ public HttpResponseMessage Duda_obtenerNumeroDeRespuestas (int p_oid)
         {
                 SessionInitializeTransaction ();
 
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -805,6 +869,11 @@ public HttpResponseMessage Duda_obtenerSiRespuestaValida (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
 
 
 

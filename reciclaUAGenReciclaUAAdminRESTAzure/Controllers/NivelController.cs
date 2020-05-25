@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -108,6 +113,10 @@ public HttpResponseMessage NivelItem (int idItem)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                new UsuarioCEN ().CheckToken (token);
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -171,6 +180,11 @@ public HttpResponseMessage BuscarPorId (int idNivel)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -225,6 +239,11 @@ public HttpResponseMessage BuscarNivelCount (      )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -287,6 +306,11 @@ public HttpResponseMessage Crear ( [FromBody] NivelDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -359,6 +383,11 @@ public HttpResponseMessage Modificar (int idNivel, [FromBody] NivelDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -420,6 +449,11 @@ public HttpResponseMessage Borrar (int p_nivel_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -464,6 +498,11 @@ public HttpResponseMessage AsignarItems (int p_nivel_oid, System.Collections.Gen
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);
@@ -507,6 +546,11 @@ public HttpResponseMessage DesasignarItems (int p_nivel_oid, System.Collections.
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 nivelRESTCAD = new NivelRESTCAD (session);

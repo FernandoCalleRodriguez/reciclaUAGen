@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 estanciaRESTCAD = new EstanciaRESTCAD (session);
@@ -108,6 +113,11 @@ public HttpResponseMessage BuscarPorId (string idEstancia)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 estanciaRESTCAD = new EstanciaRESTCAD (session);
@@ -169,6 +179,11 @@ public HttpResponseMessage Crear ( [FromBody] EstanciaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 estanciaRESTCAD = new EstanciaRESTCAD (session);
@@ -250,6 +265,11 @@ public HttpResponseMessage Modificar (string idEstancia, [FromBody] EstanciaDTO 
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 estanciaRESTCAD = new EstanciaRESTCAD (session);
@@ -315,6 +335,11 @@ public HttpResponseMessage Borrar (string p_estancia_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 estanciaRESTCAD = new EstanciaRESTCAD (session);

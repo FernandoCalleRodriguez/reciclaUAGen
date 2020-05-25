@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 contenedorRESTCAD = new ContenedorRESTCAD (session);
@@ -109,6 +114,11 @@ public HttpResponseMessage BuscarPorId (int idContenedor)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 contenedorRESTCAD = new ContenedorRESTCAD (session);
@@ -165,6 +175,11 @@ public HttpResponseMessage BuscarContenedoresPorTipo (ReciclaUAGenNHibernate.Enu
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -232,6 +247,11 @@ public HttpResponseMessage Crear ( [FromBody] ContenedorDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 contenedorRESTCAD = new ContenedorRESTCAD (session);
@@ -307,6 +327,11 @@ public HttpResponseMessage Modificar (int idContenedor, [FromBody] ContenedorDTO
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 contenedorRESTCAD = new ContenedorRESTCAD (session);
@@ -366,6 +391,11 @@ public HttpResponseMessage Borrar (int p_contenedor_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 contenedorRESTCAD = new ContenedorRESTCAD (session);

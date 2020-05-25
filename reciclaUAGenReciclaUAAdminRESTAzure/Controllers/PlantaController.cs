@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);
@@ -109,6 +114,11 @@ public HttpResponseMessage BuscarPorId (int idPlanta)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);
@@ -168,6 +178,11 @@ public HttpResponseMessage Crear ( [FromBody] PlantaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);
@@ -243,6 +258,11 @@ public HttpResponseMessage Modificar (int idPlanta, [FromBody] PlantaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);
@@ -302,6 +322,11 @@ public HttpResponseMessage Borrar (int p_planta_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 plantaRESTCAD = new PlantaRESTCAD (session);

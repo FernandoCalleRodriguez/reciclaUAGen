@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -108,6 +113,10 @@ public HttpResponseMessage RespuestasDuda (int idDuda)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                new UsuarioCEN ().CheckToken (token);
 
 
                 dudaRESTCAD = new DudaRESTCAD (session);
@@ -173,6 +182,11 @@ public HttpResponseMessage BuscarPorId (int idRespuesta)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -229,6 +243,11 @@ public HttpResponseMessage BuscarRespuestaPorDuda (int ? id_duda)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -293,6 +312,11 @@ public HttpResponseMessage BuscarRespuestaPorEsCorrecta (          )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -342,7 +366,7 @@ public HttpResponseMessage BuscarRespuestaPorEsCorrecta (          )
 
 [Route ("~/api/Respuesta/BuscarRespuestasPorUsuario")]
 
-public HttpResponseMessage BuscarRespuestasPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarRespuestasPorUsuario (            )
 {
         // CAD, CEN, EN, returnValue
 
@@ -357,6 +381,11 @@ public HttpResponseMessage BuscarRespuestasPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -367,7 +396,7 @@ public HttpResponseMessage BuscarRespuestasPorUsuario (int id_usuario)
 
 
 
-                en = respuestaCEN.BuscarRespuestasPorUsuario (id_usuario).ToList ();
+                en = respuestaCEN.BuscarRespuestasPorUsuario (id).ToList ();
 
 
 
@@ -426,6 +455,11 @@ public HttpResponseMessage Crear ( [FromBody] RespuestaDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -503,6 +537,11 @@ public HttpResponseMessage Modificar (int idRespuesta, [FromBody] RespuestaDTO d
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -568,6 +607,11 @@ public HttpResponseMessage Borrar (int p_respuesta_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -614,6 +658,11 @@ public HttpResponseMessage IndicarRespuestaUtil (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -659,6 +708,11 @@ public HttpResponseMessage IndicarRespuestaNoUtil (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -704,6 +758,11 @@ public HttpResponseMessage ConfirmacionRespuestaCorrecta (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -750,6 +809,11 @@ public HttpResponseMessage DescartarRespuestaCorrecta (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 respuestaRESTCAD = new RespuestaRESTCAD (session);
@@ -797,6 +861,11 @@ public HttpResponseMessage ObtenerUltimaRespuesta (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
 
 
 

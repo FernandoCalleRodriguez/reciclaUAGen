@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 tipoAccionRESTCAD = new TipoAccionRESTCAD (session);
@@ -108,6 +113,11 @@ public HttpResponseMessage BuscarPorId (int idTipoAccion)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 tipoAccionRESTCAD = new TipoAccionRESTCAD (session);
@@ -167,6 +177,11 @@ public HttpResponseMessage Crear ( [FromBody] TipoAccionDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 tipoAccionRESTCAD = new TipoAccionRESTCAD (session);
@@ -239,6 +254,11 @@ public HttpResponseMessage Modificar (int idTipoAccion, [FromBody] TipoAccionDTO
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 tipoAccionRESTCAD = new TipoAccionRESTCAD (session);
@@ -300,6 +320,11 @@ public HttpResponseMessage Borrar (int p_tipoaccion_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 tipoAccionRESTCAD = new TipoAccionRESTCAD (session);

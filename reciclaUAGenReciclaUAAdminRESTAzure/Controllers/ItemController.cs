@@ -48,6 +48,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -110,6 +115,11 @@ public HttpResponseMessage BuscarPorId (int idItem)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -151,7 +161,7 @@ public HttpResponseMessage BuscarPorId (int idItem)
 
 [Route ("~/api/Item/BuscarItemsPorUsuario")]
 
-public HttpResponseMessage BuscarItemsPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarItemsPorUsuario (         )
 {
         // CAD, CEN, EN, returnValue
 
@@ -166,6 +176,11 @@ public HttpResponseMessage BuscarItemsPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -176,7 +191,7 @@ public HttpResponseMessage BuscarItemsPorUsuario (int id_usuario)
 
 
 
-                en = itemCEN.BuscarItemsPorUsuario (id_usuario).ToList ();
+                en = itemCEN.BuscarItemsPorUsuario (id).ToList ();
 
 
 
@@ -230,6 +245,11 @@ public HttpResponseMessage BuscarItemsPorValidar (         )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -294,6 +314,11 @@ public HttpResponseMessage BuscarItemsValidados (          )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -356,6 +381,11 @@ public HttpResponseMessage BuscarItemsPorValidarCount (            )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -415,6 +445,11 @@ public HttpResponseMessage BuscarItemsPorNivel (int id_nivel)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -484,6 +519,11 @@ public HttpResponseMessage Crear ( [FromBody] ItemDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -563,6 +603,11 @@ public HttpResponseMessage Modificar (int idItem, [FromBody] ItemDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -630,6 +675,11 @@ public HttpResponseMessage Borrar (int p_item_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -676,6 +726,11 @@ public HttpResponseMessage ValidarItem (int p_oid, int p_puntuacion)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);
@@ -721,6 +776,11 @@ public HttpResponseMessage DescartarItem (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 itemRESTCAD = new ItemRESTCAD (session);

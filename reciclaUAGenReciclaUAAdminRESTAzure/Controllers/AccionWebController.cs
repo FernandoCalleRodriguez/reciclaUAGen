@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionWebRESTCAD = new AccionWebRESTCAD (session);
@@ -107,6 +112,11 @@ public HttpResponseMessage BuscarPorId (int idAccionWeb)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionWebRESTCAD = new AccionWebRESTCAD (session);
@@ -163,6 +173,11 @@ public HttpResponseMessage BuscarPorTipo (string p_type)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -212,7 +227,7 @@ public HttpResponseMessage BuscarPorTipo (string p_type)
 
 [Route ("~/api/AccionWeb/BuscarAccionesWebPorUsuario")]
 
-public HttpResponseMessage BuscarAccionesWebPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarAccionesWebPorUsuario (           )
 {
         // CAD, CEN, EN, returnValue
 
@@ -227,6 +242,11 @@ public HttpResponseMessage BuscarAccionesWebPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -237,7 +257,7 @@ public HttpResponseMessage BuscarAccionesWebPorUsuario (int id_usuario)
 
 
 
-                en = accionWebCEN.BuscarAccionesWebPorUsuario (id_usuario).ToList ();
+                en = accionWebCEN.BuscarAccionesWebPorUsuario (id).ToList ();
 
 
 
@@ -291,6 +311,11 @@ public HttpResponseMessage BuscarPorAutor (int ? p_user_id)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -355,6 +380,11 @@ public HttpResponseMessage BuscarPorFecha (Nullable<DateTime> p_date)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -424,6 +454,11 @@ public HttpResponseMessage Modificar (int idAccionWeb, [FromBody] AccionWebDTO d
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionWebRESTCAD = new AccionWebRESTCAD (session);
@@ -483,6 +518,11 @@ public HttpResponseMessage Borrar (int p_accionweb_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 accionWebRESTCAD = new AccionWebRESTCAD (session);

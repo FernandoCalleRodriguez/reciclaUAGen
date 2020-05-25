@@ -46,6 +46,11 @@ public HttpResponseMessage BuscarTodos ()
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -108,6 +113,11 @@ public HttpResponseMessage BuscarPorId (int idMaterial)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -164,6 +174,11 @@ public HttpResponseMessage BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enume
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -213,7 +228,7 @@ public HttpResponseMessage BuscarPorTipoContenedor (ReciclaUAGenNHibernate.Enume
 
 [Route ("~/api/Material/BuscarMaterialesPorUsuario")]
 
-public HttpResponseMessage BuscarMaterialesPorUsuario (int id_usuario)
+public HttpResponseMessage BuscarMaterialesPorUsuario (            )
 {
         // CAD, CEN, EN, returnValue
 
@@ -228,6 +243,11 @@ public HttpResponseMessage BuscarMaterialesPorUsuario (int id_usuario)
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -238,7 +258,7 @@ public HttpResponseMessage BuscarMaterialesPorUsuario (int id_usuario)
 
 
 
-                en = materialCEN.BuscarMaterialesPorUsuario (id_usuario).ToList ();
+                en = materialCEN.BuscarMaterialesPorUsuario (id).ToList ();
 
 
 
@@ -292,6 +312,11 @@ public HttpResponseMessage BuscarMaterialesPorValidar (            )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -356,6 +381,11 @@ public HttpResponseMessage BuscarMaterialesValidados (     )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -418,6 +448,11 @@ public HttpResponseMessage BuscarMaterialesPorValidarCount (       )
         try
         {
                 SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
 
@@ -482,6 +517,11 @@ public HttpResponseMessage Crear ( [FromBody] MaterialDTO dto)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -556,6 +596,11 @@ public HttpResponseMessage Modificar (int idMaterial, [FromBody] MaterialDTO dto
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -619,6 +664,11 @@ public HttpResponseMessage Borrar (int p_material_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -665,6 +715,11 @@ public HttpResponseMessage ValidarMaterial (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);
@@ -710,6 +765,11 @@ public HttpResponseMessage DescartarMaterial (int p_oid)
         try
         {
                 SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers.Authorization != null)
+                        token = Request.Headers.Authorization.ToString ();
+                int id = new UsuarioCEN ().CheckToken (token);
+
 
 
                 materialRESTCAD = new MaterialRESTCAD (session);

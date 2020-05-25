@@ -1,511 +1,321 @@
-<?xml version="1.0" encoding="utf-8"?>
-		<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-		  <PropertyGroup>
-		    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		    <ProductVersion>8.0.30703</ProductVersion>
-		    <SchemaVersion>2.0</SchemaVersion>
-		    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
-		    <OutputType>Library</OutputType>
-		    <AppDesignerFolder>Properties</AppDesignerFolder>
-		    <RootNamespace>ReciclaUAGenNHibernate</RootNamespace>
-		    <AssemblyName>ReciclaUAGenNHibernate</AssemblyName>
-		    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-		    <FileAlignment>512</FileAlignment>
-		    <PublishUrl>publish\</PublishUrl>
-		    <Install>true</Install>
-		    <InstallFrom>Disk</InstallFrom>
-		    <UpdateEnabled>false</UpdateEnabled>
-		    <UpdateMode>Foreground</UpdateMode>
-		    <UpdateInterval>7</UpdateInterval>
-		    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-		    <UpdatePeriodically>false</UpdatePeriodically>
-		    <UpdateRequired>false</UpdateRequired>
-		    <MapFileExtensions>true</MapFileExtensions>
-		    <ApplicationRevision>0</ApplicationRevision>
-		    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-		    <IsWebBootstrapper>false</IsWebBootstrapper>
-		    <UseApplicationTrust>false</UseApplicationTrust>
-		    <BootstrapperEnabled>true</BootstrapperEnabled>
-		  </PropertyGroup>
-		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		    <DebugSymbols>true</DebugSymbols>
-		    <DebugType>full</DebugType>
-		    <Optimize>false</Optimize>
-		    <OutputPath>bin\Debug\</OutputPath>
-		    <DefineConstants>DEBUG;TRACE</DefineConstants>
-		    <ErrorReport>prompt</ErrorReport>
-		    <WarningLevel>4</WarningLevel>
-		  </PropertyGroup>
-		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		    <DebugType>pdbonly</DebugType>
-		    <Optimize>true</Optimize>
-		    <OutputPath>bin\Release\</OutputPath>
-		    <DefineConstants>TRACE</DefineConstants>
-		    <ErrorReport>prompt</ErrorReport>
-		    <WarningLevel>4</WarningLevel>
-		  </PropertyGroup>
-		<ItemGroup>
-		    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
-		    </Reference>
-		    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
-		    </Reference>
-		    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.dll</HintPath>
-		    </Reference>
-		    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
-		    </Reference>
-		    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
-		    </Reference>
-		    <Reference Include="Newtonsoft.Json, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\Newtonsoft.Json.dll</HintPath>
-		    </Reference>
-		     <Reference Include="jose-jwt, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-		      <SpecificVersion>False</SpecificVersion>
-		      <HintPath>..\reciclaUAGenNHibernate\AppLib\jose-jwt.dll</HintPath>
-		    </Reference>
-		    <Reference Include="System" />
-		    <Reference Include="System.Core">
-		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-		    </Reference>
-		    
-		    <Reference Include="System.Transactions" />
-		    <Reference Include="System.Xml.Linq">
-		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-		    </Reference>
-		    <Reference Include="System.Data.DataSetExtensions">
-		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-		    </Reference>
-		    <Reference Include="System.Data" />
-		    <Reference Include="System.Xml" />
-		</ItemGroup>
-		
-		<ItemGroup>
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\Antlr3.Runtime.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\Iesi.Collections.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\log4net.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\nunit.core.dll" />
-		    <Content Include="..\reciclaUAGenNHibernate\AppLib\nunit.framework.dll" />
-  		    <Content Include="..\reciclaUAGenNHibernate\AppLib\jose-jwt.dll" />
-  		</ItemGroup>
-  		
-		<ItemGroup>
-			<Compile Include="NHibernateHelper.cs" />
-		    <Compile Include="Utils\Util.cs" />
-		    <Compile Include="Exceptions\ModelException.cs"/>
-		    <Compile Include="Exceptions\DataLayerException.cs"/>
-		    
-	<Compile Include="CAD\BasicCAD.cs"/>
-	<Compile Include="CP\BasicCP.cs"/>
-	<Compile Include="EN\ReciclaUA\UsuarioWebEN.cs" />
-	<Compile Include="CEN\ReciclaUA\UsuarioWebCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IUsuarioWebCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\UsuarioWebCAD.cs" />
-	<Compile Include="CP\ReciclaUA\UsuarioWebCP.cs" />
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Crear.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Modificar.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Borrar.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_CambiarPassword.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_VerificarEmail.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_IncrementarPuntuacion.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioWebCEN_RecuperarPassword.cs" />
-			
-	<Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
-	<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\UsuarioAdministradorCAD.cs" />
-	<Compile Include="CP\ReciclaUA\UsuarioAdministradorCP.cs" />
-			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Modificar.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Borrar.cs" />
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Crear.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_CambiarPassword.cs" />
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_RecuperarPassword.cs" />
-			
-	<Compile Include="EN\ReciclaUA\DudaEN.cs" />
-	<Compile Include="CEN\ReciclaUA\DudaCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IDudaCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\DudaCAD.cs" />
-	<Compile Include="CP\ReciclaUA\DudaCP.cs" />
-			<Compile Include="CEN\ReciclaUA\DudaCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\DudaCEN_IndicarDudaUtil.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\DudaCEN_IndicarDudaNoUtil.cs" />
-			
-			<Compile Include="CP\ReciclaUA\DudaCP_ObtenerNumeroDeRespuestas.cs" />
-			
-			<Compile Include="CP\ReciclaUA\DudaCP_ObtenerSiRespuestaValida.cs" />
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\DudaCP_CrearAccionDuda.cs" />
-			
-	<Compile Include="EN\ReciclaUA\RespuestaEN.cs" />
-	<Compile Include="CEN\ReciclaUA\RespuestaCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IRespuestaCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\RespuestaCAD.cs" />
-	<Compile Include="CP\ReciclaUA\RespuestaCP.cs" />
-			<Compile Include="CEN\ReciclaUA\RespuestaCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\RespuestaCEN_ConfirmacionRespuestaCorrecta.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\RespuestaCEN_IndicarRespuestaUtil.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\RespuestaCEN_IndicarRespuestaNoUtil.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\RespuestaCEN_DescartarRespuestaCorrecta.cs" />
-			
-			
-			<Compile Include="CP\ReciclaUA\RespuestaCP_ObtenerUltimaRespuesta.cs" />
-			
-			
-			<Compile Include="CP\ReciclaUA\RespuestaCP_CrearAccionRespuesta.cs" />
-			
-	<Compile Include="EN\ReciclaUA\AccionEN.cs" />
-	<Compile Include="CEN\ReciclaUA\AccionCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IAccionCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\AccionCAD.cs" />
-	<Compile Include="CP\ReciclaUA\AccionCP.cs" />
-			
-	<Compile Include="EN\ReciclaUA\PuntoReciclajeEN.cs" />
-	<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IPuntoReciclajeCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\PuntoReciclajeCAD.cs" />
-	<Compile Include="CP\ReciclaUA\PuntoReciclajeCP.cs" />
-			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_ValidarPunto.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_DescartarPunto.cs" />
-			
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanos.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\PuntoReciclajeCP_CrearAccionPunto.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanosPorContenedor.cs" />
-			
-			<Compile Include="CP\ReciclaUA\PuntoReciclajeCP_ObtenerPuntosCercanos.cs" />
-			
-	<Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
-	<Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\ContenedorCAD.cs" />
-	<Compile Include="CP\ReciclaUA\ContenedorCP.cs" />
-			
-			
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\ItemEN.cs" />
-	<Compile Include="CEN\ReciclaUA\ItemCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IItemCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\ItemCAD.cs" />
-	<Compile Include="CP\ReciclaUA\ItemCP.cs" />
-			<Compile Include="CEN\ReciclaUA\ItemCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\ItemCEN_ValidarItem.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\ItemCEN_DescartarItem.cs" />
-			
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\ItemCP_CrearAccionItem.cs" />
-			
-	<Compile Include="EN\ReciclaUA\NivelEN.cs" />
-	<Compile Include="CEN\ReciclaUA\NivelCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\INivelCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\NivelCAD.cs" />
-	<Compile Include="CP\ReciclaUA\NivelCP.cs" />
-			
-			
-			
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\NotaInformativaEN.cs" />
-	<Compile Include="CEN\ReciclaUA\NotaInformativaCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\INotaInformativaCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\NotaInformativaCAD.cs" />
-	<Compile Include="CP\ReciclaUA\NotaInformativaCP.cs" />
-			<Compile Include="CEN\ReciclaUA\NotaInformativaCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\TipoAccionEN.cs" />
-	<Compile Include="CEN\ReciclaUA\TipoAccionCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\ITipoAccionCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\TipoAccionCAD.cs" />
-	<Compile Include="CP\ReciclaUA\TipoAccionCP.cs" />
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\MaterialEN.cs" />
-	<Compile Include="CEN\ReciclaUA\MaterialCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IMaterialCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\MaterialCAD.cs" />
-	<Compile Include="CP\ReciclaUA\MaterialCP.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\MaterialCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\MaterialCEN_ValidarMaterial.cs" />
-			
-			<Compile Include="CEN\ReciclaUA\MaterialCEN_DescartarMaterial.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\MaterialCP_CrearAccionMaterial.cs" />
-			
-	<Compile Include="EN\ReciclaUA\UsuarioEN.cs" />
-	<Compile Include="CEN\ReciclaUA\UsuarioCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IUsuarioCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\UsuarioCAD.cs" />
-	<Compile Include="CP\ReciclaUA\UsuarioCP.cs" />
-			<Compile Include="CEN\ReciclaUA\UsuarioCEN_Crear.cs" />
-			
-			
-			<Compile Include="CEN\ReciclaUA\UsuarioCEN_Login.cs" />
-			
-	<Compile Include="EN\ReciclaUA\AccionReciclarEN.cs" />
-	<Compile Include="CEN\ReciclaUA\AccionReciclarCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\AccionReciclarCAD.cs" />
-	<Compile Include="CP\ReciclaUA\AccionReciclarCP.cs" />
-			<Compile Include="CEN\ReciclaUA\AccionReciclarCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\AccionReciclarCP_CrearAccion.cs" />
-			
-	<Compile Include="EN\ReciclaUA\AccionWebEN.cs" />
-	<Compile Include="CEN\ReciclaUA\AccionWebCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IAccionWebCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\AccionWebCAD.cs" />
-	<Compile Include="CP\ReciclaUA\AccionWebCP.cs" />
-			<Compile Include="CEN\ReciclaUA\AccionWebCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\AccionWebCP_CrearAccion.cs" />
-			
-	<Compile Include="EN\ReciclaUA\EdificioEN.cs" />
-	<Compile Include="CEN\ReciclaUA\EdificioCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IEdificioCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\EdificioCAD.cs" />
-	<Compile Include="CP\ReciclaUA\EdificioCP.cs" />
-			
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\PlantaEN.cs" />
-	<Compile Include="CEN\ReciclaUA\PlantaCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IPlantaCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\PlantaCAD.cs" />
-	<Compile Include="CP\ReciclaUA\PlantaCP.cs" />
-			
-			
-			
-			
-			
-	<Compile Include="EN\ReciclaUA\EstanciaEN.cs" />
-	<Compile Include="CEN\ReciclaUA\EstanciaCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IEstanciaCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\EstanciaCAD.cs" />
-	<Compile Include="CP\ReciclaUA\EstanciaCP.cs" />
-			
-			
-			
-			
-			<Compile Include="CEN\ReciclaUA\EstanciaCEN_Crear.cs" />
-			
-			
-	<Compile Include="EN\ReciclaUA\JuegoEN.cs" />
-	<Compile Include="CEN\ReciclaUA\JuegoCEN.cs" />
-	<Compile Include="CAD\ReciclaUA\IJuegoCAD.cs" />
-	<Compile Include="CAD\ReciclaUA\JuegoCAD.cs" />
-	<Compile Include="CP\ReciclaUA\JuegoCP.cs" />
-			<Compile Include="CEN\ReciclaUA\JuegoCEN_Crear.cs" />
-			
-			
-			
-			
-			
-			<Compile Include="CP\ReciclaUA\JuegoCP_SiguienteItem.cs" />
-			
-			
-	<Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
-	<Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />
-	<Compile Include="Enumerated\ReciclaUA\EstadoEnum.cs" />
-	<Compile Include="Enumerated\ReciclaUA\TemaEnum.cs" />
-	
-	
-
-		    
-	
-
-		    <Compile Include="Properties\AssemblyInfo.cs" />
-		    <Compile Include="Properties\Settings.Designer.cs">
-		      <AutoGen>True</AutoGen>
-		      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-		      <DependentUpon>Settings.settings</DependentUpon>
-		    </Compile>
-		  </ItemGroup>
-		  <ItemGroup>
-		  
-	<EmbeddedResource Include="Mappings\ReciclaUA\usuarioweb.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\usuarioadministrador.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\duda.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\respuesta.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\accion.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\puntoreciclaje.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\contenedor.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\item.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\nivel.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\notainformativa.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\tipoaccion.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\material.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\usuario.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\accionreciclar.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\accionweb.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\edificio.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\planta.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\estancia.hbm.xml" />
-	<EmbeddedResource Include="Mappings\ReciclaUA\juego.hbm.xml" />
-	
-	
-
-		  </ItemGroup>
-		  <ItemGroup>
-		    <Content Include="hibernate.cfg.xml">
-		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		    </Content>
-		  </ItemGroup>
-		  <ItemGroup>
-		    <None Include="app.config" />
-		    <None Include="Properties\Settings.settings">
-		      <Generator>SettingsSingleFileGenerator</Generator>
-		      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-		    </None>
-		        <None Include="Resources\xsd\nhibernate-configuration.xsd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReciclaUAGenNHibernate</RootNamespace>
+    <AssemblyName>ReciclaUAGenNHibernate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="jose-jwt, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reciclaUAGenNHibernate\AppLib\jose-jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Device" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\Antlr3.Runtime.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\Iesi.Collections.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\log4net.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\NHibernate.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\nunit.core.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\nunit.framework.dll" />
+    <Content Include="..\reciclaUAGenNHibernate\AppLib\jose-jwt.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="Utils\Util.cs" />
+    <Compile Include="Exceptions\ModelException.cs" />
+    <Compile Include="Exceptions\DataLayerException.cs" />
+    <Compile Include="CAD\BasicCAD.cs" />
+    <Compile Include="CP\BasicCP.cs" />
+    <Compile Include="EN\ReciclaUA\UsuarioWebEN.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IUsuarioWebCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\UsuarioWebCAD.cs" />
+    <Compile Include="CP\ReciclaUA\UsuarioWebCP.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Modificar.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_Borrar.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_CambiarPassword.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_VerificarEmail.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_IncrementarPuntuacion.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioWebCEN_RecuperarPassword.cs" />
+    <Compile Include="EN\ReciclaUA\UsuarioAdministradorEN.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IUsuarioAdministradorCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\UsuarioAdministradorCAD.cs" />
+    <Compile Include="CP\ReciclaUA\UsuarioAdministradorCP.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Modificar.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Borrar.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_CambiarPassword.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioAdministradorCEN_RecuperarPassword.cs" />
+    <Compile Include="EN\ReciclaUA\DudaEN.cs" />
+    <Compile Include="CEN\ReciclaUA\DudaCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IDudaCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\DudaCAD.cs" />
+    <Compile Include="CP\ReciclaUA\DudaCP.cs" />
+    <Compile Include="CEN\ReciclaUA\DudaCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\DudaCEN_IndicarDudaUtil.cs" />
+    <Compile Include="CEN\ReciclaUA\DudaCEN_IndicarDudaNoUtil.cs" />
+    <Compile Include="CP\ReciclaUA\DudaCP_ObtenerNumeroDeRespuestas.cs" />
+    <Compile Include="CP\ReciclaUA\DudaCP_ObtenerSiRespuestaValida.cs" />
+    <Compile Include="CP\ReciclaUA\DudaCP_CrearAccionDuda.cs" />
+    <Compile Include="EN\ReciclaUA\RespuestaEN.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IRespuestaCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\RespuestaCAD.cs" />
+    <Compile Include="CP\ReciclaUA\RespuestaCP.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN_ConfirmacionRespuestaCorrecta.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN_IndicarRespuestaUtil.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN_IndicarRespuestaNoUtil.cs" />
+    <Compile Include="CEN\ReciclaUA\RespuestaCEN_DescartarRespuestaCorrecta.cs" />
+    <Compile Include="CP\ReciclaUA\RespuestaCP_ObtenerUltimaRespuesta.cs" />
+    <Compile Include="CP\ReciclaUA\RespuestaCP_CrearAccionRespuesta.cs" />
+    <Compile Include="EN\ReciclaUA\AccionEN.cs" />
+    <Compile Include="CEN\ReciclaUA\AccionCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IAccionCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\AccionCAD.cs" />
+    <Compile Include="CP\ReciclaUA\AccionCP.cs" />
+    <Compile Include="EN\ReciclaUA\PuntoReciclajeEN.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IPuntoReciclajeCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\PuntoReciclajeCAD.cs" />
+    <Compile Include="CP\ReciclaUA\PuntoReciclajeCP.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_ValidarPunto.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_DescartarPunto.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanos.cs" />
+    <Compile Include="CP\ReciclaUA\PuntoReciclajeCP_CrearAccionPunto.cs" />
+    <Compile Include="CEN\ReciclaUA\PuntoReciclajeCEN_BuscarPuntosCercanosPorContenedor.cs" />
+    <Compile Include="CP\ReciclaUA\PuntoReciclajeCP_ObtenerPuntosCercanos.cs" />
+    <Compile Include="EN\ReciclaUA\ContenedorEN.cs" />
+    <Compile Include="CEN\ReciclaUA\ContenedorCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IContenedorCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\ContenedorCAD.cs" />
+    <Compile Include="CP\ReciclaUA\ContenedorCP.cs" />
+    <Compile Include="EN\ReciclaUA\ItemEN.cs" />
+    <Compile Include="CEN\ReciclaUA\ItemCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IItemCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\ItemCAD.cs" />
+    <Compile Include="CP\ReciclaUA\ItemCP.cs" />
+    <Compile Include="CEN\ReciclaUA\ItemCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\ItemCEN_ValidarItem.cs" />
+    <Compile Include="CEN\ReciclaUA\ItemCEN_DescartarItem.cs" />
+    <Compile Include="CP\ReciclaUA\ItemCP_CrearAccionItem.cs" />
+    <Compile Include="EN\ReciclaUA\NivelEN.cs" />
+    <Compile Include="CEN\ReciclaUA\NivelCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\INivelCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\NivelCAD.cs" />
+    <Compile Include="CP\ReciclaUA\NivelCP.cs" />
+    <Compile Include="EN\ReciclaUA\NotaInformativaEN.cs" />
+    <Compile Include="CEN\ReciclaUA\NotaInformativaCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\INotaInformativaCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\NotaInformativaCAD.cs" />
+    <Compile Include="CP\ReciclaUA\NotaInformativaCP.cs" />
+    <Compile Include="CEN\ReciclaUA\NotaInformativaCEN_Crear.cs" />
+    <Compile Include="EN\ReciclaUA\TipoAccionEN.cs" />
+    <Compile Include="CEN\ReciclaUA\TipoAccionCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\ITipoAccionCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\TipoAccionCAD.cs" />
+    <Compile Include="CP\ReciclaUA\TipoAccionCP.cs" />
+    <Compile Include="EN\ReciclaUA\MaterialEN.cs" />
+    <Compile Include="CEN\ReciclaUA\MaterialCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IMaterialCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\MaterialCAD.cs" />
+    <Compile Include="CP\ReciclaUA\MaterialCP.cs" />
+    <Compile Include="CEN\ReciclaUA\MaterialCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\MaterialCEN_ValidarMaterial.cs" />
+    <Compile Include="CEN\ReciclaUA\MaterialCEN_DescartarMaterial.cs" />
+    <Compile Include="CP\ReciclaUA\MaterialCP_CrearAccionMaterial.cs" />
+    <Compile Include="EN\ReciclaUA\UsuarioEN.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IUsuarioCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\UsuarioCAD.cs" />
+    <Compile Include="CP\ReciclaUA\UsuarioCP.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioCEN_Crear.cs" />
+    <Compile Include="CEN\ReciclaUA\UsuarioCEN_Login.cs" />
+    <Compile Include="EN\ReciclaUA\AccionReciclarEN.cs" />
+    <Compile Include="CEN\ReciclaUA\AccionReciclarCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IAccionReciclarCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\AccionReciclarCAD.cs" />
+    <Compile Include="CP\ReciclaUA\AccionReciclarCP.cs" />
+    <Compile Include="CEN\ReciclaUA\AccionReciclarCEN_Crear.cs" />
+    <Compile Include="CP\ReciclaUA\AccionReciclarCP_CrearAccion.cs" />
+    <Compile Include="EN\ReciclaUA\AccionWebEN.cs" />
+    <Compile Include="CEN\ReciclaUA\AccionWebCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IAccionWebCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\AccionWebCAD.cs" />
+    <Compile Include="CP\ReciclaUA\AccionWebCP.cs" />
+    <Compile Include="CEN\ReciclaUA\AccionWebCEN_Crear.cs" />
+    <Compile Include="CP\ReciclaUA\AccionWebCP_CrearAccion.cs" />
+    <Compile Include="EN\ReciclaUA\EdificioEN.cs" />
+    <Compile Include="CEN\ReciclaUA\EdificioCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IEdificioCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\EdificioCAD.cs" />
+    <Compile Include="CP\ReciclaUA\EdificioCP.cs" />
+    <Compile Include="EN\ReciclaUA\PlantaEN.cs" />
+    <Compile Include="CEN\ReciclaUA\PlantaCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IPlantaCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\PlantaCAD.cs" />
+    <Compile Include="CP\ReciclaUA\PlantaCP.cs" />
+    <Compile Include="EN\ReciclaUA\EstanciaEN.cs" />
+    <Compile Include="CEN\ReciclaUA\EstanciaCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IEstanciaCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\EstanciaCAD.cs" />
+    <Compile Include="CP\ReciclaUA\EstanciaCP.cs" />
+    <Compile Include="CEN\ReciclaUA\EstanciaCEN_Crear.cs" />
+    <Compile Include="EN\ReciclaUA\JuegoEN.cs" />
+    <Compile Include="CEN\ReciclaUA\JuegoCEN.cs" />
+    <Compile Include="CAD\ReciclaUA\IJuegoCAD.cs" />
+    <Compile Include="CAD\ReciclaUA\JuegoCAD.cs" />
+    <Compile Include="CP\ReciclaUA\JuegoCP.cs" />
+    <Compile Include="CEN\ReciclaUA\JuegoCEN_Crear.cs" />
+    <Compile Include="CP\ReciclaUA\JuegoCP_SiguienteItem.cs" />
+    <Compile Include="Enumerated\ReciclaUA\TipoContenedorEnum.cs" />
+    <Compile Include="Enumerated\ReciclaUA\PlantaEnum.cs" />
+    <Compile Include="Enumerated\ReciclaUA\EstadoEnum.cs" />
+    <Compile Include="Enumerated\ReciclaUA\TemaEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\ReciclaUA\usuarioweb.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\usuarioadministrador.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\duda.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\respuesta.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\accion.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\puntoreciclaje.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\contenedor.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\item.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\nivel.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\notainformativa.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\tipoaccion.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\material.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\usuario.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\accionreciclar.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\accionweb.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\edificio.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\planta.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\estancia.hbm.xml" />
+    <EmbeddedResource Include="Mappings\ReciclaUA\juego.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\xsd\nhibernate-configuration.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\xsd\nhibernate-mapping.xsd">
       <SubType>Designer</SubType>
     </None>
-		  </ItemGroup>
-	 	
-		
-	
-		<ItemGroup>
-		    <ProjectReference Include="..\APIExterna\APIExterna.csproj">
-		      <Project>{4ade35c8-a0c3-49da-9e1a-11a53ca19214}</Project>
-		      <Name>APIExterna</Name>
-		    </ProjectReference>
-	    </ItemGroup>
-	    
-		  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-		  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APIExterna\APIExterna.csproj">
+      <Project>{4ade35c8-a0c3-49da-9e1a-11a53ca19214}</Project>
+      <Name>APIExterna</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 		       Other similar extension points exist, see Microsoft.Common.targets.
 		  <Target Name="BeforeBuild">
 		  </Target>
 		  <Target Name="AfterBuild">
 		  </Target>
 		  -->
-		</Project>
+</Project>
