@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsGherkin", "TestsGherki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSelenium", "TestSelenium\TestSelenium.csproj", "{71993639-13A2-4EE4-8B85-CB32A8EBBADD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIExterna", "APIExterna\APIExterna.csproj", "{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,14 @@ Global
 		{71993639-13A2-4EE4-8B85-CB32A8EBBADD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71993639-13A2-4EE4-8B85-CB32A8EBBADD}.Release|x86.ActiveCfg = Release|Any CPU
 		{71993639-13A2-4EE4-8B85-CB32A8EBBADD}.Release|x86.Build.0 = Release|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Debug|x86.Build.0 = Debug|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Release|x86.ActiveCfg = Release|Any CPU
+		{83AF094D-6263-4D79-9D3A-FF6E2E5A3AB6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

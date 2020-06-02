@@ -16,7 +16,7 @@ using ReciclaUAGenNHibernate.CEN.ReciclaUA;
 /*PROTECTED REGION ID(usingReciclaUAGenNHibernate.CP.ReciclaUA_PuntoReciclaje_obtenerPuntosCercanos) ENABLED START*/
 //  references to other libraries
 using System.Linq;
-using System.Device.Location;
+using APIExterna;
 /*PROTECTED REGION END*/
 
 namespace ReciclaUAGenNHibernate.CP.ReciclaUA
@@ -39,13 +39,13 @@ public System.Collections.Generic.IList<ReciclaUAGenNHibernate.EN.ReciclaUA.Punt
                 puntoReciclajeCAD = new PuntoReciclajeCAD (session);
                 puntoReciclajeCEN = new PuntoReciclajeCEN (puntoReciclajeCAD);
 
-                GeoCoordinate referencia = new GeoCoordinate (p_latitud, p_longitud);
+                GeoCoordinateWrapper referencia = new GeoCoordinateWrapper (p_latitud, p_longitud);
 
-                IList<Tuple<GeoCoordinate, PuntoReciclajeEN> > coordenadas = new List<Tuple<GeoCoordinate, PuntoReciclajeEN> >();
+                IList<Tuple<GeoCoordinateWrapper, PuntoReciclajeEN> > coordenadas = new List<Tuple<GeoCoordinateWrapper, PuntoReciclajeEN> >();
 
                 foreach (PuntoReciclajeEN punto in puntoReciclajeCEN.BuscarPuntosValidados ()) {
                         Console.WriteLine (punto.Estancia.Edificio + " " + punto.Estancia.Planta);
-                        coordenadas.Add (new Tuple<GeoCoordinate, PuntoReciclajeEN>(new GeoCoordinate (punto.Latitud, punto.Longitud), punto));
+                        coordenadas.Add (new Tuple<GeoCoordinateWrapper, PuntoReciclajeEN>(new GeoCoordinateWrapper (punto.Latitud, punto.Longitud), punto));
                 }
 
                 var query = coordenadas.OrderBy (tupla => tupla.Item1.GetDistanceTo (referencia)).Select (tupla => tupla.Item2);
