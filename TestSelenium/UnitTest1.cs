@@ -20,7 +20,7 @@ namespace TestSelenium
             driver.Manage().Window.Maximize();
         }
         
-        [TestMethod]
+        //[TestMethod]
         public void Login()
         {
             driver.Url = "http://localhost:8100/login";
